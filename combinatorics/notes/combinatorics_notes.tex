@@ -1,0 +1,433 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\begin{document}
+	\title{Combinatorics}
+	\author{Hernán Ibarra Mejia}
+	\maketitle
+	\chapter{Introduction and Basic Results}
+	This is a set of lecture notes taken by me from the Part III course ``Combinatorics'', lectured by Professor Béla Bollobás in Michaelmas, 2023. I take full responsibility for any mistakes in these notes.
+	\section{Chains, Antichains and Scattered Sets of Vectors}
+	The following are two results we will be able to prove later in the course.
+	\begin{thm}[Littlewood and Clifford, 1943]
+		Let $z_1,\ldots, z_n\in \mathbb{C}$	where $|z_k|\geq 1$ for all $k$. Pick some $r>0$. Then there exists some $c$ depending only on $r$ such that, if $\epsilon_k = \pm 1$ then, of the $2^n$ possible sums of the form $\sum_{k=1}^{n}\epsilon_k z_k$, at most $\frac{c2^n\log n}{\sqrt{n}}$ of these fall into a circle of radius $r$.
+	\end{thm}
+	Paul Erd\H{o}s improved this result in the special case where the points are real numbers.
+	\begin{thm}[Erd\H{o}s, 1945]\label{thm:erdos_L_O}
+		Let $x_1,\ldots,x_n\in \mathbb{R}$ where $x_k\geq 1$ for all $k$. If $\epsilon_k = \pm 1$, then, out of the $2^n$ sums of the form $\sum_{k=1}^{n}\epsilon_k x_k$ at most $\binom{n}{\floor{n/2}}$ fall in the interior of an interval of length $2$.
+	\end{thm}
+	We can see that this bound is the best possible. Take $n$ to be even (the odd case is similar) and $x_k = 1$ for all $k$. Then the sum is 0 exactly $\binom{n}{n/2}$ of the time (same number of positive and negative $\epsilon$s) and otherwise the absolute value of the sum is greater than or equal to 2.
+	\subsection{Hall's Marriage Theorem and  Consequences}
+	By $G = (U,W;E)$ we usually mean that $G$ is a bipartite graph with bipartition $U\sqcup W$, and with edge-set $E$. In this case, we say that $G$ is a \emph{complete matching} from $U$ into $W$ if there is a subgraph $H$ of $G$ that contains all vertices of $G$ and, for all $u\in U$ and $w\in U$,
+	\[
+		d_H(u) = 1 \text{ and }d_H(w) \leq 1.
+	\]
+	(Of course, $d_H(\cdot)$ refers to the degree of a vertex in $H$.)
+	
+	This is a bit too formal. What we really mean by a complete matching from $U$ to $W$ is that there is a way to pair every element of $U$ with an element of $W$ it is adjacent to so that no element of $U$ has to ``share''. Usually one takes $U$ to be a set of women, $V$ to be a set of men, and edges whenever a woman likes a man. Finding a complete matching is then the problem of marrying each women to a man (this is old-fashioned, I know) she likes. Hall's Marriage Theorem gives a necessary and sufficient condition under which this problem is solvable.
+	
+	If $A\subseteq G$ we denote by $\Gamma(A)$ the set of neighbours of $A$ in $G$ (i.e. the set of vertices in $G$ adjacent to at least one vertex of $A$). First suppose that $G$ has a complete matching. Clearly, if $A\subseteq U$ then $|A| \leq |\Gamma(A)|$ since otherwise we wouldn't have enough men to marry all the women of $A$. What is surprising is that this trivial condition is not only necessary but actually sufficient for $G$ to have a complete matching.
+	\begin{thm}[Hall's Marriage Theorem]
+		Let $G = (U,W;E)$ be a bipartite graph. Then $G$ has a complete matching if and only if for all $A\subseteq U$ we have $|A|\leq |\Gamma(A)|$.
+	\end{thm}
+	\begin{proof}
+		\color{red}{TODO}
+	\end{proof}
+	
+	Hall's Theorem is very useful, especially in situations where it seems like you don't need it. Let $\mathcal{F}$ be a \emph{set system}, i.e. a sequence $(\mathcal{F}_1,\ldots,\mathcal{F}_m)$ of sets where each $\mathcal{F}_i$ is a finite set. A \emph{set of distinct representatives} of $\mathcal{F}$ is a sequence $(a_i)_{i=1}^{m}$ with $a_i\in \mathcal{F}_i$ and $a_i \neq a_j$ for all $i,j$ with $i\neq j$. 
+	
+	When does $\mathcal{F}$ has a set of distinct representatives? If $\mathcal{F}$ has one then clearly for all $I\subset [m]$ we would have
+	\[
+		\left|\bigcup_{i\in I}\mathcal{F}_i \right|\geq |I|.
+	\]
+	This leads us to an equivalent formulation of Hall's Theorem.
+	\begin{thm}
+		A set system $\mathcal{F}$ has a set of distinct representatives if and only if for all $I\subset [m]$ we have
+		\[
+			\left|\bigcup_{i\in I}\mathcal{F}_i \right|\geq |I|.
+		\]
+	\end{thm}
+	\begin{proof}
+		One implication is obvious. For the other one, define a bipartite graph $\left([m],\bigcup_{i=0}^m\mathcal{F}_i\right)$ where the set of neighbours of $i\in [m]$ is just all elements of $\mathcal{F_i}$. Then the hypothesis is exactly Hall's condition and so, by Hall's theorem, there is a complete matching from $[m]$ to $\bigcup_{i=0}^m\mathcal{F}_i$, that of course gives us a set of distinct representatives of $\mathcal{F}$. 
+	\end{proof}
+	Next, we explore some simple applications of Hall's theorem.
+	\begin{coro}
+		Let $G = (U,W)$ be a bipartite graph with at least one edge such that $d(u)\geq d(w)$ for all $u\in U$ and $w\in W$. Then there is a complete matching from $U$ to $W$.
+	\end{coro}
+	\begin{proof}
+		We use Hall's theorem. Let $A\subseteq U$ and let $d$ be an integer such that 
+		\[
+			d(w) \leq d \leq d(u)
+		\]
+		for all $u\in U$ and $w\in W$---such an integer exists because of the hypothesis (take, e.g., $d=\min_{u\in U} d(u)$). Consider the number of edges between $A$ and $\Gamma(A)$, call it $e$. Each vertex in $A$ contributes at least $d$ edges, so $d|A|\leq e$. Similarly, each vertex in $\Gamma(A)$ contributes at most $d$ edges, so $e\leq d|\Gamma(A)|\|$. Putting this together we see that $d|A|\leq d|\Gamma(A)|$. Note that $d\neq 0$ since $G$ has at least one edge. Thus, we can conclude that $|A|\leq |\Gamma(A)|$. As $A$ was arbitrary Hall's theorem applies and we are done.
+	\end{proof}
+	\begin{defn}[Weight]
+		Let $(U,W)$ be a bipartite graph and let $A\subseteq U$ and $B\subseteq W$. Define the \emph{weight} of $A$ and the weight of $B$, denoted by $w(A)$ and $w(B)$ respectively, as
+		\begin{align*}
+			w(A) &= \frac{|A|}{|U|}\\[6pt]
+			w(B) &= \frac{|B|}{|W|}.
+		\end{align*}
+ 	\end{defn}
+ 	\begin{defn}[Biregularity]
+ 		A bipartite graph $(U,W)$ is \emph{biregular} with biregularity $(k,l)$ if $d(u) = k$ and $d(w) = l$ for all $u\in U$ and $w\in W$.
+ 	\end{defn}
+ 	It turns out biregular graphs have complete matchings. Before showing this we will prove a lemma.
+ 	\begin{lem}\label{lem:bir_wei_ineq}
+ 		For all biregular graphs $(U,W)$ and all $A\subseteq U$ we have
+ 		\[
+ 			w(A) \leq w(\Gamma(A)).
+ 		\]
+ 	\end{lem}
+ 	\begin{proof}
+ 		Note that we have that the number of edges of $G$ is both $k|U|$ and $l|W|$. Also, if $A\subseteq U$, we have that the number of edges from $A$ to $\Gamma(A)$ is $k|A|$ and this number is at most the edges coming out of $\Gamma(A)$, i.e. $l|\Gamma(A)|$. Therefore
+ 		\[
+ 			w(A) = \frac{k|A|}{k|U|} \leq \frac{l|\Gamma(A)|}{k|U|} = \frac{|\Gamma(A)|}{|W|} = w(\Gamma(A)).\qedhere
+ 		\]
+ 	\end{proof}
+ 	\begin{coro}\label{coro:bir_comp_match}
+ 		Let $(U,W)$ be a biregular graph. If $|U|\leq |W|$ then there is a complete matching from $|U|$ to $|W|$ and vice versa. 
+ 	\end{coro}
+ 	\begin{proof}
+ 		Without loss of generality suppose $|U|\leq |W|$. Hall's condition is immediately satisfied since by Lemma \ref{lem:bir_wei_ineq} we have, for all $A\subseteq U$:
+ 		\[
+ 			|A| = |U|w(A) \leq |W| w(\Gamma(A)) = |\Gamma(A)|. \qedhere
+ 		\]
+ 	\end{proof} 	
+ 	\section{Sperner's Theorem}
+ 	Now we would like to study the graph with vertex set $\mathcal{P}([n])$ with an edge between two subsets of $[n]$ if one of them contains the other. Define an \emph{antichain} in this graph to be a set $\mathcal{A}$ of subsets of $[n]$ so that for all distinct $A,B\in \mathcal{A}$ we have $A\nsubseteq B$ and $B\nsubseteq A$. How big can an antichain be? First, a lemma.
+ 	\begin{coro}\label{coro:one_step_sperner}
+ 		Let $s,r,n\in\mathbb{N}$ be with $0\leq r<s \leq n$. Define $X = [n]$. If  $|s - \frac{n}{2}| \leq |r-\frac{n}{2}|$, then there exists some injective function $f\colon X^{(r)}\to X^{(s)}$ such that for all $A\in X^{(r)}$ we have $A \subseteq f(A)$. Similarly, if  $|s - \frac{n}{2}| \geq |r-\frac{n}{2}|$, then there exists some injection $g\colon X^{(s)}\to X^{(r)}$ such that for all $B\in X^{(s)}$ we have $B \supseteq g(B)$.
+ 	\end{coro}
+ 	\begin{proof}
+ 		Now we construct a biregular graph that we will often come back to. Let $G$ be a bipartite graph with bipartition $(X^{(r)}, X^{(s)})$ with an edge joining $A\in X^{(r)}$ and $B\in [n]^{(s)}$ iff $A \subseteq B$. We claim $G$ is biregular with biregularity 
+ 		\[
+ 		\left(\binom{n-r}{s-r}, \binom{s}{r}\right).
+ 		\]
+ 		Indeed, if $A\in X^{(r)}$ then, to construct some $B\in X^{(s)}$ with $A\subseteq B$ we add $s-r$ elements from the set $X\setminus A$ which has size $n-r$. Similarly, if $B\in X^{(s)}$ and we want to construct some $A \in X^{(r)}$ with $A\subseteq B$ then we just choose $r$ elements from $B$ (which has size $s$) and make it into our $A$.
+ 		
+ 		If $|s - \frac{n}{2}| \leq |r-\frac{n}{2}|$ then $\binom{n}{r}\leq \binom{n}{s}$ and so, by Corollary \ref{coro:bir_comp_match} there is a complete matching from $X^{(r)}$ to $X^{(s)}$: this tells us how to define our $f$. Similarly, if $|s - \frac{n}{2}| \geq |r-\frac{n}{2}|$ then $\binom{n}{r}\geq \binom{n}{s}$ and we do the same thing to define $g$.
+ 	\end{proof}
+ 	\begin{thm}[Sperner, 1928]
+ 		Let $\mathcal{A}\subseteq \mathcal{P}([n])$ be an antichain for some $n>1$. Then $|\mathcal{A}| \leq \binom{n}{\floor{n/2}}$.
+ 	\end{thm}
+ 	\begin{proof}
+ 		The idea is to prove that $\mathcal{P}([n])$ can be covered by $\binom{n}{\floor{n/2}}$ chains, i.e. subsets $\mathcal{B}\subset \mathcal{P}([n])$ such that for all $A,B\in \mathcal{B}$ we have $A\subseteq B$ or $B\subseteq A$. Note that any antichain can intersect a chain at most once, thus the claim follows.
+ 		
+ 		For $s$ with $n/2 < s \leq n$ let $g_s\colon X^{(s)} \to X^{(s-1)}$ be an injection with $B\supseteq g(B)$, which we know exists by Corollary \ref{coro:one_step_sperner}. Similarly, for $r$ with $0\leq r < n/2$ let $f\colon X^{(r)} \to X^{(r+1)}$ be an injection with the property that $A\subseteq f(A)$ for all $A\in X^{(r)}$.
+ 		
+ 		Let $m = \floor{n/2}$. For $A\in X^{(r)}$ with $0\leq r < n/2$ we construct the chain generated by $A$, denoted as $\mathcal{C}_A$, with the following algorithm.
+ 		\begin{enumerate}
+ 			\item $A\in\mathcal{C}_A$
+ 			\item Let $M\in X^{(t)}$ be the unique greatest element of $\mathcal{C}_A$.
+ 			\begin{enumerate}
+ 				\item If $0\leq t < n/2$ declare $f_t(M)\in \mathcal{C}_A$
+ 				\item If $m \leq t < n$ and there is some $C\in X^{(t+1)}$ so that $g_{t+1}(C) = M$ we declare $C \in \mathcal{C_A}$.
+ 				\item Else, terminate.  
+ 			\end{enumerate}
+ 			\item Repeat $(b)$.
+ 		\end{enumerate}
+ 		
+ 		Similarly, if $B\in X^{(s)}$ with $n/2 < s \leq n$ we construct the chain generated by $B$:
+ 		\begin{enumerate}
+ 			\item $B\in\mathcal{C}_B$
+ 			\item Let $M\in X^{(t)}$ be the unique least element of $\mathcal{C}_B$.
+ 			\begin{enumerate}
+ 				\item If $n/2 < t \leq n$ declare $g_t(M)\in \mathcal{C}_B$
+ 				\item If $0< t \leq m$ and there is some $C\in X^{(t-1)}$ so that $f_{t-1}(C) = M$ we declare $C \in \mathcal{C_B}$.
+ 				\item Else, terminate.  
+ 			\end{enumerate}
+ 			\item Repeat $(b)$.
+ 		\end{enumerate}
+ 		
+ 		Finally, define a set $\mathcal{C}$ of chains of $\mathcal{P}(X)$ in stages as follows.
+ 		\begin{enumerate}
+ 			\item Repeat (a) for $k = 0, 1, \ldots, n$ in that order.
+ 			\begin{enumerate}
+ 				\item If there is an element $A \in X^{(k)}$ so that $A$ does not appear in any chain of $\mathcal{C}$ declare $\mathcal{C}_A\in\mathcal{C}$.
+ 			\end{enumerate}
+ 		\end{enumerate}
+ 		It is clear that the chains in $\mathcal{C}$ cover $\mathcal{P}(X)$. Furthermore, the injectivity of $f$ and $g$ guarantee that the chains are disjoint. Finally, each chain contains an element of $X^{(m)}$ by definition of $\mathcal{C}_A$. Therefore $|\mathcal{C}| = \binom{n}{m}$ as desired.
+ 	\end{proof}
+ 	Using Sperner's Theorem, Erd\H{o}s proved Theorem \ref{thm:erdos_L_O} as follows.
+ 	\begin{proof}[Proof of Theorem \ref{thm:erdos_L_O}]
+ 		Let $I$ be an interval of length 2. For $\epsilon = (\epsilon_i)_{i=1}^{n}$ set $x_\epsilon \coloneqq \sum_{i=1}^{n}\epsilon_ix_i$ and 
+ 		\[F_\epsilon \coloneqq \{i \mid \epsilon_i = 1\}.\]
+ 		Let $\mathcal{F} = \{F_\epsilon \mid \text{$x_\epsilon$ is in the interior of $I$}\}$. Then $\mathcal{F}$ is an antichain, for if $F_\epsilon \subsetneq F_\delta$ we would have that $x_\delta$ contains one more ``plus sign'' than $x_\epsilon$ and thus $x_\delta - x_\epsilon \geq 2$, contradicting that $x_\delta$ and $x_\epsilon$ are in the interior of $I$. Thus, by Sperner's Theorem, we have that $|\mathcal{F}| \leq \binom{n}{\floor{n/2}}$. 
+ 	\end{proof}
+ 	\section{More general posets}
+ 	There are more general settings in which the previous results hold. We assume the definition of a poset: the definitions of chains and antichains generalize to the obvious ones.
+ 	
+ 	There is one more definition that we will need. Let $(S,\leq)$ be a poset and suppose $x,y\in S$. Then $y$ \emph{covers} $x$ if $x<y$ and there is no $z\in S$ with $x < z < y$.
+ 	\subsection{Regular graded posets}
+ 	Now we begin by generalizing properties of $\mathcal{P}([n])$. Say a poset $(S,\leq)$ is \emph{graded} if $S$ has a partition $S = \bigsqcup_{i=0}^{m}S_i$ such that each $S_i$ is an antichain and if $x<y$ there are elements $x_i,x_{i+1},\ldots,x_j\in S$ such that $x_k\in S_k$ for all $k$ and
+ 	\[
+ 		x= x_i < x_{i+1} < \cdots <x_j = y.
+ 	\]
+ 	(Furthermore we assume that for all $k$ with $0<k<m$ and $x\in S_k$ there is some $x' \in S_{k-1}$ and $x''\in S_{k+1}$ such that $x' < x < x''$ to rule out e.g., trivial posets. All of our posets are connected). Clearly the definition implies that if $y$ covers $x$ then $x\in S_k$ and $y\in S_{k+1}$ for some $k$.
+ 	
+ 	Furthermore, the graded poset $(S,\leq)$ is said to be \emph{regular} if for all $k$ with $0\leq k\leq m$ there exists some integers $r_k$ and $s_k$ so that for all $x\in S_k$ we have that $x$ covers exactly $r_k$ elements of $S_{k-1}$ (if $k>0$) and is covered by exactly $s_k$ elements of $S_{k+1}$ (if $k<m$).
+ 	
+ 	Just in case we haven't emphasised this enough: for us, the perennial example of a regular graded poset is $\mathcal{P}([m])$. However, soon we will meet other regular graded posets which could use with results analogous to Sperner's Theorem, for example.
+ 	
+ 	For a graded poset $(S,\leq)$ and $A\subseteq S$ we define the \emph{weight} of $A$ as follows.
+ 	\begin{enumerate}[label=(\alph*)]
+ 		\item If $A\subseteq S_i$ for some $i$ we define $w(A) \coloneqq \frac{|A|}{|S_i|}$.
+ 		\item For any $A\subseteq S$ we define
+ 		\[
+ 			w(A)\coloneqq \sum_{i=0}^{m}w(A\cap S_i).
+ 		\]
+ 	\end{enumerate}
+ 	\begin{thm}\label{thm:wei_ant_leq_1}
+ 		Let $A$ be an antichain in a regular graded poset $(S,\leq)$. Then $w(A) \leq 1$.
+ 	\end{thm}
+ 	\begin{proof}[First proof]		
+ 		First we fix some notation. From now on, we abbreviate $A\cap S_i$ by $A_i$. If $B \subseteq S_i$ for some $i$ denote by $\Gamma(B)$ the set of elements of $S_{i+1}$ that cover an element of $B$.
+ 		
+ 		We claim that for all $0\leq k \leq m$ we have
+ 		\[
+ 			\sum_{i=0}^{k}w(A_i)\leq w\left(\bigcup_{i = 0}^{k} \Gamma^{k-i}(A_i)\right)
+ 		\]
+ 		Note that the argument of $w$ in the right-hand side is a subset of $S_k$ so this is well-defined. Use induction on $k$. For $k = 0$ this reduces to $w(A_0) = w(A_0)$. 
+ 		
+ 		Now suppose $k>0$. As $A$ is an antichain, $A_{k}$ does not contain elements from $\Gamma(A_{k-1})$ nor of $\Gamma^2(A_{k-2})$, and so on. Therefore, 
+ 		\begin{align*}
+ 			w\left(\bigcup_{i = 0}^{k} \Gamma^{k-i}(A_i)\right) &= w(A_k) + w\left(\bigcup_{i = 0}^{k-1} \Gamma^{k-i}(A_i)\right)\\
+ 			&= w(A_k) + w\left(\Gamma\left(\bigcup_{i = 0}^{k-1} \Gamma^{k-i-1}(A_i)\right)\right)\\
+ 			&\geq w(A_k) + w\left(\bigcup_{i = 0}^{k-1} \Gamma^{k-i-1}(A_i)\right),
+ 		\end{align*}
+ 		where the last inequality is a consequence of Lemma \ref{lem:bir_wei_ineq} by noting that $S_t$ and $S_{t+1}$ form a biregular graph for all $t$ with the covering relation (that is what it means for the graded poset to be regular) and that the weight and $\Gamma$ defined for bipartite graphs and for graded posets coincide in this case. Therefore, by the inductive hypothesis, we have
+ 		\[
+ 		w\left(\bigcup_{i = 0}^{k} \Gamma^{k-i}(A_i)\right)\geq w(A_k) + \sum_{i=0}^{k-1}w(A_i).
+ 		\]
+ 		as desired. This closes the induction. Now specialize to the case where $k = m$ to get
+ 		\[
+ 			w(A) = \sum_{i=0}^{m}w(A_i)\leq w\left(\bigcup_{i = 0}^{m} \Gamma^{m-i}(A_i)\right) \leq 1,
+ 		\]
+ 		where the last inequality follows from the fact that $w(S_m)=1$ and subsets of $S_m$ cannot exceed this weight.
+ 	\end{proof}
+ 	\begin{proof}[Second proof]
+ 		Suppose $A\neq \emptyset$ for otherwise the theorem is trivial. We define the \emph{span} of $A$ to be the maximum integer $k$ so that there exists some $i$ with both $A_i$ and $A_{i+k}$ being nonempty.
+ 		
+ 		We use induction on the span $k$ of $A$. If $k$ is zero then $A\subseteq S_i$ for some $i$ and clearly $w(A) = w(A_i)\leq 1$. Assume $k\geq 1$. Let $h$ be such that $A_h\neq \emptyset$ and $A_j=\emptyset$ for all $j>h$. Let $A_{h-1}'$ be the set of elements in $S_{h-1}$ that are covered by some element of $A_h$; clearly $A$ and $A_{h-1}'$ are disjoint. By Lemma \ref{lem:bir_wei_ineq} we have $w(A'_{h-1}) \geq w(A_h)$. Then, if we replace $A_h$ by $A_{h-1}'$ in $A$ we cannot decrease the weight. That is, if we define 
+ 		\[
+ 			A' \coloneqq (A\setminus A_h)\cup A_{h-1}',
+ 		\]
+ 		then $w(A') \geq w(A)$. But notice that the span of $A'$ is less than $k$. The inductive hypothesis implies $w(A')\leq 1$ and we are done.
+ 	\end{proof}
+ 	We will also give a third proof but we need some preliminaries. Note that a regular graded poset $(S,\leq)$ has various parameters, say $(r_i,s_i)_{i=0}^m$ where if $x\in S_k$ it covers $r_k$ elements in $S_{k-1}$ and is covered by $s_k$ elements in $S_{k+1}$. We assume $r_0 = 0$ and $s_m = 0$ but otherwise $r_k,s_k\geq 1$---this is in order to rule out disconnected posets.
+ 	
+ 	As we are disregarding disconnected posets, it is clear that every maximal chain in $S$ has length $m+1$. For $x\in S$ denote by $\mu(x)$ the number of maximal chains containing $x$. Let us calculate $\mu(x)$.
+ 	
+ 	If $x\in S_k$ for some $k$ we can construct a maximal chain by choosing one element from each of $S_{0},S_{1},\ldots, S_{k-1}$ these elements are comparable to $x$, and similarly for $S_{k+1},\ldots,S_{m}$. We know how many choices there are for $S_{k-1}$ and $S_{k+1}$: these are $r_k$ and $s_k$ respectively. And once we've made those choices we know how many choices there are for $S_{k-2}$ and $S_{k+2}$: these are $r_{k-1}$ and $s_{k+1}$. Continuing on we conclude that if $x\in S_k$
+ 	\[
+ 		\mu(x) = \left(\prod_{i=1}^{k}r_i\right)\left(\prod_{i = k}^{m-1}s_{i}\right).
+ 	\]
+ 	Note that this number doesn't depend on the specific element $x$, only on its level $k$. Let $M$ denote the number of maximal chains in $S$. As every maximal chain must pass through all levels, we conclude that for all $1\leq k \leq m$ and for all $x\in S_k$ we have
+ 	\[
+ 		M = |S_k|\mu(x).
+ 	\]
+ 	\begin{proof}[Third proof]
+ 		Note that maximal chains passing through different elements of $A$ must be distinct since two distinct elements of the antichain $A$ cannot form part of a chain. It follows that
+ 		\begin{align*}
+ 			M &\geq \sum_{x\in A}\mu(x)\\
+ 			&= \sum_{k = 0}^{m}|A_h|\frac{M}{S_h}\\
+ 			&= M\sum_{k=0}^{m}\frac{|A_h|}{|S_h|} = Mw(A).
+ 		\end{align*}
+ 		As our posets are connected there is at least one maximal chain, i.e., $M>0$. Divide by $M$ and we are done.
+ 	\end{proof}
+ 	\subsection{Back to $\mathcal{P}(n)$}
+ 	We can apply the previous theorem to the specific case of $\mathcal{P}([n])$ (we abbreviate this as $\mathcal{P}(n)$ now).
+ 	
+ 	\begin{thm}
+ 		If $\mathcal{A}\subseteq \mathcal{P}(n)$ is an antichain then $\sum_{A\in\mathcal{A}}\binom{n}{|A|}^{-1} \leq 1$. Equivalently, if we define $f_k\coloneqq |\mathcal{A}\cap X^{(k)}|$ then $\sum_{k=0}^{n} f_k\binom{n}{k}^{-1}\leq 1$.
+ 	\end{thm}
+ 	\begin{proof}[First proof]
+ 		Clearly the second statement, in the language of graded posets, is just saying that the weight of $A$ is less than or equal to 1, which is just Theorem \ref{thm:wei_ant_leq_1}. The first statement is also referring to the weight, but the sum runs over individual elements of $\mathcal{A}$ rather than the intersections over different levels.
+ 	\end{proof}
+ 	\begin{proof}[Second proof]
+ 		This proof is due to Lubell. We say that $A\in\mathcal{P}(n)$ is contained in a permutation $\pi = x_1x_2\cdots x_n$ of $[n]$ if $A= \{x_1,\ldots,x_k\}$ where $k = |A|$.
+ 		
+ 		Every permutation $\pi$ contains at most one element of $\mathcal{A}$. This is because, if it contained two, one of them would be a subset of the other and $\mathcal{A}$ is an antichain. Also, given a set $A\in\mathcal{P}(n)$ with $|A| =k$ we see that $A$ is contained in exactly $k!(n-k)!$ permutations. Trivially, the number of permutations containing an element of $\mathcal{A}$ is at most the number of permutations of $\mathcal{P}(n)$. In other words,
+ 		\[
+ 			\sum_{A\in\mathcal{A}}|A|! (n-|A|)! \leq n!\qedhere
+ 		\]
+ 	\end{proof}
+ 	\section{Symmetric Chains}
+ 	\begin{defn}
+ 		A chain in $\mathcal{P}(n)$ is called symmetric if it is of the form $C_i \subseteq C_{i+1} \subseteq \cdots \subseteq C_{n-i}$ and $|C_j| = j$ for all $j$.
+ 	\end{defn}
+ 	\begin{egs}
+ 		In $\mathcal{P}(6)$ the following is a symmetric chain.
+ 		\[
+ 			\{1\} \subseteq \{1,4\}\subseteq \{1,3,4\}\subseteq \{1,3,4,6\}\subseteq \{1,3,4,5,6\}.
+ 		\]
+ 		The one-element chain $\{2,4,5\}$ is also symmetric in $\mathcal{P}(6)$ (but not in any other $\mathcal{P}(n)$). Similarly, the chain
+ 		\[
+ 			\{2,5,6\} \subseteq \{2,4,5,6\}
+ 		\]
+ 		is symmetric in $\mathcal{P}(7)$ but not symmetric anywhere else.
+ 	\end{egs}
+ 	\begin{thm}
+ 		Every powerset has a partition into symmetric chains. Furthermore, such a partition of $\mathcal{P}(n)$ has size exactly $\binom{n}{\floor{n/2}}$.
+ 	\end{thm}
+ 	\begin{proof}
+ 		First, suppose that such a partition $P$ existed. Symmetric chains always contain an element of $[n]^{(\floor{n/2})}$ but they can contain at most one since any two are not comparable. Therefore there is a function $f\colon P \to [n]^{(\floor{n/2})}$ sending each chain of the partition to the unique element of $[n]^{(\floor{n/2})}$ it contains. Clearly $f$ is injective (since elements of $P$ are disjoint) and surjective (since $P$ covers all of $\mathcal{P}(n)$). Hence $f$ is a bijection and thus $|P| = \binom{n}{\floor{n/2}}$.		
+ 		
+ 		
+ 		It remains to show that such partitions exist. We use induction on $n$. For $n = 0$ the single one-element chain $\{\emptyset\}$ works. Let $n\geq 2$ and assume that the result holds for $n-1$. Then, let $P$ be a partition of $\mathcal{P}(n-1)$ into symmetric chains let $\mathcal{C} = \{C_i,C_{i+1},\ldots, C_{j}\}$ be a chain in $P$.
+ 		
+ 		If $i<j$ define two more chains
+ 		\begin{align*}
+ 			\mathcal{C}'&\coloneqq \{C_i,\ldots,C_j,C_j \cup \{n\}\}\\
+ 			\mathcal{C}''&\coloneqq \{C_i\cup\{n\},\ldots, C_{j-1}\cup\{n\}\}.
+ 		\end{align*}
+ 		If $i=j$ then just $\mathcal{C'}$ as above and omit $\mathcal{C''}$. Clearly both of these are symmetric chains in $\mathcal{P}(n)$. If we let $P'$ be the collection of all such $\mathcal{C}'$ and $\mathcal{C}''$ then $P'$ partitions $\mathcal{P}(n)$ into symmetric chains.
+ 	\end{proof}
+\end{document}

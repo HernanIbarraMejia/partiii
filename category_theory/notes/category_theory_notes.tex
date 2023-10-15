@@ -1,0 +1,1056 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\begin{document}
+	\title{Category Theory}
+	\author{Hernán Ibarra Mejia}
+	\maketitle
+	This is a set of lecture notes taken by me from the Part III course ``Category Theory'', lectured by Professor Peter Johnstone in Michaelmas, 2023. I take full responsibility for any mistakes in these notes. Since Professor Johnstone provides his own notes, I will be writing `skeletal lecture notes', i.e. only definitions, theorems, and proofs with little by way of motivation and almost no examples. I might expand on the proofs and statements given without rigorous proofs more than Professor Johnstone does, but that's my only contribution in terms of content.
+	\section{Definitions \sout{and Examples}}
+	\begin{defn}[Categories]
+		A \emph{category} $\mathcal{C}$ consists of the following.
+		\begin{enumerate}
+			\item A collection $\ob \mathcal{C}$ of objects $A,B,C,\ldots$
+			\item A collection $\mor \mathcal{C}$ of morphisms $f,g,h,\ldots$
+			\item Two operations $\dom,\cod\colon \mor \mathcal{C} \to \ob\mathcal{C}$. We write $f\colon A \to B$ to mean $\dom f =A$ and $\cod f = B$.
+			\item An operation $\id \colon \ob \mathcal{C} \to \mor \mathcal{C}$ so that $\dom (\id A) = \cod (\id A) = A$. We write $1_A$ for $\id A$.
+			\item A partial binary operation on $\mor \mathcal{C}$ called composition. We usually denote it by concatenation i.e., $(f,g)\mapsto fg$. 
+		\end{enumerate}
+		Categories are also required to satisfy the following axioms.
+		\begin{enumerate}
+			\item The composition $fg$ is defined if and only if $\dom f = \cod g$.
+			\item We have that $\dom fg = \dom g$ and $\cod fg = \cod f$.
+			\item If the composites are defined, we have $f1_A = f$ and $1_Ag = g$. 
+			\item Whenever $fg$ and $gh$ are defined we have $f(gh) = (fg)h$.
+		\end{enumerate}
+	\end{defn}
+	For any category $\mathcal{C}$ there is the \emph{oppposite category} $\mathcal{C}^{\text{op}}$ with the same objects as $\mathcal{C}$ and morphisms $f\colon A\to B$ in $\mathcal{C}^{\text{op}}$ are just morphisms $f\colon B \to A$ in $\mathcal{C}$. It is easily verified that this gives a category. 
+	\begin{defn}[Subcategories]
+		Let $\mathcal{C}$ be a category. We say $\mathcal{D}$ is a \emph{subcategory} of $\mathcal{C}$ if $\mathcal{D}$ is a category with $\ob \mathcal{D} \subseteq \ob \mathcal{C}$ and $\mor \mathcal{D}\subseteq \mor \mathcal{D}$ so that the operations of domain, codomain, identity, and composition in $\mathcal{D}$ are just the restriction of those of $\mathcal{C}$.
+	\end{defn}
+	\begin{defn}[Isomorphisms]
+		Let $\mathcal{C}$ be a category. An \emph{isomorphism} is a morphism $f\colon A \to B$ in $\mathcal{C}$ so that there exists some other morphism $g\colon B \to A$ with the property that 
+		\[
+			gf = 1_A \,\,\,\text{ and }\,\,\, fg= 1_B.
+		\]
+		In this case we call $g$ the \emph{inverse} of $f$. If there is an isomorphism $A\to B$ we say that $A$ and $B$ are \emph{isomorphic} and write $A\cong B$.
+	\end{defn}
+	\begin{prop}
+		Inverses of isomorphisms are unique.
+	\end{prop}
+	\begin{proof}
+		Suppose $f\colon A \to B$ is an isomorphism in some category, and let $g,g'\colon B \to A$ be inverses of $f$. Then,
+		\[
+			g = g1_B = g(fg') = (gf)g' = 1_Ag' = g'.\qedhere
+		\]
+	\end{proof}
+	Note that in the above proof we have used all axioms for categories. Given that inverses are unique, we will denote the unique inverse of an isomorphism $f$ by $f^{-1}$.
+	\begin{prop}
+		In all categories $\cong$ is an equivalence relation.
+	\end{prop}
+	\begin{proof}
+		For the rest of the proof, fix a category $\mathcal{C}$ and let $A,B,C\in \ob \mathcal{C}$ be arbitrary. Note that $A\cong A$ since the identity morphism $1_A \colon A \to A$ is an isomorphism (this is because $1_A1_A = 1_A$).
+		
+		Suppose $A\cong B$ and let $f\colon A \to B$ be an isomorphism. Then we have
+		\[
+			f^{-1}f = 1_A \,\,\,\text{ and }\,\,\, ff^{-1}= 1_B,
+		\]
+		which shows that $f^{-1}\colon B \to A$ is an isomorphism and hence $B\cong A$.
+		
+		Finally, suppose that $A\cong B$ and $B\cong C$. Let $f\colon A \to B$ and $g\colon B \to C$ be isomorphisms. We claim that $gf$ is an isomorphism. Indeed, 
+		\[
+			(gf)(f^{-1}g^{-1}) = g((ff^{-1})g^{-1}) = g(1_Bg^{-1}) = gg^{-1} = 1_C,
+		\]
+		and similarly $(f^{-1}g^{-1})(gf) = 1_A$, showing that $f^{-1}g^{-1}$ is an inverse for $gf$. Hence $A\cong C$.
+	\end{proof}
+	\begin{defn}[Functors]
+		Let $\mathcal{C}$ and $\mathcal{D}$ be categories. A functor $F\colon \mathcal{C} \to \mathcal{D}$ consists of mappings $F\colon \ob \mathcal{C} \to \ob \mathcal{D}$ and $F\colon \mor \mathcal{C} \to \mor \mathcal{D}$ satisfying  the following.
+		\begin{enumerate}
+			\item Compatibility with domains and codomains, i.e., $F(\dom f) = \dom Ff$ and $F(\cod f) = \cod Ff$.
+			\item Compatibility with identities, i.e., $F(1_A) = 1_{FA}$.
+			\item Compatibility with composition, i.e., $F(fg) = (Ff)(Fg)$.
+		\end{enumerate}
+	\end{defn}
+	When there is a functor $\mathcal{C}^{\text{op}} \to \mathcal{D}$ or $\mathcal{C} \to \mathcal{D}^{\text{op}}$ (these two are equivalent) we sometimes call it a \emph{contravariant} functor $\mathcal{C} \to \mathcal{D}$. We use the term \emph{covariant} to mean functors in the original sense.
+	
+	Note that functors can be composed. That is, if we have categories $\mathcal{C},\mathcal{D}$ and $\mathcal{E}$, together with functors $F\colon\mathcal{C}\to\mathcal{D}$ and $G\colon \mathcal{D}\to\mathcal{E}$ we can define a functor $GF\colon \mathcal{C}\to\mathcal{E}$. This is done in the obvious way: if $A,B\in\ob \mathcal{C}$ and $f\colon A \to B$ is a morphism in $\mathcal{C}$ we let 
+	\[
+		GF(A) \coloneqq G(F(A)) \,\,\, \text{ and }\,\,\, GF(f) \coloneqq G(F(f)).
+	\]
+	That this is a functor is verified immediately. Note that composition is associative as well. Therefore, if we wanted to, we can define a category $\mbold{Cat}$ whose objects are all (small) categories and its morphisms are functors. Proving that this is a category is easy though tedious.
+	\begin{defn}[Natural transformations]
+		Let $\mathcal{C}$ and $\mathcal{D}$ be categories and $F,G\colon \mathcal{C} \to \mathcal{D}$ be functors. A \emph{natural transformation} $\alpha \colon F \to G$ is a collection of morphisms $\alpha_A \colon FA \to FB$ of $\mor \mathcal{D}$ for all $A\in \ob \mathcal{C}$ so that if $f \colon A \to B$ is a morphism of $\mathcal{C}$ the following square (called the \emph{naturality square}) commutes.
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGQSJdLFsxLDAsIkZCIl0sWzAsMSwiR0EiXSxbMSwxLCJHQiJdLFswLDEsIkZmIl0sWzIsMywiR2ciLDJdLFswLDIsIlxcYWxwaGFfQSIsMl0sWzEsMywiXFxhbHBoYV9CIl1d
+		\[\begin{tikzcd}
+			FA & FB \\
+			GA & GB
+			\arrow["Ff", from=1-1, to=1-2]
+			\arrow["Gg"', from=2-1, to=2-2]
+			\arrow["{\alpha_A}"', from=1-1, to=2-1]
+			\arrow["{\alpha_B}", from=1-2, to=2-2]
+		\end{tikzcd}\]
+	\end{defn}
+	Fix two categories $\mathcal{C}$ and $\mathcal{D}$. We can build a category $[\mathcal{C}, \mathcal{D}]$ whose objects are all functors $\mathcal{C}\to \mathcal{D}$ and the morphisms are natural transformations with $\dom$ and $\cod$ defined in the obvious way. 
+	
+	If $F\colon \mathcal{C} \to \mathcal{D}$ we define $1_F \colon F \to F$ to be the natural transformation consisting of morphisms $(1_F)_A \colon FA \to FA$ for each $A\in \ob \mathcal{C}$ by specifying $(1_F)_A \coloneqq 1_{FA}$. Then $1_F$ is a natural transformation since if $f\colon A \to B$ is a morphism in $\mathcal{C}$ the naturality square
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGQSJdLFsxLDAsIkZCIl0sWzAsMSwiRkEiXSxbMSwxLCJGQiJdLFswLDEsIkZmIl0sWzIsMywiRmYiXSxbMCwyLCIoMV9GKV9BIiwyXSxbMSwzLCIoMV9GKV9CIl1d
+	\[\begin{tikzcd}
+		FA & FB \\
+		FA & FB
+		\arrow["Ff", from=1-1, to=1-2]
+		\arrow["Ff", from=2-1, to=2-2]
+		\arrow["{(1_F)_A}"', from=1-1, to=2-1]
+		\arrow["{(1_F)_B}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+	obviously commutes by the identity axiom of categories. 
+	
+	Note that if we have natural transformations $\alpha\colon F \to G$ and $\beta \colon G \to H$ for functors $F,G,H \colon \mathcal{C} \to \mathcal{D}$ we can define the composite natural transformation $\beta\alpha \colon F \to H$ by stating that for all $A \in \mathcal{C}$ we have $(\beta\alpha)_A = \beta_A\alpha_A$. This is a natural transformation since if $f\colon A \to B$ for $A,B\in\ob \mathcal{C}$ we have that in the following diagram
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJGQSJdLFsxLDAsIkZCIl0sWzAsMSwiR0EiXSxbMSwxLCJHQiJdLFswLDIsIkhBIl0sWzEsMiwiSEIiXSxbMCwxLCJGZiJdLFsyLDMsIkdmIl0sWzAsMiwiXFxhbHBoYV9BIiwyXSxbMSwzLCJcXGFscGhhX0IiXSxbMiw0LCJcXGJldGFfQSIsMl0sWzMsNSwiXFxiZXRhX0IiXSxbNCw1LCJIZiIsMl1d
+	\[\begin{tikzcd}
+		FA & FB \\
+		GA & GB \\
+		HA & HB
+		\arrow["Ff", from=1-1, to=1-2]
+		\arrow["Gf", from=2-1, to=2-2]
+		\arrow["{\alpha_A}"', from=1-1, to=2-1]
+		\arrow["{\alpha_B}", from=1-2, to=2-2]
+		\arrow["{\beta_A}"', from=2-1, to=3-1]
+		\arrow["{\beta_B}", from=2-2, to=3-2]
+		\arrow["Hf"', from=3-1, to=3-2]
+	\end{tikzcd}\]
+	both squares commute since both $\alpha$ and $\beta$ are natural transformations, so the outer rectangle, which is the naturality square for $(\beta\alpha)_A$, commutes. We only need to check associativity and the identity axiom (the other axioms are obvious from the construction).
+	
+	Let $F,G,H,I\colon \mathcal{C}\to\mathcal{C}$ be functors and let $\alpha\colon F\to G$, $\beta\colon G\to H$, and $\gamma\colon H \to I$ be natural transformations. Then for all $A\in\ob \mathcal{C}$ we have $((\alpha\beta)\gamma)_A = (\alpha_A\beta_A)\gamma_A$ and $(\alpha(\beta\gamma))_A = \alpha_A(\beta_A\gamma_A)$ by definitions; and these are equal by associativity in $\mor \mathcal{D}$. Hence, $(\alpha\beta)\gamma = \alpha(\beta\gamma)$ so associativity holds.
+	
+	Finally, let $F,G,H\colon\mathcal{C}\to \mathcal{D}$ be functors and let $\alpha \colon F \to G$ and $\beta\colon G \to H$ be natural transformations. Consider $1_G\alpha$. For all $A\in\ob \mathcal{C}$ we have 
+	\[
+		(1_G\alpha)_A = (1_G)_A\alpha_A = 1_{GA}\alpha_A = \alpha_A,
+	\]
+	where the last equality is the axiom of identity in $\mathcal{D}$. Therefore $1_G\alpha = \alpha$. Similarly, for $\beta1_G$ we have for all $A\in\ob \mathcal{C}$,
+	\[
+		(\beta1_G)_A = \beta_A(1_G)_A = \beta_A1_{GA} = \beta_A,
+	\]		
+	and so $\beta1_G = \beta$. This verifies the last axiom so $[C,D]$ is indeed a category. As you can see, verifying whether something that is obviously a category \emph{is} a category is quite a lot of very boring and repetitive work so I promise not to do it ever ever ever ever ever ever ever ever again.
+	\begin{lem}\label{lem:nat_iso_pointw}
+		Let $\alpha\colon F \to G$ be a natural transformation between functors $F,G\colon \mathcal{C}\to\mathcal{G}$. Then $\alpha$ is an isomorphism in $[\mathcal{C}, \mathcal{D}]$ if and only if $\alpha_A$ is an isomorphism in $\mathcal{D}$ for all $A\in\ob\mathcal{C}$.
+	\end{lem}
+	\begin{proof}
+		Suppose $\alpha$ is an isomorphism in $[\mathcal{C}, \mathcal{D}]$, and let $\alpha^{-1}\colon G \to F$ be its inverse. If $A\in\ob \mathcal{C}$ we have that
+		\[
+			1_{FA} = (1_F)_A = (\alpha^{-1}\alpha)_A = \alpha^{-1}_A\alpha_A,
+		\]
+		and similarly $1_{GA} = \alpha_A\alpha^{-1}_A$. Thus $\alpha_A$ is an isomorphism.
+		
+		Conversely, suppose that $\alpha_A$ is an isomorphism for all $A\in\ob\mathcal{C}$. Then define $\alpha^{-1}\colon \mathcal{G} \to \mathcal{F}$ as the collection of morphisms $\alpha^{-1}_A$ for all $A$. We only need to check that this is a natural transformation. This is the case, since, if $g\colon C \to D$ is a morphism in $\mathcal{D}$ we have that the naturality square
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHQyJdLFsxLDAsIkdEIl0sWzAsMSwiRkMiXSxbMSwxLCJGRCJdLFswLDEsIkdnIl0sWzIsMywiRmciLDJdLFswLDIsIlxcYWxwaGFeey0xfV9DIiwyXSxbMSwzLCJcXGFscGhhXnstMX1fRCJdXQ==
+		\[\begin{tikzcd}
+			GC & GD \\
+			FC & FD
+			\arrow["Gg", from=1-1, to=1-2]
+			\arrow["Fg"', from=2-1, to=2-2]
+			\arrow["{\alpha^{-1}_C}"', from=1-1, to=2-1]
+			\arrow["{\alpha^{-1}_D}", from=1-2, to=2-2]
+		\end{tikzcd}\]
+		commutes. To see this, just calculate:
+		\[
+			(Fg)(\alpha_C^{-1}) = (\alpha^{-1}_D\alpha_D)(Fg)(\alpha_C^{-1}) \overset{!}{=} \alpha^{-1}_C(Gg)(\alpha_C)\alpha_{C}^{-1} = \alpha_C^{-1}Gg.
+		\]
+		 Note that in $\overset{!}{=}$ we used the naturality of $\alpha$.
+	\end{proof}
+	\begin{defn}[Equivalence of categories]
+		Let $\mathcal{C}$ and $\mathcal{D}$ be categories. By an \emph{equivalence} between $\mathcal{C}$ and $\mathcal{D}$ we mean a pair of functors $F\colon \mathcal{C}\to\mathcal{D}$ and $G\colon \mathcal{D} \to \mathcal{C}$, together with natural isomorphisms $\alpha\colon 1_{\mathcal{C}} \to GF$ and $\beta \colon FG \to 1_{\mathcal{D}}$.
+		
+		We write $\mathcal{C}\simeq \mathcal{D}$ if there exists an equivalence between $\mathcal{C}$ and $\mathcal{D}$.
+	\end{defn}
+	For $A,B$ objects of some category $\mathcal{C}$ we define the notation $\mathcal{C}(A,B)$ to mean the collection of morphisms $f\in\mor\mathcal{C}$ such that $\dom f = A$ and $\cod f = B$.
+	\begin{defn}
+		Let $F\colon\mathcal{C}\to\mathcal{D}$ be a functor.
+		\begin{enumerate}[label=(\alph*)]
+			\item We say $F$ is \emph{faithful} if, given $f,g\in\mor \mathcal{C}$ the equations $\dom f = \dom g$, $\cod f = \cod g$ and $Ff = Fg$ imply $f = g$. 
+			\item We say that $F$ is \emph{full} if, given $g\colon FA\to FB$ there exists $f\colon A \to B$ in $\mathcal{C}$ so that $Ff = g$.
+			\item We say that $F$ is \emph{essentially surjective} if every $B\in\ob \mathcal{D}$ is isomorphic to $FA$ for some $A\in\mathcal{C}$.
+		\end{enumerate}
+		Equivalently, we say $F$ is faithful (respectively full) if for all $A,B\ \ob\mathcal{C}$ the assignment $\mathcal{C(A,B)} \to \mathcal{D}(F(A),F(B))$ given by $f\mapsto Ff$ is one-to-one (resp. onto).
+	\end{defn}
+	Note that a subcategory $\mathcal{D}$ of $\mathcal{C}$ induces a faithful functor $F\colon \mathcal{D} \to \mathcal{C}$ which is given by inclusion. If $F$ is also full, we say that $\mathcal{D}$ is a \emph{full subcategory} of $\mathcal{C}$.
+	\begin{prop}
+		Let $\mathcal{C}$ and $\mathcal{D}$ be categories, and suppose $F \colon\mathcal{C}\to\mathcal{D}$ is a functor. If $A,B\in\ob\mathcal{C}$ are isomorphic, then so are $F(A)$ and $F(B)$. Furthermore, if $F$ is full and faithful, then the converse holds. 
+	\end{prop}
+	\begin{proof}
+		Suppose $A,B\in\ob\mathcal{C}$ are isomorphic, and let $f\colon A \to B$ be an isomorphism. Then, by functoriality,
+		\[
+			(Ff^{-1})(Ff) = F(f^{-1}f) = F1_A = 1_{FA}, 
+		\]
+		and similarly $(Ff)(F(f^{-1}) = 1_{FB}$. It follows that $Ff^{-1} = (Ff)^{-1}$ and $Ff$ is an isomorphism $FA\to FB$.
+		
+		Now suppose that $F$ is full and faithful and let us prove the converse. Assume $A,B\in\ob\mathcal{C}$ are such that $FA \cong FB$. Let $g\colon FA \to FB$ be an isomorphism. By fullness, there is a morphism $f\colon A \to B$ so that $Ff = g$. Similarly, there is a morphism $f^{*} \colon B \to A$ so that $Ff^{*} = g^{-1}$. Then, by functoriality,
+		\[
+			F(f^{*}f) = (Ff^{*})(Ff) = g^{-1}g = 1_{FA} = F(1_A).
+		\] 
+		By faithfulness, $f^{*}f = 1_A$. An analogous argument shows that $ff^{*} = 1_B$ and thus $f^{*}= f^{-1}$ and $f$ is an isomorphism.
+	\end{proof}
+	\begin{lem}
+		Let $F\colon \mathcal{C}\to \mathcal{D}$ be a functor. Then $F$ is part of an equivalence $\mathcal{C} \simeq \mathcal{D}$ if and only if $F$ is full, faithful, and essentially surjective
+	\end{lem}
+	\begin{proof}
+		Suppose $F$ is part of an equivalence $\mathcal{C}\simeq \mathcal{D}$ and let $G\colon \mathcal{D}\to\mathcal{C}$ be a functor so that $\alpha\colon 1_{\mathcal{C}}\to GF$ and $\beta \colon FG \to 1_{\mathcal{D}}$ are natural isomorphisms. That $F$ is essentially surjective is immediate: if $B\in\mathcal{D}$ we see that $F(G(B))$ is isomorphic to $B$ via the isomorphism $\beta_B$..
+		
+		Let $f,g\in\mor \mathcal{C}$ with $\dom f = \dom g$, $\cod f = \cod g$ and $Ff = Fg$. The naturality square for $g$ gives
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiIEIiXSxbMCwxLCJHRkEiXSxbMSwxLCJHRkIiXSxbMCwxLCJnIl0sWzAsMiwiXFxhbHBoYV9BIiwyXSxbMSwzLCJcXGFscGhhX0IiXSxbMiwzLCJHRmciLDJdXQ==
+		\[\begin{tikzcd}
+			A & { B} \\
+			GFA & GFB
+			\arrow["g", from=1-1, to=1-2]
+			\arrow["{\alpha_A}"', from=1-1, to=2-1]
+			\arrow["{\alpha_B}", from=1-2, to=2-2]
+			\arrow["GFg"', from=2-1, to=2-2]
+		\end{tikzcd}.\]
+		By Lemma \ref{lem:nat_iso_pointw}, $\alpha_A$ and $\alpha_B$ are isomorphisms, so $g = \alpha_B^{-1}(GFg) \alpha_A$. Similarly, from the naturality square for $f$ we get $f = \alpha_B^{-1}(GFf) \alpha_A$ (here we use that $f$ and $g$ have the same domain and codomain). But as $Ff = Fg$ we clearly have $f = g$. 
+		
+		Now we prove that $F$ is full, so let $g\colon FA \to FB$ be a morphism in $\mathcal{D}$. We want to obtain a map in $\mathcal{C}$ so it seems reasonable to apply $G$ to get a map $Gg\colon GFA\to GFB$. As we want a map $A\to B$ we can use the natural transformations.
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHRkEiXSxbMSwwLCJHRkIiXSxbMCwxLCJBIl0sWzEsMSwiQiJdLFswLDEsIkdnIl0sWzIsMCwiXFxhbHBoYV9BIl0sWzMsMSwiXFxhbHBoYV9CIiwyXV0=
+		\[\begin{tikzcd}
+			GFA & GFB \\
+			A & B
+			\arrow["Gg", from=1-1, to=1-2]
+			\arrow["{\alpha_A}", from=2-1, to=1-1]
+			\arrow["{\alpha_B}"', from=2-2, to=1-2]
+		\end{tikzcd}\]
+		The only thing to do is to define $f\coloneqq \alpha^{-1}_B (Gg)\alpha_A$ and verify $Ff = g$. Consider the naturality square for $f$.
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiQiJdLFswLDEsIkdGQSJdLFsxLDEsIkdGQiJdLFswLDEsImYiXSxbMiwzLCJHRmYiLDJdLFswLDIsIlxcYWxwaGFfQSIsMl0sWzEsMywiXFxhbHBoYV9CIl1d
+		\[\begin{tikzcd}
+			A & B \\
+			GFA & GFB
+			\arrow["f", from=1-1, to=1-2]
+			\arrow["GFf"', from=2-1, to=2-2]
+			\arrow["{\alpha_A}"', from=1-1, to=2-1]
+			\arrow["{\alpha_B}", from=1-2, to=2-2]
+		\end{tikzcd}\]
+		Plugging in the definition of $f$ into this square yields the equality $Gg = GFf$. But we already proved that functors that are part of equivalences are faithful; in particular $G$ is faithful so (since $g$ and $Ff$ obviously have matching domain and codomain) we have $g = Ff$ as desired. We have finished with the first implication of lemma.
+		
+		Conversely, assume $F$ is a full, faithful, and essentially surjective. For all $B\in \ob\mathcal{D}$ pick some $GB \in\ob \mathcal{C}$ such that $FGB$ is isomorphic to $B$; this is possible by essential surjectivity. Furthermore, pick some isomorphism $\beta_B\colon FGB\to B$. For each morphism $g\colon B \to B'$ in $\mathcal{D}$ note that $g^{*}=\beta_{B'}^{-1}(g)\beta_B \colon FGB \to FGB'$. So, let $Gg \colon GB \to GB'$ be a morphism so that $FGg = g^{*}$; this is possible since $F$ is full. We claim that this defines a functor $G\colon \mathcal{D} \to \mathcal{C}$. It is clearly an assignment $\ob \mathcal{D} \to \mathcal{C}$ and $\mor \mathcal{D} \to \mathcal{C}$ compatible with domains and codomains.
+		
+		Let $B\in\ob \mathcal{D}$. Note that 
+		\[
+			FG(1_B) = (1_B)^{*} = \beta_B^{-1} 1_B \beta_B = 1_{FGB} = F(1_{GB}).
+		\]
+		Thus, by faithfulness of $F$, we have that $G(1_B) = 1_{GB}$.
+		
+		Now let $g\colon B \to B'$ and $h\colon B' \to B''$ be morphisms in $\mathcal{D}$. We perform a similar calculation.
+		\begin{align*}
+			F(G(h)G(g)) = (FGh)(FGg) = h^{*}g^{*} &= \beta_{B''}^{-1}(h)\beta_{B'}\beta_{B'}^{-1}(g)\iota_B\\
+			&=\beta_{B''}^{-1}(hg)\beta_B \\
+			&= (hg)^{*} = FG(hg).
+		\end{align*}
+		Again by faithfulness, we have $G(h)G(g) = G(hg)$. We have shown $G$ is a functor.
+		
+		Next, we define the natural transformations. We have already sneakily defined $\beta \colon FG \to 1_{\mathcal{D}}$ as a collection of isomorphisms, so we need to check it is indeed a natural transformation. Let $g\colon B \to B'$ be a morphism in $\mathcal{D}$. When we consider the square
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJCIl0sWzEsMCwiQiciXSxbMCwxLCJGR0IiXSxbMSwxLCJGR0InIl0sWzAsMSwiZyJdLFsyLDMsIkZHZyIsMl0sWzAsMiwiXFxiZXRhX0IiLDJdLFsxLDMsIlxcYmV0YV97Qid9Il1d
+		\[\begin{tikzcd}
+			B & {B'} \\
+			FGB & {FGB'}
+			\arrow["g", from=1-1, to=1-2]
+			\arrow["FGg"', from=2-1, to=2-2]
+			\arrow["{\beta_B}"', from=1-1, to=2-1]
+			\arrow["{\beta_{B'}}", from=1-2, to=2-2]
+		\end{tikzcd}\]
+		we see that we defined $Gg$ precisely so this holds! Hence $\beta$ is a natural transformation. By Lemma \ref{lem:nat_iso_pointw}, it is also a natural isomorphism.
+		
+		Let $A\in\ob\mathcal{C}$. Then $\beta_{FA}^{-1}$ is a morphism $FA\to FGFA$ in $\mathcal{D}$. By fullness of $F$, there is a morphism, say $\alpha_A\colon A \to GFA$ such that $F\alpha_A = \beta_{FA}^{-1}$. We claim that this defines a natural isomorphism $\alpha 1_{\mathcal{C}}\colon GF$. 
+		
+		First, we check naturality. If $f\colon A \to B$ is a morphism of $\mathcal{C}$, the relevant square is:
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiQiAiXSxbMCwxLCJHRkEiXSxbMSwxLCJHRkEiXSxbMCwxLCJmIl0sWzIsMywiR0ZmIl0sWzAsMiwiXFxhbHBoYV9BIiwyXSxbMSwzLCJcXGFscGhhX0IiXV0=
+		\[\begin{tikzcd}
+			A & {B } \\
+			GFA & GFA
+			\arrow["f", from=1-1, to=1-2]
+			\arrow["GFf", from=2-1, to=2-2]
+			\arrow["{\alpha_A}"', from=1-1, to=2-1]
+			\arrow["{\alpha_B}", from=1-2, to=2-2]
+		\end{tikzcd}.\]
+	Apply $F$ to this square to get
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGQSJdLFsxLDAsIkIgIl0sWzAsMSwiR0ZBIl0sWzEsMSwiR0ZBIl0sWzAsMSwiRmYiXSxbMiwzLCJGR0ZmIiwyXSxbMCwyLCJGXFxhbHBoYV9BPSBcXGJldGFfe0ZBfV57LTF9IiwyXSxbMSwzLCJGXFxhbHBoYV9CID0gXFxiZXRhX3tGQn1eey0xfSJdXQ==
+	\[\begin{tikzcd}
+		FA & {B } \\
+		GFA & GFA
+		\arrow["Ff", from=1-1, to=1-2]
+		\arrow["FGFf"', from=2-1, to=2-2]
+		\arrow["{F\alpha_A= \beta_{FA}^{-1}}"', from=1-1, to=2-1]
+		\arrow["{F\alpha_B = \beta_{FB}^{-1}}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+	 which is just the naturality square for $FA$ with respect to $\beta$! Thus it commutes and, by faithfulness, the original square commutes too. It follows that $\alpha$ is a natural transformation.
+	 
+	 Finally, let's check that $\alpha_A$ is an isomorphism for all $A$. Indeed, $\beta_{FA}$ is a morphism $FGFA \to FA$ in $\mathcal{D}$ so, by fullness, there is a morphism $\gamma_A \colon GFA \to A$ such that $F\gamma_A = \beta_{FA}$. Note that
+	 \[
+	 	F(\alpha_A\gamma_A) = (F\alpha_A)(F\gamma_A) = \beta_{FA}^{-1}\beta_{FA} = 1_{FGFA} = F(1_{GFA}).
+	 \]
+	 By faithfulness, $\alpha_A\gamma_A = 1_{GFA}$. A similar calculation yields $\gamma_A\alpha_A = 1_{A}$. Hence $\alpha_A$ is an isomorphism and $\gamma_A = \alpha_A^{-1}$. By Lemma \ref{lem:nat_iso_pointw} $\alpha$ is a natural isomorphism. 
+	 \end{proof}
+	 \begin{defn}[Skeletal]
+	 	Let $\mathcal{C}$ be a category. We say $\mathcal{C}$ is \emph{skeletal} if very isomorphism class of $\ob\mathcal{C}$ has just one member, i.e. if isomorphic objects in $\mathcal{C}$ are necessarily identical.
+	 	
+	 	By a \emph{skeleton} of $\mathcal{C}$ we mean a full subcategory $\mathcal{C}'$ containing just one object from each isomorphism class.
+	 \end{defn}
+	 Note that any equivalence between skeletal categories is bijective on objects and hence an isomorphism of categories.
+	 \begin{defn}[Monos and Epis]
+	 	Let $f\colon A \to B$ be a morphism of a category $\mathcal{C}$. We say $f$ is a \emph{monomorphism} (or \emph{monic}) if for all $g,h\in\mor \mathcal{C}$ we have that $fg = fh$ implies $g= h$ whenever the composites are defined.
+	 	
+	 	Dually, $f$ is an \emph{epimorphism} (or \emph{epic}) if $gf = hf$ implies $g = h$.
+	 \end{defn}
+	 Note that isomorphisms are both monic and epic. We give a special name to categories where the converse holds.
+	 \begin{defn}[Balanced]
+	 	Let $\mathcal{C}$ be a category. We say $\mathcal{C}$ is balanced if all morphisms of $\mathcal{C}$ that are both monic and epic are also isomorphisms.
+	 \end{defn}
+	 \newpage
+	 \section{The Yoneda Lemma}
+	 \begin{defn}[Locally small]
+	 	We say a category $\mathcal{C}$ is locally small if, for all $A,B\ob\mathcal{C}$ there is a set $\mathcal{C}(A,B)$ so that the class of morphisms $f\in\mor \mathcal{C}$ with $\dom f = A$ and $\cod f = B$ is in one-to-one correspondence with $\mathcal{C}(A,B)$. 
+	 \end{defn}
+	 Given an object $A$ of a locally small category $\mathcal{C}$ we define a functor $\mathcal{C}(A,-)\colon \mathcal{C} \to \mbold{Set}$. For $B\in\ob\mathcal{C}$ we map $B\mapsto \mathcal{C}(A,B)$, and if $f\colon B \to C$ is a morphism of $\mathcal{C}$ we give a function $f^*\colon \mathcal{C}(A,B) \to \mathcal{C}(A,C)$ defined by
+	 \[
+	 	f^*(g\colon A \to B) \coloneqq (fg\colon A \to C)
+	 \]
+	 We claim this is functorial. Compatibility with domains and codomains is immediate. If $f'\colon C \to D$ is a morphism in $\mathcal{C}$ we have $(f'f)g=f(f')g$ for all $g\colon A \to B$, so we have compatibility with composition. Also, the identity $1_B$ is sent to the map $g\mapsto 1_Bg = g$, i.e. $1_{\mathcal{C}(A,B)}$, so we have compatibility with identities.
+	 
+	 (From now on we use the notation $f^*$ to mean the function $g\mapsto fg$  and $f_*$ to mean $g\mapsto gf$. This is awfully useful).
+	 
+	 More is true, however. We have defined an assignment $\ob \mathcal{C} \to \ob[\mathcal{C}, \mbold{Set}]$ by sending $A \mapsto \mathcal{C}(A,-)$. We can extend this to a contravariant functor $\mathscr{Y}$ from $\mathcal{C}$ to $[\mathcal{C}, \mbold{Set}]$ by specifying where morphisms go. 
+	 
+	 Fix $f\colon B \to A$, a morphism in $\mathcal{C}$ (which corresponds to a morphism $A\to B$ in $\mathcal{C}^{\text{op}}$); our task is to define a natural transformation $\mathscr{Y}f\colon \mathcal{C}(A,-)\to \mathcal{C}(B,-)$. 
+	 
+	 To do this, for all $C\in\ob \mathcal{C}$ we need to define $(\mathscr{Y}f)_C\colon \mathcal{C}(A,C)\to \mathcal{C}(B,C)$, a set-function. But this is easy: 
+	 \[
+	 	f_*(g\colon A \to C) \coloneqq (gf \colon B\to C).
+	 \]
+	 
+	 Now we need to verify naturality. Let $h\colon C \to D$ be a morphism in $\mathcal{C}$. The relevant square is the following.
+	 \[\begin{tikzcd}[row sep=large, column sep=large]
+	 	{\mathcal{C}(A,C)} & {\mathcal{C}(A,D)} \\
+	 	{\mathcal{C}(B,C)} & {\mathcal{C}(B,D)}
+	 	\arrow["{h^*}"', from=2-1, to=2-2]
+	 	\arrow["{h^*}", from=1-1, to=1-2]
+	 	\arrow["{f_*}"', from=1-1, to=2-1]
+	 	\arrow["{f_*}", from=1-2, to=2-2]
+	 \end{tikzcd}\]
+	At a purely formal level, it is obvious that the square commutes: $g\colon A \to B$ is sent to $hgf$ along the diagonal of the square, no matter which path we take. Hence $\mathscr{Y}f$ is really a natural transformation. We have define $\mathscr{Y}$ by an assignment $\ob\mathcal{C} \to \ob[\mathcal{C} \to \mbold{Set}]$ and a contravariant assignment $\mor\mathcal{C} \to \mor [\mathcal{C} \to \mbold{Set}]$. It remains to show that $\mathscr{Y}$ is really a functor. That it respects domains and codomains is clear from the construction.
+	
+	Let $A\in \ob \mathcal{C}$. We would like to show that $\mathscr{Y}1_A$ is equal to the identity natural transformation $1_{\mathcal{C}(A,-)}$. To verify this, it suffices to show that each component is an identity morphism. So, let $D\in\ob\mathcal{C}$. Note that $(\mathscr{Y}1_A)_D$ sends $h\colon A\to D$ to the morphism $h1_A = h$. Hence, $\mathscr{Y}$ is compatible with identities.
+	
+	Next, let $f\colon A \to B$ and $g\colon B \to C$ be morphisms in $\mathcal{C}$; we aim to show $\mathscr{Y}$ respects composition. We begin by the commutative diagram
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiQiJdLFsyLDAsIkMiXSxbMCwxLCJmIiwyXSxbMSwyLCJnIiwyXSxbMCwyLCJnZiIsMCx7ImN1cnZlIjotM31dXQ==
+	\[\begin{tikzcd}
+		A & B & C
+		\arrow["f"', from=1-1, to=1-2]
+		\arrow["g"', from=1-2, to=1-3]
+		\arrow["gf", curve={height=-18pt}, from=1-1, to=1-3]
+	\end{tikzcd}\]
+	We ask whether this is still commutative under $\mathscr{Y}$ (remember it is contravariant):
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30oQSwtKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShCLC0pIl0sWzIsMCwiXFxtYXRoY2Fse0N9KEMsLSkiXSxbMCwxLCJcXG1hdGhzY3J7WX1mIiwyXSxbMSwyLCJcXG1hdGhzY3J7WX1nIiwyXSxbMCwyLCJcXG1hdGhzY3J7WX0oZ2YpIiwwLHsiY3VydmUiOi0zfV1d
+	\[\begin{tikzcd}
+		{\mathcal{C}(C,-)} & {\mathcal{C}(B,-)} & {\mathcal{C}(A,-)}
+		\arrow["{\mathscr{Y}g}"', from=1-1, to=1-2]
+		\arrow["{\mathscr{Y}f}"', from=1-2, to=1-3]
+		\arrow["{\mathscr{Y}(gf)}", curve={height=-18pt}, from=1-1, to=1-3]
+	\end{tikzcd}.\]
+	It suffices to verify whether it is ``pointwise'' commutative, i.e., if $D\in\ob\mathcal{C}$ that we have
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30oQSxEKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShCLEQpIl0sWzIsMCwiXFxtYXRoY2Fse0N9KEMsRCkiXSxbMCwxLCIoXFxtYXRoc2Nye1l9ZilfRCIsMl0sWzEsMiwiKFxcbWF0aHNjcntZfWcpX0QiLDJdLFswLDIsIihcXG1hdGhzY3J7WX0oZ2YpKV9EIiwwLHsiY3VydmUiOi0zfV1d
+	\[\begin{tikzcd}
+		{\mathcal{C}(C,D)} & {\mathcal{C}(B,D)} & {\mathcal{C}(A,D)}
+		\arrow["{g_*}"', from=1-1, to=1-2]
+		\arrow["{f_*}"', from=1-2, to=1-3]
+		\arrow["{(gf)_*}", curve={height=-18pt}, from=1-1, to=1-3].
+	\end{tikzcd}\]
+	This is immediate: if $h\colon C \to D$ is a morphism then $(gf)_*h = h(gf)$ while
+	\[
+		f_*g_*h = (hg)f,
+	\] 
+	and we are done by associativity.
+	
+	Dually, for a fixed object $B$ of $\mathcal{C}$ we define the functor
+	\[
+	\mathcal{C}(-,B) \coloneqq \mathcal{C}^{\text{op}}(B,-) \colon \mathcal{C^{\text{op}}} \to \mbold{Set},
+	\]
+	and the same constructions works in this context.
+	 \begin{lem}[Yoneda Lemma]
+	 	Let $\mathcal{C}$ be a locally small category, $A\in\ob \mathcal{C}$ and $F\colon\mathcal{C}\to \mbold{Set}$. Then there is a one-to-one and onto correspondence between natural transformations $\mathcal{C}(A,-) \to F$ and elements of $FA$. Moreover, this correspondence is natural in $A$ and $F$.
+	 \end{lem}
+	 A few words on the statement of the lemma. Note that a priori the collection of natural transformations $\mathcal{C}(A,-) \to F$ is not a set, so it doesn't make sense to say that this collection is in bijection with $FA$. Of course, during the proof we will construct such a ``bijection'', proving that this collection is indexed by a set (so it is ``small'').
+	 	
+	 Now to explain naturality. It is helpful to rephrase the lemma in the following form.
+	 \begin{lem}[Yoneda Lemma']
+	 	Let $\mathcal{C}$ be a locally small category, $A\in\ob \mathcal{C}$ and $F\colon\mathcal{C}\to \mbold{Set}$. Then $[\mathcal{C},\mbold{Set}](\mathcal{C}(A,-), F)$ is a set and
+	 	\[
+	 		[\mathcal{C},\mbold{Set}](\mathcal{C}(A,-), F) \cong FA,
+	 	\]
+	 	naturally in $A$ and $F$.
+	 \end{lem}
+	 This says exactly the same thing. Now, when we say a morphism $FA \to GA$ is natural in $A$ we just mean that the collection of morphisms $\alpha_A \colon FA \to GA$ define a natural transformation $F \to G$. This is easy enough, but in the statement of Yoneda Lemma' we have a map (actually an isomorphism) between two expressions with \emph{two} free variables, $A$ and $F$, rather than one. How to interpret this? 
+	 
+	 We will give an informal description now, and formalize later. First, define a functor from the product category $\mathcal{C}\times [\mathcal{C}, \mbold{Set}]$ (defined in the obvious way, details later) to the category of sets $\mbold{Set}$ given on objects by
+	 \[
+	 	(A,F) \mapsto FA
+	 \]
+	 (There is only one way to define the assignment on morphisms, details later). Yoneda Lemma says that there is another way to define a functor $\mathcal{C}\times [\mathcal{C}, \mbold{Set}]\to \mbold{Set}$ given on objects by
+	 \[
+	 	(A,F)\mapsto [\mathcal{C},\mbold{Set}](\mathcal{C}(A,-),F)
+	 \]
+	 and this is naturally isomorphic to the first functor. So, saying that the correspondence is natural in two variables is just stating that there is a natural isomorphism between two functors with domain a certain product category. Compare this with the following situation from linear algebra: we say a function is linear in two given variables if there is a bilinear map (with domain a product of vector spaces) representing the given function (we will come back to this analogy later, when we study functors on product categories). It is a fact that if a correspondence is natural in both variables then it is ``jointly natural'' (cf. a function $f\colon \mathbb{R}^2\to\mathbb{R}$ can be continuous in both variables without being continuous); don't worry if you don't know what this means since precise statement will be given.
+	 \subsection*{Digression on Products}
+	 (This subsection elaborates on some exercises from the book \cite{Leinster2014}.) Let $\mathcal{C}$ and $\mathcal{D}$ be categories. The \emph{product category} $\mathcal{C}\times \mathcal{D}$ has objects ordered pairs $(A,B)$ for $A\in\mathcal{C}$ and $B\in\mathcal{D}$ and morphisms $(A,B)\to(A',B')$ ordered pairs $(f,g)$ where $f\colon A \to A'$ in $\mathcal{C}$ and $g\colon B\to B'$ in $\mathcal{D}$. For all $(A,B)$ we define $1_{(A,B)} = (1_A,1_B)$. Let $(f,g)\colon (A,B)\to (A',B')$ and $(h,i)\colon (A',B')\to (A'',B'')$. Composition is defined by
+	 \[
+	 	(h,i)(f,g) \coloneqq (hf, ig).
+	 \]
+	 That is, business as usual.
+	 \begin{prop}
+	 	For all categories $\mathcal{C}$ and $\mathcal{D}$, the product category $\mathcal{C}\times\mathcal{D}$ is a category 
+	 \end{prop}
+	 \begin{proof}
+	 	We need to verify associativity for composition and the identity axiom (the other axioms are obviously satisfied). For the rest of the proof, let $A_1,A_2,A_3,A_4$ be objects of $\mathcal{C}$ and $B_1,B_2,B_3,B_4$ be objects of $\mathcal{D}$. In addition, let $(f,g)\colon (A_1,B_1) \to (A_2,B_2)$ and $(h,i)\colon (A_2,B_2)\to (A_3,B_3)$ and $(j,k)\colon (A_3,B_3)\to (A_4,B_4)$ be morphisms in $\mathcal{C}\times \mathcal{D}$.
+	 	
+	 	Note that
+	 	\[
+	 		((j,k)(h,i))(f,g) = (jh,ki)(f,g) = ((jh)f,(ki)g),
+	 	\]
+	 	and similarly,
+	 	\[
+	 		(j,k)((h,i)(f,g)) = (j,k)(hf,ig) = (j(hf),k(ig)),
+	 	\]
+	 	so the results are the same by associativity of $\mathcal{C}$ and $\mathcal{D}$. 
+	 	
+	 	Finally, we can verify the identity axiom for $1_{(A_2,B_2)}$. We have that
+	 	\[
+	 		(f,g)1_{(A_2,B_2)} = (f,g)(1_{A_2},1_{B_2}) = (f1_{A_2}, g1_{B_2}) = (f,g).
+	 	\]	
+	 	Similarly, $1_{(A_2,B_2)} (h,i) = (h,i)$ and we are done.
+	 \end{proof}
+	 Now we would like to study functors $\mathcal{C}\times \mathcal{D}\to\mathcal{E}$; these are sometimes called \emph{bifunctors}. Such functors can be regarded as an interlocking pair of families of functors, much like in the bilinear/linear analogy.
+	 
+	 Let $F\colon\mathcal{C}\times \mathcal{D}\to\mathcal{E}$ be a functor. For each $A\in\ob\mathcal{C}$ we define the functor $F^A \colon \mathcal{D}\to\mathcal{E}$ as follows. 
+	 For each $B\in\ob\mathcal{D}$ we define $F^AB = F(A,B)$.
+	 \begin{itemize}
+	 	\item For each $B\in\ob\mathcal{D}$ we define $F^AB \coloneqq F(A,B)$.
+	 	\item For each $g\colon B\to B'$ in $\mathcal{D}$ we define $F^Ag \coloneqq F(1_A,g)$.
+	 \end{itemize}
+	 We claim that this is functorial. Indeed, for all $B\in\ob\mathcal{D}$ we have that 
+	 \[
+	 	F^A(1_B) = F(1_A,1_B) = F(1_{(A,B)}) = 1_{F(A,B)} = 1_{F^AB},
+	 \]
+	 so $F$ respects identities. Now let $g\colon B \to B'$ and $h\colon B' \to B''$ be maps in $\mathcal{D}$. We have that
+	 \[
+	 	(F^Ah)(F^Ag) = (F(1_A,h))(F(1_A,g)) = F((1_A,h)(1_A,g)) = F(1_A,hg) = F^A(hg),
+	 \]
+	 so composition is preserved. Hence $F^A$ is indeed a functor for each $A\in\ob\mathcal{D}$. 
+	 
+	 Similarly we can define $F_B$ for all $B\in\mathcal{D}$. Either go through the same construction again or note that there is a functor $R\colon \mathcal{D}\times \mathcal{C}\to\mathcal{C}\times\mathcal{D}$ that reverses the order of the factors in the obvious way; verifying  that this is a functor (and in fact an isomorphism of categories) is extremely easy. Then define $F_B \coloneq (FR)^B$.
+	 
+	 (Technically we don't need $F$ to be a functor to define $F^A$ and $F_B$, so we define these even when $F$ is just an assignment from objects to objects and morphisms to morphisms $\mathcal{C}\times\mathcal{D}\to\mathcal{E}$. We will need this to state the Bifunctor Criterion later.)
+	 
+	 So, the functor $F$ can be decomposed into two families of functors. Given the families, can we reconstruct $F$? The answer is yes.
+	\begin{lem}\label{lem:prod_fam}
+		Let $\mathcal{C},\mathcal{D}$ and $\mathcal{E}$ be categories. Suppose we have $(F^A)_{A\in\ob\mathcal{C}}$, a family of functors $\mathcal{D}\to \mathcal{E}$,  and $(F_B)_{B\in\ob\mathcal{D}}$, a family of functors $\mathcal{C}\to\mathcal{E}$. Furthermore, assume that the following two conditions are satisfied:
+		\begin{enumerate}[label=(\alph*)]
+			\item If $A\in\ob\mathcal{C}$ and $B\in\ob\mathcal{D}$ then $F^A(B) = F_B(A)$.
+			\item If $f\colon A \to A'$ is a morphism in $\mathcal{C}$ and $g\colon B\to B'$ is a morphism in $\mathcal{D}$, then 
+			\[
+				(F^{A'}g)(F_Bf) = (F_{B'}f)(F^Ag).
+			\]
+		\end{enumerate}
+		Then there is a unique functor $F\colon \mathcal{C}\times \mathcal{D} \to \mathcal{E}$ such that the functors $F^A$ and $F_B$ are precisely those defined earlier.
+		\end{lem}
+		\begin{rem}\label{rem:prod_dec_prop}
+			Note that the converse is true. That is, if $F\colon \mathcal{C}\times \mathcal{D} \to \mathcal{E}$ is a functor then $F^A(B) = F_B(A) = F(A,B)$. In addition,
+			\[
+				(F^{A'}g)(F_Bf) = (F(1_{A'},g))(F(f,1_B))= F(1_{A'}f, g1_B) = F(f,g),
+			\] 
+			and similarly $(F_{B'}f)(F^{A}g)=F(f,g)$.
+		\end{rem}
+		\begin{proof}
+			Let us define the functor $F$ by specifying $F(A,B) \coloneqq F^A(B) = F_B(A)$ for all $(A,B)\in\ob(\mathcal{C}\times\mathcal{D})$. We also specify that if $(f,g)\colon (A,B)\to (A',B')$ is a morphism in $\mathcal{C}\times \mathcal{D}$ we have that 
+			\[
+				F(f,g) \coloneqq (F^{A'}g)(F_Bf) = (F_{B'}f)(F^Ag).
+			\]
+			It takes a moment staring at the following diagrams to realize that the composites have the right domains and codomains.
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJGKEEsQikiXSxbMSwwLCJGKEEnLEIpIl0sWzIsMCwiRihBJyxCJykiXSxbMCwxLCJGX0JmIl0sWzEsMiwiRl57QSd9ZyJdXQ==
+			\[\begin{tikzcd}
+				{F(A,B)} & {F(A',B)} & {F(A',B')}
+				\arrow["{F_Bf}", from=1-1, to=1-2]
+				\arrow["{F^{A'}g}", from=1-2, to=1-3]
+			\end{tikzcd}\]
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJGKEEsQikiXSxbMSwwLCJGKEEsQicpIl0sWzIsMCwiRihBJyxCJykiXSxbMCwxLCJGXkFnIl0sWzEsMiwiRl97Qid9ZiJdXQ==
+			\[\begin{tikzcd}
+				{F(A,B)} & {F(A,B')} & {F(A',B')}
+				\arrow["{F^Ag}", from=1-1, to=1-2]
+				\arrow["{F_{B'}f}", from=1-2, to=1-3]
+			\end{tikzcd}\]
+			By Remark \ref{rem:prod_dec_prop} if $F$ is a functor, then $F^A$ and $F_B$ are defined properly. 
+			
+			Let $(A,B)\in\ob(\mathcal{C}\times\mathcal{D})$ and note that
+			\begin{align*}
+				F(1_{(A,B)}) = F(1_A,1_B) = (F^A1_B)(F_B1_A) &= (1_{F^AB})(1_{F_BA}) \\
+				&= (1_{F(A,B)})(1_{F(A,B)})\\
+				&= 1_{F(A,B)}.
+			\end{align*}
+			Next, let there be maps in $\mathcal{C}\times\mathcal{D}$ as follows
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCIoQSxCKSJdLFsxLDAsIihBJyxCJykiXSxbMiwwLCIoQScnLEInJykiXSxbMCwxLCIoZixnKSJdLFsxLDIsIihoLGkpIl1d
+			\[\begin{tikzcd}
+				{(A,B)} & {(A',B')} & {(A'',B'')}
+				\arrow["{(f,g)}", from=1-1, to=1-2]
+				\arrow["{(h,i)}", from=1-2, to=1-3]
+			\end{tikzcd}.\]
+			Then we have
+			\begin{align*}
+				F(h,i)F(f,g) &= (F^{A''}i)(F_{B'}h)(F^{A'}g)(F_Bf)\\
+				&=(F^{A''}i)(F_{B'}h)(F^{B'}g)(F_Af)\\
+				&= (F^{A''}i)(F_{B'}(hf))(F_Af)\\
+				&= (F_{B''}(hf))(F^Ai)(F^Ag)\\
+				&= F_{B''}(hf)F^A(ig)\\
+				&= F(hf,ig).
+			\end{align*}
+			Hence $F$ is really a functor. Now we need to show that it is unique. Let $G\colon \mathcal{C}\times\mathcal{D}\to\mathcal{E}$ be a functor so that $G^A = F^A$ and $G_B = F_B$ for all $A\in\ob\mathcal{D}$ and $B\in\mathcal{D}$. By Remark \ref{rem:prod_dec_prop} it is clear that the values of $G$ on objects and morphisms are already determined, so $F =G$ as functors.
+		\end{proof}
+		For example, earlier we defined a functors $\mathcal{C}(A,-)\colon\mathcal{C}\to \mbold{Set}$ for any locally small category $\mathcal{C}$ and object $A\in\ob\mathcal{C}$; similarly we had a functor $\mathcal{C}(-,B)\colon\mathcal{C}^{\text{op}}\to \mbold{Set}$ for all objects $B\in\ob\mathcal{C}$. It is clear that for all $A,B\in\mathcal{C}$ we have
+		\[
+			\mathcal{C}(A,-)B = \mathcal{C}(A,B) = \mathcal{C}(-,B)A.
+		\]
+		Let $f\colon A'\to A$ and $g\colon B\to B'$ be morphisms in $\mathcal{C}$ (note the direction of $f$). Then for any $h\in \mathcal{C}(A,B)$ we have
+		\[
+			(\mathcal{C}(A',-)g)(\mathcal{C}(-,B)f)h = g^*(f_*h) = g(hf),
+		\]
+		and
+		\[
+			(\mathcal{C}(-,B')f)(\mathcal{C}(A,-)g)h = (gh)f,
+		\]
+		so the expressions match by associativity. Then Lemma \ref{lem:prod_fam} applies and gives a functor
+		\[
+			\mathcal{C}(-,-) \colon \mathcal{C}^{\text{op}}\times\mathcal{C} \to \mbold{Set}.
+		\]
+		We don't need to check that this is a functor: this is guaranteed by the lemma!
+		
+		Often, however, we are defining a functor $\mathcal{C}\times\mathcal{D}\to \mathcal{E}$ directly, and we would like to check functoriality. This is where the Bifunctor Criterion applies.
+		\begin{coro}[Bifunctor Criterion]
+			Let $\mathcal{C},\mathcal{D}$ and $\mathcal{E}$ be categories, and let $F\colon\mathcal{C}\times\mathcal{D}\to \mathcal{E}$ be an assignment $F\colon \ob(\mathcal{C}\times\mathcal{D})\to \ob(\mathcal{E})$ and $F\colon \mor(\mathcal{C}\times\mathcal{D})\to \mor(\mathcal{E})$. Then $F$ is a functor if and only if $F^A$ and $F_B$ are functors for all $A\in\ob\mathcal{C}$ and $B\in\ob\mathcal{D}$ that satisfy the following condition
+			\begin{itemize}
+				\item If $f\colon A \to A'$ is a morphism in $\mathcal{C}$ and $g\colon B\to B'$ is a morphism in $\mathcal{D}$, then 
+				\[
+				(F^{A'}g)(F_Bf) = (F_{B'}f)(F^Ag).
+				\]
+			\end{itemize}
+		\end{coro}
+		\begin{proof}
+			If $F$ is a functor then $F^A$ and $F_B$ are functors: we verified this when we defined them (and they satisfy the condition by Remark \ref{rem:prod_dec_prop}). Conversely, assume $F^A$ and $F_B$ are functors for all $A\in\ob\mathcal{C}$ and $B\in\ob\mathcal{D}$ satisfying the condition. By definition we have
+			\[
+				F^A(B) = F(A,B) = F_B(A)
+			\]
+			for all $A,B$. Thus Lemma \ref{lem:prod_fam} applies and we are done.			
+		\end{proof}
+		Now we turn to study naturality between functors whose domain is a product category; this is the situation in the Yoneda Lemma. In particular, we will show that such transformations are natural in both variables simultaneously iff they are natural in each variable separately. 
+		\begin{lem}
+			Let $F,G\colon\mathcal{C}\times\mathcal{D}\to\mathcal{E}$ be functors. Suppose we have $\alpha$, a family of morphisms $\alpha_{A,B}\colon F(A,B)\to G(A,B)$ in $\mathcal{E}$ for all $(A,B)\in\ob(\mathcal{C}\times\mathcal{D})$. Then $\alpha$ is a natural transformation $F \to G$ if and only if it satisfies the following two conditions.
+			\begin{itemize}
+				\item For each $A\in\ob\mathcal{C}$ the family the collection of morphisms $\alpha_{A,B}\colon F^A(B) \to G^A(B)$ for $B\in\ob\mathcal{D}$ defines a natural transformation $F^A \to G^A$.
+				\item For each $B\in\ob\mathcal{D}$ the family the collection of morphisms $\alpha_{A,B}\colon F_B(A) \to G_B(A)$ for $A\in\ob\mathcal{C}$ defines a natural transformation $F_B \to G_B$.
+			\end{itemize}
+		\end{lem}
+		\begin{proof}
+			First suppose $\alpha$ is a natural transformation. Let $A\in\ob\mathcal{C}$ and let $g\colon B \to B'$ be a morphism in $\mathcal{D}$. Consider the naturality square for $\alpha$ with respect to $(1_A,g)$.
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGXkEoQikiXSxbMSwwLCJGXkEoQicpIl0sWzAsMSwiR15BKEIpIl0sWzEsMSwiR15BKEInKSJdLFswLDEsIkYoMV9BLGcpIl0sWzIsMywiRygxX0EsZykiLDJdLFswLDIsIlxcYWxwaGFfe0EsQn0iLDJdLFsxLDMsIlxcYWxwaGFfe0EsQn0iXV0=
+			\[\begin{tikzcd}
+				{F^A(B)} & {F^A(B')} \\
+				{G^A(B)} & {G^A(B')}
+				\arrow["{F(1_A,g)}", from=1-1, to=1-2]
+				\arrow["{G(1_A,g)}"', from=2-1, to=2-2]
+				\arrow["{\alpha_{A,B}}"', from=1-1, to=2-1]
+				\arrow["{\alpha_{A,B'}}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			This is exactly the naturality square we needed to check, so the first condition is satisfied, and the second is checked similarly.
+			
+			Conversely, suppose that the conditions are satisfied. We need to check that $\alpha$ is a natural transformation. Let $(f,g)$ be a morphism $(A,B)\to(A',B')$ in $\mathcal{C}\times \mathcal{D}$. The square we need to check is
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGKEEsQikiXSxbMSwwLCJGKEEnLEInKSJdLFswLDEsIkcoQSxCKSJdLFsxLDEsIkcoQScsQicpIl0sWzAsMSwiRihmLGcpIl0sWzIsMywiRyhmLGcpIiwyXSxbMCwyLCJcXGFscGhhX3tBLEJ9IiwyXSxbMSwzLCJcXGFscGhhX3tBLEJ9Il1d
+			\[\begin{tikzcd}
+				{F(A,B)} & {F(A',B')} \\
+				{G(A,B)} & {G(A',B')}
+				\arrow["{F(f,g)}", from=1-1, to=1-2]
+				\arrow["{G(f,g)}"', from=2-1, to=2-2]
+				\arrow["{\alpha_{A,B}}"', from=1-1, to=2-1]
+				\arrow["{\alpha_{A',B'}}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			By Remark \ref{rem:prod_dec_prop} we can decompose $F(f,g)$ and $G(f,g)$ as follows.
+			% https://q.uiver.app/#q=WzAsNixbMCwwLCJGKEEsQikiXSxbMiwwLCJGKEEnLEInKSJdLFswLDEsIkcoQSxCKSJdLFsyLDEsIkcoQScsQicpIl0sWzEsMCwiRihBLEInKSJdLFsxLDEsIkcoQSxCJykiXSxbMCwyLCJcXGFscGhhX3tBLEJ9IiwyXSxbMSwzLCJcXGFscGhhX3tBLEJ9Il0sWzQsNSwiXFxhbHBoYV97QSxCJ30iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiw1LCJHXkFnIiwyXSxbNSwzLCJHX3tCJ31mIiwyXSxbMCw0LCJGXkFnIl0sWzQsMSwiRl97Qid9ZiJdXQ==
+			\[\begin{tikzcd}
+				{F(A,B)} & {F(A,B')} & {F(A',B')} \\
+				{G(A,B)} & {G(A,B')} & {G(A',B')}
+				\arrow["{\alpha_{A,B}}"', from=1-1, to=2-1]
+				\arrow["{\alpha_{A,B}}", from=1-3, to=2-3]
+				\arrow["{\alpha_{A,B'}}"', dashed, from=1-2, to=2-2]
+				\arrow["{G^Ag}"', from=2-1, to=2-2]
+				\arrow["{G_{B'}f}"', from=2-2, to=2-3]
+				\arrow["{F^Ag}", from=1-1, to=1-2]
+				\arrow["{F_{B'}f}", from=1-2, to=1-3]
+			\end{tikzcd}\]
+			The left square commutes by the first condition, and the right one commutes because of the second one. It follows that the whole rectangle commutes.
+		\end{proof}
+		\subsection*{End of Digression}
+		Let's go back to Yoneda. Let $\mathcal{C}$ be a locally small category. We define a bifunctor called $\ev$ (for ``evaluation'')
+		\[
+			\ev\colon \mathcal{C}\times[\mathcal{C},\mbold{Set}] \to \mbold{Set}.
+		\]
+		If $A\in\ob\mathcal{C}$ and $F\colon \mathcal{C}\to\mbold{Set}$ is a functor we define,
+		\[
+			\ev(A,F)\coloneqq FA.
+		\] 
+		Now suppose $f\colon A\to B$ is a morphism in $\mathcal{C}$ and $\alpha\colon F\to G$ is a natural transformation between functors $F,G\colon \mathcal{C}\to\mbold{Set}$. We then have the naturality square for $f$:
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGQSA9IFxcZXYoQSxGKSJdLFswLDEsIkdBIl0sWzIsMCwiRkIiXSxbMiwxLCJHQj1cXGV2KEIsRykiXSxbMCwyLCJGZiJdLFsxLDMsIkdmIiwyXSxbMCwxLCJcXGFscGhhX0EiLDJdLFsyLDMsIlxcYWxwaGFfQiJdXQ==
+		\[\begin{tikzcd}
+			{FA = \ev(A,F)} && FB \\
+			GA && {GB=\ev(B,G)}
+			\arrow["Ff", from=1-1, to=1-3]
+			\arrow["Gf"', from=2-1, to=2-3]
+			\arrow["{\alpha_A}"', from=1-1, to=2-1]
+			\arrow["{\alpha_B}", from=1-3, to=2-3]
+		\end{tikzcd}.\]
+		We define $\ev(f,\alpha)\colon \ev(A,F) \to \ev(B,G)$ to be the diagonal of this square, i.e.,
+		\[
+			\ev(f,\alpha)\coloneqq \alpha_B(Ff) = (Gf)\alpha_A.
+		\]
+		Next we verify that this construction is functorial. This could be done using the Bifunctor Criterion but we choose to do it by hand. Let $A\in\ob\mathcal{C}$ and $F\colon\mathcal{C}\to \mathcal{D}$ be a functor. We have that
+		\[
+			\ev(1_{(A,F)}) = \ev(1_A,1_F) = (1_F)_A(F1_A) = 1_{FA}1_{FA} = 1_{\ev(A,F)},
+		\]
+		so identities are preserved. Next, let $f\colon A\to B$ and $g\colon B \to C$ be morphisms in $\mathcal{C}$, and let $\alpha\colon F\to G$ and $\beta\colon G\to H$ be natural transformations. We will now give our first real diagram chase!
+		% https://q.uiver.app/#q=WzAsOSxbMCwwLCJGQSJdLFsxLDAsIkZCIl0sWzIsMCwiRkMiXSxbMCwxLCJHQSJdLFsxLDEsIkdCIl0sWzIsMSwiR0MiXSxbMCwyLCJIQSJdLFsxLDIsIkhCIl0sWzIsMiwiSEMiXSxbMCwxLCJGZiJdLFsxLDIsIkZnIl0sWzAsMywiXFxhbHBoYV9BIiwyXSxbMyw2LCJcXGJldGFfQSIsMl0sWzIsNSwiXFxhbHBoYV9DIl0sWzUsOCwiXFxiZXRhX0MiXSxbMSw0LCJcXGFscGhhX0IiXSxbMyw0LCJHZiJdLFs0LDUsIkdnIl0sWzQsNywiXFxiZXRhX0IiXSxbNiw3LCJIZiIsMl0sWzcsOCwiSGciLDJdXQ==
+		\[\begin{tikzcd}
+			FA & FB & FC \\
+			GA & GB & GC \\
+			HA & HB & HC
+			\arrow["Ff", from=1-1, to=1-2]
+			\arrow["Fg", from=1-2, to=1-3]
+			\arrow["{\alpha_A}"', from=1-1, to=2-1]
+			\arrow["{\beta_A}"', from=2-1, to=3-1]
+			\arrow["{\alpha_C}", from=1-3, to=2-3]
+			\arrow["{\beta_C}", from=2-3, to=3-3]
+			\arrow["{\alpha_B}", from=1-2, to=2-2]
+			\arrow["Gf", from=2-1, to=2-2]
+			\arrow["Gg", from=2-2, to=2-3]
+			\arrow["{\beta_B}", from=2-2, to=3-2]
+			\arrow["Hf"', from=3-1, to=3-2]
+			\arrow["Hg"', from=3-2, to=3-3]
+		\end{tikzcd}\]
+		Every small square is commutative by naturality of $\alpha$ and $\beta$; thus the big square is commutative too. Consider maps $FA\to HC$. Going along the diagonal of the big square (i.e. going along either of the sides of the big square) we get $\ev(gf,\beta\alpha)$. On the other hand, if we go along the diagonal of the upper-left small square and then along the diagonal of the lower-right small square we get $\ev(g,\beta) \ev(f,\alpha)$. Hence
+		\[
+			\ev((g,\beta)(f,\alpha)) =\ev(gf,\beta\alpha)= \ev(g,\beta) \ev(f,\alpha),
+		\]
+		and $\ev$ is indeed a functor. (Don't get discouraged if this goes too fast, just stare at the diagram for as long as you need to).
+		
+		As we have said before, there is another functor $\mathcal{C}\times[\mathcal{C},\mbold{Set}] \to \mbold{Set}$. The Yoneda Lemma says that this functor exists and is naturally isomorphic to $\ev$. We might as well construct the functor before proving the Yoneda Lemma. 
+		
+		Part of the problem in the construction is that the assignment on objects is not a priori well-defined; we need to verify that the image of the functor indeed lies in $\mbold{Set}$. Though this is part of the content of Yoneda Lemma, we will prove it separately. 
+		\begin{prop}\label{prop:yone_no_nat}
+			Let $\mathcal{C}$ be a locally small category, $A\in\ob\mathcal{C}$ and $F\colon\mathcal{C}\to\mbold{Set}$ a functor. Then the class
+			\[
+				[\mathcal{C},\mbold{Set}](\mathcal{C}(A,-),F)
+			\]
+			is a set isomorphic to $FA$.
+		\end{prop}
+		\begin{proof}
+			We define a class functions 
+			\begin{gather*}
+				\Phi_{(A,F)} \colon [\mathcal{C},\mbold{Set}](\mathcal{C}(A,-),F) \to FA\\[6pt]
+				\Psi_{(A,F)}\colon  FA\to [\mathcal{C},\mbold{Set}](\mathcal{C}(A,-),F)
+			\end{gather*}
+			as follows. (We drop the subscript of $(A,F)$ for simplicity but we are going to need them in the proof of the Yoneda Lemma). For $\alpha\colon \mathcal{C}(A,-)\to F$ a natural transformation define 
+			\[\Phi(\alpha) \coloneqq \alpha_A(1_A)\in F_A.\]
+			Fix $x\in FA$. Define, for all $B\in\ob\mathcal{C}$, a set-function $\Psi(x)_B \colon \mathcal{C}(A,B)\to FB$ by the rule
+			\[
+				\Psi(x)_B(f\colon A \to B) \coloneqq (Ff)x
+			\]
+			We claim that the collection of all such functions form a natural transformation $\Psi(x) \colon \mathcal{C}(A,-)\to F$. Indeed, let $g\colon B \to C$ be a morphism in $\mathcal{C}$. We need to check the commutativity of the square
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q30oQSxCKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShBLEMpIl0sWzAsMSwiRkIiXSxbMSwxLCJGQyJdLFswLDEsImdeKiJdLFsyLDMsIkZnIiwyXSxbMCwyLCJcXFBzaSh4KV9CIiwyXSxbMSwzLCJcXFBzaSh4KV9DIl1d
+			\[\begin{tikzcd}
+				{\mathcal{C}(A,B)} & {\mathcal{C}(A,C)} \\
+				FB & FC
+				\arrow["{g^*}", from=1-1, to=1-2]
+				\arrow["Fg"', from=2-1, to=2-2]
+				\arrow["{\Psi(x)_B}"', from=1-1, to=2-1]
+				\arrow["{\Psi(x)_C}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			Let $f\colon A \to B$ be arbitrary. Then
+			\begin{align*}
+				(Fg)(\Psi(x)_B)f &= (Fg)(Ffx) \\
+				&= (Fg)(Ff)x \\
+				&= (F(gf))x \\
+				&= \Psi(x)_C(gf) \\
+				&= \Psi(x)_C)(g^*)f,
+			\end{align*}
+			which shows that the diagram commutes. Hence $\Psi(x)$ is a natural transformation for all $x\in FA$.
+			
+			Now we show that $\Phi$ and $\Psi$ are inverses of each other. Let $x\in FA$ be arbitrary. Then
+			\[
+				\Phi (\Psi(x)) = \Psi(x)_A(1_A) = (F1_A)x = 1_{FA}x = x.
+			\] 
+			Now let $\alpha\colon \mathcal{C}(A,-) \to F$ be a natural transformation. We have
+			\[
+				\Psi(\Phi(\alpha)) = \Psi(\alpha_A(1_A)).
+			\]	
+			We would like to verify that this is the same natural transformation as $\alpha$. Check the components: for $B\in\ob\mathcal{C}$ and $f\colon A \to B$ we see that  
+			\[
+				\Psi(\alpha_A(1_A))_Bf=(Ff)(\alpha_A(1_A)).
+			\]
+			By naturality of $\alpha$ in $f$ we get the following commutative square.
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q30oQSxBKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShBLEIpIl0sWzAsMSwiRkEiXSxbMSwxLCJGQiJdLFswLDEsImZeKiJdLFsyLDMsIkZmIiwyXSxbMCwyLCJcXGFscGhhX0EiLDJdLFsxLDMsIlxcYWxwaGFfQiJdXQ==
+			\[\begin{tikzcd}
+				{\mathcal{C}(A,A)} & {\mathcal{C}(A,B)} \\
+				FA & FB
+				\arrow["{f^*}", from=1-1, to=1-2]
+				\arrow["Ff"', from=2-1, to=2-2]
+				\arrow["{\alpha_A}"', from=1-1, to=2-1]
+				\arrow["{\alpha_B}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			Hence,
+			\[
+				\Psi(\alpha_A(1_A))_Bf = \alpha_Bf^*1_A = \alpha_B(f1_A) = \alpha_Bf.
+			\]
+			Thus the natural transformations are equal and $\Psi(\Phi(\alpha)) = \alpha$.
+		\end{proof}
+		Thanks to Proposition \ref{prop:yone_no_nat} we can define, for any locally small category $\mathcal{C}$, a functor 
+		\[\mathscr{F} \colon \mathcal{C}\times [\mathcal{C}, \mbold{Set}] \to \mbold{Set}\]
+		So that for $A\in\ob\mathcal{C}$ and $\mathscr{F}\colon\mathcal{C}\to\mbold{Set}$ we define
+		\[
+			\mathscr{F}(A,F) \coloneqq [\mathcal{C},\mbold{Set}](\mathcal{C}(A,-),F).
+		\]
+		Now onto morphisms. Let $f\colon A \to B$ be a morphism in $\mathcal{C}$ and let $\alpha\colon F \to G$ be a natural transformation of functors $F,G\colon \mathcal{C}\to \mbold{Set}$. We define
+		\[
+			\mathscr{F}(f,\alpha) \colon [\mathcal{C},\mbold{Set}](\mathcal{C}(A,-), F) \to [\mathcal{C},\mbold{Set}](\mathcal{C}(B,-), G)
+		\]
+		as follows. For $\beta\colon \mathcal{C}(A,-) \to F$ a natural transformation we define $(\mathscr{F}(f,\alpha))(\beta)$ to be the natural transformation $\mathcal{C}(B,-) \to G$ whose $C$-component is, for all $C\in\ob\mathcal{C}$, the composite
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q30oQixDKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShBLEMpIl0sWzIsMCwiRkMiXSxbMywwLCJHQyJdLFswLDEsImZeKiJdLFsxLDIsIlxcYmV0YV9DIl0sWzIsMywiXFxhbHBoYV9DIl1d
+		\[\begin{tikzcd}
+			{\mathcal{C}(B,C)} & {\mathcal{C}(A,C)} & FC & GC
+			\arrow["{f_*}", from=1-1, to=1-2]
+			\arrow["{\beta_C}", from=1-2, to=1-3]
+			\arrow["{\alpha_C}", from=1-3, to=1-4]
+		\end{tikzcd}.\]
+		We need to check that this is indeed a natural transformation. Let $g\colon C \to D$ be a morphism in $\mathcal{C}$. Consider the diagram:
+		% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXG1hdGhjYWx7Q30oQixDKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShCLEQpIl0sWzAsMywiR0MiXSxbMSwzLCJHRCJdLFswLDEsIlxcbWF0aGNhbHtDfShBLEMpIl0sWzAsMiwiRkMiXSxbMSwxLCJcXG1hdGhjYWx7Q30oQSxEKSJdLFsxLDIsIkZEIl0sWzAsMSwiZ14qIl0sWzIsMywiR2ciLDJdLFswLDQsImZeKiIsMl0sWzQsNSwiXFxiZXRhX0MiLDJdLFs1LDIsIlxcYWxwaGFfQyIsMl0sWzEsNiwiZl4qIl0sWzYsNywiXFxiZXRhX0MiXSxbNywzLCJcXGFscGhhX0QiXSxbNSw3LCJGZyJdLFs0LDYsImdeKiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+		\[\begin{tikzcd}
+			{\mathcal{C}(B,C)} & {\mathcal{C}(B,D)} \\
+			{\mathcal{C}(A,C)} & {\mathcal{C}(A,D)} \\
+			FC & FD \\
+			GC & GD
+			\arrow["{g*}", from=1-1, to=1-2]
+			\arrow["Gg"', from=4-1, to=4-2]
+			\arrow["{f_*}"', from=1-1, to=2-1]
+			\arrow["{\beta_C}"', from=2-1, to=3-1]
+			\arrow["{\alpha_C}"', from=3-1, to=4-1]
+			\arrow["{f_*}", from=1-2, to=2-2]
+			\arrow["{\beta_C}", from=2-2, to=3-2]
+			\arrow["{\alpha_D}", from=3-2, to=4-2]
+			\arrow["Fg", from=3-1, to=3-2]
+			\arrow["{g^*}", from=2-1, to=2-2]
+		\end{tikzcd}.\]
+		The outer rectangle is the naturality square for $(\mathscr{F}(f,\alpha))(\beta)$ in $g$, so to check whether it is commutative it suffices to check commutativity of the three small squares. The top square is obviously commutative. The middle one is commutative by naturality of $\beta$, and the bottom one by naturality of $\alpha$. Thus $(\mathscr{F}(f,\alpha))(\beta)$ is indeed a natural transformation.
+		
+		Let's remember what we are doing. We have just define the functor $\mathscr{F}$ on objects and on morphisms, but we haven't checked functoriality yet. So, we continue.
+		
+		We could use the Bifunctor Criterion but again we do it by hand.\footnote{Then why did we prove the Bifunctor Criterion? I don't know, unfortunately.} Let $A\in\ob\mathcal{C}$ and $F \colon \mathcal{C}\to \mbold{Set}$ a functor. We would like to show that $\mathscr{F}(1_{(A,F)}) =\mathscr{F}(1_A,1_F)$, which is a set-function from $[\mathcal{C},\mbold{Set}](\mathcal{C}(A,-),F)$ to itself, is just the identity on that set. Then let $\beta\colon \mathcal{C}(A,-)\to F$ be a natural transformation; our task is to show that we have the equality of natural transformations $\mathscr{F}(1_A,1_F)\beta = \beta$. It suffices to check this component-wise, so let $C\in\ob\mathcal{C}$ and note that $(\mathscr{F}(1_A,1_F)\beta)_C$ is the composite
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q30oQSxDKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShBLEMpIl0sWzIsMCwiRkMiXSxbMywwLCJGQyJdLFswLDEsIjFfQV4qIl0sWzEsMiwiXFxiZXRhX0MiXSxbMiwzLCIoMV9GKV9DIl1d
+		\[\begin{tikzcd}
+			{\mathcal{C}(A,C)} & {\mathcal{C}(A,C)} & FC & FC
+			\arrow["{(1_A)_*}", from=1-1, to=1-2]
+			\arrow["{\beta_C}", from=1-2, to=1-3]
+			\arrow["{(1_F)_C}", from=1-3, to=1-4]
+		\end{tikzcd},\]
+		which is equal to $\beta_C$, which is what we wanted. Hence $\mathscr{F}$ respects identities.
+		
+		Now, let $f\colon A \to B$ and $g\colon B \to C$ be morphisms in $\mathcal{C}$. In addition, let $\alpha\colon F \to G$ and $\beta\colon G \to H$ be natural transformations between functors $F,G,H\colon \mathcal{C}\to \mbold{Set}$. We need to check the equality of set-functions
+		\[
+			\mathscr{F}(gf,\beta\alpha) = \mathscr{F}(g,\beta) \circ \mathscr{F}(f,\alpha). 
+		\]
+		Let $\gamma\colon \mathcal{C}(A,-) \to F$ be a natural transformation and $D\in\ob\mathcal{C}$. It suffices to calculate 
+		\[
+			(\mathscr{F}(g,\beta) \circ \mathscr{F}(f,\alpha) (\gamma))_D = ((\mathscr{F}(g,\beta))(\mathscr{F}(f,\alpha) (\gamma)))_D.
+		\]
+		By definition, this is the composite
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q30oQyxEKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShCLEQpIl0sWzIsMCwiR0QiXSxbMywwLCJIRCJdLFswLDEsImdfKiJdLFsxLDIsIihGKGYsXFxhbHBoYSkoXFxnYW1tYSkpX0QiXSxbMiwzLCJcXGJldGFfRCJdXQ==
+		\[\begin{tikzcd}[column sep=huge]
+			{\mathcal{C}(C,D)} & {\mathcal{C}(B,D)} & GD & HD
+			\arrow["{g_*}", from=1-1, to=1-2]
+			\arrow["{(F(f,\alpha)(\gamma))_D}", from=1-2, to=1-3]
+			\arrow["{\beta_D}", from=1-3, to=1-4]
+		\end{tikzcd}\]
+		Expanding the map in the middle with the definition we get
+		% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXG1hdGhjYWx7Q30oQyxEKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShCLEQpIl0sWzQsMCwiR0QiXSxbNSwwLCJIRCJdLFsyLDAsIlxcbWF0aGNhbHtDfShBLEQpIl0sWzMsMCwiRkQiXSxbMCwxLCJnXyoiXSxbMiwzLCJcXGJldGFfRCJdLFsxLDQsImZfKiJdLFs1LDIsIlxcYWxwaGFfRCJdLFs0LDUsIlxcZ2FtbWFfRCJdXQ==
+		\[\begin{tikzcd}
+			{\mathcal{C}(C,D)} & {\mathcal{C}(B,D)} & {\mathcal{C}(A,D)} & FD & GD & HD
+			\arrow["{g_*}", from=1-1, to=1-2]
+			\arrow["{\beta_D}", from=1-5, to=1-6]
+			\arrow["{f_*}", from=1-2, to=1-3]
+			\arrow["{\alpha_D}", from=1-4, to=1-5]
+			\arrow["{\gamma_D}", from=1-3, to=1-4]
+		\end{tikzcd}.\]
+		Clearly this is the same as the composite
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q30oQyxEKSJdLFszLDAsIkhEIl0sWzEsMCwiXFxtYXRoY2Fse0N9KEEsRCkiXSxbMiwwLCJGRCJdLFsyLDMsIlxcZ2FtbWFfRCJdLFswLDIsIihnZilfKiJdLFszLDEsIihcXGJldGFcXGFscGhhKV9EIl1d
+		\[\begin{tikzcd}[column sep=huge]
+			{\mathcal{C}(C,D)} & {\mathcal{C}(A,D)} & FD & HD
+			\arrow["{\gamma_D}", from=1-2, to=1-3]
+			\arrow["{(gf)_*}", from=1-1, to=1-2]
+			\arrow["{(\beta\alpha)_D}", from=1-3, to=1-4]
+		\end{tikzcd},\]
+		which is just $(\mathscr{F}(gf,\beta\alpha) (\gamma))_D$. As $\gamma$ and $D$ were arbitrary, we are done. We have shown that $\mathscr{F}$ is a functor. Now we can state and prove the final version of the Yoneda Lemma.
+		\begin{lem}[The Yoneda Lemma]
+			Let $\mathcal{C}$ be a locally small category. Then $\ev$ and $\mathscr{F}$ are naturally isomorphic as functors $\mathcal{C}\times[\mathcal{C},\mbold{Set}] \to \mbold{Set}$.
+		\end{lem}
+		\begin{proof}
+			In the proof of Proposition \ref{prop:yone_no_nat} we already constructed the relevant isomorphisms, $\Phi$ and $\Psi$, so all we need to check is that they are natural (we are using Lemma \ref{lem:nat_iso_pointw} once again to save us some work). It is only necessary to check that one of $\Phi$ and $\Psi$ is natural. We do it for $\Psi \colon \ev \to \mathscr{F}$.
+			
+			Let $f\colon A \to B$ be a morphism in $\mathcal{C}$ and $\alpha \colon F \to G$ a natural transformation of functors $F,G\colon\mathcal{C}\to\mbold{Set}$. We need to check the following naturality square.\footnote{I know it doesn't look like a square.}
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGQSJdLFsxLDAsIkdCIl0sWzAsMSwiW1xcbWF0aGNhbHtDfSxcXG1ib2xke1NldH1dKFxcbWF0aGNhbHtDfShBLC0pLEYpIl0sWzEsMSwiW1xcbWF0aGNhbHtDfSxcXG1ib2xke1NldH1dKFxcbWF0aGNhbHtDfShCLC0pLEcpIl0sWzAsMSwiXFxldiBmIl0sWzIsMywiXFxtYXRoc2Nye0Z9KGYsXFxhbHBoYSkiLDJdLFswLDIsIlxcUHNpX3soQSxGKX0iLDJdLFsxLDMsIlxcUHNpX3soQixHKX0iXV0=
+			\[\begin{tikzcd}[column sep=large, row sep=large]
+				FA & GB \\
+				{[\mathcal{C},\mbold{Set}](\mathcal{C}(A,-),F)} & {[\mathcal{C},\mbold{Set}](\mathcal{C}(B,-),G)}
+				\arrow["{\ev (f,\alpha)}", from=1-1, to=1-2]
+				\arrow["{\mathscr{F}(f,\alpha)}"', from=2-1, to=2-2]
+				\arrow["{\Psi_{(A,F)}}"', from=1-1, to=2-1]
+				\arrow["{\Psi_{(B,G)}}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			Fix $x\in FA$. Checking commutativity for $x$ is checking the equality of two natural transformations, so we should do so component-wise. Fix some $C\in\ob\mathcal{C}$. It is enough to show that
+			\begin{equation}\label{eq:yoneda}
+				(\mathscr{F}(f,\alpha) (\Psi_{(A,F)} (x)))_C = (\Psi_{(B,G)}(\ev(f,\alpha)(x)))_C.
+			\end{equation}
+			Start with the left-hand side. By definition, $(\mathscr{F}(f,\alpha) (\Psi_{(A,F)} (x)))_C$ is the composite
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q30oQixDKSJdLFsxLDAsIlxcbWF0aGNhbHtDfShBLEMpIl0sWzIsMCwiRkMiXSxbMywwLCJHQyJdLFswLDEsImZfKiJdLFsxLDIsIihcXFBzaV97KEEsRil9KHgpKV9DIl0sWzIsMywiXFxhbHBoYV9DIl1d
+			\[\begin{tikzcd}[column sep=large]
+				{\mathcal{C}(B,C)} & {\mathcal{C}(A,C)} & FC & GC
+				\arrow["{f_*}", from=1-1, to=1-2]
+				\arrow["{(\Psi_{(A,F)}(x))_C}", from=1-2, to=1-3]
+				\arrow["{\alpha_C}", from=1-3, to=1-4]
+			\end{tikzcd}.\]
+			Let $g\in\mathcal{C}(B,C)$. Then, following the diagram
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJnIl0sWzEsMCwiZ2YiXSxbMiwwLCJGKGdmKSh4KSJdLFszLDAsIlxcYWxwaGFfQyBGKGdmKSh4KSJdLFswLDEsIiIsMCx7InNob3J0ZW4iOnsic291cmNlIjozMCwidGFyZ2V0IjozMH0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwyLCIiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9LCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzIsMywiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+			\[\begin{tikzcd}
+				g & gf & {F(gf)(x)} & {\alpha_C F(gf)(x)}
+				\arrow[shorten <=5pt, shorten >=5pt, maps to, from=1-1, to=1-2]
+				\arrow[shorten <=4pt, shorten >=4pt, maps to, from=1-2, to=1-3]
+				\arrow[shorten <=4pt, shorten >=4pt, maps to, from=1-3, to=1-4]
+			\end{tikzcd}.\]
+			So we have just shown
+			\[
+				(\mathscr{F}(f,\alpha) (\Psi_{(A,F)} (x)))_C(g) = \alpha_C F(gf)(x).
+			\]
+			Now look at the left-hand side of equation (\ref{eq:yoneda}). We can evaluate at $g$ to get
+			\begin{align*}
+				(\Psi_{(B,G)}(\ev(f,\alpha)(x)))_C (g) &= (Gg)\ev(f,\alpha)(x) \\
+				&= (Gg)((Gf) \alpha_A)(x)\\
+				&= G(gf)\alpha_A(x)\\
+				&= \alpha_CF(gf)(x),
+			\end{align*}
+			where the last equality is just naturality of $\alpha$ in $gf$. Thus we see that (\ref{eq:yoneda}) holds.
+		\end{proof}
+		\begin{coro}\label{coro:yon_emb_ff}
+			For any locally small category $\mathcal{C}$ the Yonedda embedding $\mathscr{Y}$, which is a functor $\mathcal{C}^{\text{op}} \to [\mathcal{C},\mbold{Set}]$, is full and faithful.
+		\end{coro}
+		\begin{proof}
+			Let $A,B\in\ob\mathcal{C}$ be arbitrary. Let $F = \mathcal{C}(B,-) = \mathscr{Y}(B)$ in the proof of Proposition \ref{prop:yone_no_nat}. Then $\Psi$ is a bijection
+			\[
+			\mathcal{C}(B,A) = \mathcal{C}^{\text{op}}(A,B) \to [\mathcal{C},\mbold{Set}](\mathcal{C}(A,-), \mathcal{C}(B,-)).
+			\]
+			But note that for all $f\in\mathcal{C}(B,A)$, all $C\in\ob\mathcal{C}$, and all$g\colon A \to C$ we have
+			\[
+				\Psi(f)_C(g) = g^*f = gf = f^*g = \mathscr{Y}(f)_C(g),
+			\]
+			so $\Psi$ and $\mathscr{Y}$ coincide in this case.
+		\end{proof}
+		This says that any locally small category is equivalent to a full subcategory of a functor category $[\mathcal{C}^{\text{op}},\mbold{Set}]$.
+		\begin{defn}[Representables]
+			If $\mathcal{C}$ is a locally small category, we say a functor $F\colon \mathcal{C}\to\mbold{Set}$ is \emph{representable} if it is naturally isomorphic to $\mathcal{C}(A,-)$ for some $A\in\mathcal{C}$. By a \emph{representation} of $F$ we mean a pair $(A,x)$ where $A\in\ob\mathcal{C}$ and $x\in FA$ is such that $\Psi(x)$ is a natural isomorphism $\mathcal{C}(A,-)\to F$.
+		\end{defn}
+		\begin{coro}
+			Let $\mathcal{C}$ be locally small. If $(A,x)$ and $(B,y)$ are both representations of a functor $F\colon\mathcal{C}\to \mbold{Set}$, then there is a unique isomorphism $f\colon A \to B$ such that $Ff(x) = y$.
+		\end{coro}
+		\begin{proof}
+			Note that $\Psi(x)^{-1} \Psi(y)$ is an isomorphism $\mathcal{C}(B,-) \to \mathcal{C}(A,-)$. By Corollary \ref{coro:yon_emb_ff}, which says that $\mathscr{Y}$ is full and faithful, there is a unique $f\colon A \to B$ (necessarily an isomorphism) such that the following diagram commutes.
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30oQiwtKSJdLFsyLDAsIlxcbWF0aGNhbHtDfShBLC0pIl0sWzEsMSwiRiJdLFswLDEsIlxcbWF0aHNjcntZfShBLEIpIl0sWzAsMiwiXFxQc2koeSkiLDJdLFsxLDIsIlxcUHNpKHgpIl1d
+			\[\begin{tikzcd}
+				{\mathcal{C}(B,-)} && {\mathcal{C}(A,-)} \\
+				& F
+				\arrow["{\mathscr{Y}f}", from=1-1, to=1-3]
+				\arrow["{\Psi(y)}"', from=1-1, to=2-2]
+				\arrow["{\Psi(x)}", from=1-3, to=2-2]
+			\end{tikzcd}\]
+			Specialize to the object $B$.
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30oQixCKSJdLFsyLDAsIlxcbWF0aGNhbHtDfShBLEIpIl0sWzEsMSwiRkIiXSxbMCwxLCJmXyoiXSxbMCwyLCJcXFBzaSh5KV9CIiwyXSxbMSwyLCJcXFBzaSh4KV9CIl1d
+			\[\begin{tikzcd}
+				{\mathcal{C}(B,B)} && {\mathcal{C}(A,B)} \\
+				& FB
+				\arrow["{f_*}", from=1-1, to=1-3]
+				\arrow["{\Psi(y)_B}"', from=1-1, to=2-2]
+				\arrow["{\Psi(x)_B}", from=1-3, to=2-2]
+			\end{tikzcd}\]
+			Further specialize to the identity $1_B$ and note that one path gives
+			\begin{equation*}
+				(\Psi(x)_Bf_*)1_B = \Psi(x)_B(1_Bf) = \Psi(x)_B f = Ff(x)
+			\end{equation*}
+			while the other gives 
+			\[\Psi(y)_B1_B = F1_B(y) = 1_{FB} (y) = y.\]
+			Thus $Ff(x) = y$. Now let $f'\colon A \to B$ be an isomorphism such that $Ff'(x) = y$. Then for any $C\in\ob\mathcal{C}$ and $g\colon B \to C$ we have
+			\begin{align*}
+				(\Psi(x)_C (f')_*)g &= \Psi(x)_C (gf')\\
+				&= F(gf')x \\
+				&= (Fg)(Ff')(x)\\
+				&= Fg(y)\\
+				&= \Psi(y)_C(g).
+			\end{align*}
+			This implies that the diagram we drew when we defined $f$ commutes when we replace $f$ by $f'$. Hence, by uniqueness of $f$, we have $f = f'$.
+		\end{proof}
+\end{document} 

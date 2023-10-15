@@ -1,0 +1,455 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+
+\begin{document}
+	\title{Ramsey Theory on Graphs}
+	\author{Hernán Ibarra Mejia}
+	\maketitle
+	
+	\chapter{Introduction and Classical Results}
+	This is a set of lecture notes taken by me from the Part III course ``Ramsey Theory on Graphs'', lectured by Dr J. Sahasrabudhe in Michaelmas, 2023. I take full responsibility for any mistakes in these notes.
+	
+	We fix some notation first. 
+	\begin{itemize}
+		\item Define, for all positive integers $n$,
+		\[[n]\coloneqq \{1,2,\ldots, n\}.\]
+		\item $K_n$ denotes the complete graph on $n$ vertices, i.e. 
+		\[
+			V(K_n)= [n] \text{ and }E(K_n) = \{\{i,j\} \colon i\neq j \text{ and }i,j\in [n]\}.
+		\] 
+		\item If $X$ is a set and $r\in \mathbb{N}$, let
+		\[
+			X^{(r)} \coloneqq \{S\subseteq X \colon |S| = r\}.
+		\]
+		\item Functions $\chi\colon E(K_n) \to [k]$ are called $k$-colourings of (the edges of) $K_n$.  If $k = 2$ we sometimes instead give names to the colours, i.e. we consider functions $E(K_n) \to \{\text{red}, \text{blue}\}$.
+	\end{itemize}
+	\section{The Ramsey Numbers}
+	\subsection{Definitions}
+	Here is the big picture question
+	\begin{center}
+		What can we say about the structure of an arbitrary 2-colouring of $E(K_n)$?
+	\end{center}
+	A priori it seems that nothing can be said: an arbitrary 2-colouring is disordered and random. However, we will see that order arises even in these circumstances. 
+	
+	Say that a colouring $\chi \colon E(K_n) \to [r]$ contains a monochromatic clique\footnote{``Clique'' is another word for a complete graph.} of size $k$ if there is a subgraph $G$ of $K_n$, isomorphic to $K_k$, such that $\restr{\chi}{E(G)}$ is constant. In other words, inside $K_n$ there is a smaller complete graph $K_k$ that $\chi$ colours with only colour. When $k=2$ sometimes we speak of the colouring $\chi$ containing a red (or blue) clique or size $k$; this just means that $\chi$ contains a monochromatic clique $G$ so that $\restr{\chi}{E(G)}$ is constant with value red (respectively blue). Usually we will say a colouring of $K_n$ when we mean a colouring of $E(K_n)$, for the sake of simplicity (all of our colourings will be edge-colourings).
+	
+	Consider the following example.
+	\begin{eg}
+		In any party of six people, there are three people who are (pairwise) already acquainted or are (pairwise) meeting for the first time. Indeed, call one of the people $A$. Then there are five other people at the party who either $A$ knows already or $A$ is meeting for first time. By the pigeonhole principle, $A$ knew 3 people or $A$ didn't know 3 people; call them $X,Y$ and $Z$. Without loss of generality, assume $A$ knew them (the other case is similar).
+		
+		Then if there are two people from the set $\{X,Y,Z\}$ that know each other then, together with $A$, they would for a group of three people that know each other. Otherwise, $X,Y$ and $Z$ are mutual strangers and we are done.
+		
+		Examine this argument. We have shown that a complete graph on six vertices always has a monochromatic clique of size three. Remarkable, isn't it?
+	\end{eg}
+	So does this always happen? Can we always find a monochromatic clique of size $k$ in a colouring of $K_n$? If $n$ is large enough, Ramsey says yes. Define the \emph{diagonal Ramsey numbers} as 
+	\begin{multline*}
+		R(k) \coloneqq \min\{n\in\mathbb{Z}^+\colon \text{All 2-colourings of $K_n$ have}\\ \text{a monochromatic clique of size $k$}\},
+	\end{multline*}
+	for all $k\in \mathbb{Z}^+$. We showed that all colourings of $K_6$ contain a monochromatic clique of size 3, i.e. that $R(3) \leq 6$. We actually have $R(3) = 6$. To see this, note that if all colourings of $K_n$ contain a monochromatic clique of size $k$ then all colourings of $K_m$ contain a monochromatic clique of size $k$ for all $m\geq n$ (just remove $m-n$ vertices and apply the hypothesis). Contrapositively, if a colouring of $K_5$ does not contain a clique of size $3$ then nor does a colouring of $K_n$ for all $n\in [4]$. And indeed this is the case, as the {\color{red}{following}} Figure shows. It follows that $R(3)=6$. 
+	\begin{center}
+		\color{red}{Figure: $K_5$ coloured with no monochromatic clique of size 3}
+	\end{center}
+	Before we move one, we will generalize our definition slightly. For positive integers $k$ and $l$, define the \emph{Ramsey numbers} to be
+	\begin{multline*}
+		R(l,k) = \min\{n\in\mathbb{Z}^+\colon \text{All 2-colourings of $K_n$ contain either}\\ \text {a blue clique of size $l$ or a red clique of size $k$}\}.
+	\end{multline*}
+	Clearly $R(l,k) = R(k,l)$ by symmetry and $R(k,k) = R(k)$ for all $l,k$. 
+	\subsection{Ramsey's Theorem}
+	If you haven't noticed already, you should know that there is a problem with out definition of Ramsey numbers and diagonal Ramsey numbers. Both are defined as a minimum of a subset of the naturals, yet we did not prove that the subsets are non-empty. In other words, how can we be sure that there isn't some $k$ such that for all $n$ we have that there is a colouring of $K_n$ with no monochromatic $k$-clique? (similarly for the more general Ramsey numbers). Thus, our first task will be to verify that these numbers are well-defined. It suffices to focus on the general Ramsey numbers, since the diagonal Ramsey numbers are special case of them.
+	
+	We will do so recursively: first we show that $R(l,k)$ well-defined for small values of $k$ and $l$, and then we will use a recursive upper bound to show that all this is true for all values of $k$ and $l$.
+	
+	Obviously $R(1,1) = 1$. Furthermore, $R(2,1) = R(1,2) = 1$ which you can easily check. Finally, $R(2,2)= 2$. This is enough to show the following.
+	\begin{thm}[Ramsey's Theorem]\label{thm:ramsey}
+		For all positive integers $k$ and $l$, the Ramsey number $R(l,k)$ is well-defined. Furthermore, if $l,k\geq 2$ we have
+		\[
+			R(l,k) \leq R(l-1,k) + R(l,k-1).
+		\] 
+	\end{thm} 
+	\begin{proof}
+		Induction on $l+k$. We know $R(l,k)$ is well-defined for $l+k = 2$ so the base case (when $l=k=1$) is done. By inductive hypothesis both $a\coloneqq R(l-1, k)$ and $b = R(l,k-1)$ are well-defined. Let $n\coloneqq a+b$. We will show that any colouring of a graph with $n$ vertices has either a blue $l$-clique or a red $k$-clique. This will prove that $R(l,k)$ is well-defined and further $R(l,k) \leq n$, which is what we want.
+		
+		So, let $\chi \colon E(K_n) \to \{\text{red},\text{blue}\}$ be a colouring and let $x$ be an arbitrary vertex of $K_n$. By $N_B(x)$ we denote the set of vertices that are adjacent to $x$ by a blue edge, and similarly for $N_R(x)$.
+		
+		Note that $|N_B(x)| + |N_R(x)|$ is just the degree of $x$, i.e. $n-1$. It follows that either $|N_B(x)| \geq a$ or $|N_R(x)|\geq b$ for if we had both $|N_B(x)| \leq a- 1$ and $|N_r(x)|\leq b-1$ then
+		\[
+			n-1 = |N_B(x)| + |N_R(x)| \leq (a - 1) + (b-1)  = n-2,
+		\]
+		a contradiction. There are two cases then.
+		\subsubsection*{Case 1}
+		The number of blue neighbours of $x$ is at least $a$, i.e. $|N_B(x)|\geq a$. By definition of $a$, the subgraph induced by $|N_B(a)|$ contains a red $k$-clique or a blue $(l-1)$-clique. In the former case we are done: we have found a red $k$-clique. In the latter case, we note that if we adjoin the vertex $x$ to the blue $(l-1)$-clique in $N_B(x)$ we get a blue $l$-clique in $K_n$.
+		\subsubsection*{Case 2}
+		The number of red neighbours of $x$ is at least $b$. This case is done completely analogously to Case 1.
+	\end{proof}
+	\section{Bounds on Ramsey Numbers}
+	\subsection{Upper Bounds}
+	Note that $R(l,2) =l$ and $R(2,k) = k$ for all $l$ and $k$. We can use the recursive bound to give us a non-recursive bound.
+	\begin{thm}[Erdős-Szekeres, 1935]\label{thm:ram_up_bound_binom}
+		For all positive integers $l,k$ we have
+		\[
+			R(l,k) \leq \binom{l+k-2}{l-1}
+		\]
+	\end{thm}
+	\begin{proof}
+		Again, we do induction on $l+k$. The base case is trivial. By Theorem \ref{thm:ramsey} and the inductive hypothesis
+		\begin{align*}
+			R(l,k) &= R(l-1,k) + R(l,k-1)\\
+			&\leq \binom{l+k - 3}{l-2} + \binom{l+k - 3}{l-1}\\
+			&= \binom{l+k - 2}{l -1},
+		\end{align*}
+		where in the last equality we used the identity $\binom{n + 1}{m+1} = \binom{n}{m+1} + \binom{n}{m}$.
+	\end{proof}
+	\begin{coro}
+		For all positive integers $k$,
+		\[
+			R(k) \leq \binom{2k - 2}{k- 1} \leq c\frac{4^k}{\sqrt{k}}
+		\]
+		for some constant $c>0$.
+	\end{coro}
+	\begin{proof}
+		The first inequality is just Theorem \ref{thm:ram_up_bound_binom} for the case $l=k$. For the second one we can approximate using Stirling's formula or by clever formulae-manipulation, see e.g. \href{https://www.moderndescartes.com/essays/2n_choose_n/}{this link}.
+	\end{proof}
+	So roughly we can bound $R(k)$ by something that grows like $4^k$. Is this close to how $R(k)$ really grows?
+	
+	\subsection{Lower bounds}
+	For some time people thought $4^k$ was far from the truth and that the growth of $R(k)$ should be polynomial. Indeed, it is easy to get a quadratic lower bound for $R(k)$. The rough idea is to take $(k-1)$ copies of a blue $K_{k-1}$ and connect all the remaining edges in red such that we end up with a $K_{(k-1)^2}$ with no monochromatic $k$-clique. Erdős surprised everyone by providing an exponential lower bound, and by furthermore introducing a non-standard (back then) proof technique, now known as the ``probabilistic method''.
+	
+	We will use binomial coefficients quite a bit, so the following bounds will be useful.
+	\begin{prop}\label{prop:binom_st_bound}
+		For all $n,k\in\mathbb{N}$ with $k\leq n$ we have
+		\[
+		\left(\frac{n}{k}\right)^k \leq \binom{n}{k}\leq \left(\frac{en}{k}\right)^k
+		\]
+	\end{prop}
+	\begin{proof}
+		For the lower bound we note that
+		\begin{align}
+			\binom{n}{k} &= \frac{n}{k} \cdot \frac{n-1}{k-1} \cdots \frac{n-k+1}{1}\notag\\
+			&= \prod_{m=0}^{k-1}\frac{n - m}{k-m} \label{eq:binom_prod}
+		\end{align}
+		We would like to show that all of the factors in the product are bounded below by $n/k$. Indeed, as $k\leq n$ we have $km \leq nm$ for all $0\leq m \leq k-1$, and so $km - nk \leq nm - nk$. Rewriting the latter we get $k(m - n)\leq n(m-k)$ which, negating both sides and reordering we get
+		\[
+		\frac{n-m}{k-m} \geq \frac{n}{k} \text{ for all }0\leq m \leq k-1.
+		\]
+		This implies the lower bound.
+		
+		For the upper bound take the representation in equation (\ref{eq:binom_prod}). As $n-m \leq n$ for $0\leq m\leq k-1$ we get 
+		\begin{equation*}
+			\binom{n}{k}\leq \frac{n^k}{k!}
+		\end{equation*}
+		Now notice that 
+		\[
+		e^k = \sum_{i=0}^{\infty} \frac{k^i}{i!} \geq \frac{k^k}{k!}.
+		\]
+		Therefore $\frac{1}{k!}\leq \left(\frac{e}{k}\right)^k$ and so we get
+		\[
+		\binom{n}{k} \leq \left(\frac{en}{k}\right)
+		\]
+		as desired.
+	\end{proof}
+	Now we can prove the result by Erdős. I know the bound seems intimidating but the idea of the proof is simple enough: just pick a random colouring and analyse what is the probability of getting (or not getting) the colouring you want. The bound follows naturally from this approach.
+	\begin{thm}[Erdős, 1948]
+		For all $0<\varepsilon < 1$ there is some $k$ large enough so that
+		\[
+			R(k) \geq (1 - \varepsilon) \frac{k}{e\sqrt{2}}2^{k/2}.
+		\]
+	\end{thm}
+	\begin{proof}
+		Let $0<\varepsilon <1$. We will later see how big $k$ needs to be, so for now assume it to be arbitrary. Define
+		\[
+			n \coloneqq \left\lfloor (1-\varepsilon)\frac{k2^{k/2}}{e\sqrt{2}}\right\rfloor.
+		\]
+		(Again, this $n$ looks like it comes out of nowhere but it is picked such that most everything we get at the end is cancelled out). Let $\chi$ be a random red/blue colouring of $E(K_n)$, i.e. each edge has equal probability of being red and blue, and furthermore the choices for colours between different edges are independent. We will show that
+		\[
+			P \coloneqq \mathbb{P}(\chi \text{ contains a monochromatic $k$-clique}) < 1.
+		\]
+		This implies that there \emph{is} a colouring of $E(K_n)$ such that there is no monochromatic $k$-clique, i.e. that $R(k) > n$.
+		
+		By definition,
+		\begin{equation*}
+			P = \mathbb{P}\left(\bigcup_{S\in[n]^{(k)}} \{S \text{ is monochromatic}\}\right)
+		\end{equation*}
+		We can apply the union bound, which says that the ``probability of the union is at most the sum of the probabilities''. For each $S\in [n]^(k)$ the probability that it is monochromatic is the sum of the probability that it is completely red and the probability that it is completely blue; both of these cases have probability $\frac{1}{2^{\binom{k}{2}}}$. Thus we have
+		\[
+			P \leq \binom{n}{k}2^{1-\binom{k}{2}}
+		\]
+		Using the standard bound for the binomial we get
+		\begin{align*}
+			P &\leq 2\left(\frac{en}{k}\right)^k\cdot 2^{\frac{-k(k-1)}{2}}\\
+			&= 2\left(\frac{e\sqrt{2}n}{k}2^{-k/2}\right)^k\\
+			&\leq 2(1-\varepsilon)^k,
+		\end{align*}
+		where we used the definition of $n$ in the last inequality. Hence it is clear that $P$ can be made arbitrarily small as for large enough $k$; so definitely we can pick $k$ with $P<1$. Thus, we have determined that $R(k)>n$ which implies, since $R(k)$ is an integer, that
+		\[
+			R(k)\geq (1-\varepsilon)\frac{k2^{k/2}}{e\sqrt{2}}.\qedhere
+		\]
+	\end{proof}
+	In essence we have proven that, very roughly, $(\sqrt{2})^k \leq R(k) \leq 4^k$. What is the right base in the exponent? This is the big open question in Ramsey Theory.
+	\chapter{On $R(3,k)$}
+	Using the bounds on the previous chapter, we quickly deduce that
+	\[
+		R(3,k) \leq \binom{k+1}{2} \leq (k+1)^2.
+	\]
+	A quadratic growth happens to be indeed very close to the truth. We will try to get a quadratic lower bound in the next section. 
+	\section{(Ab)using the the probabilistic method}
+	As we are going to keep the value of $l$ fixed at 3 we will change how we think about colourings. Note that to find a lower bound $f(k) \leq R(3,k)$ it suffices to prove that a graph $G$ with $f(k)$ vertices exists that does not contain a triangle nor an independent set of size $k$. For if we had such a $G$ then we can construct a colouring of $K_{f(k)}$ that colours a copy of $G$ in $K_{f(k)}$ completely blue and all other edges red. Such a colouring will not have a blue triangle, since $G$ contains no triangles, and no red $k$-clique since that would imply $G$ has an independent $k$-set. Hence $f(k) \leq R(3,k)$ as desired.
+	
+	To find $G$ we could try to use the probabilistic method as we have before. That is, having $f(k)$ vertices, connect them randomly, with each edge having probability 1/2 to appear. Then we would show that such a random graph (up to certain modification, cf. the actual proof) has a non-zero probability of having no triangles and no independent $k$-sets.  The problem is that the probability turns out to be so close to zero it is difficult to prove that it must be non-zero using approximations like e.g., the union bound. The solution is to consider a random graph that is more likely to have fewer edges but not too few so as to have independent $k$-sets. This motivates the following definition.
+	\begin{defn}[Binomial Random Graph]
+		For $n\in\mathbb{N}$ and $p\in[0,1]$ we define the probability space $G(n,p)$ to be that on all graphs $[n]$ where each edge is independently included with probability $p$.
+	\end{defn}
+	So far we have considered $G(n,1/2)$. With this more general definition, it is possible to prove an OK lower bound. If $G$ is a graph, denote by $\alpha(G)$ the maximum $k$ so that $G$ contains an independent set of size $k$.
+	\begin{thm}[Erd\H{o}s]
+		There exists some constant $c>0$ such that for all $k$ we have
+		\[
+			R(3,k) \geq c\left(\frac{k}{\log k}\right)^{3/2}.
+		\]
+	\end{thm}
+	\begin{proof}
+		Define $n\coloneqq \left(\frac{k}{\log k}\right)^{3/2}$ and $p \coloneqq n^{-2/3} = \frac{\log k}{k}$. Forget about these values for now since it is not clear why they were chosen. 
+		
+		Sample a graph $G$ from the distribution $G(n,p)$ (henceforth we abbreviate this as $G\sim G(n,p)$). Define $\tilde{G}$ to be the graph $G$ but deleting all vertices that are part of a triangle or an independent set of size $k$. Then $\tilde{G}$ has no triangles and $\alpha(\tilde{G}) <k$ by construction. How many vertices are there left in $\tilde{G}$? We will show that
+		\[
+			\mathbb{E}(|\tilde{G}|) \geq cn,
+		\]
+		for some constant $c>0$. Denote by $X$ the number of triangles in $G$ and $Y$ the number of independent sets of size $k$ in $G$. Then we clearly have
+		\[
+			|\tilde{G}| \geq n - X - Y.
+		\]
+		This is not necessarily equality because we can get ``lucky'' in that e.g., a vertex may be both part of a triangle and of an independent $k$-set, so we only delete it once (we can't delete it twice). The bound $n - X -Y$ is the worst possible scenario. We can take expectations on both sides of the inequality and use linearity to conclude
+		\begin{equation}
+			\mathbb{E}(|\tilde{G}|) \geq n - \mathbb{E}(X) - \mathbb{E}(Y).
+		\end{equation}
+		We will now obtain bounds on $\mathbb{E}(X)$ and $\mathbb{E}(Y)$.
+		
+		Observe that
+		\[
+			X = \sum_{T \in [n]^{(3)}}\mathbf{1}_{\{T\text{ forms a triangle in } G\}}.
+		\]	
+		Take expectations:
+		\begin{align*}
+			\mathbb{E}(X) &= \sum_{T \in [n]^{(3)}}\mathbb{E}(\mathbf{1}_{\{T\text{ forms a triangle in } G\}})\\
+			&= \sum_{T \in [n]^{(3)}}\mathbb{P}(\{T\text{ forms a triangle in } G\})\\
+			&= \sum_{T \in [n]^{(3)}} p^3 = \binom{n}{3}p^3.
+		\end{align*}
+		It immediately follows that $\mathbb{E}(X) \leq \frac{1}{6}(np)^3$. A similar method works for $Y$. First, write it as a sum of indicator functions:
+		\[
+			Y = \sum_{S \in [n]^{(k)}}\mathbf{1}_{\{S\text{ is an independet $k$-set in } G\}}.
+		\]
+		Take expectations and we get
+		\begin{align*}
+			\mathbb{E}(Y) &= \binom{n}{k}(1-p)^{\binom{k}{2}}\\
+			&\leq \left(\frac{en}{k}\right)^k (1-p)^{\binom{k}{2}}\\
+			&\leq \left(\frac{en}{k}\right)^k e^{-p\binom{k}{2}}\\
+			&= \left(\frac{en}{k}e^{-p\left(\frac{k-1}{2}\right)}\right)^k\\
+			&= \left(\frac{en}{k}e^{\frac{-pk}{2}}e^{\frac{p}{2}}\right)^k
+		\end{align*}
+		where the inequalities came from the standard bound on the binomial and the fact that $1-x \leq e^{-x}$ for all $x\in\mathbb{R}$. As $0< p < 1$  it follows that $e^{p/2} < \sqrt{e} < 2$. Hence,
+		\[
+			\mathbb{E}(Y) \leq \left(\frac{2en}{k}e^{\frac{-pk}{2}}\right)^k.
+		\]
+		Therefore we get
+		\[
+			\mathbb{E}(|\tilde{G}|) \geq n - \frac{1}{6}(np)^3 - \left(\frac{2en}{k}e^{\frac{-pk}{2}}\right)^k
+		\]
+		It is clear now that we need $(np)^3$ to grow like $n$; hence why the value of $p$ was chosen. A similar heuristic was used to choose the value of $n$. 
+		
+		In any case, replacing the value of $p$ (both in terms of $n$ and in terms of $k$) yield
+		\[
+			\mathbb{E}(|\tilde{G}|) \geq n - \frac{n}{6} - \left(\frac{2en}{k^{3/2}}\right)^k
+		\]
+		Replacing the value of $n$ in terms of $k$ yields
+		\[
+			\mathbb{E}(|\tilde{G}|) \geq \frac{5n}{6} - \left(\frac{2e}{(\log k)^{3/2}}\right)^k.
+		\]
+		And so it is clear that for large enough $k$ we have $\left(\frac{2e}{(\log k)^{3/2}}\right)^k$ being arbitrarily small, so definitely $\mathbb{E}(|\tilde{G}|) \geq cn$ for some $c>0$ and for large enough $k$. Thus, if $k$ is large enough, there is a graph $\tilde{G}$ with the desired properties and at least $cn$ vertices and so
+		\[
+			R(3,k) \geq cn
+		\]
+		for large enough $k$. To get the statement for all $k$ decrease $c$ while keeping it positive until it applies for all $k$.
+	\end{proof}
+	This was the ``vertex deletion method'': we deleted some vertices from the random graph to get one with the desired properties. However this is not efficient: our bound worsens when we delete vertices.
+	
+	What about deleting edges instead? This is much harder since one may inadvertently create independent sets while trying to delete triangles. Our idea will be to delete edges from collections of edge-disjoint triangles in $G\sim G(n,p)$ and remove all edges from these triangles.
+	
+	\begin{thm}[Erd\H{o}s]
+		There exists some $c>0$ such for all $k$ we have
+		\[
+			R(3,k) \geq c \left(\frac{k}{\log k}\right)^2
+		\]
+	\end{thm}
+	To prove this, we will need a couple of lemmata. 
+	\begin{lem}
+		Let $\mathcal{F}=\{A_1,\ldots, A_m\}$ be a family of events in a probability space. Let $\mathcal{E}_t$ be the event that at least $t$ independent events from $\mathcal{F}$ occur. Then
+		\[
+			\mathbb{P}(\mathcal{E}_t) \leq \frac{1}{t!} \left(\sum_{i=1}^{m}\mathbb{P}(A_i)\right)^t.
+		\]
+	\end{lem}
+	\begin{proof}
+		Note that 
+		\[\mathbf{1}_{\mathcal{E}_t} = \frac{1}{t!}\sum_{\substack{(i_1,\ldots,i_t)\in [m]^{t},\\ A_{i_1},\ldots, A_{i_t} \text{are}\\ \text{distinct independent}\\ \text{events}}}\mathbf{1}_{A_{i_1}}\mathbf{1}_{A_{i_2}}\cdots \mathbf{1}_{A_{i_t}}.\]
+		Take expectations on both sides. Note that the equality turns into an inequality if we delete the long condition on the sum.
+		\begin{align*}
+			\mathbb{P}(\mathcal{E}_t) &\leq \frac{1}{t!} \sum_{(i_1,\ldots,i_t)\in [m]^{t}} \mathbb{P}(A_{i_1}) \cdots \mathbb{P}(A_{i_t})\\
+			& \leq \frac{1}{t!}\left(\sum_{i = 1}^{m}\mathbb{P}(A_i)\right)^t\qedhere
+		\end{align*}
+	\end{proof}
+	From now on we say a property $P$ holds of $G\sim G(n,p)$ with high probability (sometimes abbreviated as w.h.p) if 
+	\[
+		\mathbb{P}(G\text{ has property }P) \to 1 \text{ as }n\to \infty.
+	\]
+	\begin{lem}
+		Let $n,k\in\mathbb{Z}^{+}$ and $p\in (0,1)$ be such that $pk \geq 16 \log n$. Then with high probability every subset of size $k$ of $G\sim G(n,p)$ contains at least $\frac{pk^2}{8}$ edges.
+	\end{lem}
+	\begin{proof}
+		
+	\end{proof}
+\end{document}
