@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  13 OCT 2023 07:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  18 OCT 2023 13:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1228,7 +1228,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 385.
 
-[8] [9] (combinatorics_notes.aux)
+[8] [9] [10] (combinatorics_notes.aux)
 Package rerunfilecheck Info: File `combinatorics_notes.out' has not changed.
 (rerunfilecheck)             Checksum: 42B62BE7F794945E0CE73DDC859CA341;1526.
 Package logreq Info: Writing requests to 'combinatorics_notes.run.xml'.
@@ -1236,10 +1236,10 @@ Package logreq Info: Writing requests to 'combinatorics_notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 31362 strings out of 476374
- 616359 string characters out of 5788855
+ 31367 strings out of 476374
+ 616342 string characters out of 5788855
  1867340 words of memory out of 5000000
- 51209 multiletter control sequences out of 15000+600000
+ 51211 multiletter control sequences out of 15000+600000
  522711 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,10n,132p,694b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1260,9 +1260,9 @@ ts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public
 e1/public/amsfonts/cm/cmsy7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/herna/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on combinatorics_notes.pdf (10 pages, 246513 bytes).
+Output written on combinatorics_notes.pdf (11 pages, 250186 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 50 named destinations out of 1000 (max. 500000)
+ 218 PDF objects out of 1000 (max. 8388607)
+ 53 named destinations out of 1000 (max. 500000)
  77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

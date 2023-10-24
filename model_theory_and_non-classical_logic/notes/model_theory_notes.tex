@@ -1,0 +1,629 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+
+\usepackage{lipsum}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+
+\makeatother
+
+\setenumerate[1]{label=(\alph*)}	
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\begin{document}
+	\title{Model Theory and Non-Classical Logic}
+	\author{Hernán Ibarra Mejia}
+	\maketitle
+	This is a set of lecture notes taken by me from the Part III course ``Model Theory and Non-Classical Logic'', lectured by Dr J. Siqueira in Michaelmas, 2023. I take full responsibility for any mistakes in these notes. Chapter 0 is my summary/expansion of \cite{NOLAST}
+	
+	
+	\setcounter{chapter}{-1}
+	\chapter{Logic Background}
+	\begin{defn}[Signature]
+		A \emph{signature} $\Sigma$ is a triplet $(\Omega, \Pi, \alpha)$, where $\Omega$ and $\Pi$ are disjoint sets and $\alpha\colon \Omega \cup \Pi \to \mathbb{N}$. We call the elements of $\Omega$ \emph{function symbols}, those of $\Pi$ we call \emph{predicate symbols}, and if $s\in \Omega \cup \Pi$ we call $\alpha(s)$ the \emph{arity} of $s$.
+	\end{defn}
+	For the rest of this chapter, assume $\Sigma = (\Omega, \Pi, \alpha)$ is an arbitrary signature and that we are given a countable set $X=\{x_1,x_2\ldots\}$, which we call the set of \emph{variables}. This set does not contain any symbols in our signature (nor in the set of strings on our signature, see below).
+	\section{Terms, formulae, and structures}
+	\begin{defn}[Terms]
+		The set of $\Sigma$-\emph{terms} is a subset of the set of strings on $\Omega \cup X$, defined inductively as follows. 
+		\begin{enumerate}
+			\item If $x\in X$ then $x$ is a term
+			\item If $t_1,\ldots t_n$ are terms, and $\omega\in \Omega$ with $\alpha(\omega) = n$ then $\omega (t_1,\ldots, t_n)$ is a term.
+			\item That is all.
+		\end{enumerate}
+	\end{defn}
+	\begin{rem}
+		Now assume that $X\cup \Omega \cup \Pi$ do not contain the symbols `$=$', `(',`)', `$\bot$', `$\forall$' nor `$\Rightarrow$' (nor commas).
+	\end{rem} 
+	\begin{defn}[Atomic formulae]
+		Let $T$ be the set of $\Sigma$-terms. We define the \emph{atomic formulae} of $\Sigma$ as certain strings on $T \cup \Pi \cup \{(, ), =, ,\}$ (note that the last comma is not a typo) according to the following rules.
+		\begin{enumerate}
+			\item If $s$ and $t$ are terms then $(s = t)$ is an atomic formula.
+			\item If $\phi \in \Pi$, $\alpha(\phi) = n$ and $t_1, \ldots, t_n$ are terms then $\phi(t_1,\ldots, t_n)$ is an atomic formula.
+			\item That is all.
+		\end{enumerate}
+	\end{defn}
+	\begin{defn}[Pre-formulae]
+		Let $T$ be the set of terms of $\Sigma$. We inductively define the set of $\Sigma$-\emph{pre-formulae} as a subset of the set of strings on $T \cup \Pi\cup \{=,\bot, \forall, \Rightarrow, (, )\}$ satisfying the following.
+		\begin{enumerate}
+			\item Atomic formulae are pre-formulae
+			\item $\bot$ is a pre-formula.
+			\item If $p$ and $q$ are pre-formulae then so is $(p\Rightarrow q)$.
+			\item If $p$ is a pre-formula and $x\in X$ is a variable then $(\forall x)p$ is a pre-formula.
+			\item That's all.
+		\end{enumerate}
+	\end{defn}
+	
+	Now we can define a function $\textnormal{PFV}$ (for pre-free variables) on the set of terms union with the set of pre-formulae by the following rules
+	\begin{align*}
+		&\textnormal{PFV}(x) = \{x\}\\
+		&\textnormal{PFV}(\omega t_1 \cdots t_n) = \bigcup_{i = 1}^{n}\textnormal{PFV}(t_i)\\
+		&\textnormal{PFV}(s=t) = \textnormal{PFV}(s) \cup \textnormal{PFV}(t)\\
+		&\textnormal{PFV}(\phi(t_1, \ldots, t_n)) = \bigcup_{i = 1}^{n}\textnormal{PFV}(t_i)\\
+		&\textnormal{PFV}(\bot) = \emptyset\\
+		&\textnormal{PFV}(p \Rightarrow q) = \textnormal{PFV}(p) \cup \textnormal{PFV}(q)\\
+		&\textnormal{PFV}((\forall x)p) = \textnormal{PFV}(p)\setminus\{x\} 
+	\end{align*}
+	
+	Finally, we can define $\Sigma$-\emph{formulae} to be all pre-formulae of $\Sigma$ except those of the form $(\forall x)p$ where $x\notin \textnormal{PFV}(p)$. Define $\textnormal{FV}$ to be the restriction of $\textnormal{PFV}$ so that it only applies to terms and formulae.
+	
+	By the \emph{language} $\mathcal{L}$ of a signature $\Sigma$ we mean the set of all terms and formulae of $\Sigma$. Instead of saying $\Sigma$-terms and $\Sigma$-formulae we say $\mathcal{L}$-terms and  $\mathcal{L}$-formulae to mean the same thing.
+	\begin{defn}[Language structures]
+		An $\mathcal{L}$-\emph{structure} is a set $A$ together with functions $\omega_A\colon A^{\alpha(w)} \to A$ for each $\omega \in \Omega$ and relations $\phi_A\subseteq A^{\alpha(\phi)}$ for each $\phi \in \Pi$. We use the convention that $S^0$ is a singleton set (say $\{0\}$) for all sets $S$.
+	\end{defn}
+	\section{Derived symbols}
+	\begin{defn}[Derived operations]
+		Let $A$ be an $\mathcal{L}$-structure and $t$ a term. In addition, suppose $n$ is an integer with $\textnormal{FV}(t) \subseteq \{x_1,\ldots,x_n\}$. We define, $t_A(n)$ to be a function $A^{n} \to A$ as follows.
+		\begin{enumerate}
+			\item If $t\in X$ then $t = x_i$ for some $i\leq n$. Let $t_A\colon A^n \to A$ be the $i$-th projection function.
+			\item Suppose $t = \omega t_1\ldots t_m$ where $\omega \in \Omega$ with $\alpha(\omega) = m$, and the $t_i$'s are terms for which we have defined $(t_i)_A(n)$. Then $t_A$ is the composite 
+			% https://q.uiver.app/#q=WzAsMyxbMywwLCJBXm0iXSxbNCwwLCJBIl0sWzAsMCwiQV5uIl0sWzAsMSwiXFxvbWVnYV9BIl0sWzIsMCwiKCh0XzEpX0EobiksKHRfMilfQShuKSxcXGxkb3RzLCAodF9tKV9BKG4pKSJdXQ==
+			\[\begin{tikzcd}[column sep=huge]
+				{A^n} &&& {A^m} & A
+				\arrow["{\omega_A}", from=1-4, to=1-5]
+				\arrow["{((t_1)_A(n),(t_2)_A(n),\ldots, (t_m)_A(n))}", from=1-1, to=1-4]
+			\end{tikzcd}\]		
+		\end{enumerate}
+	\end{defn}
+	Note that in the empty structure all derived operations are the empty function (there can't be any constant symbols).
+	\begin{lem}[Variable redundancy in terms]\label{lem:redun_terms}
+		Let $A$ be a structure and $t$ a term with $\textnormal{FV}(t) \subseteq \{x_1,\ldots,x_n\}$ for some $n$. Suppose we have two sequences of elements of $A^n$, say $a$ and $b$, such that $a$ and $b$ agree on free variables, i.e. $a_k = b_k$ whenever $x_k\in \textnormal{FV}(t)$. Then $t_A(n)(a) = t_A(n)(b)$.
+	\end{lem}
+	\begin{proof}
+		Induction on $t$. Suppose $t = x_i\in X$. Then $t_A(n)(a)$ and $t_A(n)(b)$ are $a_i$ and $b_i$ respectively. We have assumed these are the same, as $x_i\in \textnormal{FV}(t)$. Thus $t_A(n)(a)= t_A(n)(b)$.
+		
+		Now suppose $t = \omega t_1 \cdots t_m$ where $\omega \in \Omega$ with $\alpha(\omega) = m$, and the $t_i$'s are terms. By inductive hypothesis, we may assume that for all $1\leq i \leq n$ we have
+		\[
+		(t_i)_A(n) (a) =  (t_i)_A(n) (b). 
+		\]
+		It follows that 
+		\[
+		((t_1)_A(n),\ldots, (t_m)_A(m))(a) = ((t_1)_A(n),\ldots, (t_m)_A(n))(b).
+		\]
+		Applying $\omega_A$ to both sides gives the result.
+	\end{proof}
+	\begin{defn}(Derived formulae)
+		Let $A$ be an $\mathcal{L}$-structure and $p$ a formula. In addition, suppose $n$ is an integer with $\textnormal{FV}(p) \subseteq \{x_1,\ldots,x_n\}$. We define $p_A(n)$ to be subset of $A^{n}$, or equivalently a function $A^{n} \to 2$, as follows.
+		\begin{enumerate}
+			\item If $p$ is the formula $(s=t)$ for terms $s$ and $t$ then
+			%
+			\[
+				p_A(n) \coloneqq \{\, a \in A^{n} \mid s_A(n)(a) = t_A(n)(a)\,\}
+			\]
+			\item Suppose $p = \phi(t_1,\ldots, t_m)$ for some $\phi \in \Pi$, with  $\alpha(\phi) = m$, and terms $t_1,\ldots, t_m$. Then (the characteristic function of) $p_A(n)$ is defined by
+			% https://q.uiver.app/#q=WzAsMyxbMywwLCJBXm0iXSxbNCwwLCIyIl0sWzAsMCwiQV5uIl0sWzAsMSwiXFxwaGlfQSJdLFsyLDAsIigodF8xKV9BKG4pLCh0XzIpX0EobiksXFxsZG90cywgKHRfbSlfQShuKSkiXV0=
+			\[\begin{tikzcd}[column sep=huge]
+				{A^n} &&& {A^m} & 2
+				\arrow["{\phi_A}", from=1-4, to=1-5]
+				\arrow["{((t_1)_A(n),(t_2)_A(n),\ldots, (t_m)_A(n))}", from=1-1, to=1-4]
+			\end{tikzcd}\]
+			\item If $p = \bot$ then $p_A(n)$ is the empty set (i.e. its characteristic function is constant with value zero).
+			\item Suppose $p$ is $(q \Rightarrow r)$ for formulas $q$ and $r$, where $q_A(n)$ and $r_A(n)$ have already been defined. Then we define $p_A$ by the composition
+			% https://q.uiver.app/#q=WzAsMyxbMiwwLCIyXFx0aW1lcyAyIl0sWzMsMCwiMiJdLFswLDAsIkFebiJdLFswLDEsIlxcUmlnaHRhcnJvd18yIl0sWzIsMCwiKHFfQShuKSxyX0EobikpIl1d
+			\[\begin{tikzcd}[column sep=huge]
+				{A^n} && {2\times 2} & 2
+				\arrow["{\Rightarrow_2}", from=1-3, to=1-4]
+				\arrow["{(q_A(n),r_A(n))}", from=1-1, to=1-3]
+			\end{tikzcd}\]
+			\item Suppose $p = (\forall x_m)q$ for some formula $q$ with $x_m \in \textnormal{FV}(q)$. Define $N\coloneqq \max(n,m)$. We can assume that $q_A(N)$ is defined. Let $a\in A^{n}$. We say that $a\in p_A(n)$ if and only if for all $a'\in A^N$ so that $a'$ agrees with $a$ in the first $n$ terms---except possibly on the $m$-th term---we have that $a'\in q_{A}(N)$. 
+		\end{enumerate}
+	\end{defn}
+	\begin{lem}[Variable redundancy in formulae]\label{lem:redun_form}
+		Let $A$ be a structure and $p$ a formula with $\textnormal{FV}(p) \subseteq \{x_1,\ldots,x_n\}$ for some $n$. Suppose we have two elements of $A^n$, say $a$ and $b$ such that $a$ and $b$ agree on free variables, i.e. $a_k = b_k$ whenever $x_k\in \textnormal{FV}(t)$. Then $a\in p_A(n)$ if and only if $b\in p_A(n)$.
+	\end{lem}
+	\begin{proof}
+		By induction on $p$. If $p$ is the formula $(s=t)$ for terms $s$ and $t$ we have
+		\begin{align*}
+			a\in p_A(n) &\iff s_A(n)(a) = t_A(n)(a)\\
+			&\iff s_A(n)(b) = t_A(n)(b)\\
+			&\iff b\in p_A(n),
+		\end{align*}
+		where we have used Lemma \ref{lem:redun_terms}.
+		
+		Now suppose $p = \phi (t_1,\ldots,t_m)$ for some $\phi \in \Pi$ with $\alpha(\phi) = m$, and terms $t_1,\ldots, t_m$. Again by Lemma \ref{lem:redun_terms} we have
+		\[
+		((t_1)_A(n),\ldots, (t_m)_A(m))(a) = ((t_1)_A(n),\ldots, (t_m)_A(n))(b).
+		\]
+		Applying $\phi_A$ to both sides gives the result. This finishes the induction in the case that $p$ is an atomic formula.
+		
+		If $p = \bot$ then $a,b\notin p_A(n)$ so the claim holds. Now let $q,r$ be formulae with $p$ being $(q\Rightarrow r)$. By inductive hypothesis
+		\[
+		(q_A(n),r_A(n))(a) = (q_A(n),r_A(n))(b),
+		\]
+		and applying $\Rightarrow_2$ to both sides gives the result.
+		
+		Finally, we consider the case where $p = (\forall x_m)q$ for some formula $q$ and some variable $x_m\in \textnormal{FV}(q)$. Write $a = (a_1,\ldots,a_n)$ and $b= (b_1,\ldots,b_n)$. By symmetry, we only need to show that $a\in p_A(n)$ implies $b\in p_A(n)$. So, suppose $a \in p_A$. 
+		
+		Let $N= \max(n,m)$ and let $b'\in A^N$ be a sequence agreeing with $b$ in the first value except possibly on the $m$-th value, and call this value $c_m$. If we show that $b' \in q_A(N)$ then we are done.
+		
+		Define $a'\in A^N$ to be the sequence $b'$ but with its first $n$ values replaced by $a$ \emph{except} the $m$-th value, which remains $c_m$. As $a\in p_A(n)$ it is clear by definition that $a'\in q_A(N)$. But $a'$ and $b'$ agree on free variables of $q$, which are $\textnormal{FV}(p)\cup\{x_m\}$: the first $n$ variables are just $a$ and $b$, which agree on $\textnormal{FV}(p)$, only that we have specified that they agree on the $m$-th value $c_m$, and otherwise $a'$ and $b'$ are identical. Hence, by the inductive hypothesis, $b'\in q_A(N)$.
+	\end{proof}
+	Variable redundancy implies that free variables are the only thing that affects the values of $t_A(n)$ and $p_A(n)$. Hence we will write $t_A$ and $p_A$, without specifying $n$, we take $n$ to be the minimum so that $\textnormal{FV}(t)$ (resp. $\textnormal{FV}(p)$) is a subset of $\{x_1,\ldots,x_n\}$. And in any case, this only function only requires inputs $a_k$ where $x_k$ is a free variable of $t$ (resp. $p$).
+	\section{First-order theories}
+	\begin{defn}[Satisfying a formula]
+		Let $A$ be an $\mathcal{L}$-structure, and let $p$ be a formula. We say that $p$ is \emph{satisfied} in $A$ if the indicator function of $p_A$ is constant with value 1. In this case we write $A\models p$. 
+	\end{defn}
+	\begin{defn}[Sentences and universal closure]
+		Let $p$ be a formula. We say that $p$ is a \emph{sentence} if it has no free variables. (In this case $p_A$ is a constant function since $n=0$). In any case, we can obtain a sentence $\bar{p}$, called the \emph{universal closure} of $p$, by prefixing $p$ with universal quantifiers for each of the free variables of $p$ (say, in decreasing order of subscripts).
+	\end{defn}
+	We remark that if $A$ is empty and $p$ is not a sentence then the indicator $p_\emptyset \colon \emptyset^{n} \to 2$ is constant with value 1 since it sends all elements of $\emptyset^{\mathbb{N}}$ (which there are none) to 1 (this is a vacuous truth).
+	\begin{prop}
+		For all $\mathcal{L}$-structures $A$ and formulas $p$,
+		\[
+		A \models p \,\,\,\textnormal{ if and only if }\,\,\, A\models \bar{p}.
+		\]
+	\end{prop}
+	\begin{proof}
+		We prove a weaker statement first. Let $q$ be a formula with a free variable $x_m$. Then we claim that $A \models q$ if and only if $A\models (\forall x_m) q$. Indeed, $A\models \forall x_n q$ if and only if for all $a\in A^{n}$ (where $n$ is the minimum so that $\textnormal{FV}((\forall x_m) q)\subseteq \{x_1,\ldots,x_n\}$) we have $a\in ((\forall x_m) q)_A(n)$. And this happens iff for all $a\in A^n$ and for all $a'\in A^{N}$ (where $N\coloneqq \max(n,m)$) that agrees with $a$ on the first $n$ values except possibly in the $m$-th value we have $a'\in q_A(N)$.
+		
+		This is clearly equivalent to saying that for all $a' \in A^N$ we have $a \in q_A(N)$, i.e. $A \models q_A$.
+		
+		Now if $p$ is a formula with $k$ free variables we can use induction on $k$, together with the above result, to deduce the claim about $\bar{p}$. 
+	\end{proof}
+	\begin{defn}[First-order theory]
+		Let $T$ be a set of $\mathcal{L}$-formulae and $A$ a structure. We write $A\models T$ if $A\models p$ for all $p\in T$.
+		
+		In the special case where $T$ is a set of sentences we call it a \emph{first-order theory}, and its formulae are called \emph{axioms}. If $A\models T$ in this case we would say that $A$ \emph{models} the theory $T$.
+	\end{defn}
+	\section{Semantics and syntax}
+	Recall that we had an arbitrary signature $\Sigma$ that generated a language $\mathcal{L}$. We would like to add things to the signature (which will generate a difference language) from time to time. Here I will give some notation for a typical situation. Let $S$ be a set. we denote by $\Sigma_S$ the signature $\Sigma$ but with $|S|$ new constant symbols (i.e. function symbols of arity zero) added. Similarly, we denote by $\mathcal{L}_S$ the language generated by $\Sigma_S$. Note that in the special case that $S$ is an $\mathcal{L}$-structure we clearly have that $S$ is an $\mathcal{L}_S$-structure: just interpret the new constant symbols as the elements of $S$. 
+	\begin{defn}[Semantic entailment]
+		 Let $T$ be a theory and let $p$ be a sentence. We say that $T$ \emph{semantically entails} $p$, written as $T\models p$, to mean that every model of $T$ satisfies $p$.
+		 
+		 In the case where $T$ and $p$ are not sentences simply consider the language 
+		 \[\mathcal{L}'\coloneqq \mathcal{L}_{\textnormal{FV}(T)\cup\textnormal{FV}(p)},\]
+		 where $\textnormal{FV}(T)$ is just the set of all free variables appearing in a formulae of $T$. Let $T'$ and $p'$ be the same formulae but with free variables replaced by the corresponding constants in $\mathcal{L}'$. Then $T'\cup\{p'\}$ is just a set of sentences in $\mathcal{L}'$, so declare that $T\models p$ in $\mathcal{L}$ if and only if $T'\models p'$ in $\mathcal{L}'$.
+	\end{defn}
+	This seems roundabout: why not define semantic entailment $T\models p$ as ``for all $A\models T$ we have $A\models p$''? This certainly makes sense when $T\cup\{p\}$ is not a set of sentences. The problem is that if we adopted this alternate definition we would have undesired consequences with the empty structure. For example, if $T=\{\neg(x_1 = x_1)\}$ and $p = \{\bot\}$ then the only model for $T$ is the empty structure but $\emptyset \nvDash p$. However, since $T$ is clearly a contradictory statement we would like to have $T\models p$ in this case, which is guaranteed by the real definition since the addition of constants invalidate the empty structure.
+	
+	Now we turn to our system of deduction. If $w$ is a formula, $t$ is a term and $x$ a variable, we define $w[t/x]$ to be the formula obtained from $w$ on replacing each free occurrence of $x$ by $t$, \emph{provided} no free variable of $t$ occurs bound in $w$. More formally, we define
+	\begin{align*}
+		&y[t/x] = \begin{cases}
+			y & \textnormal{ if }x \neq y\\
+			t & \textnormal{ if }x = y
+		\end{cases}\\[6pt]
+		&(\omega t_1 \ldots t_n)[t/x] = \omega (t_1[t/x]) \cdots (t_n[t/x])\\[6pt]
+		&(s=s')[t/x] = (s[t/x] = s'[t/x])\\[6pt]
+		&\phi(t_1, \ldots ,t_n)[t/x] = \phi((t_1[t/x]), \ldots ,(t_n[t/x]))\\[6pt]
+		&\bot[t/x] = \bot\\[6pt]
+		&(p \Rightarrow q)[t/x] = (p[t/x] \Rightarrow q[t/x])\\[6pt]
+		&((\forall y)p)[t/x]= \begin{cases}
+			(\forall y) (p[t/x]) & \textnormal{ if } x \neq y\\
+			(\forall y)p & \textnormal{ if }x =y.
+		\end{cases} 
+	\end{align*}
+	\begin{lem}\label{lem:subs_op}
+		Let $w$ be a term or a formula, let $x_m$ be a variable and let $t$ be a term such that all free variables in $t$ do not appear bound in $w$. Suppose $A$ is an $\mathcal{L}$-structure and $a\in A^{n}$ where $n$ is the minimum nonnegative integer so that $\textnormal{FV}(w)\subseteq \{x_1,\ldots,x_n\}$. Denote by $a'$ the sequence $a$ but with the $m$-th value replaced by $t_A(a)$. Then we have
+		\[
+		(w[t/x_n])_A(a) = w_A(a'). 
+		\]
+		If $A = \emptyset$ then $(w[t/x_n])_A = w_A$
+	\end{lem}
+	\begin{proof}
+		Suppose $A = \emptyset$. If $w$ does not have $x_n$ as a free variable then $w[t/x_n] = w$. It follows that $(w[t/x_n])_A = w_A$.  
+		
+		Now assume that $x_n$ is a free variable of $w$. Clearly $w$ is not a sentence. We claim that neither is $w[t/x_n]$. This is easily seen from the fact that $t$ is not a constant (since otherwise the empty set could not be an $\mathcal{L}$-structure) and thus has free variables and \emph{in addition} we assumed that no free variables of $t$ are being bound in $w$. Thus, as neither $w$ nor $w[t/x_n]$ are sentences, they are indicators $\emptyset^{\mathbb{N}} \to 2$ and thus equal. This proves the claim for the empty structure, so from now on assume $A\neq \emptyset$.
+		
+		First suppose that $w$ is a term. We use induction, so assume $w = x_m$ for some $m$. If $m \neq n$ then $w[t/x_n] = w$ and so we only need to show that $w_A(a) = w_A(a')$. This is immediate by variable redundancy: $a$ and $a'$ agree on the free variable $x_m$. Now suppose $m = n$. Then $w[t/x_n] = t$ and we need to show that $t_A(a) = (x_n)_A(a')$. Again, this is obvious: the right-hand side of the equation is the $n$-th value of $a'$, which we assumed is $t_A(a)$. This closes the base case.
+		
+		Now, suppose $w = \omega t_1 t_2\cdots t_m$ for some $\omega \in \Omega$ with $\alpha(\omega) = m$ and where the $t_i$'s are terms. Clearly 
+		\[
+		w[t/x_n] = \omega (t_1[t/x_n]) (t_2[t/x_n])\cdots (t_m[t/x_n]).
+		\]
+		It follows that
+		\begin{align*}
+			(w[t/x_n])_A(a) &= \omega_A ((t_1[t/x_n])_A(a),(t_2[t/x_n])_A(a),\ldots,(t_m[t/x_n])_A(a))\\
+			&= \omega_A((t_1)_A(a'), (t_2)_A(a'),\ldots, (t_m)_A(a'))\\
+			&= w_A(a'),
+		\end{align*}
+		where we have used the inductive hypothesis. This closes the induction and proves the statement when $w$ is a term.
+		
+		Suppose now that $w$ is a formula. We again use induction. If $w$ is the formula $(s = s')$ for terms $s$ and $s'$ we have that 
+		\[
+		w[t/x_n] = (s[t/x_n] = s'[t/x_n]).
+		\]
+		Then,
+		\begin{align*}
+			a \in (s[t/x_n] = s'[t/x_n])_A &\iff (s[t/x_n])_A(a) = (s'[t/x_n])_A(a)\\
+			&\iff s_A(a') = t_A(a')\\
+			&\iff a'\in w_A,
+		\end{align*}
+		where we used the result for terms. Now suppose $w$ is $\phi (t_1,\ldots,t_m)$ for some $\phi \in \Pi$ with $\alpha(\phi) = m$, and terms $t_1,\ldots, t_m$. Again, using the claim for terms, we have 
+		\[
+		((t_1[t/x_n])_A(a),\ldots,(t_m[t/x_n])_A(a)) = ((t_1)_A(a'),\ldots,(t_m)_A(a'))
+		\]
+		and applying $\phi_A$ to both sides gives the result. This closes the base case, i.e. the case where $w$ is an atomic formula.
+		
+		Clearly $(\bot[t/x_n])_A(a) = \bot_A (a) = 0 = \bot_A(a')$. Now, if $w$ is $(p\Rightarrow q)$ then, by the inductive hypothesis
+		\[
+		((p[t/x_n])_A(a), (q[t/x_n])_A(a)) = (p_A(a'),q_A(a')).
+		\]
+		Applying $\Rightarrow_2$ to both sides gives the result.
+		
+		Finally, suppose $w = (\forall x_m) p$. Then we have two cases. If $m = n$ then $w[t/x_n] = w$ and so we need to show that $w_A(a) = w_A(a')$. But in this case clearly $x_n$ is not a free variable of $w$, so $a$ and $a'$ agree on free variables, and the claim follows by variable redundancy.
+		
+		Now assume $m\neq n$. Then $w[t/x_n] = (\forall x_m) (p[t/x_n])$. First, note that that 
+		
+		\[a = (a_1,a_2,\ldots)\in ((\forall x_m) (p[t/x_n]))_A\]
+		if and only if
+		\[
+		(a_1,\ldots, a_{m-1}, c,a_{m+1},\ldots)\in (p[t/x_n])_A \textnormal{ for all }c\in A. 
+		\]
+		For $c\in A$ let $\alpha(c)$ be the sequence above, i.e. $a$ but the $m$-th value replaced by $c$. Similarly, let $\alpha'(c)$ be the sequence $a'$ but replacing the $m$-th value with $c$. Finally, let $\alpha^*(c)$ be the sequence $\alpha(c)$ but with the $n$-th value replaced by $t_A(\alpha(c))$ Then we can reformulate our statement as so:
+		\[
+		\alpha(c) \in (p[t/x_n])_A \textnormal{ for all }c\in A.
+		\]
+		By the inductive hypothesis, this new statement is equivalent to
+		\[
+		\alpha^*(c) \in p_A \textnormal{ for all }c\in A.
+		\]
+		Note that, for all $c$, we have that $\alpha^*(c)$ and $\alpha'(c)$ agree on all values (including the $m$-th) except possibly on the $n$-th value, where we have $t_A(\alpha(c))$ and $t_A(a)$ fro $\alpha^*(c)$ and $\alpha'(c)$ respectively. We claim that in fact \emph{they do} agree on the $n$-th value, i.e. $t_A(\alpha(c)) = t_A(a)$.
+		
+		Indeed, by definition, $a$ and $\alpha(c)$ agree on all values except possibly on the $m$-th value. However, we assumed (and this is the first and only time we use the assumption when $A\neq \emptyset$) that the free variables of $t$ do not appear bound in $w$. Clearly $x_m$ is bound in $w$ (recall that we insist that variables that are being bound appear in the formula). Thus $x_m$ cannot be a free variable of $t$, which implies that $a$ and $\alpha(c)$ agree on free variables; hence $t_A(\alpha(c)) = t_A(a)$ by variable redundancy. Thus $\alpha^*(c)$ is the same sequence as $\alpha'(c)$. Therefore we can, once again, reformulate our statement:
+		\[
+		\alpha'(c) \in p_A \textnormal{ for all }c\in A.
+		\]
+		This is manifestly equivalent to $a'\in((\forall x_m)p)_A$, as desired.
+	\end{proof}
+	
+	We now postulate our axioms to be substitution instances of these propositions.
+	\begin{enumerate}
+		\item $(p\Rightarrow (q\Rightarrow p))$
+		\item $((p\Rightarrow (q\Rightarrow r)) \Rightarrow ((p \Rightarrow q) \Rightarrow (p\Rightarrow r)))$
+		\item $(\neg\neg p \Rightarrow p)$\\ (here $p,q,r$ may be any formulae of $\mathcal{L}$)
+		\item $((\forall x)p \Rightarrow p[t/x])$\\ (here $p$ is any formula with $x\in \textnormal{FV}(p)$, $t$ any term whose free variables don't occur bound in $p$)
+		\item $((\forall x) (p\Rightarrow q) \Rightarrow (p \Rightarrow (\forall x)q))$\\ ($p,q$ formulae, $x\notin \textnormal{FV}(p)$)
+		\item $(\forall x)(x = x)$
+		\item $(\forall x,y)((x = y) \Rightarrow (p \Rightarrow p[y/x]))$\\ ($p$ any formula with $x\in \textnormal{FV}(p)$, $y$ not bound in $p$ and distinct from $x$)
+	\end{enumerate}
+	\begin{prop}
+		All the axioms above are tautologies.
+	\end{prop}
+	\begin{proof}
+		Let $p,q,r$ be formulae in $\mathcal{L}$ and let $A$ be an $\mathcal{L}$-structure.
+		\begin{enumerate}
+			\item First suppose that $A=\emptyset$. Then, if there are free variables in $p$ or $q$ then it is clear that $\emptyset\models (p\Rightarrow (q\Rightarrow p))$. Otherwise, $p$ and $q$ are sentences and so they have a truth value. Case-by-case analysis reveals that $\emptyset\models (p\Rightarrow (q\Rightarrow p))$. Now assume that $A$ is nonempty.
+			
+			Note that for all $a\in A^{\mathbb{N}}$ we have
+			\[
+			(p\Rightarrow (q\Rightarrow p))_A(a) = (\Rightarrow_2) (p_A(a), (\Rightarrow_2)(p_A(a),q_A(a)))
+			\]
+			as elements of $2 = \{0,1\}$. Plugging in the possible values for $p_A(a)$ and $q_A(a)$ we conclude that in all cases $(p\Rightarrow (q\Rightarrow p))_A(a) = 1$.
+			\item Similar to (a).
+			\item Similar to (a).
+			\item Suppose $x\in \textnormal{FV}(p)$ and $t$ is any term whose free variables don't occur bound in $p$. It is easy to see that the axiom is never a sentence, so $\emptyset$ models it. Assume now that $A\neq \emptyset$.
+			
+			Let $a =(a_1,a_2,\ldots)\in A^{\mathbb{N}}$ and consider 
+			\[
+			(\Rightarrow_2)(((\forall x)p)_A(a), p[t/x]_A(a))
+			\]
+			If $((\forall x)p)_A(a) = 0$ then the above equals 1, clearly. Now suppose $((\forall x)p)_A(a) = 1$ and let $x = x_n$ for some $n$. This means that, for all $a_n'\in A$ we have
+			\[
+			(a_1,\ldots, a_{n-1},a_n',a_{n+1},\ldots)\in p_A.
+			\]
+			Set $a_n' \coloneqq t_A(a)$. By Lemma \ref{lem:subs_op}, the above implies that $p[t/x]_A(a) = 1$, as desired.
+			\item Let $x\notin \textnormal{FV}(p)$. If the axiom is not a sentence then it has $\emptyset$ as a model. Suppose now that the axiom is a sentence; this is easily seen to imply that $q$ has $x$ as its only free variable. Clearly $(\forall x)(p\Rightarrow q)$ is satisfied in $\emptyset$. Note that $(\forall x) q$ is also a satisfied sentence in $\emptyset$. Therefore the whole axiom is seen to be satisfied in $\emptyset$. Now assume $A\neq \emptyset$.
+			
+			Let $a =(a_1,a_2,\ldots)\in A^{\mathbb{N}}$. If $((\forall x) (p \Rightarrow q))_A(a) = 0$ then the formula is true for $a$. So, assume that $a\in ((\forall x) (p \Rightarrow q))_A$. Let $x = x_n$ for some $n$. We have that, for all $a_n'\in A$:
+			\[
+			(a_1,\ldots, a_{n-1},a_n',a_{n+1},\ldots) \in (p\Rightarrow q)_A.
+			\]
+			In other words, for all $a_n'\in A$:
+			\[
+			(\Rightarrow_2)(p_A,q_A)(a_1,\ldots, a_{n-1},a_n',a_{n+1},\ldots) = 1
+			\]
+			But, as $x_n\notin \textnormal{FV}(p)$, the value $p_A(a_1,\ldots, a_{n-1},a_n',a_{n+1},\ldots)$ does not depend on $a_n'$ by variable redundancy. Thus we conclude that for all $a_n'\in A$.
+			\[
+			(\Rightarrow_2)(p_A(a),q_A((a_1,\ldots, a_{n-1},a_n',a_{n+1},\ldots))) = 1.
+			\]
+			From this, it is easy to deduce that $a\in (p \Rightarrow (\forall x)q)_A$, as desired.
+			
+			\item The empty set is easily seen to model this axiom. Let $a =(a_1,a_2,\ldots)\in A^{\mathbb{N}}$ and let $x = x_n$l Then $a\in ((\forall x)(x=x))_A$ iff for all $a_n'\in A$ we have
+			\[
+			(a_1, \ldots, a_{n-1}, a_{n}',a_{n+1},\ldots) \in (x=x)_A.
+			\]	
+			This happens iff for all $a_n'$ we have
+			\[
+			x_A(a_1, \ldots, a_{n-1}, a_{n}',a_{n+1},\ldots) = x_A(a_1, \ldots, a_{n-1}, a_{n}',a_{n+1},\ldots),
+			\]
+			which is manifestly true. 
+			\item The empty set is easily seen to model this axiom. Let $x = x_n\in \textnormal{FV}(p)$ and $y = x_m$ be not bound in $p$ with $n\neq m$. Have some $a =(a_1,a_2,\ldots)\in A^{\mathbb{N}}$. We need to show that 
+			\[
+			a\in ((\forall x_n)(\forall x_m) ((x_n= x_m) \Rightarrow (p \Rightarrow p[x_m/x_n])))_A
+			\]
+			For $c_n,c_m \in A$ define $\alpha(c_n,c_m)$ to be the sequence $a$ but with the $i$-th value replaced by $c_i$ for $i\in \{n,m\}$ (recall that $n\neq m$). Then the above proposition is equivalent to
+			\[
+			\alpha(c_n,c_m) \in ((x_n= x_m) \Rightarrow (p \Rightarrow p[x_m/x_n]))_A \textnormal{ for all }c_n,c_m\in A
+			\]
+			We need to prove the above. To that end, let $c_n,c_m\in A$ be arbitrary. If $\alpha(c_n, c_m)\notin (x_n = x_m)_A$ then we do have the inclusion above. So, assume $\alpha(c_n,c_m)\in (x_n = x_m)_A$; this clearly implies that $c \coloneqq c_n = c_m$. Now, we need to show that 
+			\[
+			\alpha(c,c) \in (p \Rightarrow p[x_m/x_n])_A.
+			\]
+			If $\alpha(c,c)\notin p_A$ then the above is true. Therefore we can suppose $\alpha(c,c)\in p_A$. We want to prove that $\alpha(c,c)\in (p[x_m/x_n])_A$. As $x_m$ is not bound in $p$ we can apply Lemma \ref{lem:subs_op} which tells us that it suffices to show that $\alpha(c,c)' \in p_A$, where $\alpha(c,c)'$ denotes the sequence $\alpha(c,c)$ but replacing the $n$-th value by $(x_m)_A(\alpha(c,c)) = c$. Clearly $\alpha(c,c)' = \alpha(c,c)$ and we supposed at the start that $\alpha(c,c)\in A$. Thus we are done.
+		\end{enumerate}
+	\end{proof}
+	To our deductive system we add the following rules of inference.
+	\begin{enumerate}
+		\item[(MP)] From $p$ and $(p\Rightarrow q)$, we may infer $q$, \emph{provided} either $q$ has a free variable or $p$ is a sentence.
+		\item [(Gen)] From $p$ we may infer $(\forall x) p$, \emph{provided} $x$ does not occur free in any premiss which has been used in the proof of $p$ (but is a free variable of $p$).
+	\end{enumerate}
+	Formally, we define our concept of deduction as follows.
+	\begin{defn}[Deduction sequence]
+		Let $S$ be a set of formulae. A \emph{deduction sequence} on $S$ is a finite sequence on the set of formulae of $\mathcal{L}$, defined inductively below.
+		\begin{enumerate}[label=(\roman*)]
+			\item The empty sequence is a deduction sequence.
+			\item If $(p_1,\ldots,p_n)$ is a deduction sequence and $p$ is an axiom or an element of $S$, then $(p_1,\ldots,p_n,p)$ is a deduction sequence.
+			\item Let $(p_1,\ldots,p_n)$ be a deduction sequence. Suppose there are $1\leq i,j\leq n$ so that $p_j$ is the formula $(p_i\Rightarrow p)$ for some $p$, and, in addition either $p_i$ is a sentence or $p$ has a free variable. Then $(p_1,\ldots,p_n,p)$ is a deduction sequence.
+			\item Suppose $(p_1,\ldots, p_n)$ is a deduction sequence so that $p_n$ has a free variable $x$ but $x$ is not a free variable of $p_i$ for $i<n$, and $p_n\notin S$. Then, if $p = (\forall x) p_n$, we have that  $(p_1,\ldots, p_n,p)$ is a deduction sequence.
+			\item That is all.
+		\end{enumerate}
+	\end{defn}
+	\begin{defn}[Syntactic entailment]
+		Let $S$ be a set of formulae and $p$ a formula. We say that $S$ \emph{syntactically entails} $p$, written as $S\vdash p$, if there is a deduction sequence terminating at $p$.
+	\end{defn}
+	\section{Properties of first-order languages}
+	Again, we fix a language $\mathcal{L}$ with a set of variables $X=\{x_1,x_2,\ldots\}$
+	\section{Completeness}
+	The aim of this section is to prove the Completeness theorem. Before that, we need to prove the Soundness theorem. First, a couple of lemmata.
+	\begin{lem}\label{lem:sem_mp}
+		Let $S$ be a set of formulae and let $p$ and $q$ be formulae so that either $q$ has a free variable or $p$ is a sentence. If $S\models p$ and $S\models (p\Rightarrow q)$, then $S\models q$.
+	\end{lem}
+	\begin{proof}
+		Let $A$ be an $\mathcal{L}$-structure. We want to show that one of the two following statements holds:
+		\begin{enumerate}
+			\item[(I)] $A$ is empty and there is a non-sentence in $S\cup \{q\}$ .
+			\item[(II)] $\bigcap_{r\in S} r_A \subseteq q_A$.
+		\end{enumerate}
+		We know that one of these two statements holds:
+		\begin{enumerate}
+			\item[(a)] $A$ is empty and there is a non-sentence in $S\cup \{p\}$ .
+			\item[(b)] $\bigcap_{r\in S} r_A \subseteq p_A$.
+		\end{enumerate}
+		Suppose (a) holds. If there is a non-sentence in $S$ then there is a non-sentence in $S\cup \{q\}$ and $A$ is empty, i.e. (I) holds. Otherwise, if $p$ is a non-sentence, then, by the premiss of the statement $q$ is a non-sentence and again (I) holds. So, from now on, assume (b) holds	
+		
+		Similarly, we also know that one of the two statements below holds:
+		\begin{enumerate}
+			\item[(a')] $A$ is empty and there is a non-sentence in $S\cup \{p,q\}$ .
+			\item[(b')] $\bigcap_{r\in S} r_A \subseteq (p\Rightarrow q)_A$.
+		\end{enumerate}
+		Suppose (a') holds. If $q$ is a non-sentence then (I) holds, and if instead the non-sentence is in $S\cup \{p\}$ we have reduced to case (a). So, we can assume (b') holds. But (b) and (b') are easily seen to imply (II), even when $A$ is empty.	
+	\end{proof}
+	\begin{lem}\label{lem:sem_gen}
+		Let $S$ be a set of formulae, $p$ a formula, and $x$ a variable so that $x$ does not occur free in any formulae of $S$. If $S\models p$ then $S\models (\forall x)p$.
+	\end{lem}
+	\begin{proof}
+		Let $A$ be an $\mathcal{L}$-structure. As before, we want to show that one of the two following statements holds:
+		\begin{enumerate}
+			\item[(I)] $A$ is empty and there is a non-sentence in $S\cup \{(\forall x) p\}$ .
+			\item[(II)] $\bigcap_{r\in S} r_A \subseteq ((\forall x)p)_A$.
+		\end{enumerate}
+		The hypothesis is that one of the two following statements holds. (We know that $p$ is a non-sentence already)
+		\begin{enumerate}
+			\item[(a)] $A$ is empty
+			\item[(b)] $\bigcap_{r\in S} r_A \subseteq p_A$.
+		\end{enumerate}
+		Suppose (a) is true. If there is a non-sentence in $S\cup \{(\forall x) p\}$ then (I) holds, so assume that $S$ is a set of sentences, and that $(\forall x) p$ is a sentence. But then, as $A$ is empty, we have that the indicator of $((\forall x) p)_A$ is constant with value 1, implying that (II) holds.
+		
+		Now suppose (a) is not true. Then $A$ is nonempty and (b) holds. Let $a= (a_1,a_2,\ldots)\in r_A\subseteq A^{\mathbb{N}}$ for all $r\in S$.  We would like to show that $a\in ((\forall x)p)_A$, which, if $x= x_n$, is equivalent to the statement
+		\[
+		(a_1,\ldots, a_{n-1},a_n',a_{n+1},\ldots) \in p_A \textnormal{ for all }a_n'\in A.
+		\]
+		So, fix some $a_n'\in A$ and set $a' \coloneqq (a_1,\ldots, a_{n-1},a_n',a_{n+1},\ldots)$. By assumption $x_n$ is not a free variable of $r$ for all $r\in S$. By variable redundancy, we conclude that $a'\in r_A$ for all $r\in S$. Finally, (b) implies that $a'\in p_A$, as desired. 
+	\end{proof}
+	\begin{prop}[the Soundness Theorem]
+		Let $S$ be a set of formulae and $p$ a formula. If $S\vdash p$ then $S\models p$.
+	\end{prop}
+	\begin{proof}
+		It is enough to show that, for all deduction sequences $\sigma$, all formulae of $\sigma$ are semantically entailed by $S$. We use induction on the set of deduction sequences.
+		
+		The claim is vacuously true when $\sigma$ is the empty sequence. Suppose $\sigma = (p_1,\ldots, p_n,p)$, where $S\models p_i$ for all $i$, and $p$ is an axiom or an element of $S$. It easily follows that $S\models p$ (recall axioms are tautologies).
+		
+		Now suppose that $\sigma = (p_1,\ldots,p_n,p)$, where $S\models p_i$ for all $i$, and there are $1\leq i,j, \leq n$ so that $p_j$ is the formula $(p_i \Rightarrow p)$, and, in addition, either $p_i$ is a sentence or $p$ has a free variable. Then Lemma \ref{lem:sem_mp} says that $S\models p$.
+		
+		Finally, suppose that $\sigma = (p_1,\ldots,p_n,p)$, where $S\models p_i$ for all $i$, and that $p_n\notin S$ has a free variable $x$ but $x$ is not a free variable of $p_i$ for $i<n$. In addition, we suppose $p = (\forall x)p_n$. Let $S' = \{p_1,\ldots, p_{n-1}\}$. We claim that $S'\models p_n$	
+	\end{proof}
+	\chapter{Model Theory}
+	\section{Substructures and diagrams}
+	\begin{defn}[$\mathcal{L}$-homomorphism]
+		Let $M$ and $N$ be $\mathcal{L}$-structures. An $\mathcal{L}$-\emph{homomorphism} is a map $\eta\colon M \to N$ such that given $\bar{a} = (a_1,\ldots,a_n)\in M^n$:
+		\begin{itemize}
+			\item for all function symbols $f$ of arity $n$ we have that 
+			\[
+				\eta(f^{M}(\bar{a})) = f^N(\eta^n(\bar{a})),
+			\]
+			in other words the diagram
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNXm4iXSxbMCwxLCJNIl0sWzEsMSwiTiJdLFsxLDAsIk5ebiJdLFsxLDIsIlxcZXRhIiwyXSxbMCwxLCJmXk0iLDJdLFszLDIsImZeTiJdLFswLDMsIlxcZXRhXm4iXV0=
+			\[\begin{tikzcd}
+				{M^n} & {N^n} \\
+				M & N
+				\arrow["\eta"', from=2-1, to=2-2]
+				\arrow["{f^M}"', from=1-1, to=2-1]
+				\arrow["{f^N}", from=1-2, to=2-2]
+				\arrow["{\eta^n}", from=1-1, to=1-2]
+			\end{tikzcd}\]
+			commutes;
+			\item for all relation symbols $R$ of arity $n$ we have that
+			\[
+				\bar{a}\in R^M \text{ if and only if }\eta^n(\bar{a})\in  R^N.
+			\]
+		\end{itemize}
+		An injective $\mathcal{L}$-homomorphism is an $\mathcal{L}$-\emph{embedding} and an invertible one is an $\mathcal{L}$-\emph{isomorphism}. If $M\subseteq N$ and the inclusion map is an $\mathcal{L}$-homomorphism we say that $M$ is a \emph{substructure} of $N$, and $N$ is an \emph{extension} of $M$.
+	\end{defn}
+	We are going to stop writing $\bar{m}\in M^n$ where $n$ is the length of $\bar{m}$ and just write $\bar{m}\in M$ when $n$ can be inferred or its unimportant.
+	\begin{egs}\leavevmode
+		\begin{enumerate}
+			\item Let $\mathcal{L}$ be the language of groups. Then $(\mathbb{N},+,0)$ is a subset of the the integers $(\mathbb{Z},+,0)$, but it is not a substructure.
+			\item If $M$ is an $\mathcal{L}$-structure and $X\subseteq M$ then $X$ is the domain of a substructure of $M$ iff it is closed under the interpretation of all function symbols.
+			
+			Indeed, the inclusion $\iota\colon X \to M$ clearly preserves relations. But if it is not closed under some function $f^M$ then there is no way to interpret $f^X$. 
+			\item It follows from the previous point that the intersection of a family of substructures is a substructure: indeed, applying a function $f^M$ to anything in the intersection will land on all substructures (since these are closed under function symbols) and thus in the intersection.
+			
+			The substructure generated by $X\subseteq M$ is defined to be the intersection of all substructures of $M$ containing $X$; it is denoted by $\langle X\rangle_{M}$. Again, by the previous point, $\langle X\rangle_M$ is also the intersection of all subsets of $M$ that are closed under function symbols.
+			
+			Hence
+			\[
+				\langle X\rangle_{M} = X \cup \{t^M(\bar{m})\mid t\text{ a term and }\bar{m}\in X\}.
+			\]
+			Indeed, the RHS is obviously closed under function symbols and no strict subset of it could possibly be. Therefore $|\langle X \rangle_{M}| \leq |X| + |\mathcal{L}|$.
+		\end{enumerate}
+	\end{egs}
+\end{document}

@@ -97,6 +97,8 @@
 \DeclareMathOperator{\vspan}{span}
 \DeclareMathOperator{\ev}{ev}
 \DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Bern}{Bern}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 \DeclarePairedDelimiter\innprod{\langle}{\rangle}%
@@ -420,14 +422,14 @@
 	
 	What about deleting edges instead? This is much harder since one may inadvertently create independent sets while trying to delete triangles. Our idea will be to delete edges from collections of edge-disjoint triangles in $G\sim G(n,p)$ and remove all edges from these triangles.
 	
-	\begin{thm}[Erd\H{o}s]
+	\begin{thm}[Erd\H{o}s]\label{thm:erd_r3k_lb}
 		There exists some $c>0$ such for all $k$ we have
 		\[
 			R(3,k) \geq c \left(\frac{k}{\log k}\right)^2
 		\]
 	\end{thm}
 	To prove this, we will need a couple of lemmata. 
-	\begin{lem}
+	\begin{lem}\label{lem:t_indep_events}
 		Let $\mathcal{F}=\{A_1,\ldots, A_m\}$ be a family of events in a probability space. Let $\mathcal{E}_t$ be the event that at least $t$ independent events from $\mathcal{F}$ occur. Then
 		\[
 			\mathbb{P}(\mathcal{E}_t) \leq \frac{1}{t!} \left(\sum_{i=1}^{m}\mathbb{P}(A_i)\right)^t.
@@ -446,10 +448,86 @@
 	\[
 		\mathbb{P}(G\text{ has property }P) \to 1 \text{ as }n\to \infty.
 	\]
-	\begin{lem}
+	\begin{lem}\label{lem:high_prob_edges}
 		Let $n,k\in\mathbb{Z}^{+}$ and $p\in (0,1)$ be such that $pk \geq 16 \log n$. Then with high probability every subset of size $k$ of $G\sim G(n,p)$ contains at least $\frac{pk^2}{8}$ edges.
 	\end{lem}
-	\begin{proof}
+	Assume the preceding lemma for a moment. Then we can prove the result by Erd\H{o}s.
+	\begin{proof}[Proof of Theorem \ref{thm:erd_r3k_lb}]
+		Here I can motivate the choices of $n$ and $p$ a bit more. Note that the expected number of triangles is $p^3\binom{n}{3}$ which is asymptotically $p^3n^3$, while the number of edges is asymptotically $n^2p$. So that the expected number of edges is the same as the expected number of triangles we would need $p$ to grow like $n^{-1/2}$. Indeed, we would like to delete just enough edges to get rid of all of the triangles; otherwise we might get large independent sets. 
 		
+		Now we begin the proof. Let 
+		\[
+			n = \left(\frac{c_1k}{\log k}\right)^2 \,\,\,\text{ and }\,\,\, p= c_2 n^{-1/2} = \frac{c_2}{c_1} \frac{\log k}{k},
+		\]
+		where $c_1,c_2>0$ are constants to be chosen later. Take $G\sim G(n,p)$ and let $\mathcal{T}$ be a maximal collection of edge-disjoint triangles in $G$.	Define $\tilde{G}$ to be $G$ with all edges contained in a triangle of $\mathcal{T}$ removed. Then $\tilde{G}$ has no triangles. Indeed, if it had a triangle then, by maximality of $\mathcal{T}$, it would have to be a triangle that shares an edge with a triangle in $\mathcal{T}$; but then this triangle would disappear in $\tilde{G}$ (even though it is not part of $\mathcal{T}$).
+		
+		We will show that 
+		\[
+			\mathbb{P}(\alpha(\tilde{G}) \geq k) < 1
+		\]
+		since this suffices.
+		
+		Let $Q$ be the event that every set of $k$ vertices of $G$ contains at least $\frac{pk^2}{8}$ edges. By Lemma \ref{lem:high_prob_edges} (with the right choice of constants---we verify this later) we know that $\mathbb{P}(Q) = 1 - o(1)$ where $o(1)\to 0$ as $n\to \infty$.
+		
+		Now note that 
+		\[
+			\mathbb{P}(\alpha(\tilde{G}) \geq k) \leq \mathbb{P}(\{\alpha(\tilde{G}) \geq k\}\cap Q) + \mathbb{P}(Q^{\text{c}}),
+		\]
+		where $\mathbb{P}(Q^{\text{c}})$ tends to zero. Hence it suffices to show that $\mathbb{P}(\{\alpha(\tilde{G}) \geq k\}\cap Q)$ is strictly less than one.
+		
+		But consider the event $\{\alpha(\tilde{G}) \geq k\}\cap Q$. If this is the case there is some set $S\subset [n]^{(k)}$ of $k$ vertices of $G$ so that $\mathcal{T}$ removes at least $\frac{pk^2}{8}$ edges of $S$ (so that $S$ turns independent in $\tilde{G}$). In other words, $\mathcal{T}$ has at least $\frac{pk^2}{8\cdot 3}$ triangles meeting $S$ in at least two vertices (here we use the assumption that triangles in $\mathcal{T}$ are edge-disjoint). As this is an existential statement (there exists $S$ such that\ldots) it is a union over all $k$-element subsets of $[n]$. Apply the union bound and we get that $\mathbb{P}(\alpha(\tilde{G}) \geq k)$ is at most $\binom{n}{k}P + o(1)$ where $P$ is defined to be
+		\[
+		 \mathbb{P}\left(\mathcal{T}\text{ has at least }\frac{pk^2}{24}\text{ triangles meeting $[k]$ in at least 2 vertices}\right).
+		\]
+		Let $\{T_i\}_i$ be the collection of triangles in $K_n$ that meet $[k]$ in at least two vertices, and let $A_i \coloneqq \{T_i\text{ is in }G\}$. Note that if $T_{i_1},\ldots,T_{i_k}$ are edge-disjoint then $A_{i_1},\ldots,A_{i_k}$ are independent.
+		
+		Next, let $t = \ceil{\frac{pk^2}{24}}$ and take $\mathcal{E}_t$ to be as in Lemma \ref{lem:t_indep_events}, where $\mathcal{F} = \{A_i\}_i$. Then we clearly have
+		\begin{align*}
+			P \leq \mathbb{P}(\mathcal{E}_t) &\leq \frac{1}{t!}\left(\sum_{i}\mathbb{P}(T_i\subseteq G)\right)^t\\
+			&= \frac{1}{t!}\left(\sum_{i}p^3\right)^t\\
+			&= \frac{1}{t!}\left(\binom{k}{2}(n-2) p^3\right)^t\\
+			&\leq \frac{1}{t!}(k^2np^3)^t.
+		\end{align*}
+		Notice that $t!> \left(\frac{t}{e}\right)^t$ as can be easily seen by the Taylor expansion of $e^t$. Hence,
+		\begin{align*}
+			P &\leq \left(\frac{ek^2np^3}{t}\right)^t\\
+			&= (24enp^2)^t\\
+			&= (24ec_2^2)^t.
+		\end{align*}
+		Thus, choosing $c_2$ to be $e^{-1}24^{-1/2}$ we get that $P\leq e^{-t}$. We might as well choose the other constant before finishing off.
+		
+		Lemma \ref{lem:high_prob_edges} needs us to verify that $pk \geq 16\log n$. We claim that $c_1 \coloneqq \frac{c_2}{48}$ suffices. Indeed,
+		\[
+			pk = \frac{c_2}{c_1} \log k \geq 48 \log k > 16 \log n
+		\]
+		since $n < k^2$ by definition. 
+		
+		Finally, we had 
+		\begin{align*}
+			\mathbb{P}(\alpha(\tilde{G}) \geq k) &\leq \binom{n}{k}P + o(1)\\
+			&\leq \binom{n}{k}e^{-t} + o(1)\\
+			&\leq \left(\frac{en}{k}\right)^kn^{-k} + o(1),
+		\end{align*}
+		where we have used the fact that
+		\[
+			t \geq \frac{pk^2}{24} \geq 2k\log k \geq k\log n.
+		\]
+		It follows that 
+		\begin{align*}
+			\mathbb{P}(\alpha(\tilde{G}) \geq k) \leq \left(\frac{e}{k}\right)^k + o(1) \to 0
+		\end{align*}
+		as $k$ is large. We can get the statement for all $k$ by multiplying by a small constant.
 	\end{proof}
-\end{document}
+	\section{Large Deviation inequalities}
+	Let $Z$ be a Gaussian random variable. Then,
+	\[
+		\mathbb{P}(|Z - \mathbb{E}(Z)| \geq t) \leq e^{\frac{-t^2}{2\Var Z}}.
+	\]
+	Let $X_1,\ldots, X_n$ be i.i.d. Bernoulli random variables. We done this by $X_i\sim \Bern(p)$. Let $S_n = \sum_{i=1}^{n}X_i$. Morally, often the tails of random variables $S_n$ look like Gaussian tails. Note that $\mathbb{E}(S_n) = np$ and $\Var(S_n) = p(1-p)n$
+	\begin{thm}[Chernoff inequality]
+		Let $X_1,\ldots,X_n \sim \Bern(p)$ and take $S_n$ to be their sum. Then
+		\[
+			\mathbb{P}(|S_n - pn| \geq t) \leq 2\exp\left(\frac{-t^2}{2pn} + \frac{t^3}{(pn)^2}\right)
+		\]
+	\end{thm}
+\end{document} 

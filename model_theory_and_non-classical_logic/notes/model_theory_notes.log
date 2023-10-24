@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  17 OCT 2023 12:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  24 OCT 2023 11:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./ramsey_notes.tex
-(ramsey_notes.tex
+**./model_theory_notes.tex
+(model_theory_notes.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-02>
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
@@ -994,149 +994,44 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_b_int=\count445
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
-(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/breqn\breqn.sty
-Package: breqn 2021/10/28 v0.98l Breaking equations
+\c@claim=\count446
+\c@ex=\count447
+\c@thm=\count448
+\c@prob=\count449
+\c@conj=\count450
+\c@task=\count451
+\@quotelevel=\count452
+\@quotereset=\count453
+(model_theory_notes.aux)
+\openout1 = `model_theory_notes.aux'.
 
-(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/breqn\flexisym.sty
-Package: flexisym 2021/10/28 v0.98l Make math characters macros
-LaTeX Info: Redefining \textprime on input line 299.
-LaTeX Info: Redefining \not on input line 357.
-
-(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/breqn\cmbase.sym
-File: cmbase.sym 2007/12/19 v0.92
-LaTeX Info: Redefining \hbar on input line 324.
-LaTeX Info: Redefining \surd on input line 326.
-LaTeX Info: Redefining \angle on input line 334.
-LaTeX Info: Redefining \neq on input line 335.
-LaTeX Info: Redefining \mapsto on input line 336.
-LaTeX Info: Redefining \cong on input line 337.
-LaTeX Info: Redefining \notin on input line 340.
-LaTeX Info: Redefining \rightleftharpoons on input line 341.
-LaTeX Info: Redefining \doteq on input line 342.
-LaTeX Info: Redefining \hookrightarrow on input line 343.
-LaTeX Info: Redefining \hookleftarrow on input line 344.
-LaTeX Info: Redefining \bowtie on input line 345.
-LaTeX Info: Redefining \models on input line 346.
-LaTeX Info: Redefining \Longrightarrow on input line 347.
-LaTeX Info: Redefining \longrightarrow on input line 348.
-LaTeX Info: Redefining \Longleftarrow on input line 349.
-LaTeX Info: Redefining \longleftarrow on input line 350.
-LaTeX Info: Redefining \longmapsto on input line 351.
-LaTeX Info: Redefining \longleftrightarrow on input line 352.
-LaTeX Info: Redefining \Longleftrightarrow on input line 353.
-LaTeX Info: Redefining \cdots on input line 357.
-LaTeX Info: Redefining \vdots on input line 360.
-LaTeX Info: Redefining \ddots on input line 365.
-)
-(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/breqn\mathstyle.sty
-Package: mathstyle 2021/10/28 v0.98l Tracking mathstyle implicitly
-LaTeX Info: Redefining \displaystyle on input line 95.
-LaTeX Info: Redefining \textstyle on input line 97.
-LaTeX Info: Redefining \scriptstyle on input line 99.
-LaTeX Info: Redefining \scriptscriptstyle on input line 101.
-LaTeX Info: Redefining \genfrac on input line 149.
-))
-\inf@bad=\count446
-\maxint=\count447
-\listwidth=\dimen293
-\eqnumsep=\dimen294
-\eqmargin=\dimen295
-\eqlinespacing=\skip85
-\eqlineskip=\skip86
-\eqlineskiplimit=\dimen296
-\eqbinoffset=\muskip22
-\eqdelimoffset=\muskip23
-\eqindentstep=\dimen297
-\eqstyle=\toks47
-\eqbreakdepth=\count448
-\eqinterlinepenalty=\count449
-\intereqpenalty=\count450
-\intereqskip=\skip87
-\prerelpenalty=\count451
-\prebinoppenalty=\count452
-\Dmedmuskip=\muskip24
-\Dthickmuskip=\muskip25
-\eqleftskip=\skip88
-\eqrightskip=\skip89
-\eq@vspan=\skip90
-\eq@binoffset=\muskip26
-\EQ@box=\box68
-\EQ@copy=\box69
-\EQ@numbox=\box70
-\eq@wdNum=\dimen298
-\GRP@numbox=\box71
-\grp@wdNum=\dimen299
-\eq@lines=\count453
-\eq@curline=\count454
-\eq@badness=\count455
-\EQ@vims=\count456
-\eq@dp=\dimen300
-\eq@wdL=\dimen301
-\eq@wdT=\dimen302
-\eq@wdMin=\dimen303
-\grp@wdL=\dimen304
-\grp@wdR=\dimen305
-\grp@wdT=\dimen306
-\eq@wdRmax=\dimen307
-\eq@firstht=\dimen308
-\eq@wdCond=\dimen309
-\eq@indentstep=\dimen310
-\eq@linewidth=\dimen311
-\grp@linewidth=\dimen312
-\eq@hshift=\dimen313
-\eq@given@sidespace=\dimen314
-\mathindent=\dimen315
-\eq@final@linecount=\count457
-\eq@wdR=\dimen316
-\EQ@continue=\toks48
-\lr@level=\count458
-\GRP@queue=\toks49
-\GRP@box=\box72
-\GRP@wholebox=\box73
-\darraycolsep=\skip91
-\cur@row=\count459
-\cur@col=\count460
-\conditionsep=\skip92
-)
-\c@claim=\count461
-\c@ex=\count462
-\c@thm=\count463
-\c@prob=\count464
-\c@conj=\count465
-\c@task=\count466
-\@quotelevel=\count467
-\@quotereset=\count468
-
-(ramsey_notes.aux)
-\openout1 = `ramsey_notes.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Info: Redefining \celsius on input line 154.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 154
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Info: Redefining \celsius on input line 152.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 152
 .
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 154.
-Package gensymb Info: Using \Omega for \ohm on input line 154.
+LaTeX Info: Redefining \ohm on input line 152.
+Package gensymb Info: Using \Omega for \ohm on input line 152.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -1144,17 +1039,17 @@ Package gensymb Warning: Not defining \micro.
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count469
-\scratchdimen=\dimen317
-\scratchbox=\box74
-\nofMPsegments=\count470
-\nofMParguments=\count471
-\everyMPshowfont=\toks50
-\MPscratchCnt=\count472
-\MPscratchDim=\dimen318
-\MPnumerator=\count473
-\makeMPintoPDFobject=\count474
-\everyMPtoPDFconversion=\toks51
+\scratchcounter=\count454
+\scratchdimen=\dimen293
+\scratchbox=\box68
+\nofMPsegments=\count455
+\nofMParguments=\count456
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count457
+\MPscratchDim=\dimen294
+\MPnumerator=\count458
+\makeMPintoPDFobject=\count459
+\everyMPtoPDFconversion=\toks48
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -1176,33 +1071,33 @@ File: english.lbx 2022/07/12 v3.18b biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout4 = `ramsey_notes.bcf'.
+\openout4 = `model_theory_notes.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'ramsey_notes.bbl' not found.
+Package biblatex Info: ... file 'model_theory_notes.bbl' not found.
 
-No file ramsey_notes.bbl.
-Package biblatex Info: Reference section=0 on input line 154.
-Package biblatex Info: Reference segment=0 on input line 154.
-Package hyperref Info: Link coloring OFF on input line 154.
-(ramsey_notes.out) (ramsey_notes.out)
+No file model_theory_notes.bbl.
+Package biblatex Info: Reference section=0 on input line 152.
+Package biblatex Info: Reference segment=0 on input line 152.
+Package hyperref Info: Link coloring OFF on input line 152.
+(model_theory_notes.out) (model_theory_notes.out)
 \@outlinefile=\write5
-\openout5 = `ramsey_notes.out'.
+\openout5 = `model_theory_notes.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 158
+LaTeX Font Info:    Trying to load font information for U+msa on input line 156
 .
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 158
+LaTeX Font Info:    Trying to load font information for U+msb on input line 156
 .
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 15
-8.
+6.
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -1210,68 +1105,77 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 [1
 
 {C:/Users/herna/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Chapter 1.
+
+LaTeX Warning: Citation 'NOLAST' on page 1 undefined on input line 156.
+
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.185 	
-        [1
+l.160 	\chapter
+               {Logic Background} [1]
+Chapter 0.
+[2
 
-] [2] [3] [4] [5] [6] [7]
-Chapter 2.
+] [3] [4] [5] [6] [7] [8] [9]
+Overfull \hbox (20.13933pt too wide) in paragraph at lines 458--460
+\OT1/cmr/m/n/10 If $((\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML
+/cmm/m/it/10 p\OT1/cmr/m/n/10 )[](\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 ) = 0$ then
+ the above equals 1, clearly. Now sup-pose $((\OMS/cmsy/m/n/10 8\OML/cmm/m/it/1
+0 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 )[](\OML/cmm/m/it/10 a\OT
+1/cmr/m/n/10 ) =
+ []
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 338.
+[10] [11] [12] [13] [14]
+Chapter 1.
+[15
 
+] [16] (model_theory_notes.aux)
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 338.
+LaTeX Warning: There were undefined references.
 
-[8
+Package rerunfilecheck Info: File `model_theory_notes.out' has not changed.
+(rerunfilecheck)             Checksum: 018670372B324D1B33ABA5536191EBC3;1441.
 
-] [9] [10] [11] [12] [13] [14] (ramsey_notes.aux)
-Package rerunfilecheck Info: File `ramsey_notes.out' has not changed.
-(rerunfilecheck)             Checksum: 886FAC4A91BDA6CB9C2E68F89CB0C6FD;1623.
-Package logreq Info: Writing requests to 'ramsey_notes.run.xml'.
-\openout1 = `ramsey_notes.run.xml'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                model_theory_notes
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'model_theory_notes.run.xml'.
+\openout1 = `model_theory_notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 31386 strings out of 476374
- 616567 string characters out of 5788855
- 1864340 words of memory out of 5000000
- 51238 multiletter control sequences out of 15000+600000
- 528200 words of font info for 96 fonts, out of 8000000 for 9000
+ 31066 strings out of 476374
+ 615340 string characters out of 5788855
+ 1874340 words of memory out of 5000000
+ 50884 multiletter control sequences out of 15000+600000
+ 523437 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 131i,12n,132p,808b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 131i,16n,132p,717b,1223s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\herna\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1000.pk><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmbx12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/t
 ype1/public/amsfonts/cm/cmex10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/herna/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/herna/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/herna/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/
-herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
-:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
-2.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmr17.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmr5.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmr6.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/herna/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/herna/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/he
-rna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:
-/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/
-msbm10.pfb>
-Output written on ramsey_notes.pdf (15 pages, 299926 bytes).
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/herna/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/herna/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/h
+erna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:
+/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17
+.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr5.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/herna/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/herna/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/herna/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on model_theory_notes.pdf (17 pages, 271451 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 289 PDF objects out of 1000 (max. 8388607)
+ 90 named destinations out of 1000 (max. 500000)
+ 85 words of extra memory for PDF output out of 10000 (max. 10000000)
 

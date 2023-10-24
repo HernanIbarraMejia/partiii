@@ -1,0 +1,320 @@
+\documentclass{article}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\begin{document}	
+	\begin{thm}\label{thm:hall_infinite}
+		Let $\Gamma$ be a (possibly infinite) set and let $\mathcal{A} \coloneqq \{A_\gamma\}_{\gamma\in\Gamma}$ be a family of finite sets. Then $\mathcal{A}$ has a set of distinct representatives if and only if for all finite $I\subseteq \Gamma$ we have
+		\[
+			\left|\bigcup_{\gamma\in I} A_\gamma\right| \geq |I|.
+		\] 
+	\end{thm}
+	To prove this we would like to well-order $\Gamma$ (which we can do by the axiom of choice) use transfinite induction on the order-type of $\Gamma$. In this induction there are two very different stages: the proof for the successor ordinals and the proof for limit ordinals. Fortunately, both of these are natural generalizations of proofs for the finite case and the countable case respectively, which I will present in full before the main proof.
+	
+	For the finite case I reproduce (with some modifications) a proof I first read in \href{https://homes.cs.washington.edu/~anuprao/pubs/CSE599sExtremal/lecture6.pdf}{here}.
+	\begin{thm}\label{thm:hall_finite}
+		Let $\Gamma$ be a finite set and let $\mathcal{A} \coloneqq \{A_\gamma\}_{\gamma\in\Gamma}$ be a family of finite sets. Then $\mathcal{A}$ has a set of distinct representatives iff for all $I\subseteq \Gamma$ we have
+		\[
+		\left|\bigcup_{\gamma\in I} A_\gamma\right| \geq |I|.
+		\] 
+	\end{thm}
+	\begin{proof}
+		One direction is obvious. For the other, use induction on $|\Gamma|$. When $|\Gamma| = 1$ the result is trivial. For the general case just pick some $\alpha \in \Gamma$ and note that $A_{\alpha}$ is nonempty by Hall's condition, so pick $x \in A_{\alpha}$ to represent it. Then use the inductive hypothesis on the family
+		\[
+			\mathcal{A}' \coloneqq \{A_{\gamma}\setminus\{x\}\}_{\gamma\in\Gamma\setminus\{\alpha\}}
+		\]
+		to get an SDR for the remaining sets. The only way this won't work is if $\mathcal{A}'$ does not satisfy Hall's condition, so assume this is the case.
+		
+		But then there must be some counterexample to the condition, i.e., a (nonempty) set $I\subseteq \Gamma \setminus\{\alpha\}$ such that 
+		\[
+			\left|\bigcup_{\gamma \in I} A_{\gamma}\setminus\{x\}\right| < |I|.
+		\]
+		But $\mathcal{A}$ does satisfy Hall's condition, so the only way the above can happen is if we had
+		\[
+			\left|\bigcup_{\gamma \in I}A_\gamma\right| = |I|
+		\]
+		and removing the element $x$ threw things off balance. Note that the family $\{A_{\gamma}\}_{\gamma \in I}$, as it is a subfamily of $\mathcal{A}$, does satisfy Hall's condition and is of size strictly smaller than $\Gamma$ so by induction we can pick representatives for all of its sets.
+		
+		For the sets we haven't picked representatives for, consider the following family:
+		\[
+			\mathcal{A}'' \coloneqq \left\{A_{\gamma}\setminus\bigcup_{\beta \in I}A_\beta\right\}_{\gamma \in \Gamma\setminus I}.
+		\]
+		If we can pick distinct representatives for $\mathcal{A}''$ we are done. By inductive hypothesis, it suffices to check Hall's condition.
+		
+		Let $J \subset \Gamma\setminus I$. Then apply Hall's condition in $\mathcal{A}$ to the disjoint union $J\cup I$ to conclude that 
+		\[
+			\left|\bigcup_{{\gamma \in J}} A_\gamma \setminus \bigcup_{\beta \in I}A_\beta \right| + \left|\bigcup_{\gamma \in I} A_{\gamma}\right| \geq  \left|\bigcup_{\gamma \in J\cup I} A_\gamma\right| \geq |J| + |I| = |J| + \left|\bigcup_{\gamma \in I} A_\gamma \right|
+		\]
+		so Hall's condition holds in $\mathcal{A}''$.
+	\end{proof}
+	As is, this isn't quite a proof for successor ordinals. All is well until we define $\mathcal{A}''$ and we claim that we can apply the inductive hypothesis to it, since it is of cardinality strictly smaller that $\mathcal{A}$. However, in the setting of ordinals, removing $I$ could leave you with something of the same order-type (e.g., if we take $\omega + 1$ and remove a finite initial segment we still get something of order-type $\omega + 1$). So, a new idea is needed beyond that point in the proof.
+	
+	Before giving the proof, we need a lemma. If $\Gamma$ is a finite set and $\mathcal{A} = \{A_\gamma\}_{\gamma\in \Gamma}$ a family of finite sets call a subset $\Gamma'\subset \Gamma$ \emph{fragile} if 
+	\[
+		\left|\bigcup_{\gamma \in \Gamma'}A_\gamma\right| = |\Gamma'|
+	\]
+	\begin{lem}\label{lem:fragile}
+		Let $\Gamma$ be a finite set and $\mathcal{A} = \{A_\gamma\}_{\gamma \in \Gamma}$ a family of finite sets satisfying Hall's condition. If $\Gamma$ has a (finite) cover by fragile sets, then $\Gamma$ itself is fragile.
+	\end{lem}
+	\begin{proof}
+		As Hall's condition is satisfied we invoke Hall's Theorem, in the form of Theorem \ref{thm:hall_finite}, to give an SDR, say for $A_\gamma\in\mathcal{A}$ a representative $a_\gamma$. This gives an injective map $\Gamma \to \bigcup_{\gamma \in \Gamma} A_\gamma$ defined by $\gamma \mapsto a_\gamma$. If we show that this map is also surjective then we are done.
+		
+		Let $a\in A_{\gamma'}$ for some $\gamma'\in \Gamma$. If $a$ is equal to some representative we are good. Otherwise, remove this element from all sets in $\mathcal{A}$ that contain it. Then $\mathcal{A}$ still has an SDR so it still satisfies Hall's condition. But $\gamma'$ is contained in some fragile set $\Gamma'$ so that 
+		\[
+			\left|\bigcup_{\gamma \in \Gamma'}A_\gamma\right| = |\Gamma'|
+		\]
+		and removing $a$ from $A_{\gamma'}$ made the LHS smaller while keeping the RHS the same, thus violating Hall's condition---contradiction.
+	\end{proof}
+	\begin{lem}
+		Let $\alpha$ be an ordinal number. Suppose Theorem \ref{thm:hall_infinite} is true whenever $\Gamma = \alpha$. Then it is also true when $\Gamma = \alpha^{+}$.
+	\end{lem}
+	\begin{proof}
+		One direction is obvious. For the other, we are given a family of finite sets $\mathcal{A}=\{A_{\gamma}\}_{\gamma\in\alpha^+}$ satisfying Hall's condition (for finite subsets of the index set). Our task is to find an SDR for this family.
+		
+		Recall that $\alpha^+ = \alpha \cup \{\alpha\}$ and that $\alpha$ is the maximum element of $\alpha^+$. We would like to take $A_{\alpha}$, which is nonempty by Hall's condition, and take some $x\in A_{\alpha}$ to be its representative. Then we would consider the family
+		\[
+			\mathcal{A}_x \coloneqq \{A_\gamma \setminus \{x\}\}_{\gamma \in \alpha}
+		\]
+		and apply Theorem \ref{thm:hall_infinite} for the case $\Gamma = \alpha$ to find representatives in this family; if this works we are done.
+		
+		The only way this strategy can fail is if for all $x\in A_\alpha$ the family $\mathcal{A}_x$ does not satisfy Hall's condition. Assume, for the sake of contradiction, that this is the case.
+		
+		It follows that there are finite sets $I_x \subseteq \alpha$ for each $x\in A_\alpha$ so that 
+		\[
+		\left|\bigcup_{\gamma\in I_x} A_{\gamma}\setminus\{x\}\right| < |I_x|.
+		\]
+		But we know that Hall's condition does hold in $\mathcal{A}$, so the only way this can happen is that 
+		\begin{equation*}\label{eq:s_x}
+			\left|\bigcup_{\gamma\in I_x} A_{\gamma}\right| = |I_x|
+		\end{equation*}
+		in $\mathcal{A}$ (i.e., the sets $I_x$ are fragile) and removing the element $x$ broke the inequality. In particular this implies that $x\in \bigcup_{\gamma\in I_x} A_\gamma$ for all $x\in A_\alpha$. Thus if we take unions of all of these unions we can reconstruct the set $A_\alpha$. 
+		
+		Let's make this formal. Define
+		\[
+		I \coloneqq \bigcup_{x\in A_\alpha} I_x
+		\]	
+		Then, we have, by Hall's condition in $\mathcal{A}$,
+		\[
+		\left|\bigcup_{\gamma\in I}A_\gamma\right| = \left|A_\alpha \cup \bigcup_{\gamma\in I}A_\gamma\right| \geq |I| + 1.
+		\]	 
+		On the other hand note that $I$ is finite, the family $\mathcal{A}' \coloneqq \{A_\gamma\}_{\gamma\in I}$ satisfies Hall's condition (as it is a subfamily of $\mathcal{A}$), and $I$ has a cover by fragile sets, namely the $I_x$'s. Hence, by Lemma \ref{lem:fragile}, $I$ is a fragile set, i.e.,
+		\[
+			\left|\bigcup_{\gamma\in I}A_\gamma\right| = I,
+		\]
+		giving a contradiction.
+	\end{proof}
+	Next, we deal with limit ordinals. This proof is especially clear for the ordinal $\omega$, so we prove this as a special case.
+	\begin{prop}
+		Let $\mathcal{A} \coloneqq \{A_i\}_{i\in \mathbb{N}}$ be a countable family of finite sets. Then $\mathcal{A}$ has a set of distinct representatives iff for all finite $I\subseteq \mathbb{N}$ we have
+		\[
+		\left|\bigcup_{\gamma\in I} A_\gamma\right| \geq |I|.
+		\] 
+	\end{prop}
+	\begin{proof}
+		One direction is obvious. Now, for $n\in\mathbb{N}$ let $\mathcal{A}_{\leq n}\coloneqq \{A_0,A_1,\ldots, A_n\}$ and define
+		\[
+			D_n \coloneqq \{x\in A_0\mid x\text{ represents $A_0$ in an SDR of }\mathcal{A}_{\leq n}\}.
+		\] 
+		Clearly $\mathcal{A}_{\leq n}$ satisfies Hall's condition so, by finitary Hall's Theorem, the set $D_n$ is nonempty for all $n$. It is also clear that $D_n \supseteq D_{n+1}$ since an SDR of $\mathcal{A}_{\leq n+1}$ restricts to one of $\mathcal{A}_{\leq n}$. Hence the sequence
+		\[
+			D_0 \supseteq D_1 \supset D_2 \supseteq \cdots 
+		\]
+		stabilizes at a nonempty set $D_{\infty} \coloneqq D_N$; otherwise take cardinalities and we have an infinite decreasing sequence of positive integers---contradiction. Pick some $x_0\in D_\infty$ and consider the family
+		\[
+			\mathcal{A}' \coloneqq \{A_i\setminus \{x_0\}\}_{i=1}^{\infty} 
+		\]
+		We claim that $\mathcal{A}'$ satisfies Hall's condition. It suffices to check that $\mathcal{A}'_{\leq n}\coloneqq \{A_1\setminus\{x_0\},\ldots, A_{n}\setminus\{x_0\}\}$ has an SDR for all $n$. But this is indeed the case: by the definition of $D_\infty$ there is some SDR of $\mathcal{A}_{\leq n}$ that has $x_0$ as a representative for $A_0$, so throwing $x_0$ out gives an SDR for $\mathcal{A}'_{\leq n}$. Hence we can repeat the above proof for $\mathcal{A}'$ to get some $x_1 \in A_1$ distinct from $x_0$, and so on...
+ 	\end{proof}
+ 	[\emph{Note for worriers}: In the last part of the proof ``and so on...'' we are using the \href{https://en.wikipedia.org/wiki/Axiom_of_dependent_choice}{Axiom of Dependent Choice}, which is OK since it follows from the Axiom of Choice.]
+ 	
+ 	The case for limit ordinals is a generalization of this approach.
+ 	\begin{prop}
+ 		Let $\lambda$ be a limit ordinal. Suppose Theorem \ref{thm:hall_infinite} is true whenever $\Gamma = \beta$ for some ordinal $\beta<\lambda$. Then it is also true when $\Gamma = \lambda$.
+ 	\end{prop}
+ 	\begin{proof}
+ 		One direction is obvious. For the other, we are given a family of finite sets $\mathcal{A}=\{A_{\gamma}\}_{\gamma\in\lambda}$ satisfying Hall's condition (for finite subsets of the index set). Our task is to find an SDR for this family.
+ 		
+ 		For $\beta<\lambda$ let $\mathcal{A}_{\leq\beta} \coloneqq \{A_{\gamma}\mid \gamma \leq \beta\}$ and for $\beta \leq \lambda$ let $\mathcal{A}_{< \beta} \coloneqq\{A_{\gamma}\}_{\gamma \in \beta} = \{A_{\gamma}\mid \gamma < \beta\}$ (recall that for ordinals $\gamma \in \beta$ is the same as $\gamma < \beta$). Note also that $\mathcal{A}_{<\lambda} = \mathcal{A}$. Now define, for any ordinals $\gamma \leq \beta < \lambda$ the set
+ 		\[
+ 			D^{\gamma}_{\beta}\coloneqq \{x\in A_{\gamma} \mid x \text{ represents $A_{\gamma}$ in an SDR of $\mathcal{A}_{\leq\beta}$}\}.
+ 		\]
+ 		Fix some $\gamma< \lambda$.	By assumption, $D_{\beta}^{\gamma}$ is always a nonempty set. Also we have $D_{\beta}^{\gamma} \supseteq D_{\beta'}^{\gamma}$ whenever $\beta\leq \beta'$ since an SDR of $\mathcal{A}_{(\leq \beta')}$ restricts to one of $\mathcal{A}_{(\leq \beta)}$. We claim that this chain ``stabilizes'', i.e. there is some ordinal $\mu\geq \gamma$ so that for all $\beta \geq \mu$ we have $D_{\beta}^{\gamma} = D_{\mu}^{\gamma}$. 
+ 		
+ 		Indeed, suppose not. Then for all $\mu\geq \gamma$ there exists some $\mu' > \mu$ so that $D_{\mu}^{\gamma} \supsetneq D_{\mu'}^{\gamma}$. Continuing on this process we would get a decreasing sequence of finite nonempty sets
+ 		\[
+ 			D^{\gamma}_{\mu} \supsetneq D^{\gamma}_{\mu'} \supsetneq D^{\gamma}_{\mu''}\supsetneq \cdots
+ 		\]
+ 		giving a contradiction when taking cardinalities. So for each $\gamma$ there is really such a $\mu$; define $D^{\gamma}_{\infty} \coloneqq D^{\gamma}_{\mu}$, the stable set.
+ 		
+ 		Consider the family of finite nonempty sets $\mathcal{D} \coloneqq \{D^{\gamma}_{\infty}\}_{\gamma \in \lambda}$. Clearly an SDR of $\mathcal{D}$ is also an SDR of $\mathcal{A}$, so our task is now to find an SDR of $\mathcal{D}$. Define $\mathcal{D}_{< \beta}$ for $\beta \leq \lambda$ as before.
+ 		
+ 		An SDR of some $\mathcal{D}_{(< \beta)}$ is, formally, an injective function $f\colon \beta \to \bigcup \mathcal{D}_{< \beta}$ so that $f(\gamma) \in A_{\gamma}$ for all $\gamma \in \beta$. Consider the set 
+ 		\[
+ 			S \coloneqq \left\{f\colon \beta \to \bigcup \mathcal{D}_{< \beta} \mid \beta \leq \lambda \text{ and $f$ is an SDR}\right\}.
+ 		\]
+ 		We would like to make $S$ into a partially ordered set and apply Zorn's Lemma. For $f,g \in S$ we say that $f\preccurlyeq g$ iff $\dom f \leq \dom g$ (equivalently $\dom f \subseteq \dom g$ since these are ordinals) and $f$ and $g$ agree on $\dom f$. It is easy to see that this gives a poset. 
+ 		
+ 		Now let $T$ be a totally ordered subset of $S$. Define an ordinal
+ 		\[
+ 			\delta \coloneqq \bigcup\{\dom f \mid f\in T\}.
+ 		\]
+ 		As $\dom f \leq \lambda$ for all $f\in S$, we have that $\delta \leq \lambda$. Next, define a function $g\colon \delta \to \bigcup \mathcal{D}_{<\delta}$ as follows. For all $\gamma\in \delta$ there is some $f_{\gamma}\in T$ so that $\gamma \in \dom f$ (here we used AC). Let $g(\gamma) \coloneqq f_{\gamma}(\gamma)$. We will check that $g\in S$ and furthermore $g$ is an upper bound for $T$.
+ 		
+ 		To verify that $g\in S$ we only need to check that it is an SDR. For $\gamma \in \delta$ we do have $g(\gamma) = f_{\gamma}(\gamma) \in A_{\gamma}$ since $f_{\gamma}$ is an SDR; thus it only remains to verify that $g$ is injective. Let $\gamma,\gamma' \in \delta$ be distinct. Then, as $T$ is totally ordered, we can assume, without loss of generality, that $f_{\gamma} \preccurlyeq f_{\gamma'}$. Then
+ 		\[
+ 			g(\gamma) = f_{\gamma}(\gamma) = f_{\gamma'}(\gamma) \neq f_{\gamma'}(\gamma') = g(\gamma'),
+ 		\]
+ 		so $g$ is injective and $g\in S$. 
+ 		
+ 		Next, we let $f\in T$ be arbitrary. Clearly $\dom f \leq \dom g$. Now let $\gamma \in \dom f$. As $T$ is totally ordered we have $f\preccurlyeq f_{\gamma}$ or $f_{\gamma} \preccurlyeq f$; either way we have $g(\gamma) = f_{\gamma}(\gamma) = f(\gamma)$, so $g$ extends $f$. We conclude that $f\preccurlyeq g$ and, since $f$ was arbitrary, $g$ is an upper bound for $T$. 
+ 		
+ 		The conditions of Zorn's Lemma are satisfied, so $S$ has a maximal element $F$ and let $\lambda' \coloneqq \dom F$. Suppose, for the sake of contradiction, that $\lambda' < \lambda$. Then\footnote{This is the only time we use the fact that $\lambda$ is a limit ordinal!} $(\lambda' + 1) < \lambda$, or equivalently, $(\lambda' + 1) \in \lambda$. Similarly, $(\lambda' + 2) \in \lambda$.
+ 	\end{proof}
+\end{document}

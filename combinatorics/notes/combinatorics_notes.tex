@@ -414,7 +414,7 @@
  		\]
  		is symmetric in $\mathcal{P}(7)$ but not symmetric anywhere else.
  	\end{egs}
- 	\begin{thm}
+ 	\begin{thm}\label{thm:dsc}
  		Every powerset has a partition into symmetric chains. Furthermore, such a partition of $\mathcal{P}(n)$ has size exactly $\binom{n}{\floor{n/2}}$.
  	\end{thm}
  	\begin{proof}
@@ -429,5 +429,27 @@
  			\mathcal{C}''&\coloneqq \{C_i\cup\{n\},\ldots, C_{j-1}\cup\{n\}\}.
  		\end{align*}
  		If $i=j$ then just $\mathcal{C'}$ as above and omit $\mathcal{C''}$. Clearly both of these are symmetric chains in $\mathcal{P}(n)$. If we let $P'$ be the collection of all such $\mathcal{C}'$ and $\mathcal{C}''$ then $P'$ partitions $\mathcal{P}(n)$ into symmetric chains.
+ 	\end{proof}
+ 	Write $l(n,i)$ for the number of symmetric chains of length $n+1-2i$ in a partition of $\mathcal{P}(n)$. Then
+ 	\[
+ 		l(n,i) = \binom{n}{i} - \binom{n}{i-1}.
+ 	\]
+ 	Indeed, the number of symmetric chains starting at level $i$ would be $\binom{n}{i}$ but there are $\binom{n}{i-i}$ symmetric chains that start at a lower level and pass through level $i$.
+ 	\begin{thm}\label{thm:norm_scat}
+ 		Let $x_1,\ldots,x_n$ be vectors of norm at least 1 in some normed space (over $\mathbb{C}$ say). For a set $A\subseteq X \coloneqq [n]$, set $x_A \coloneqq \sum_{i\in A}x_i$. Let $\mathcal{A}\subseteq \mathcal{P}(n)$ be such that $A,B\in\mathcal{A}$ then $||x_A-x_B||<1$. Then $|\mathcal{A}| \leq \binom{n}{\floor{n/2}}$.
+ 	\end{thm}
+ 	To prove this, we need another result. Call a set $\mathcal{A}\subseteq \mathcal{P}(n)$ \emph{sparse} or \emph{scattered} if for all distinct $A,B\in\mathcal{A}$  we have $||x_A-x_B|| \geq 1$. 
+ 	
+ 	Let a partition $P$ of $\mathcal{P}(n)$ be such that for all $i$, the number of components of size $n+1-2i$ in $P$ is precisely $l(n,i)$. We call such a partition a \emph{symmetric decomposition into sparse sets} abbreviated SDSS. Clearly Theorem \ref{thm:norm_scat} is a simple corollary of Theorem \ref{thm:dsc} and the following.
+ 	\begin{thm}[Kleitman]
+ 		For all $n$, $\mathcal{P}(n)$ has a symmetric decomposition into sparse sets. 
+ 	\end{thm}
+ 	\begin{proof}
+ 		We use induction on $n$. For $n=0$ this is obvious. Suppose $n\geq 1$ and we have an SDSS for $\mathcal{P}(n-1)$, call it $\Delta_{n-1}$. Let $\mathcal{D} = \{D_1,\ldots,D_k\}\in\Delta_{n-1}$. We wish to construct two sets $\mathcal{D}'$ and $\mathcal{D}''$, as in the proof of Theorem \ref{thm:dsc}, such that the union of these new sets gives us a partition of $\Delta_n$.
+ 		
+ 		Imitating that previous proof, we want $|\mathcal{D}'| = |\mathcal{D}| + 1$ and $|\mathcal{D}''| = |\mathcal{D}| -1$. It is a theorem of linear algebra that there exists a \emph{support functional} at $x_n$, i.e. if our normed space is $V$ over a field $k$ we have a linear map $f\colon V \to k$ so that 
+ 		\begin{itemize}
+ 			\item $||f||=$
+ 		\end{itemize}
  	\end{proof}
 \end{document}
