@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  24 OCT 2023 11:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  31 OCT 2023 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1005,33 +1005,33 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 (model_theory_notes.aux)
 \openout1 = `model_theory_notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Info: Redefining \celsius on input line 152.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 152
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Info: Redefining \celsius on input line 154.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 154
 .
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 152.
-Package gensymb Info: Using \Omega for \ohm on input line 152.
+LaTeX Info: Redefining \ohm on input line 154.
+Package gensymb Info: Using \Omega for \ohm on input line 154.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -1077,27 +1077,27 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'model_theory_notes.bbl' not found.
 
 No file model_theory_notes.bbl.
-Package biblatex Info: Reference section=0 on input line 152.
-Package biblatex Info: Reference segment=0 on input line 152.
-Package hyperref Info: Link coloring OFF on input line 152.
+Package biblatex Info: Reference section=0 on input line 154.
+Package biblatex Info: Reference segment=0 on input line 154.
+Package hyperref Info: Link coloring OFF on input line 154.
 (model_theory_notes.out) (model_theory_notes.out)
 \@outlinefile=\write5
 \openout5 = `model_theory_notes.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 156
+LaTeX Font Info:    Trying to load font information for U+msa on input line 158
 .
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 156
+LaTeX Font Info:    Trying to load font information for U+msb on input line 158
 .
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 15
-6.
+8.
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -1106,20 +1106,20 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 {C:/Users/herna/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
-LaTeX Warning: Citation 'NOLAST' on page 1 undefined on input line 156.
+LaTeX Warning: Citation 'NOLAST' on page 1 undefined on input line 158.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.160 	\chapter
-               {Logic Background} [1]
+l.162 	\chapter
+               {Logic Background (INCOMPLETE)} [1]
 Chapter 0.
 [2
 
-] [3] [4] [5] [6] [7] [8] [9]
-Overfull \hbox (20.13933pt too wide) in paragraph at lines 458--460
+] [3] [4] [5] [6] [7] [8] [9] [10]
+Overfull \hbox (20.13933pt too wide) in paragraph at lines 460--462
 \OT1/cmr/m/n/10 If $((\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML
 /cmm/m/it/10 p\OT1/cmr/m/n/10 )[](\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 ) = 0$ then
  the above equals 1, clearly. Now sup-pose $((\OMS/cmsy/m/n/10 8\OML/cmm/m/it/1
@@ -1127,16 +1127,49 @@ Overfull \hbox (20.13933pt too wide) in paragraph at lines 458--460
 1/cmr/m/n/10 ) =
  []
 
-[10] [11] [12] [13] [14]
+[11] [12] [13] [14] [15]
 Chapter 1.
-[15
+[16
 
-] [16] (model_theory_notes.aux)
+] [17] [18]
+Overfull \hbox (3.98781pt too wide) in paragraph at lines 734--735
+[]\OT1/cmr/m/n/10 Conversely, as-sume that the prop-erty holds. Con-sider the f
+or-mu-lae $\OML/cmm/m/it/10 '[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; []\OT1/cmr/
+m/n/10 ) [][]=
+ []
+
+[19] [20] [21]
+Overfull \hbox (27.94492pt too wide) in paragraph at lines 793--794
+[]\OT1/cmr/m/n/10 In par-tic-u-lar, $(\OML/cmm/m/it/10 M; []\OT1/cmr/m/n/10 ) \
+OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 = (\OMS/cmsy/m/n/10 8[]\OT1/cmr/m/n/10 )\OMS
+/cmsy/m/n/10 :\OML/cmm/m/it/10 '\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; []\OT1/cm
+r/m/n/10 )$ and so by hy-poth-e-sis $(\OML/cmm/m/it/10 N; []\OT1/cmr/m/n/10 ) \
+OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 = (\OMS/cmsy/m/n/10 8[]\OT1/cmr/m/n/10 )\OMS
+/cmsy/m/n/10 :\OML/cmm/m/it/10 '\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; []\OT1/cm
+r/m/n/10 )$,
+ []
+
+
+Overfull \hbox (7.6846pt too wide) in paragraph at lines 808--808
+[]\OT1/cmr/bx/n/14.4 Existentially closed struc-tures and quantifier-
+ []
+
+[22]
+Overfull \hbox (1.20738pt too wide) detected at line 858
+\OT1/cmr/m/n/10 ^^F(\OMS/cmsy/m/n/10 L\OT1/cmr/m/n/10 ) [][]= \OMS/cmsy/m/n/10 
+f8[]\OT1/cmr/m/n/10 ((\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 y \OT1/cmr/m/n/10 : \O
+ML/cmm/m/it/10 ^^_\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; y\OT1/cmr/m/n/10 )) \OM
+S/cmsy/m/n/10 ) \OML/cmm/m/it/10 ^^_\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; F[]\O
+T1/cmr/m/n/10 ([]))) \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^_\OT1/cmr/m/n/10 ([]
+\OML/cmm/m/it/10 ; y\OT1/cmr/m/n/10 )[]\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 :
+ []
+
+[23] [24] (model_theory_notes.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `model_theory_notes.out' has not changed.
-(rerunfilecheck)             Checksum: 018670372B324D1B33ABA5536191EBC3;1441.
+(rerunfilecheck)             Checksum: 6338BCA13B357ACCFF82634FD8E0B070;1872.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                model_theory_notes
@@ -1147,35 +1180,39 @@ Package logreq Info: Writing requests to 'model_theory_notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 31066 strings out of 476374
- 615340 string characters out of 5788855
- 1874340 words of memory out of 5000000
- 50884 multiletter control sequences out of 15000+600000
- 523437 words of font info for 76 fonts, out of 8000000 for 9000
+ 31122 strings out of 476374
+ 615878 string characters out of 5788855
+ 1872340 words of memory out of 5000000
+ 50899 multiletter control sequences out of 15000+600000
+ 523814 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,16n,132p,717b,1223s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\herna\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1000.pk><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmbx10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmex10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/herna/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/herna/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/herna/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/h
-erna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:
-/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17
-.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmr5.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/herna/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/herna/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/herna/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on model_theory_notes.pdf (17 pages, 271451 bytes).
+ <C:\Users\herna\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti
+1000.pk> <C:\Users\herna\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tcrm1000.pk><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmbx10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/herna/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/herna/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/herna/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/her
+na/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/U
+sers/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.p
+fb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmr17.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr5.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/herna/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/herna/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/herna/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Us
+ers/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/symbols/msbm7.pfb>
+Output written on model_theory_notes.pdf (25 pages, 342714 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
- 90 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 391 PDF objects out of 1000 (max. 8388607)
+ 130 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

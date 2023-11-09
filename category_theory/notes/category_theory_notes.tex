@@ -291,7 +291,7 @@
 	\begin{proof}
 		Suppose $\alpha$ is an isomorphism in $[\mathcal{C}, \mathcal{D}]$, and let $\alpha^{-1}\colon G \to F$ be its inverse. If $A\in\ob \mathcal{C}$ we have that
 		\[
-			1_{FA} = (1_F)_A = (\alpha^{-1}\alpha)_A = \alpha^{-1}_A\alpha_A,
+		1_{FA} = (1_F)_A = (\alpha^{-1}\alpha)_A = \alpha^{-1}_A\alpha_A,
 		\]
 		and similarly $1_{GA} = \alpha_A\alpha^{-1}_A$. Thus $\alpha_A$ is an isomorphism.
 		
@@ -307,10 +307,64 @@
 		\end{tikzcd}\]
 		commutes. To see this, just calculate:
 		\[
-			(Fg)(\alpha_C^{-1}) = (\alpha^{-1}_D\alpha_D)(Fg)(\alpha_C^{-1}) \overset{!}{=} \alpha^{-1}_C(Gg)(\alpha_C)\alpha_{C}^{-1} = \alpha_C^{-1}Gg.
+		(Fg)(\alpha_C^{-1}) = (\alpha^{-1}_D\alpha_D)(Fg)(\alpha_C^{-1}) \overset{!}{=} \alpha^{-1}_C(Gg)(\alpha_C)\alpha_{C}^{-1} = \alpha_C^{-1}Gg.
 		\]
-		 Note that in $\overset{!}{=}$ we used the naturality of $\alpha$.
+		Note that in $\overset{!}{=}$ we used the naturality of $\alpha$.
 	\end{proof}
+	So far we have studied what people call ``vertical composition'' of natural transformations. There is also \emph{horizontal composition} which is sometimes useful.
+	\begin{defn}[Horizontal composition]
+		Suppose we have functors as in the diagram.
+		% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30iXSxbMSwwLCJcXG1hdGhjYWx7RH0iXSxbMiwwLCJcXG1hdGhjYWx7RX0iXSxbMCwxLCJGIiwwLHsib2Zmc2V0IjotMX1dLFsxLDIsIkgiLDAseyJvZmZzZXQiOi0xfV0sWzEsMCwiRyIsMCx7Im9mZnNldCI6LTF9XSxbMiwxLCJLIiwwLHsib2Zmc2V0IjotMX1dXQ==
+		\[\begin{tikzcd}
+			{\mathcal{C}} & {\mathcal{D}} & {\mathcal{E}}
+			\arrow["F", shift left, from=1-1, to=1-2]
+			\arrow["F'", shift left, from=1-2, to=1-3]
+			\arrow["G"', shift right, from=1-1, to=1-2]
+			\arrow["G'"', shift right, from=1-2, to=1-3]
+		\end{tikzcd}\]
+		Let $\alpha\colon F \to G$ and $\alpha'\colon F' \to G'$ be natural transformations. We define $\alpha' \ast \alpha$ to be a natural transformation $F'F \to G'G$ such that $(\alpha' \ast \alpha)_A \colon F'FA \to G'GA$ is the diagonal of the square
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGJ0ZBIl0sWzEsMCwiRydGQSJdLFsxLDEsIkcnR0EiXSxbMCwxLCJGJ0dBIl0sWzAsMSwiXFxhbHBoYSdfe0ZBfSJdLFswLDMsIkYnKFxcYWxwaGFfQSkiLDJdLFszLDIsIlxcYWxwaGEnX3tHQX0iLDJdLFsxLDIsIkcnKFxcYWxwaGFfQSkiXV0=
+		\[\begin{tikzcd}
+			{F'FA} & {G'FA} \\
+			{F'GA} & {G'GA}
+			\arrow["{\alpha'_{FA}}", from=1-1, to=1-2]
+			\arrow["{F'(\alpha_A)}"', from=1-1, to=2-1]
+			\arrow["{\alpha'_{GA}}"', from=2-1, to=2-2]
+			\arrow["{G'(\alpha_A)}", from=1-2, to=2-2]
+		\end{tikzcd}\]
+		which is commutative by naturality of $\alpha'$. We claim this is indeed natural. For a morphism $f\colon A \to B$ we need to check that the following commutes.
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGJ0ZBIl0sWzEsMCwiRidGQiJdLFsxLDEsIkcnR0IiXSxbMCwxLCJHJ0dBIl0sWzAsMSwiRidGZiJdLFswLDMsIihcXGFscGhhXFxhc3RcXGFscGhhJylfQSIsMl0sWzMsMiwiRydHZiIsMl0sWzEsMiwiKFxcYWxwaGFcXGFzdFxcYWxwaGEnKV9CIl1d
+		\[\begin{tikzcd}
+			{F'FA} & {F'FB} \\
+			{G'GA} & {G'GB}
+			\arrow["{F'Ff}", from=1-1, to=1-2]
+			\arrow["{(\alpha'\ast\alpha)_A}"', from=1-1, to=2-1]
+			\arrow["{G'Gf}"', from=2-1, to=2-2]
+			\arrow["{(\alpha'\ast\alpha)_B}", from=1-2, to=2-2]
+		\end{tikzcd}\]
+		Expanding out the definition of $\alpha'\ast\alpha$, we get the diagram
+		% https://q.uiver.app/#q=WzAsOCxbMSwwLCJGJ0ZBIl0sWzQsMCwiRidGQiJdLFs0LDIsIkcnR0IiXSxbMSwyLCJHJ0dBIl0sWzAsMSwiRidHQSJdLFsyLDEsIkcnRkEiXSxbMywxLCJGJ0dCIl0sWzUsMSwiRydGQiJdLFswLDEsIkYnRmYiXSxbMywyLCJHJ0dmIiwyXSxbMCw0LCJGJ1xcYWxwaGFfQSIsMl0sWzQsMywiXFxhbHBoYSdfe0dBfSIsMl0sWzAsNSwiXFxhbHBoYSdfe0ZBfSJdLFs1LDMsIkcnKFxcYWxwaGFfQSkiXSxbMSw2LCJGJ1xcYWxwaGFfQiIsMl0sWzYsMiwiXFxhbHBoYSdfe0dCfSIsMl0sWzEsNywiXFxhbHBoYSdfe0ZCfSJdLFs3LDIsIkcnKFxcYWxwaGFfQiJdLFs0LDYsIkYnR2YiLDEseyJsYWJlbF9wb3NpdGlvbiI6MzAsImN1cnZlIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw3LCJHJ0ZmIiwxLHsibGFiZWxfcG9zaXRpb24iOjcwLCJjdXJ2ZSI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+		\[\begin{tikzcd}
+			& {F'FA} &&& {F'FB} \\
+			{F'GA} && {G'FA} & {F'GB} && {G'FB} \\
+			& {G'GA} &&& {G'GB}
+			\arrow["{F'Ff}", from=1-2, to=1-5]
+			\arrow["{G'Gf}"', from=3-2, to=3-5]
+			\arrow["{F'\alpha_A}"', from=1-2, to=2-1]
+			\arrow["{\alpha'_{GA}}"', from=2-1, to=3-2]
+			\arrow["{\alpha'_{FA}}", from=1-2, to=2-3]
+			\arrow["{G'(\alpha_A)}", from=2-3, to=3-2]
+			\arrow["{F'\alpha_B}"', from=1-5, to=2-4]
+			\arrow["{\alpha'_{GB}}"', from=2-4, to=3-5]
+			\arrow["{\alpha'_{FB}}", from=1-5, to=2-6]
+			\arrow["{G'(\alpha_B}", from=2-6, to=3-5]
+			\arrow["{F'Gf}"{description, pos=0.3}, curve={height=12pt}, dashed, from=2-1, to=2-4]
+			\arrow["{G'Ff}"{description, pos=0.7}, curve={height=-12pt}, dashed, from=2-3, to=2-6]
+		\end{tikzcd}\]
+		where I have added the extra dashed arrows. Then, if you tilt your head a little, this is a parallelepiped. If we rotate towards the page, we see that the top face and the bottom face are the naturality diagrams for $\alpha$ with respect to $f$ but with $F'$ and $G'$ applied to them respectively. The right and left faces are commutative by our previous argument. Finally, the front and the back faces are just naturality squares for $\alpha'$ with respect to $Gf$ and $Ff$ respectively. Hence the whole diagram commutes (!). This finishes the construction.
+		
+		In the special case when $F=G$ and $\alpha = 1_{F}$ we denote $\alpha' \ast \alpha$ by $\alpha'F$. Similarly we define $F'\alpha$.
+	\end{defn}
 	\begin{defn}[Equivalence of categories]
 		Let $\mathcal{C}$ and $\mathcal{D}$ be categories. By an \emph{equivalence} between $\mathcal{C}$ and $\mathcal{D}$ we mean a pair of functors $F\colon \mathcal{C}\to\mathcal{D}$ and $G\colon \mathcal{D} \to \mathcal{C}$, together with natural isomorphisms $\alpha\colon 1_{\mathcal{C}} \to GF$ and $\beta \colon FG \to 1_{\mathcal{D}}$.
 		
@@ -698,7 +752,7 @@
 			for all $A,B$. Thus Lemma \ref{lem:prod_fam} applies and we are done.			
 		\end{proof}
 		Now we turn to study naturality between functors whose domain is a product category; this is the situation in the Yoneda Lemma. In particular, we will show that such transformations are natural in both variables simultaneously iff they are natural in each variable separately. 
-		\begin{lem}
+		\begin{lem}\label{lem:nat_coord}
 			Let $F,G\colon\mathcal{C}\times\mathcal{D}\to\mathcal{E}$ be functors. Suppose we have $\alpha$, a family of morphisms $\alpha_{A,B}\colon F(A,B)\to G(A,B)$ in $\mathcal{E}$ for all $(A,B)\in\ob(\mathcal{C}\times\mathcal{D})$. Then $\alpha$ is a natural transformation $F \to G$ if and only if it satisfies the following two conditions.
 			\begin{itemize}
 				\item For each $A\in\ob\mathcal{C}$ the family the collection of morphisms $\alpha_{A,B}\colon F^A(B) \to G^A(B)$ for $B\in\ob\mathcal{D}$ defines a natural transformation $F^A \to G^A$.
@@ -1055,4 +1109,539 @@
 			\end{align*}
 			This implies that the diagram we drew when we defined $f$ commutes when we replace $f$ by $f'$. Hence, by uniqueness of $f$, we have $f = f'$.
 		\end{proof}
+		Let $A,B\in \ob\mathcal{C}$ be objects in some category. A \emph{categorical product} of $A$ and $B$ is an object $P$ with morphisms 
+		% https://q.uiver.app/#q=WzAsMyxbMSwwLCJQIl0sWzAsMSwiQSJdLFsyLDEsIkIiXSxbMCwxLCJcXHBpX0EiLDJdLFswLDIsIlxccGlfQiJdXQ==
+		\[\begin{tikzcd}
+			& P \\
+			A && B
+			\arrow["{\pi_A}"', from=1-2, to=2-1]
+			\arrow["{\pi_B}", from=1-2, to=2-3]
+		\end{tikzcd}\]
+		so that if $C$ is any object and $f_A \colon C\to A$ and $f_B \colon C \to B$ are morphisms, then there exists a unique morphism $\tau \colon C\to P$ so that the following diagram commutes.
+		% https://q.uiver.app/#q=WzAsNCxbMSwxLCJQIl0sWzIsMCwiQSJdLFsyLDIsIkIiXSxbMCwxLCJDIl0sWzMsMSwiZl9BIiwwLHsiY3VydmUiOi0yfV0sWzMsMiwiZl9CIiwyLHsiY3VydmUiOjJ9XSxbMywwLCJcXGV4aXN0cyEgXFx0YXUiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwxLCJcXHBpX0EiLDJdLFswLDIsIlxccGlfQiJdXQ==
+		\[\begin{tikzcd}
+			&& A \\
+			C & P \\
+			&& B
+			\arrow["{f_A}", curve={height=-12pt}, from=2-1, to=1-3]
+			\arrow["{f_B}"', curve={height=12pt}, from=2-1, to=3-3]
+			\arrow["{\tau}", dashed, from=2-1, to=2-2]
+			\arrow["{\pi_A}"', from=2-2, to=1-3]
+			\arrow["{\pi_B}", from=2-2, to=3-3]
+		\end{tikzcd}\]
+		It is easy to show that a categorical product, if it exists, is unique up to a unique isomorphism.
+		
+		Now let $f,g\colon A \to B$ be a pair of parallel morphisms. An \emph{equalizer} for $(f,g)$ is an object $E$ together with a morphism $e\colon E \to A$ such that $fe =ge$,  and with the property that, if $h\colon C \to A$ satisfies $fh = gh$ then there exists a unique $\sigma\colon C \to E$ such that 
+		% https://q.uiver.app/#q=WzAsMyxbMCwwLCJDIl0sWzEsMCwiRSJdLFsyLDAsIkEiXSxbMSwyLCJlIiwyXSxbMCwxLCJcXGV4aXN0cyFcXHNpZ21hIiwyXSxbMCwyLCJoIiwwLHsiY3VydmUiOi0yfV1d
+		\[\begin{tikzcd}
+			C & E & A
+			\arrow["e"', from=1-2, to=1-3]
+			\arrow["{\sigma}"', dashed, from=1-1, to=1-2]
+			\arrow["h", curve={height=-12pt}, from=1-1, to=1-3]
+		\end{tikzcd}\]
+		commutes. Again, equalizers are unique up to unique isomorphism. Both products and equalizers can be defined as representations of certain functors but this only works for locally small categories.
+		
+		Note in particular that equalizers are monomorphisms. Indeed, suppose $(E,e)$ is an equalizer for $(f,g)$ as above. Let $\alpha_1,\alpha_2\colon C \to E$ be such that $e\alpha_1  = e\alpha_2 $. 
+		
+		Define $h\coloneqq  e\alpha_1  = e\alpha_2 $. Then
+		\[
+			fh = fe\alpha_1 = ge \alpha_1 = gh.
+		\]
+		Hence, by the universal property of equalizers, there is a unique morphism $\sigma\colon C \to E$ so that $e\sigma = h$. But the definition of $h$ implies that $\sigma= \alpha_1 = \alpha_2$ as desired.
+		
+		We say a monomorphism is \emph{regular} if it occurs as an equalizer. There are dual notions of coproducts and coequalizers we do not elaborate on right now.
+		
+		\begin{defn}[Separating and detecting families]
+			Let $\mathcal{C}$ be a locally small category and $\mathcal{G}$ a class of objects of $\mathcal{C}$.
+			\begin{enumerate}
+				\item We say $\mathcal{G}$ is a \emph{separating family} of $\mathcal{C}$ if the functors $\mathcal{C}(G,-)$ for $G \in \mathcal{G}$ are collectively faithful, i.e. given morphisms $f,g\colon A\to B$ in $\mathcal{C}$ the equations $fh = gh$ for all $h\colon G \to A$ with $G\in \mathcal{G}$ imply $f = g$.
+				\item We say $\mathcal{G}$ is a \emph{detecting family} of $\mathcal{C}$ if the functors $\mathcal{C}(G,-)$ collectively reflect isomorphisms, i.e. if given some $f\colon A \to B$ with the property that for all $h\colon G \to B$ with $G\in \mathcal{G}$ there exists some unique $\sigma \colon G \to A$ such that the following diagram commutes
+				% https://q.uiver.app/#q=WzAsMyxbMCwxLCJBIl0sWzEsMSwiQiJdLFsxLDAsIkciXSxbMiwxLCJoIl0sWzAsMSwiZiJdLFsyLDAsIlxcc2lnbWEiLDJdXQ==
+				\[\begin{tikzcd}
+					& G \\
+					A & B
+					\arrow["h", from=1-2, to=2-2]
+					\arrow["f"', from=2-1, to=2-2]
+					\arrow["\sigma"', from=1-2, to=2-1]
+				\end{tikzcd},\]
+				then $f$ is an isomorphism.
+			\end{enumerate}
+			If $\mathcal{G} = \{G\}$ for some object $G$ we call $G$ a \emph{separator} or a \emph{detector} respectively.
+		\end{defn}
+		Recall that a category is \emph{balanced} if all morphisms that are both monic and epic are also isomorphisms.
+		\begin{lem}\leavevmode
+			\begin{enumerate}
+				\item If $\mathcal{C}$ has equalizers then any detecting family is separating.
+				\item If $\mathcal{C}$ is balanced then any separating family is detecting
+			\end{enumerate}
+		\end{lem}
+		\begin{proof}\leavevmode
+			\begin{enumerate}
+				\item First suppose that $\mathcal{C}$ has equalizers and let $\mathcal{G}$ be a detecting family. Let $f,g\colon A \to B$ be morphisms such that for all $h\colon G \to A$ with $G\in \mathcal{G}$ we have $fh = gh$. We aim to show that $f = g$. First we form the equalizer of $(f,g)$, say a morphism $e\colon E \to A$. The strategy is to prove that $e$ is an isomorphism using the detecting property. Then we will be done because $fe=ge$ will imply $f =g$ by composing with $e^{-1}$.
+				
+				To use the detecting property, let $h\colon G \to A$ be a morphism with $G\in \mathcal{G}$. By assumption, $fh = gh$. Using the universal property for equalizers we get a unique $\sigma G \to E$ such that $e\sigma = h$. As $\mathcal{G}$ is a detecting family, this implies that $e$ is an isomorphism.
+				\item Suppose $\mathcal{C}$ is balanced and let $\mathcal{G}$ be a separating family for it. Let $f\colon A \to B$ have the property that for all $h\colon G \to B$ with $G\in \mathcal{G}$ there is some unique $\sigma \colon G \to A$ such that $f\sigma = h$. We wish to show that $f$ is an isomorphism. By the balanced hypothesis, it is enough to show that $f$ is both epic and monic.
+				
+				Let $\alpha_1,\alpha_2 \colon C \to A$ be morphisms such that $f\alpha_1 = f\alpha_2$. We would like to show that $\alpha_1 = \alpha_2$ using the separating property. For that, let $h\colon G \to C$ be a morphism; we need to show that $\alpha_1 h = \alpha_2 h$. But note that the composites $f\alpha_1 h$ and $f\alpha_2 h$ are equal morphisms $G \to B$. Applying the hypothesis we get a morphism $\sigma\colon G \to A$ unique in satisfying that $f\sigma$ is equal to both $f\alpha_1 h$ and $f\alpha_2 h$. But then uniqueness of $\sigma$ implies that $\alpha_1h = \alpha_2 h$ as required. As $G$ is a separating family we get that $\alpha_1 = \alpha_2$ as required. This all shows that $f$ is a monomorphism.
+				% https://q.uiver.app/#q=WzAsNCxbMCwwLCJDIl0sWzEsMCwiQSJdLFsyLDAsIkIiXSxbMCwxLCJHIl0sWzAsMSwiXFxhbHBoYV8xIiwwLHsib2Zmc2V0IjotMX1dLFswLDEsIlxcYWxwaGFfMiIsMix7Im9mZnNldCI6MX1dLFsxLDIsImYiXSxbMywxLCJcXHNpZ21hIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsMCwiaCJdXQ==
+				\[\begin{tikzcd}
+					C & A & B \\
+					G
+					\arrow["{\alpha_1}", shift left, from=1-1, to=1-2]
+					\arrow["{\alpha_2}"', shift right, from=1-1, to=1-2]
+					\arrow["f", from=1-2, to=1-3]
+					\arrow["\sigma"', dashed, from=2-1, to=1-2]
+					\arrow["h", from=2-1, to=1-1]
+				\end{tikzcd}\]
+				Similarly, suppose $\beta_1,\beta_2\colon B \to D$ are morphisms satisfying $\beta_1 f = \beta_2 f$. Let $h\colon G \to B$ be a morphism with $G \in \mathcal{D}$. Then, by hypothesis, there is some $\sigma G \to A$ unique in satisfying $f\sigma = h$.
+				
+				Now it is clear that $\beta_1 f\sigma = \beta_2 f \sigma$. Hence $\beta_1 h = \beta_2 h$. As $\mathcal{G}$ is separating we have $\beta_1 = \beta_2$ and thus $f$ is epic.
+				
+				% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiQiJdLFsyLDAsIkQiXSxbMSwxLCJHIl0sWzAsMSwiZiJdLFsxLDIsIlxcYmV0YV8xIiwwLHsib2Zmc2V0IjotMX1dLFsxLDIsIlxcYmV0YV8yIiwyLHsib2Zmc2V0IjoxfV0sWzMsMSwiaCIsMl0sWzMsMCwiXFxzaWdtYSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+				\[\begin{tikzcd}
+					A & B & D \\
+					& G
+					\arrow["f", from=1-1, to=1-2]
+					\arrow["{\beta_1}", shift left, from=1-2, to=1-3]
+					\arrow["{\beta_2}"', shift right, from=1-2, to=1-3]
+					\arrow["h"', from=2-2, to=1-2]
+					\arrow["\sigma", dashed, from=2-2, to=1-1]
+				\end{tikzcd}\qedhere\]
+			\end{enumerate}
+		\end{proof}
+		\begin{defn}[Projective and injective objects]
+			We say an object $P$ of a category $\mathcal{C}$ is \emph{projective} if given morphisms
+			% https://q.uiver.app/#q=WzAsMyxbMSwwLCJQIl0sWzEsMSwiUiJdLFswLDEsIlEiXSxbMiwxLCJnIiwyXSxbMCwxLCJmIl1d
+			\[\begin{tikzcd}
+				& P \\
+				Q & R
+				\arrow["g"', from=2-1, to=2-2]
+				\arrow["f", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			with $g$ epic, there exists some $h\colon P \to Q$ making the diagram commute. (If $\mathcal{C}$ is locally small then this is the same as saying that $\mathcal{C}(P,-)$ preserves epimorphisms).
+			
+			If this holds this doesn't hold for all epic $g$ but for all $g$ in some class $\xi$ of epimorphisms we say $P$ is $\xi$-projective. (Dually, $P$ is \emph{injective} if it's projective in $\mathcal{C}^{\text{op}}$). 
+		\end{defn}
+		We will now consider the class of pointwise epimorphisms in $[\mathcal{C},\textbf{Set}]$, i.e., those natural transformations $\alpha\colon F \to G$ where $F,G\colon\mathcal{C} \to \textbf{Set}$ are functors and for all $A\in \ob\mathcal{C}$ we have that $\alpha_A\colon FA\to GA$ is an epimorphism in $\text{Set}$, i.e., it is surjective. It turns out that $\alpha$ as is a pointwise epimorphism if and only if it is an epimorphism in $[\mathcal{C},\textbf{Set}]$.
+		
+		One direction is immediate. Let $\alpha$ be a pointwise epimorphism as above, and suppose $\beta_1,\beta_2\colon G \to H$ are natural transformations such that $\beta_1\alpha = \beta_2 \alpha$. Then for all $A\in \ob\mathcal{C}$ we have
+		\[
+			(\beta_1)_A\alpha_A = (\beta_1\alpha)_A = (\beta_2\alpha)_A = (\beta_2)_A\alpha_A,
+		\]
+		and as $\alpha_A$ is epic we have $(\beta_1)_A = (\beta_2)_A$ and it follows that $\alpha$ is epic.
+		
+		The converse, as mentioned, is true, but we won't be able to prove it presently. In any case, we can prove some things about pointwise epimorphisms.
+		\begin{coro}
+			Let $\mathcal{C}$ be a locally small category, and let $\xi$ be the class of all pointwise epimorphisms in $[\mathcal{C},\textbf{Set}]$. Then, for all $A\in \ob\mathcal{C}$, the functor $\mathcal{C}(A,-)$ is $\xi$-projective as an object of $[\mathcal{C},\textbf{Set}]$.
+		\end{coro}
+		\begin{rem}
+			When $\xi$ is the class of all pointwise epimorphisms we call $\xi$-projective objects \emph{pointwise projective}. Then the above is saying that objects of the form $\mathcal{C}(A,-)$ are pointwise projective.
+		\end{rem}
+		\begin{proof}
+			Suppose we are given functors $F,G\colon \mathcal{C}\to \textbf{Set}$, and let $\alpha\colon F \to G$ and $\beta \colon \mathcal{C}(A,-) \to G$ be natural transformations with $\alpha$ a pointwise epimorphism. We need to show that there is some natural transformation $\gamma\colon \mathcal{C}(A,-) \to F$ making the diagram 
+			% https://q.uiver.app/#q=WzAsMyxbMSwwLCJcXG1hdGhjYWx7Q30oQSwtKSJdLFsxLDEsIkciXSxbMCwxLCJGIl0sWzIsMSwiXFxhbHBoYSIsMl0sWzAsMSwiXFxiZXRhIl0sWzAsMiwiXFxnYW1tYSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+			\[\begin{tikzcd}
+				& {\mathcal{C}(A,-)} \\
+				F & G
+				\arrow["\alpha"', from=2-1, to=2-2]
+				\arrow["\beta", from=1-2, to=2-2]
+				\arrow["\gamma"', dashed, from=1-2, to=2-1]
+			\end{tikzcd}\]
+			commute. We know that natural transformations $\mathcal{C}(A,-)\to F$ correspond to elements of $FA$ by Yoneda. We have a function $\beta_A\colon \mathcal{C}(A,A) \to GA$ which gives us $\beta_A(1_A) \in GA$. As $\alpha$ is a pointwise epimorphism there is some $x\in FA$ such that $\alpha_A(x) = \beta_A(1_A)$. Then $\gamma \coloneqq \Psi(x)$ is a natural transformation $\mathcal{C}(A,-)\to F$ and we claim it makes the diagram commute.
+			
+			Let $B \in \ob\mathcal{C}$ and $f\colon A \to B$ a morphism. We need to check that 
+			\[(\alpha\gamma)_B(f) = \beta_B(f).\]
+			
+			We evaluate:
+			\begin{align*}
+				\alpha_B\gamma_B(f) &= \alpha_B (\Psi(x))_Bf\\
+				&= \alpha_B((Ff)x)\\
+				&= (Gf)\alpha_A(x)\\
+				&= (Gf)\beta_A(1_A)\\
+				&= \beta_B f^*(1_A)\\
+				&= \beta_B (f),
+			\end{align*}
+			where we used naturality of $\alpha$ and $\beta$.
+			% https://q.uiver.app/#q=WzAsNixbMCwwLCJGQSJdLFsxLDAsIkZCIl0sWzAsMSwiR0EiXSxbMSwxLCJHQiJdLFswLDIsIlxcbWF0aGNhbHtDfShBLEEpIl0sWzEsMiwiXFxtYXRoY2Fse0N9KEEsQikiXSxbMCwxLCJGZiJdLFswLDIsIlxcYWxwaGFfQSIsMl0sWzEsMywiXFxhbHBoYV9CIl0sWzIsMywiR2YiLDJdLFs0LDUsImZeKiIsMl0sWzQsMiwiXFxiZXRhX0EiXSxbNSwzLCJcXGJldGFfQiIsMl1d
+			\[\begin{tikzcd}
+				FA & FB \\
+				GA & GB \\
+				{\mathcal{C}(A,A)} & {\mathcal{C}(A,B)}
+				\arrow["Ff", from=1-1, to=1-2]
+				\arrow["{\alpha_A}"', from=1-1, to=2-1]
+				\arrow["{\alpha_B}", from=1-2, to=2-2]
+				\arrow["Gf"', from=2-1, to=2-2]
+				\arrow["{f^*}"', from=3-1, to=3-2]
+				\arrow["{\beta_A}", from=3-1, to=2-1]
+				\arrow["{\beta_B}"', from=3-2, to=2-2]
+			\end{tikzcd}\]
+		\end{proof}
+		\begin{lem}\label{lem:coprod_proj_proj}
+			Let $\mathcal{C}$ be a category and $\xi$ a class of epimorphisms in $\mathcal{C}$. Further, let $\mathcal{P}$ be a class of $\xi$-projective objects in $\mathcal{C}$. If the coproduct of all objects of $\mathcal{P}$ exists, then it is itself $\xi$-projective.
+		\end{lem}
+		\begin{proof}
+			Let $g\colon Q \to R$ be an epimorphism in $\xi$ and $f\colon T \to R$ be a morphism where $T$ is the coproduct of all elements of $\xi$. Our task is to find a map $h \colon T \to Q$ such that $gh = f$. 
+			
+			For all $P\in \mathcal{P}$ we have morphisms $\iota_P \colon P \to T$ so $f\iota_P$ is a morphism $P \to R$ and so, as $P$ is $\xi$-projective, we get some $h_P \colon P \to Q$ satisfying $gh_P = f\iota_P$. By the universal property of coproducts there is a morphism $h\colon T \to Q$ unique in satisfying $h\iota_P = h_P$ for all $P\in\mathcal{P}$. Composing with $g$ yields 
+			\[gh\iota_P = gh_P = f\iota_P,\]
+			for all $P\in\mathcal{P}$. 
+			
+			Now define for each $P\in\mathcal{P}$ the morphism $f_P\coloneqq f\iota_P = gh\iota_P$, which is a map $P \to R$. Again, by the universal property of coproducts, there is a map $T \to R$ which is unique in that its composition with $\iota_P$ is exactly $f_P$ for all $P\in \mathcal{P}$. But by definition both $f$ and $gh$ satisfy this requirement so they must be equal by uniqueness.
+		\end{proof}
+		We note the category $[\mathcal{C},\textbf{Set}]$ has (small) coproducts. Indeed, if $\{F_i\}_{i\in I}$ is a set of functors $\mathcal{C}\to \textbf{Set}$, we define the functor
+		\[
+			F \coloneqq \coprod_{i\in I} F_i \colon \mathcal{C}\to \textbf{Set}
+		\]
+		by defining for each $A\in \ob \mathcal{C}$ 
+		\[
+			FA \coloneqq \coprod_{i\in I} F_iA.
+		\]
+		We still need to define $F$ on morphisms. Note that for each arrow $f\colon A\to B$ in $\mathcal{C}$ we have a set-function $F_if\colon F_iA \to F_iB$ and so, by the universal property of coproducts in $\textbf{Set}$, there is a unique set-function $FA \to FB$, which we take as our definition of $Ff$, so that $(Ff)(x) = (F_if)(x)$ for all $x\in F_iA$. It is immediate from this that $F$ respects identities and composition, i.e., $F$ is a functor.
+		
+		For each $i\in I$ there is a natural transformation $\iota_i \colon F_i \to F$. Indeed, for each $A\in\ob C$ we take $(\iota_i)_A \colon F_iA \to FA$ to be the inclusion on coproducts in $\textbf{Set}$. Naturality follows by definition of $Ff$.
+		
+		Now let $\alpha_i \colon F_i \to G$ be a natural transformation for all $i\in I$, where $G\colon \mathcal{C} \to \textbf{Set}$. Then for all $A\in \ob\mathcal{C}$ we obtain set-functions $(\alpha_i)_A\colon F_iA \to GA$ and so, by the universal property of coproducts in $\textbf{Set}$, there is a set-function $\alpha_A\colon FA\to GA$ unique in satisfying $\alpha_A(x) = (\alpha_i)_A(x)$ for all $i\in I$ and $x\in F_iA$. This defines a natural transformation $\alpha \colon F \to G$. Indeed, if $f\colon A \to B$ is a morphism in $\mathcal{C}$ and $x\in F^{i}A$ we have
+		\begin{align*}
+			(Gf)(\alpha_A)(x) &= (Gf)(\alpha_i)_A (x)\\
+			&= (\alpha_i)_B(F^if)(x)\\
+			&= (\alpha)_B(Ff)(x),
+		\end{align*}
+		so naturality is satisfied. Furthermore, $\alpha \iota_i = \alpha_i$ for all $i\in I$ by definition of $\alpha$. Conversely, suppose $\beta\colon F \to G$ satisfies $\beta\iota_i = \alpha_i$ for all $i\in I$. Then for all $A\in \ob\mathcal{C}$ we have $\beta_A(x) = (\alpha_i)_A(x)$ for all $x\in F^iA$ and hence $\beta_A = \alpha_A$ by uniqueness. Thus we see that $F$ has the universal property of coproducts in $[\mathcal{C}, \textbf{Set}]$. This construction comes up in the next proof.
+		\begin{prop}
+			Let $\mathcal{C}$ is a small category then $[\mathcal{C},\textbf{Set}]$ `has enough pointwise projectives', i.e., for any object $F$ of $[\mathcal{C},\textbf{Set}]$ there exists a pointwise epimorphism $P \to F$ with $P$ pointwise projective.
+		\end{prop}
+		\begin{proof}
+			Let $F\colon \mathcal{C}\to \textbf{Set}$ be a functor. Define
+			\[
+				P\coloneqq \coprod_{A\in \ob\mathcal{C}}\coprod_{x\in FA} \mathcal{C}(A,-).
+			\]
+			This is a coproduct of pointwise projective objects and hence pointwise projective by Lemma \ref{lem:coprod_proj_proj} (the coproduct exists precisely because, by assumption, $\ob\mathcal{C}$ is a set).
+			
+			For $A\in\ob\mathcal{C}$ and $x\in FA$ we have a natural transformation $\Psi_{(A,F)}(x)\colon \mathcal{C}(A,-) \to F$ by the Yoneda Lemma. By the universal property of coproducts, there is a natural transformation $\alpha\colon P \to F$ which is unique in satisfying $\alpha\iota_{(A,x)} = \Psi_{(A,F)}(x)$ for all $A\in\ob\mathcal{C}$ and $x\in FA$, where $\iota_{(A,x)}$ is the usual coprojection. We now check that $\alpha$ is a pointwise epimorphism.
+			
+			For each $A\in \ob\mathcal{C}$ we need to check that the set-function $\alpha_A \colon PA \to FA$ is surjective. Let $x\in FA$. Then
+			\[
+				(\Psi_{(A,F)}(x))_A(1_A)  = (F1_A)(x) = 1_{FA} (x) = x,
+			\] 
+			so it follows that $\alpha_A(\iota_{(A,x)})_A(1_A) = x$ and thus $\alpha_A$ is surjective.			
+		\end{proof}
+		\newpage
+		\section{Adjunctions}
+		\begin{defn}[Adjunctions]
+			Let $\mathcal{C}$ and $\mathcal{D}$ be two categories. An \emph{adjunction} between $\mathcal{C}$ and $\mathcal{D}$ is a pair of functors $F\colon \mathcal{C}\to \mathcal{D}$ and $G\colon \mathcal{D}\to \mathcal{C}$ together with bijections for each $A\in \mathcal{C}$ and $B\in \mathcal{D}$
+			\[
+				\mathcal{D}(FA,B) \cong \mathcal{C}(A,GB)
+			\]
+			which are natural in both $A$ and $B$.
+			
+			In this case we say that $F$ is \emph{left adjoint} to $G$ and $G$ is \emph{right adjoint} to $F$ and write $(F \dashv G)$.
+		\end{defn}
+		Like in the Yoneda lemma, if we assume local smallness, we can express this naturality in two variables as the existence of a natural isomorphism between bifunctors. However, unlike in the Yoneda lemma, we do not assume local smallness for the definition to make sense. We explore the case when both $\mathcal{C}$ and $\mathcal{D}$ are locally small to figure out what exactly does naturality entail.
+		
+		Recall that in this case we defined functors $\mathcal{C}(-,-)\colon \mathcal{C}^{\text{op}} \times \mathcal{C} \to \textbf{Set}$ and $\mathcal{D}(-,-)\colon \mathcal{D}^{\text{op}} \times \mathcal{D} \to \textbf{Set}$. Then there is a functor $\mathcal{C}^{\text{op}} \times \mathcal{D} \to \textbf{Set}$ given by the following commutative diagram.
+		% https://q.uiver.app/#q=WzAsNixbMSwxLCJcXG1hdGhjYWx7RH1ee1xcdGV4dHtvcH19XFx0aW1lcyBcXG1hdGhjYWx7RH0iXSxbMiwxLCJcXHRleHRiZntTZXR9Il0sWzIsMCwiXFxtYXRoY2Fse0Ree1xcdGV4dHtvcH19fSJdLFsyLDIsIlxcbWF0aGNhbHtEfSJdLFsxLDAsIlxcbWF0aGNhbHtDfV57XFx0ZXh0e29wfX0iXSxbMCwxLCJcXG1hdGhjYWx7Q31ee1xcdGV4dHtvcH19XFx0aW1lc1xcbWF0aGNhbHtEfSJdLFs1LDQsIiIsMCx7ImN1cnZlIjotMn1dLFs0LDIsIkZee1xcdGV4dHtvcH19Il0sWzUsMywiIiwyLHsiY3VydmUiOjR9XSxbMCwyXSxbMCwzXSxbNSwwLCJGXntcXHRleHR7b3B9fVxcdGltZXMgMV97XFxtYXRoY2Fse0R9fSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDEsIlxcbWF0aGNhbHtEfSgtLC0pIl1d
+		\[\begin{tikzcd}[column sep=large,row sep=2.25em]
+			& {\mathcal{C}^{\text{op}}} & {\mathcal{D^{\text{op}}}} \\
+			{\mathcal{C}^{\text{op}}\times\mathcal{D}} & {\mathcal{D}^{\text{op}}\times \mathcal{D}} & {\textbf{Set}} \\
+			&& {\mathcal{D}}
+			\arrow[curve={height=-12pt}, from=2-1, to=1-2]
+			\arrow["{F^{\text{op}}}", from=1-2, to=1-3]
+			\arrow[curve={height=24pt}, from=2-1, to=3-3]
+			\arrow[from=2-2, to=1-3]
+			\arrow[from=2-2, to=3-3]
+			\arrow["{F^{\text{op}}\times 1_{\mathcal{D}}}", dashed, from=2-1, to=2-2]
+			\arrow["{\mathcal{D}(-,-)}", from=2-2, to=2-3]
+		\end{tikzcd}\]
+		Here the unlabelled arrows are the usual projections and the dashed arrow is induced by the universal property of products (in ``the category of categories'' which is not a thing but one can define this map directly anyway). We denote this functor by $\mathcal{D}(F-,-)$.
+		
+		 Similarly there is another functor $\mathcal{C}^{\text{op}} \times \mathcal{D} \to \textbf{Set}$ given by the following diagram.
+		% https://q.uiver.app/#q=WzAsNixbMSwxLCJcXG1hdGhjYWx7Q31ee1xcdGV4dHtvcH19XFx0aW1lcyBcXG1hdGhjYWx7Q30iXSxbMiwxLCJcXHRleHRiZntTZXR9Il0sWzIsMiwiXFxtYXRoY2Fse0N9Il0sWzIsMCwiXFxtYXRoY2Fse0N9XntcXHRleHR7b3B9fSJdLFsxLDIsIkQiXSxbMCwxLCJcXG1hdGhjYWx7Q31ee1xcdGV4dHtvcH19XFx0aW1lc1xcbWF0aGNhbHtEfSJdLFs1LDQsIiIsMCx7ImN1cnZlIjoyfV0sWzQsMiwiRyIsMl0sWzUsMywiIiwwLHsiY3VydmUiOi00fV0sWzAsMl0sWzAsM10sWzUsMCwiIDFfe1xcbWF0aGNhbHtDfV57XFx0ZXh0e29wfX19XFx0aW1lcyBHIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMSwiXFxtYXRoY2Fse0N9KC0sLSkiXV0=
+		\[\begin{tikzcd}[column sep=large,row sep=2.25em]
+			&& {\mathcal{C}^{\text{op}}} \\
+			{\mathcal{C}^{\text{op}}\times\mathcal{D}} & {\mathcal{C}^{\text{op}}\times \mathcal{C}} & {\textbf{Set}} \\
+			& D & {\mathcal{C}}
+			\arrow[curve={height=12pt}, from=2-1, to=3-2]
+			\arrow["G"', from=3-2, to=3-3]
+			\arrow[curve={height=-24pt}, from=2-1, to=1-3]
+			\arrow[from=2-2, to=3-3]
+			\arrow[from=2-2, to=1-3]
+			\arrow["{ 1_{\mathcal{C}^{\text{op}}}\times G}", dashed, from=2-1, to=2-2]
+			\arrow["{\mathcal{C}(-,-)}", from=2-2, to=2-3]
+		\end{tikzcd}\]
+		We denote this functor by $\mathcal{C}(-,G-)$. Then $(F\dashv G)$ is just the statement that these two functors are naturally isomorphic. Let
+		\[
+			\alpha \colon \mathcal{D}(F-,-) \to \mathcal{C}(-,G-)
+		\]
+		be a transformation which is a collection of bijections. Then this gives an adjunction iff $\alpha$ is natural, which happens iff for all $f\colon A'\to A$ in $\mathcal{C}$ and $g\colon B \to B'$ in $\mathcal{D}$ the diagram
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7RH0oRkEsQikiXSxbMCwxLCJcXG1hdGhjYWx7Q30oQSxHQikiXSxbMSwwLCJcXG1hdGhjYWx7RH0oRkEnLEInKSJdLFsxLDEsIlxcbWF0aGNhbHtDfShBJyxHQicpIl0sWzAsMiwiKEZmKV97XFxhc3R9Z15cXGFzdCJdLFsxLDMsImZfXFxhc3QoR2cpXlxcYXN0Il0sWzAsMSwiXFxhbHBoYV97QSxCfSIsMl0sWzIsMywiXFxhbHBoYV97QScsQid9Il1d
+		\[\begin{tikzcd}[column sep=large,row sep=2.25em]
+			{\mathcal{D}(FA,B)} & {\mathcal{D}(FA',B')} \\
+			{\mathcal{C}(A,GB)} & {\mathcal{C}(A',GB')}
+			\arrow["{(Ff)_{\ast}g^\ast}", from=1-1, to=1-2]
+			\arrow["{f_\ast(Gg)^\ast}", from=2-1, to=2-2]
+			\arrow["{\alpha_{A,B}}"', from=1-1, to=2-1]
+			\arrow["{\alpha_{A',B'}}", from=1-2, to=2-2]
+		\end{tikzcd}\]
+		commutes. And \emph{this} condition can be stated without local smallness (the bijections may be class functions but who cares), hence is equivalent to our definition of adjunction. By Lemma \ref{lem:nat_coord} we can perform this check in two stages by verifying naturality in each coordinate separately; this is sometimes easier, or at least less overwhelming.
+		
+		Given a functor $G \colon \mathcal{D} \to \mathcal{C}$ and $A\in \ob\mathcal{C}$ let $(A\,\,{\downarrow}\,\, G)$ be the category whose objects are pairs $(B,f)$ with $B\in \ob \mathcal{D}$ and $f\colon A \to GB$ in $\mathcal{C}$, and whose morphisms $(B,f) \to (B',f')$ are morphisms $g\colon B \to B'$ such that the diagram
+		% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiR0IiXSxbMSwxLCJHQiciXSxbMCwyLCJmJyIsMl0sWzAsMSwiZiJdLFsxLDIsIkdnIl1d
+		\[\begin{tikzcd}[column sep=large,row sep=2.25em]
+			A & GB \\
+			& {GB'}
+			\arrow["{f'}"', from=1-1, to=2-2]
+			\arrow["f", from=1-1, to=1-2]
+			\arrow["Gg", from=1-2, to=2-2]
+		\end{tikzcd}\]
+		commutes. 
+		\begin{thm}\label{thm:ladj_init}
+			Let $G \colon \mathcal{D}\to\mathcal{C}$ be a functor. Then there is a bijective correspondence between left adjoints of $G$ and families $(I_{A})_{A\in\ob\mathcal{C}}$, where $I_A$ is an initial object of $(A\,\,{\downarrow}\,\, G)$ for each $A\in\ob\mathcal{C}$.
+		\end{thm}
+		\begin{proof}
+			Let $F$ be a left-adjoint of $G$ and $\alpha_{X,Y} \colon \mathcal{D}(FX,Y) \to \mathcal{C}(X,GY)$ be the corresponding bijections for all $X\in\ob\mathcal{C}$ and $Y\in\ob\mathcal{D}$. Fix some $A\in\ob\mathcal{A}$. Then $\alpha_{A,FA}(1_{FA})$ is a map $A \to GFA$ in $\mathcal{C}$. Define $I_{A} \coloneqq (FA, \alpha_{A,FA}(1_{FA}))$; we claim that $I_{A}$ is initial in $(A\,\,{\downarrow}\,\, G)$ for all $A\in\ob\mathcal{C}$.
+			
+			Let $B\in\ob\mathcal{D}$ and $f\colon A \to GB$ be a morphism so that $(B,f)$ is an object of $(A\,\,{\downarrow}\,\, G)$. Suppose $g\colon FA \to B$ is such that the following diagram commutes.
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiR0ZBIl0sWzEsMSwiR0IiXSxbMCwyLCJmIiwyXSxbMCwxLCJcXGFscGhhX3tBLEZBfSgxX3tGQX0pIl0sWzEsMiwiR1xcYWxwaGFeey0xfV97QSxCfShmKSJdXQ==
+			\[\begin{tikzcd}[sep=huge]
+				A & GFA \\
+				& GB
+				\arrow["f"', from=1-1, to=2-2]
+				\arrow["{\alpha_{A,FA}(1_{FA})}", from=1-1, to=1-2]
+				\arrow["{Gg}", from=1-2, to=2-2]
+			\end{tikzcd}.\]
+			By naturality of $\alpha$ we have the following commutative diagram (this is naturality in the second variable).
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7RH0oRkEsRkEpIl0sWzEsMCwiXFxtYXRoY2Fse0R9KEZBLEIpIl0sWzAsMSwiXFxtYXRoY2Fse0N9KEZBLEdCKSJdLFsxLDEsIlxcbWF0aGNhbHtDfShBLEdCKSJdLFswLDIsIlxcYWxwaGFfe0EsRkF9IiwyXSxbMSwzLCJcXGFscGhhX3tBLEJ9Il0sWzAsMSwiZ14qIl0sWzIsMywiKEdnKV4qIiwyXV0=
+			\[\begin{tikzcd}[sep=large]
+				{\mathcal{D}(FA,FA)} & {\mathcal{D}(FA,B)} \\
+				{\mathcal{C}(FA,GB)} & {\mathcal{C}(A,GB)}
+				\arrow["{\alpha_{A,FA}}"', from=1-1, to=2-1]
+				\arrow["{\alpha_{A,B}}", from=1-2, to=2-2]
+				\arrow["{g^*}", from=1-1, to=1-2]
+				\arrow["{(Gg)^*}"', from=2-1, to=2-2]
+			\end{tikzcd}.\]
+			Applying this to $1_{FA}$ we get that 
+			\[
+				\alpha_{A,B}(g1_{FA}) = (Gg)\alpha_{A,FA}(1_{FA}).
+			\]
+			This implies, by the other commutative diagram, that $\alpha_{A,B}(g) = f$, i.e. $g = \alpha_{A,B}^{-1}(f)$. So, $g$ is uniquely determined, and reversing the argument shows that this value of $g$ does indeed work. Hence $I_{A}$ is indeed initial.
+			
+			Conversely, suppose $(FA,\eta_A)$ is initial in $(A\,\,{\downarrow}\,\, G)$. We make $F$ into a functor so that given some $f\colon A \to A'$, we declare $Ff$ to be the unique functor making the diagram
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiR0ZBIl0sWzAsMSwiQSciXSxbMSwxLCJHRkEnIl0sWzAsMiwiZiIsMl0sWzAsMSwiXFxldGFfQSJdLFsyLDMsIlxcZXRhX3tBJ30iLDJdLFsxLDMsIkdGZiJdXQ==
+			\[\begin{tikzcd}[sep=large]
+				A & GFA \\
+				{A'} & {GFA'}
+				\arrow["f"', from=1-1, to=2-1]
+				\arrow["{\eta_A}", from=1-1, to=1-2]
+				\arrow["{\eta_{A'}}"', from=2-1, to=2-2]
+				\arrow["GFf", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			commute (this is possible since $(A,\eta_A)$ is initial). Note that the diagram 
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiR0ZBIl0sWzAsMSwiQSJdLFsxLDEsIkdGQSciXSxbMCwyLCIxX0EiLDJdLFswLDEsIlxcZXRhX0EiXSxbMiwzLCJcXGV0YV97QSd9IiwyXSxbMSwzLCJHKDFfe0ZBfSkgPSAxX3tHRkF9Il1d
+			\[\begin{tikzcd}[sep=large]
+				A & GFA \\
+				A & {GFA}
+				\arrow["{1_A}"', from=1-1, to=2-1]
+				\arrow["{\eta_A}", from=1-1, to=1-2]
+				\arrow["{\eta_{A}}"', from=2-1, to=2-2]
+				\arrow["{G(1_{FA}) = 1_{GFA}}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			commutes, so by uniqueness $F(1_{A}) = 1_{FA}$. Similarly, commutativity of the diagram
+			% https://q.uiver.app/#q=WzAsNixbMCwwLCJBIl0sWzEsMCwiR0ZBIl0sWzAsMSwiQSciXSxbMSwxLCJHRkEnIl0sWzAsMiwiQScnIl0sWzEsMiwiR0ZBJyJdLFswLDIsImYiLDJdLFswLDEsIlxcZXRhX0EiXSxbMiwzLCJcXGV0YV97QSd9IiwyXSxbMSwzLCJHRmYiLDJdLFsyLDQsImciLDJdLFs0LDUsIlxcZXRhX3tBJyd9IiwyXSxbMyw1LCJHRmciLDJdLFsxLDUsIkdGKGdmKSIsMCx7ImN1cnZlIjotNX1dXQ==
+			\[\begin{tikzcd}[sep=large]
+				A & GFA \\
+				{A'} & {GFA'} \\
+				{A''} & {GFA'}
+				\arrow["f"', from=1-1, to=2-1]
+				\arrow["{\eta_A}", from=1-1, to=1-2]
+				\arrow["{\eta_{A'}}"', from=2-1, to=2-2]
+				\arrow["GFf"', from=1-2, to=2-2]
+				\arrow["g"', from=2-1, to=3-1]
+				\arrow["{\eta_{A''}}"', from=3-1, to=3-2]
+				\arrow["GFg"', from=2-2, to=3-2]
+				\arrow["{GF(gf)}", curve={height=-30pt}, from=1-2, to=3-2]
+			\end{tikzcd}\]
+			together with uniqueness proves that $F$ respects composition and hence is a functor.
+			
+			For $A\in\ob\mathcal{C}$ and $B\in\ob\mathcal{D}$ define $\alpha_{A,B}\colon \mathcal{D}(FA,B) \to \mathcal{C}(A,GB)$ so that for each $f\colon FA \to B$ we have $\alpha_{A,B}(f)$ to be the composite
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiR0ZBIl0sWzIsMCwiR0IiXSxbMCwxLCJcXGV0YV9YIl0sWzEsMiwiR2YiXV0=
+			\[\begin{tikzcd}
+				A & GFA & GB
+				\arrow["{\eta_A}", from=1-1, to=1-2]
+				\arrow["Gf", from=1-2, to=1-3]
+			\end{tikzcd}\]
+			Then $\alpha_{A,B}$ is a bijection. Indeed, given some $g\colon A \to GB$ we apply the initial property of $(FA,\eta_A)$ to find a unique $f\colon FA \to B$ such that $g = (Gf)\eta_A = \alpha_{A,B}(f)$. Now we check naturality of $\alpha$. Let $f\colon A' \to A$ be a morphism in $\mathcal{C}$ and let $g\colon B \to B'$ be a morphism in $\mathcal{D}$. Consider the diagram
+			\[\begin{tikzcd}[column sep=large,row sep=2.25em]
+				{\mathcal{D}(FA,B)} & {\mathcal{D}(FA',B')} \\
+				{\mathcal{C}(A,GB)} & {\mathcal{C}(A',GB')}
+				\arrow["{(Ff)_{\ast}g^\ast}", from=1-1, to=1-2]
+				\arrow["{f_\ast(Gg)^\ast}", from=2-1, to=2-2]
+				\arrow["{\alpha_{A,B}}"', from=1-1, to=2-1]
+				\arrow["{\alpha_{A',B'}}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			Let $\varphi\colon FA \to B$ be a morphism. Following the diagram both ways we get
+			% https://q.uiver.app/#q=WzAsOSxbMSwwLCJcXHZhcnBoaSJdLFswLDEsIihBIl0sWzEsMSwiR0ZBIl0sWzIsMSwiR0IpIl0sWzMsMSwiKEEnIl0sWzQsMSwiQSJdLFs1LDEsIkdGQSJdLFs2LDEsIkdCIl0sWzcsMSwiR0InKSJdLFsxLDIsIlxcZXRhX0EiXSxbMiwzLCJHXFx2YXJwaGkiXSxbMCwyLCIiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNSwiZiJdLFs1LDYsIlxcZXRhX0EiXSxbNiw3LCJHXFx2YXJwaGkiXSxbNyw4LCJHZyJdLFszLDQsIiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+			\[\begin{tikzcd}[column sep=scriptsize]
+				& \varphi \\
+				{(A} & GFA & {GB)} & {(A'} & A & GFA & GB & {GB')}
+				\arrow["{\eta_A}", from=2-1, to=2-2]
+				\arrow["G\varphi", from=2-2, to=2-3]
+				\arrow[shorten <=2pt, shorten >=2pt, maps to, from=1-2, to=2-2]
+				\arrow["f", from=2-4, to=2-5]
+				\arrow["{\eta_A}", from=2-5, to=2-6]
+				\arrow["G\varphi", from=2-6, to=2-7]
+				\arrow["Gg", from=2-7, to=2-8]
+				\arrow[shorten <=3pt, shorten >=3pt, maps to, from=2-3, to=2-4]
+			\end{tikzcd}\]
+			and the following.
+			% https://q.uiver.app/#q=WzAsMTEsWzAsMCwiXFx2YXJwaGkiXSxbMSwwLCIoRkEnIl0sWzIsMCwiRkEiXSxbNCwwLCJCIl0sWzUsMCwiQicpIl0sWzEsMSwiKEEnIl0sWzIsMSwiR0ZBJyJdLFszLDEsIkdGQSJdLFs0LDEsIkdCIl0sWzUsMSwiR0InKSJdLFszLDBdLFsxLDIsIkZmIl0sWzIsMywiXFx2YXJwaGkiXSxbMyw0LCJnIl0sWzUsNiwiXFxldGFfe0EnfSIsMl0sWzYsNywiR0ZmIiwyXSxbNyw4LCJHXFx2YXJwaGkiLDJdLFs4LDksIkdnIiwyXSxbMTAsNywiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFswLDEsIiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+			\[\begin{tikzcd}[column sep=scriptsize]
+				\varphi & {(FA'} & FA & {} & B & {B')} \\
+				& {(A'} & {GFA'} & GFA & GB & {GB')}
+				\arrow["Ff", from=1-2, to=1-3]
+				\arrow["\varphi", from=1-3, to=1-5]
+				\arrow["g", from=1-5, to=1-6]
+				\arrow["{\eta_{A'}}"', from=2-2, to=2-3]
+				\arrow["GFf"', from=2-3, to=2-4]
+				\arrow["G\varphi"', from=2-4, to=2-5]
+				\arrow["Gg"', from=2-5, to=2-6]
+				\arrow[shorten <=2pt, shorten >=2pt, maps to, from=1-4, to=2-4]
+				\arrow[shorten <=3pt, shorten >=3pt, from=1-1, to=1-2]
+			\end{tikzcd}\]
+			These two results coincide by definition of $Ff$.
+		\end{proof}
+		\begin{rem}\label{rem:unit_nat}
+			Using the notation of the previous proof, let $\eta_A \coloneqq \alpha_{A,FA}(1_{FA})$. We mention that the collection of morphisms $\eta_A\colon A \to GFA$ actually defines a natural transformation $\eta \colon 1_{\mathcal{C}}\to GF$. Indeed, let $f\colon A \to B$ be a morphism in $\mathcal{C}$. We need to show that the following square commutes.
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQiJdLFsxLDAsIkdGQSJdLFsxLDEsIkdGQiJdLFswLDEsIlxcZXRhX0EiLDJdLFsyLDMsIlxcZXRhX0IiXSxbMCwyLCJmIl0sWzEsMywiR0ZmIiwyXV0=
+			\[\begin{tikzcd}
+				A & GFA \\
+				B & GFB
+				\arrow["{\eta_A}"', from=1-1, to=2-1]
+				\arrow["{\eta_B}", from=1-2, to=2-2]
+				\arrow["f", from=1-1, to=1-2]
+				\arrow["GFf"', from=2-1, to=2-2]
+			\end{tikzcd}\]
+			Consider the following diagram.
+			% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXG1hdGhjYWx7RH0oRkEsRkEpIl0sWzAsMSwiXFxtYXRoY2Fse0N9KEEsR0ZBKSJdLFsxLDAsIlxcbWF0aGNhbHtEfShGQSxGQikiXSxbMiwwLCJcXG1hdGhjYWx7RH0oRkIsRkIpIl0sWzIsMSwiXFxtYXRoY2Fse0N9KEIsR0ZCKSJdLFsxLDEsIlxcbWF0aGNhbHtDfShBLEdGQikiXSxbMCwyLCIoRmYpXioiXSxbMywyLCIoRmYpXyoiLDJdLFsxLDUsIihHRmYpXioiLDJdLFs0LDUsImZfKiJdLFswLDEsIlxcYWxwaGFfe0EsRkF9IiwyXSxbMiw1LCJcXGFscGhhX3tBLEZCfSJdLFszLDQsIlxcYWxwaGFfe0IsRkJ9Il1d
+			\[\begin{tikzcd}
+				{\mathcal{D}(FA,FA)} & {\mathcal{D}(FA,FB)} & {\mathcal{D}(FB,FB)} \\
+				{\mathcal{C}(A,GFA)} & {\mathcal{C}(A,GFB)} & {\mathcal{C}(B,GFB)}
+				\arrow["{(Ff)^*}", from=1-1, to=1-2]
+				\arrow["{(Ff)_*}"', from=1-3, to=1-2]
+				\arrow["{(GFf)^*}"', from=2-1, to=2-2]
+				\arrow["{f_*}", from=2-3, to=2-2]
+				\arrow["{\alpha_{A,FA}}"', from=1-1, to=2-1]
+				\arrow["{\alpha_{A,FB}}", from=1-2, to=2-2]
+				\arrow["{\alpha_{B,FB}}", from=1-3, to=2-3]
+			\end{tikzcd}\]
+			Both subsquares are commutative by naturality of $\alpha$ (in single variables rather than both variables at the same time), so the whole diagram is commutative. Hence we can have
+			% https://q.uiver.app/#q=WzAsNixbMCwwLCIxX3tGQX0iXSxbMSwwLCJGZiJdLFsyLDAsIjFfe0ZCfSJdLFsyLDEsIlxcZXRhX0IiXSxbMSwxLCJcXGFscGhhX3tBLEZCfShGZikgPSAoR0ZmKVxcZXRhX0EgPSBcXGV0YV9CZiJdLFswLDEsIlxcZXRhX0EiXSxbMCwxLCIiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzIsMSwiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFszLDQsIiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSw0LCIiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzIsMywiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs1LDQsIiIsMix7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMCw1LCIiLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+			\[\begin{tikzcd}
+				{1_{FA}} & Ff & {1_{FB}} \\
+				{\eta_A} & {\alpha_{A,FB}(Ff) = (GFf)\eta_A = \eta_Bf} & {\eta_B}
+				\arrow[shorten <=12pt, shorten >=12pt, maps to, from=1-1, to=1-2]
+				\arrow[shorten <=12pt, shorten >=12pt, maps to, from=1-3, to=1-2]
+				\arrow[shorten <=3pt, shorten >=3pt, maps to, from=2-3, to=2-2]
+				\arrow[shorten <=2pt, shorten >=2pt, maps to, from=1-2, to=2-2]
+				\arrow[shorten <=2pt, shorten >=2pt, maps to, from=1-3, to=2-3]
+				\arrow[shorten <=3pt, shorten >=3pt, maps to, from=2-1, to=2-2]
+				\arrow[shorten <=2pt, shorten >=2pt, maps to, from=1-1, to=2-1]
+			\end{tikzcd}\]
+			which is what we wanted to show.
+		\end{rem}
+		\begin{coro}
+			If $F$ and $F'$ are both left adjoint to a functor $G\colon \mathcal{D} \to \mathcal{C}$ then $F\cong F'$ in $[\mathcal{C},\mathcal{D}]$. 
+		\end{coro}
+		\begin{proof}
+			Let $\alpha\colon \mathcal{D}(F-,-) \to \mathcal{C}(-,G-)$ and $\alpha'\colon \mathcal{D}(F'-,-) \to \mathcal{C}(-,G-)$ be a natural isomorphisms. We can apply Theorem \ref{thm:ladj_init}. This implies that there are initial objects of $(A\,\,{\downarrow}\,\, G)$ of the form $(FA,\eta_A)$ and $(F'A,\eta'_{A})$ for all $A\in\ob\mathcal{C}$, where $\eta_A \coloneqq \alpha_{A,FA}(1_{FA})$ and $\eta'_{A}\coloneqq \alpha_{A,F'A}(1_{F'A})$. Hence there are isomorphisms $\beta_A \colon FA \to F'A$ unique in making the following diagram commute.
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiR0ZBIl0sWzEsMSwiR0YnQSJdLFswLDEsIlxcZXRhX0EiXSxbMCwyLCJcXGV0YSdfe0F9IiwyXSxbMSwyLCJHXFxiZXRhX0EiXV0=
+			\[\begin{tikzcd}
+				A & GFA \\
+				& {GF'A}
+				\arrow["{\eta_A}", from=1-1, to=1-2]
+				\arrow["{\eta'_{A}}"', from=1-1, to=2-2]
+				\arrow["{G\beta_A}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			We need to show that $\beta$ is natural and then we are done.
+			
+			Let $f\colon A\to B$ be a morphism in $\mathcal{C}$. We would like to show that the following diagram commutes.
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGQSJdLFsxLDAsIkZCIl0sWzAsMSwiRidBIl0sWzEsMSwiRidCIl0sWzAsMSwiRmYiXSxbMCwyLCJcXGJldGFfQSIsMl0sWzIsMywiRidmIiwyXSxbMSwzLCJcXGJldGFfQiJdXQ==
+			\[\begin{tikzcd}
+				FA & FB \\
+				{F'A} & {F'B}
+				\arrow["Ff", from=1-1, to=1-2]
+				\arrow["{\beta_A}"', from=1-1, to=2-1]
+				\arrow["{F'f}"', from=2-1, to=2-2]
+				\arrow["{\beta_B}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			Our strategy is to prove that both ways around the square are morphisms $(FA,\eta_A) \to (F'B,\eta'_B f)$ and hence they must be equal since $(FA,\eta_A)$ is initial.
+			
+			First we show that $F'f\beta_A$ is a morphism. We need to show that the following commutes.
+			% https://q.uiver.app/#q=WzAsNSxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDIsIkdGJ0IiXSxbMiwxLCJHRidBIl0sWzIsMCwiR0ZBIl0sWzAsNCwiXFxldGFfQSJdLFswLDMsIlxcZXRhJ19BIl0sWzQsMywiR1xcYmV0YV9BIl0sWzAsMSwiZiIsMl0sWzEsMiwiXFxldGEnX0IiLDJdLFszLDIsIkdGJ2YiXV0=
+			\[\begin{tikzcd}
+				A && GFA \\
+				B && {GF'A} \\
+				&& {GF'B}
+				\arrow["{\eta_A}", from=1-1, to=1-3]
+				\arrow["{\eta'_A}", from=1-1, to=2-3]
+				\arrow["{G\beta_A}", from=1-3, to=2-3]
+				\arrow["f"', from=1-1, to=2-1]
+				\arrow["{\eta'_B}"', from=2-1, to=3-3]
+				\arrow["{GF'f}", from=2-3, to=3-3]
+			\end{tikzcd}\]
+			The top triangle is commutative by definition of $\beta_A$ and the bottom rectangle is commutative by naturality of $\eta'$. Hence $F'f\beta_A$ is a morphism. The proof that $\beta_B Ff$ is a morphism is essentially the same.
+		\end{proof}
+		\begin{lem}
+			Suppose we are given functors as in the diagram below.
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30iXSxbMSwwLCJcXG1hdGhjYWx7RH0iXSxbMiwwLCJcXG1hdGhjYWx7RX0iXSxbMCwxLCJGIiwwLHsib2Zmc2V0IjotMX1dLFsxLDIsIkgiLDAseyJvZmZzZXQiOi0xfV0sWzEsMCwiRyIsMCx7Im9mZnNldCI6LTF9XSxbMiwxLCJLIiwwLHsib2Zmc2V0IjotMX1dXQ==
+			\[\begin{tikzcd}
+				{\mathcal{C}} & {\mathcal{D}} & {\mathcal{E}}
+				\arrow["F", shift left, from=1-1, to=1-2]
+				\arrow["H", shift left, from=1-2, to=1-3]
+				\arrow["G", shift left, from=1-2, to=1-1]
+				\arrow["K", shift left, from=1-3, to=1-2]
+			\end{tikzcd}\]
+			If $(F \dashv G)$ and $(H \dashv K)$, then $(HF \dashv GK)$.
+		\end{lem}
+		\begin{proof}
+			There are natural isomorphisms\footnote{By the remarks made when adjoints were defined, these aren't really natural transformations. However, we will stop worrying about size issues from now on. The worried reader will be somewhat relieved to know that these issues can be dealt with via a more rigorous approach, look up \emph{Grothendieck Universe}.} $\alpha\colon \mathcal{D}(F-,-) \to \mathcal{C}(-,G-)$ and also $\beta\colon \mathcal{E}(H-,-) \to \mathcal{D}(-,K-)$. We will define a natural isomorphism
+			\[
+				\mathcal{E}(HF-,-)\to \mathcal{C}(-,GK-)
+			\]
+			given by
+			% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Q31ee1xcdGV4dHtvcH19XFx0aW1lc1xcbWF0aGNhbHtFfSJdLFsxLDAsIlxcbWF0aGNhbHtEXntcXHRleHR7b3B9fX1cXHRpbWVzXFxtYXRoY2Fse0V9Il0sWzIsMSwiXFx0ZXh0YmZ7U2V0fSJdLFsxLDIsIlxcbWF0aGNhbHtDfV57XFx0ZXh0e29wfX1cXHRpbWVzIFxcbWF0aGNhbHtEfSJdLFswLDIsIlxcbWF0aGNhbHtEfShGLSxLLSkiLDFdLFswLDEsIkZee1xcdGV4dHtvcH19XFx0aW1lczFfe1xcbWF0aGNhbHtFfX0iLDFdLFswLDMsIjFfe1xcbWF0aGNhbHtDfV57XFx0ZXh0e29wfX19XFx0aW1lcyBLIiwxXSxbMywyLCJcXG1hdGhjYWx7RH0oRi0sLSkiLDAseyJjdXJ2ZSI6LTJ9XSxbMSwyLCJcXG1hdGhjYWx7RX0oSC0sLSkiLDAseyJjdXJ2ZSI6LTJ9XSxbMCwyLCJcXG1hdGhjYWx7RX0oSEYtLC0pIiwwLHsiY3VydmUiOi01LCJjb2xvdXIiOlswLDAsNjBdfV0sWzMsMiwiXFxtYXRoY2Fse0N9KC0sRy0pIiwyLHsiY3VydmUiOjJ9XSxbMSwyLCJcXG1hdGhjYWx7RH0oLSxLLSkiLDIseyJjdXJ2ZSI6Mn1dLFswLDIsIlxcbWF0aGNhbHtDfSgtLEdLLSkiLDIseyJjdXJ2ZSI6NSwiY29sb3VyIjpbMCwwLDYwXX1dLFs4LDExLCJcXGJldGEiLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzcsMTAsIlxcYWxwaGEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+			\[\begin{tikzcd}[sep=huge]
+				& {\mathcal{D^{\text{op}}}\times\mathcal{E}} \\
+				{\mathcal{C}^{\text{op}}\times\mathcal{E}} && {\textbf{Set}} \\
+				& {\mathcal{C}^{\text{op}}\times \mathcal{D}}
+				\arrow["{\mathcal{D}(F-,K-)}"{description}, from=2-1, to=2-3]
+				\arrow["{F^{\text{op}}\times1_{\mathcal{E}}}"{description}, from=2-1, to=1-2]
+				\arrow["{1_{\mathcal{C}^{\text{op}}}\times K}"{description}, from=2-1, to=3-2]
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\mathcal{D}(F-,-)}", curve={height=-12pt}, from=3-2, to=2-3]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\mathcal{E}(H-,-)}", curve={height=-12pt}, from=1-2, to=2-3]
+				\arrow["{\mathcal{E}(HF-,-)}", draw={rgb,255:red,153;green,153;blue,153}, curve={height=-100pt}, from=2-1, to=2-3]
+				\arrow[""{name=2, anchor=center, inner sep=0}, "{\mathcal{C}(-,G-)}"', curve={height=12pt}, from=3-2, to=2-3]
+				\arrow[""{name=3, anchor=center, inner sep=0}, "{\mathcal{D}(-,K-)}"', curve={height=12pt}, from=1-2, to=2-3]
+				\arrow["{\mathcal{C}(-,GK-)}"', draw={rgb,255:red,153;green,153;blue,153}, curve={height=100pt}, from=2-1, to=2-3]
+				\arrow["\beta"', shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=3]
+				\arrow["\alpha", shorten <=4pt, shorten >=4pt, Rightarrow, from=0, to=2]
+			\end{tikzcd}\]
+			where the diagram is commutative except where a natural transformation appears. This defines the required natural isomorphism from top to bottom by horizontally composing with the identity when required.
+		\end{proof}
+		\begin{coro}
+			Suppose we have a commutative square of functors as follows.
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7fUMiXSxbMCwxLCJcXG1hdGhjYWx7RX0iXSxbMSwwLCJcXG1hdGhjYWx7RH0iXSxbMSwxLCJcXG1hdGhjYWx7Rn0iXSxbMCwyLCJGIl0sWzEsMywiSyIsMl0sWzAsMSwiRyIsMl0sWzIsMywiSCJdXQ==
+			\[\begin{tikzcd}
+				{\mathcal{}C} & {\mathcal{D}} \\
+				{\mathcal{E}} & {\mathcal{F}}
+				\arrow["F", from=1-1, to=1-2]
+				\arrow["K"', from=2-1, to=2-2]
+				\arrow["G"', from=1-1, to=2-1]
+				\arrow["H", from=1-2, to=2-2]
+			\end{tikzcd}\]
+			If all functors have left adjoints then the commutative square of left adjoints commutes up to natural isomorphism.
+		\end{coro}
+		\begin{proof}
+			Just apply uniqueness of left adjoints and composition of left adjoints.
+		\end{proof}
+		
 \end{document} 

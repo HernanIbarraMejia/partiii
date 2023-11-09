@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  15 OCT 2023 16:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  9 NOV 2023 17:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1240,7 +1240,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\sout' on input line 163.
 
 [2] [3] [4] [5] [6] [7] [8] [9]
-Overfull \hbox (8.56021pt too wide) in paragraph at lines 463--464
+Overfull \hbox (8.56021pt too wide) in paragraph at lines 517--518
 []\OT1/cmr/m/n/10 Given an ob-ject $\OML/cmm/m/it/10 A$ \OT1/cmr/m/n/10 of a lo
 -cally small cat-e-gory $\OMS/cmsy/m/n/10 C$ \OT1/cmr/m/n/10 we de-fine a func-
 tor $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A; \OMS/cmsy/m/n/10 ^^
@@ -1249,10 +1249,10 @@ tor $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A; \OMS/cmsy/m/n/10 ^^
 
 [10] [11]
 
-LaTeX Warning: Citation 'Leinster2014' on page 12 undefined on input line 553.
+LaTeX Warning: Citation 'Leinster2014' on page 12 undefined on input line 607.
 
 
-Overfull \hbox (0.80516pt too wide) in paragraph at lines 562--563
+Overfull \hbox (0.80516pt too wide) in paragraph at lines 616--617
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 f; g\OT1/cmr/m/n/10 ): (\OML/cmm/m/it/10 A[];
  B[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A[];
  B[]\OT1/cmr/m/n/10 )$ and $(\OML/cmm/m/it/10 h; i\OT1/cmr/m/n/10 ): (\OML/cmm/
@@ -1262,7 +1262,7 @@ m/it/10 A[]; B[]\OT1/cmr/m/n/10 )$ and $(\OML/cmm/m/it/10 j; k\OT1/cmr/m/n/10 )
  []
 
 [12]
-Overfull \hbox (5.18639pt too wide) detected at line 595
+Overfull \hbox (5.18639pt too wide) detected at line 649
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 F[]h\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 F[]g\O
 T1/cmr/m/n/10 ) = (\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (1[]\OML/cmm/m/it/10 ; h\O
 T1/cmr/m/n/10 ))(\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (1[]\OML/cmm/m/it/10 ; g\OT1
@@ -1272,13 +1272,21 @@ T1/cmr/m/n/10 (1[]\OML/cmm/m/it/10 ; hg\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 F[]
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 hg\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;
  []
 
-[13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23]
-(category_theory_notes.aux)
+[13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27]
+Overfull \hbox (17.53986pt too wide) in paragraph at lines 1320--1321
+[]\OT1/cmr/m/n/10 For $\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 2 [] C$ \OT1/cmr/m/n
+/10 and $\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 FA$ \OT1/cmr/m/
+n/10 we have a nat-u-ral trans-for-ma-tion $	[](\OML/cmm/m/it/10 x\OT1/cmr/m/n/
+10 ): \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A; \OMS/cmsy/m/n/10 ^
+^@\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 !
+ []
+
+[28] [29] [30] [31] [32] [33] [34] [35] (category_theory_notes.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `category_theory_notes.out' has not changed.
-(rerunfilecheck)             Checksum: 79EE39BABC1B4AA78C328C7988407AE2;302.
+(rerunfilecheck)             Checksum: 27AD59BEE2D190A05904BDDD318B3724;402.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                category_theory_notes
@@ -1289,40 +1297,43 @@ Package logreq Info: Writing requests to 'category_theory_notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33353 strings out of 476374
- 663808 string characters out of 5788855
- 1885340 words of memory out of 5000000
- 53159 multiletter control sequences out of 15000+600000
- 524434 words of font info for 80 fonts, out of 8000000 for 9000
+ 35236 strings out of 476374
+ 710658 string characters out of 5788855
+ 1897340 words of memory out of 5000000
+ 55006 multiletter control sequences out of 15000+600000
+ 525145 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 131i,16n,132p,869b,1134s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 131i,18n,132p,1026b,1220s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\herna\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1000.pk><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmbx12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/herna/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/herna/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/herna/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/he
-rna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/
-Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.p
-fb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmr6.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/herna/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/herna/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/herna/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Users/her
-na/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb
-><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/rsfs/rsfs10.p
-fb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/rsfs/rsfs7.
-pfb>
-Output written on category_theory_notes.pdf (24 pages, 333096 bytes).
+ype1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/herna/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/herna/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/herna/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/herna/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/User
+s/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+<C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+r12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr17.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr5.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmr6.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/herna/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/herna/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/
+herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><
+C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmt
+i7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmti8.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/symbols/msbm10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/font
+s/type1/public/rsfs/rsfs10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/rsfs/rsfs7.pfb>
+Output written on category_theory_notes.pdf (36 pages, 439848 bytes).
 PDF statistics:
- 310 PDF objects out of 1000 (max. 8388607)
- 77 named destinations out of 1000 (max. 500000)
- 29 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 412 PDF objects out of 1000 (max. 8388607)
+ 111 named destinations out of 1000 (max. 500000)
+ 37 words of extra memory for PDF output out of 10000 (max. 10000000)
 

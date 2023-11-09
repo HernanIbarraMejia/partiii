@@ -30,7 +30,7 @@
 \usepackage{tikz}
 \usetikzlibrary{calc,positioning}
 
-\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
 \usepackage{soul}
 
 \usepackage{lipsum}
@@ -96,6 +96,7 @@
 \DeclareMathOperator{\vspan}{span}
 \DeclareMathOperator{\ev}{ev}
 \DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Diag}{Diag}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 \DeclarePairedDelimiter\innprod{\langle}{\rangle}%
@@ -123,6 +124,7 @@
 \theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{rem}[thm]{Remark}
+\newtheorem*{rem*}{Remark}
 \newtheorem{eg}[thm]{Example}
 \newtheorem{egs}[thm]{Examples}
 \newtheorem{fact}[thm]{Fact}
@@ -157,7 +159,7 @@
 	
 	
 	\setcounter{chapter}{-1}
-	\chapter{Logic Background}
+	\chapter{Logic Background (INCOMPLETE)}
 	\begin{defn}[Signature]
 		A \emph{signature} $\Sigma$ is a triplet $(\Omega, \Pi, \alpha)$, where $\Omega$ and $\Pi$ are disjoint sets and $\alpha\colon \Omega \cup \Pi \to \mathbb{N}$. We call the elements of $\Omega$ \emph{function symbols}, those of $\Pi$ we call \emph{predicate symbols}, and if $s\in \Omega \cup \Pi$ we call $\alpha(s)$ the \emph{arity} of $s$.
 	\end{defn}
@@ -603,10 +605,10 @@
 			commutes;
 			\item for all relation symbols $R$ of arity $n$ we have that
 			\[
-				\bar{a}\in R^M \text{ if and only if }\eta^n(\bar{a})\in  R^N.
+				\bar{a}\in R^M \text{ iff }\eta^n(\bar{a})\in  R^N.
 			\]
 		\end{itemize}
-		An injective $\mathcal{L}$-homomorphism is an $\mathcal{L}$-\emph{embedding} and an invertible one is an $\mathcal{L}$-\emph{isomorphism}. If $M\subseteq N$ and the inclusion map is an $\mathcal{L}$-homomorphism we say that $M$ is a \emph{substructure} of $N$, and $N$ is an \emph{extension} of $M$.
+		An injective $\mathcal{L}$-homomorphism is an $\mathcal{L}$-\emph{embedding} and an invertible one is an $\mathcal{L}$-\emph{isomorphism}. If $M$ and $N$ are isomorphic we write $M \cong N$. If $M\subseteq N$ and the inclusion map is an $\mathcal{L}$-homomorphism we say that $M$ is a \emph{substructure} of $N$, and $N$ is an \emph{extension} of $M$.
 	\end{defn}
 	We are going to stop writing $\bar{m}\in M^n$ where $n$ is the length of $\bar{m}$ and just write $\bar{m}\in M$ when $n$ can be inferred or its unimportant.
 	\begin{egs}\leavevmode
@@ -624,6 +626,246 @@
 				\langle X\rangle_{M} = X \cup \{t^M(\bar{m})\mid t\text{ a term and }\bar{m}\in X\}.
 			\]
 			Indeed, the RHS is obviously closed under function symbols and no strict subset of it could possibly be. Therefore $|\langle X \rangle_{M}| \leq |X| + |\mathcal{L}|$.
+			
+			We say a structure $M$ is \emph{finitely generated} if $M = \langle X \rangle_M$ for some finite $X\subseteq M$.
 		\end{enumerate}
 	\end{egs}
+	What kind of sentence is preserved under substructures?
+	\begin{prop}\label{prop:qf_preser_substr}
+		Let $\varphi(\bar{x})$ be a quantifier-free $\mathcal{L}$-formula with $n$ variables, $M$ be an $\mathcal{L}$-structure and $\bar{a}\in M$. For every extension $N$ of $M$ we have $M \models \varphi(\bar{a})$ iff $N\models \varphi(\bar{a})$.
+	\end{prop}
+	\begin{proof}
+		First we show that if $t(\bar{x})$ is a term with $k$ free variables then $t^M(\bar{b}) = t^N(\bar{b})$ for all $\bar{b}\in M$.
+		
+		This is clearly the case if $t = x_i$ is a variable since then $t^M(\bar{b}) = b_i = t^N(\bar{b})$. Now suppose $t = f(q_1,\ldots, q_l)$ for a function symbol $f$ of arity $l$ and the $q_i$'s are terms. By the inductive hypothesis we can assume $q_i^M(\bar{b}) = q_i^N(\bar{b})$ for all $i$. Then,
+		\[
+			t^M(\bar{b}) = f^M(q_1^M(\bar{b}),\ldots, q_l^M(\bar{b})) = f^N(q_1^N(\bar{b}), \ldots, q_l^N(\bar{b}))) = t^N(\bar{b})
+		\]
+		where we have used the fact that $M$ is a substructure of $N$.
+		
+		Now onto the main result. Let $t_1$ and $t_2$ be terms with at most $n$ free variables. Then
+		\[
+			M\models (t_1(\bar{a}) = t_2(\bar{a}))
+		\] 
+		if and only if $t^{M}(\bar{a}) = t^M(\bar{a})$. But this happens iff $t^{N}(\bar{a}) = t^N(\bar{a})$, and this is equivalent to $N \models (t_1(\bar{a}) = t_2(\bar{a}))$.
+		
+		Next, let $R(t_1,\ldots,t_l)$ be an $l$-ary relation, where all the $t_i$'s have at most $n$ free variables. We have that $M\models R(t_1(\bar{a}),\ldots,t_l(\bar{a}))$ iff $(t_1^M(\bar{a}),\ldots,t_l^M(\bar{a}))\in R^M$. As $N$ is an extension (and by the result for terms) the latter happens iff $(t_1^N(\bar{a}),\ldots, t_l^N(\bar{a}))\in R^N$. And this is of course the same as $N \models R(t_1(\bar{a}),\ldots,t_l(\bar{a}))$.
+		
+		This finishes the induction for atomic formulae. Now if $\varphi$ is a formula satisfying the claim then clearly 
+		\[
+			M\models \neg \varphi(\bar{a})\,\,\, \text{ iff }\,\,\, M \nvDash \varphi(\bar{a}) \,\,\,\text{ iff }\,\,\, N \nvDash\varphi(\bar{a})\,\,\, \text{ iff }\,\,\, N \models \varphi(\bar{a}). 
+		\]
+		If the proposition is true for $\varphi$ and $\psi$ then $M \models \varphi \vee \psi$ iff $M \models \varphi$ or $M\models \psi$, which happens iff $N \models \varphi$ or $N \models \psi$, which is clearly equivalent to $N \models \varphi \vee \psi$.
+	\end{proof}
+	A \emph{universal formula} is one of the form $\forall \bar{x} \varphi(\bar{x},\bar{y})$ where $\varphi$ is quantifier free. A \emph{universal theory} is one whose axioms are universal sentences.
+	\begin{defn}
+		Structures $M$ and $N$ are \emph{elementary equivalent} if for every $\mathcal{L}$-sentence $\varphi$ we have $M\models \varphi$ iff $N\models \varphi$. 
+		
+		A homomorphism $f\colon M \to N$ is an \emph{elementary embedding} if it is injective and for all $\mathcal{L}$-formulae $\varphi(x_1,\ldots,x_n)$ and elements $m_1,\ldots,m_n\in M$ we have 
+		\[
+			M \models \varphi(m_1,\ldots,m_n) \,\,\,\text{ iff }\,\,\, N \models \varphi(f(m_1),\ldots, f(m_n)).
+		\] 
+		
+		We denote `$M$ and $N$ are elementary equivalent' by $M \equiv N$.
+	\end{defn}
+	\begin{rem*}
+		If $M$ and $N$ are $\mathcal{L}$-structures and we have some tuples of the same size $\bar{m}\in M$ and $\bar{n}\in N$ then by $(M,\bar{m}) \equiv (N,\bar{n})$ we mean that the expanded structures are elementary equivalent as $\mathcal{L}_{\bar{c}}$-structures, where $\bar{c}$ has the same size as $\bar{m}$ and $\bar{n}$.
+	\end{rem*}
+	\begin{prop}\label{prop:iso_imp_el_equiv}
+		If $M\cong N$ then $M \equiv N$.
+	\end{prop}
+	\begin{proof}
+		Let $F\colon M \to N$ be an isomorphism. By symmetry, we only need to show that all formulaes modelled by $M$ are also modelled by $N$.
+		
+		
+		First we would like to show that if $t$ is a term then for all $\bar{m} \in M$ we have $t^M(\bar{m}) = t^N(F(\bar{m}))$.
+		
+		We use induction over the structure of formulae.
+		
+		If $t_1(\bar{x})$ and $t_2(\bar{x})$ are terms with the same free variables, then $M \models (t_1(\bar{x}) = t_2(\bar{x}))$ iff for all $\bar{m}\in M$ we have $t_1^M(\bar{m}) = t_2^M(\bar{m})$. But then for $\bar{n}\in N$ we have that
+		\begin{align*}
+			t_1^N(\bar{n}) &= t_1^N(FF^{-1}\bar{n})\\
+			&= F(t_1^M(F^{-1}(\bar{n})))\\
+			&= F(t_2^M(F^{-1}(\bar{n})))\\
+			&= t_2^N(FF^{-1}\bar{n})\\
+			&= t_2^N(\bar{n}).
+		\end{align*}
+		Now suppose that $R(x_1,\ldots,x_l)$ is a relation so that $M \models R(x_1,\ldots,x_l)$. Then $\bar{m}\in R^M$ for all $\bar{m}\in M$. But then if $\bar{n}\in N$ we have that $\bar{n}\in R^N$ iff $F^{-1}(n)\in R^M$ which is clearly true.
+		
+		Let $\varphi$ be a formulae for which this holds. Then $M\models \neg\varphi$ iff $M \nvDash \varphi$ iff $N \nvDash \varphi$ iff $N \models \neg\varphi$. Similarly for disjunction.
+		
+		Now suppose $M \models (\forall x) \varphi(x,\bar{y})$. That means that for all $\bar{m},m'\in M$ we have that  $\varphi^M(m',\bar{m})$ is true which means that $M\models \varphi(x,\bar{y})$. Apply inductive hypothesis and we are done.
+		\end{proof}
+		Recall that a theory $\mathcal{T}$ is \emph{complete} if $T\models \varphi$ or $T \models \neg \varphi$ for every sentence $\varphi$. Any two models of the same complete theory are elementary equivalent: indeed the formulae satisfied by them are completely determined by the theory. However, the models can have different cardinalities (and hence be non-isomorphic), see Examples \ref{egs:vaught_test}.
+		
+		\begin{defn}
+			A substructure $M\subseteq N$ is an \emph{elementary substructure} if the inclusion map $M \hookrightarrow N$ is an elementary embedding.
+		\end{defn}
+		\begin{defn}
+			A theory $\mathcal{T}$ is \emph{model-complete} if every embedding between models of $\mathcal{T}$ is elementary.
+		\end{defn}
+		\begin{defn}
+			Let $\kappa$ be an infinite cardinal. We say that a theory $\mathcal{T}$ is $\kappa$-categorical if all models of $\mathcal{T}$ of cardinality $\kappa$ are isomorphic.
+		\end{defn}
+		\begin{prop}[Vaught's Test]
+			Let $\mathcal{T}$ be a consistent $\mathcal{L}$-theory with no finite models. If $\mathcal{T}$ is $\kappa$-categorical for some infinite $\kappa\geq |\mathcal{L}|$ then $\mathcal{T}$ is a complete theory. 
+		\end{prop}
+		\begin{proof}
+			For the sake of contradiction, suppose $\mathcal{T}$ is not complete, so that there is a sentence $\varphi$ with $T \nvDash \varphi$ and $T\nvDash \neg\varphi$. It follows (by the Deduction Theorem) that $T\cup\{\varphi\}$ and $T\cup\{\neg\varphi\}$ are consistent, i.e. they have a model.
+			These two models cannot be finite since then they would be finite models of $\mathcal{T}$. Thus they are infinite.
+			
+			By the Upwards L{\"o}wenheim-Skolem Theorem (together with the Downwards version if necessary) we get models of $T\cup\{\varphi\}$ and $T\cup\{\neg\varphi\}$ of cardinality $\kappa$. In particular, these are models of $\mathcal{T}$ so, as $\mathcal{T}$ is $\kappa$-categorical, they must be isomorphic. But they disagree on the valuation of $\varphi$, contradicting Proposition \ref{prop:iso_imp_el_equiv}.
+ 		\end{proof}
+ 		\begin{egs}\label{egs:vaught_test}\leavevmode
+ 			\begin{enumerate}
+ 				\item Any two countable dense linear orders without endpoints are isomorphic to $\mathbb{Q}$. So the theory is $\aleph_0$-categorical and hence complete.
+ 				\item For every field $F$ the theory of infinite $F$-vector spaces is $\kappa$-categorical for some $\kappa > |F|$ ({\color{red} Exercise}), hence complete.
+ 			\end{enumerate}
+ 		\end{egs}
+ 		\begin{prop}[Tarski-Vaught test]
+ 			Let $N$ be an $\mathcal{L}$-structure and $M\subseteq N$. Then $M$ is the domain of an elementary substructure of $N$ if and only if the following condition is satisfied.
+ 			\begin{itemize}
+ 				\item Let $\varphi(x,\bar{t})$ be a formula and $\bar{m}\in M$. If there is some $n\in N$ such that $N\models \varphi(n,\bar{m})$, then there is $\hat{m}\in M$ such that $N \models \varphi(\hat{m},\bar{m})$.
+ 			\end{itemize}
+ 		\end{prop}
+ 		\begin{proof}
+ 			Suppose $M$ is an elementary substructure of $N$. Let $\varphi(x,\bar{t})$ be a formula and $\bar{m}\in M$. Furthermore, assume that there is some $n\in N$ so that $N\models \varphi(n,\bar{m})$. It follows that $N\models (\exists x)\varphi(x,\bar{m})$. Thus, as $M$ is an elementary substructure, we have $M \models (\exists x)\varphi(x,\bar{m})$. Hence, there is some $\hat{m}\in M$ such that $M \models \varphi(\hat{m},\bar{m})$. But then clearly $N \models \varphi(\hat{m},\bar{m})$.
+ 			
+ 			Conversely, assume that the property holds. Consider the formulae $\varphi_f(x,\bar{t}) \coloneqq (x = f(\bar{t}))$ for each function symbol $f$ in $\mathcal{L}$.
+ 			
+ 			For any $\bar{m}\in M$ there is $n\in N$ such that $N\models (n = f(\bar{m}))$ (say $n\coloneqq f^N(\bar{m})$). By hypothesis there is $\hat{m}$ such that $N \models (\hat{m} = f(\bar{m}))$. It follows that $M$ is closed under function symbols. Interpreting relation symbols as $R^M \coloneqq R^N \cap M$ we turn $M$ into an $\mathcal{L}$-structure that is clearly a substructure of $N$. 			
+ 			
+ 			We need to show that $N$ and $M$ satisfy the same formulae when the parameters are in $M$. Let $\varphi(\bar{x})$ be a formula and $\bar{m}\in M$. Note that if $N \models \varphi(\bar{m})$ iff $M \models \varphi(\bar{m})$ whenever $\varphi$ is quantifier free by Proposition \ref{prop:qf_preser_substr}. So, by induction, we only need to check that the case when $\varphi$ is an existential formula, say $\varphi(\bar{x}) = (\exists t)\psi(t, \bar{x})$.
+ 			
+ 			If $M \models (\exists t)\psi(t, \bar{m})$ then clearly $N \models (\exists t)\psi(t, \bar{x})$ since a witness in $M$ is also a witness in $M$. Conversely, if $N \models (\exists t)\psi(t, \bar{m})$ then there is some $n\in N$ so that $N\models \psi(n,\bar{m})$. By the condition, there is some $\hat{m}$ such that $N \models \psi(\hat{m},\bar{m})$. Using the inductive hypothesis, we get that $M \models \psi(\hat{m},\bar{m})$ and thus $M \models \varphi(\bar{m})$ as desired. Hence $M$ is an elementary substructure of $N$.
+ 		\end{proof}
+ 		\begin{defn}
+ 			Let $N$ be an $\mathcal{L}$-structure. We define the \emph{diagram} of $N$ as 
+ 			\[
+ 				\Diag(N) \coloneqq \{\varphi(n_1,\ldots,n_k) \mid \varphi \text{ is a q.f. $\mathcal{L}_{N}$-formula and }N \models \varphi(n_1,\ldots,n_k)\}.
+ 			\]
+ 			The \emph{elementary diagram} of $N$ is defined as 
+ 			\[
+ 				\Diag_{\text{el}}(N) \coloneqq \{\varphi(n_1,\ldots,n_k) \mid \varphi \text{ is an $\mathcal{L}_{N}$-formula and }N \models \varphi(n_1,\ldots,n_k)\}
+ 			\]
+ 		\end{defn}
+ 		Basically, diagrams are all (q.f.) formulas the structure believes in. For the difference between diagrams of structures and the theory of a structure (the latter we'll discuss later) see \href{https://math.stackexchange.com/a/3644376}{this link}.
+ 		
+ 		The most important thing about diagrams is their models. Indeed, let $M$ be a model of $\Diag(N)$. In particular, $M$ is an $\mathcal{L}$-structure with a constant $m_n\in M$ for each element $n\in N$. Hence we have a function $\eta \colon N \to M$ given by $\eta(n) \coloneqq m_n$. But $N\models \neg(n = n')$ for any distinct $n,n'\in N$. Thus, $M\models \neg(m_n = m_{n'})$ for distinct $n,n'\in N$, i.e. $\eta$ is injective. 
+ 		
+ 		Let $f$ be a function symbol. Then (bare with me on this) for all $\bar{n}\in N$ we have $N \models (f(\bar{n}) = f^{N}(\bar{n}))$ where the LHS is the function symbol $f$ applied to the constants $\bar{n}$ and the RHS is just the constant $f^{N}(\bar{n})$. Hence, $M\models (f(\eta(\bar{n})) = \eta(f^{N}(\bar{n})))$, i.e. we have
+ 		\[
+ 			f^M(\eta(\bar{n})) = \eta(f^N(\bar{n})).
+ 		\]
+ 		Also, if $R$ is a relation symbol, then for all $\bar{n}\in N$, if we have  $N \models R(\bar{n})$ then $M \models R(\eta(\bar{n}))$ then we have $N \models R(\bar{n})$. Conversely, if $N \nvDash R(\bar{n})$ then $N\models \neg R(\bar{n})$ and we apply the same argument. This all shows that $f$ is an injective homomorphism, so we can see $M$ as an extension of $N$. In summary, models of $\Diag(N)$ are just extensions of $N$.
+ 		
+ 		Similarly, models $\Diag_{\text{el}}(N)$ are elementary extensions of $N$. Indeed, if $M$ is such a model then $M$ is an extension of $N$ by the previous argument. Let $\varphi(\bar{x})$ be a formula and  let $\bar{m}\in M$. If $N \models \varphi(\bar{m})$ then $M \models \varphi(\bar{m})$ by definition of $\Diag_{\text{el}}(N)$. Conversely, if $M \models \varphi(\bar{m})$ we have that $N \models \varphi(\bar{m})$ by Proposition \ref{prop:qf_preser_substr} if $\varphi$ is quantifier free, and otherwise it is obvious for universal formulae.
+ 		
+ 		\begin{lem}\label{lem:uni_consis_diag}
+ 			Let $\mathcal{T}$ be a consistent theory and let $\mathcal{T}_{\forall}$ be the theory of all universal sentences that follow from $\mathcal{T}$. If $N$ is a model of $\mathcal{T}_{\forall}$, then $\mathcal{T}\cup \Diag(N)$ is consistent.
+ 		\end{lem}
+ 		\begin{proof}
+ 			For the sake of contradiction, suppose it is inconsistent. By Compactness, there is some finite subset of $\mathcal{T}\cup \Diag(N)$ that is inconsistent. As $\mathcal{T}$ is consistent, there must be a finite subset of $\Diag(N)$ that is inconsistent with $\mathcal{T}$.
+ 			
+ 			Take the conjunction of all of these sentences and call it $\varphi(\bar{n})$. Then $\mathcal{T}\cup\{\varphi(\bar{n})\}$ is inconsistent, i.e. $\mathcal{T}\vdash \neg \varphi(\bar{n})$. But $\mathcal{T}$ is an $\mathcal{L}$-theory, so it contains none of the constants $\bar{n}$. Hence, by generalization, $\mathcal{T} \vdash (\forall x)\neg \varphi(\bar{x})$. However $N$ is a model of $\mathcal{T}_{\forall}$ so $N \models (\forall x)\neg \varphi(\bar{x})$, and thus $N \models \neg \varphi(\bar{n})$, a contradiction.
+ 		\end{proof}
+ 		We say a theory $\mathcal{T}$ has an \emph{universal axiomatization} if there is an universal theory that has exactly the same models as $\mathcal{T}$
+ 		\begin{thm}[Tarski, \L o\'s]
+ 			An $\mathcal{L}$-theory $\mathcal{T}$ has a universal axiomatization iff whenever $N$ is a substructure of $M$ and $M \models T$, then $N \models T$.
+ 		\end{thm}
+ 		\begin{proof}
+ 			One direction is obvious (see Proposition \ref{prop:qf_preser_substr}). For the converse, suppose $\mathcal{T}$ is preserved under taking substructures. We would like to say that $\mathcal{T}_{\forall}$ is an universal axiomatization of $\mathcal{T}$. To prove this we need to show that if $N \models T_{\forall}$ then $N \models\mathcal{T}$ (since the converse is obvious).
+ 			
+ 			By Lemma \ref{lem:uni_consis_diag}, we have that $\mathcal{T} \cup \Diag(N)$ is consistent, so let $M$ be a model for it. Then $M$ is a model of $\Diag(N)$ and hence an extension of $N$. But $M$ is a model of $\mathcal{T}$ so taking substructures we conclude that $N \models \mathcal{T}$.
+ 		\end{proof}
+ 		The method of diagrams is powerful. We can show much more with the same method.
+ 		\subsubsection*{1. Finding a common elementary extension to given structures}
+ 		\begin{thm}[Elementary amalgamation]
+ 			Let $M$ and $N$ be $\mathcal{L}$-structures, $\bar{m}\in M$ and $\bar{n}\in N$ be of the same length such that $(M, \bar{m}) \equiv (N, \bar{n})$.  Then there is an $\mathcal{L}$-structure $K$ and elementary embeddings $g\colon N \hookrightarrow K$ and $h\colon M \hookrightarrow K$ such that $g(\bar{n}) = h(\bar{m})$.
+ 		\end{thm}
+ 		\begin{proof}
+ 			Form the disjoint union of $M$ and $N$ and quotient it out by the smallest equivalence relation containing $(m_i,n_i)$ for all $i$. Then the resulting set is basically copies of the two sets $M$ and $N$ that only intersect at $\bar{m} = \bar{n}$. Hence we may assume, without loss of generality that $\bar{m} = \bar{n}$ and otherwise $M$ and $N$ are disjoint.
+ 			
+ 			We would like to show that $\mathcal{T}\coloneqq \Diag(N)_{\text{el}} \cup \Diag_{\text{el}}(M)$ is consistent; of course, we do so by Compactness. Let $\Phi$ be a finite subset of $\mathcal{T}$, which of course contains only finitely many sentences of $\Diag_{\text{el}}(N)$.
+ 			
+ 			Let $\varphi(\bar{n},\bar{k})$ be the conjunction of all these sentences, where $\bar{k}$ does not contain any elements of $\bar{n}$ and its elements are pairwise disjoint. Define $\varphi(\bar{x},\bar{y})$ to be the corresponding $\mathcal{L}_N$ formula. If $\Phi$ is inconsistent then $\Diag_{\text{el}} \vdash \neg \varphi(\bar{m},\bar{k})$. Since the elements in $\bar{k}$  are distinct and not in $M$ we in fact have $\Diag_{\text{el}}(M)\vdash (\forall \bar{y}) \neg \varphi(\bar{m},\bar{y})$ by generalization.
+ 			
+ 			In particular, $(M,\bar{m})\models (\forall \bar{y}) \neg \varphi(\bar{m},\bar{y})$ and so by hypothesis  $(N,\bar{n})\models (\forall \bar{y}) \neg \varphi(\bar{m},\bar{y})$, contradicting the fact that $\varphi(\bar{m},\bar{k})\in \Diag_{\text{el}}(N)$.
+ 			
+ 			By compactness $T$ must be consistent and a model for it would be an elementary extension of both $N$ and $M$.
+ 		\end{proof}
+ 		\subsubsection*{2. Controlling the size of a model}
+ 		\begin{thm}[Löwenheim–Skolem]
+ 			Let $M$ be an infinite $\mathcal{L}$-structure and $\kappa \geq |\mathcal{L}|$ be an infinite cardinal.
+ 			\begin{enumerate}
+ 				\item[(\textdownarrow)] If $\kappa < |M|$ then $M$ admits an elementary substructure of size $\kappa$.
+ 				\item[(\textuparrow)] If $\kappa > |M|$ then $M$ admits an elementary extension of size $\kappa$.
+ 			\end{enumerate}
+ 		\end{thm}
+ 		\begin{proof}[Proof of (\textuparrow)]
+ 			Expand the language $\mathcal{L}$ by adding one constant symbol for each $m\in M$ and $c\in \kappa$. Let $\mathcal{T} \coloneqq \Diag_{\text{el}}(M)\cup \{\neg(c = c')\}_{c,c'\in \kappa, c\neq c'}$ be a theory in such a language. By compactness $\mathcal{T}$ has a model, i.e. an elementary extension of size at least $\kappa$. By (\textdownarrow), there must be one of size exactly $\kappa$.
+ 		\end{proof}
+ 		\section{Existentially closed structures and quantifier-elimination}
+ 		\begin{defn}
+ 			Let $\mathcal{T}$ be an $\mathcal{L}$-theory and $\varphi(\bar{x},y)$ be an $\mathcal{L}$-formula with $\bar{x}$ nonempty. A \emph{Skolem function} for $\varphi$ is an $\mathcal{L}$-term $t(\bar{x})$ such that
+ 			\[
+ 				\mathcal{T} \models \forall \bar{x}:((\exists y: \varphi(\bar{x}, y)) \Rightarrow \varphi(\bar{x},t(\bar{x}))).
+ 			\]
+ 			A \emph{skolemization} of an $\mathcal{L}$-theory $\mathcal{T}$ is a language $\mathcal{L}^+\supseteq \mathcal{L}$ together with an $\mathcal{L}^+$-theory $\mathcal{T}^+\supseteq \mathcal{T}$ such that :
+ 			\begin{enumerate}[label=(\arabic*)]
+ 				\item Every $\mathcal{L}$-structure that models $\mathcal{T}$ can be expanded to a model of $\mathcal{T}^+$.
+ 				\item The $\mathcal{L}^+$-theory $\mathcal{T}^+$ admits Skolem functions for every $\mathcal{L}^+$-formula $\varphi(\bar{x},y)$ with $\bar{x}\neq \emptyset$.
+ 			\end{enumerate}
+ 			Finally, a theory $\mathcal{T}$ is a \emph{Skolem theory} if it is a skolemization of itself
+ 		\end{defn}
+ 		We say two $\mathcal{L}$-formulae $\varphi$ and $\psi$ are \emph{equivalent modulo} $\mathcal{T}$, where $\mathcal{T}$ is an $\mathcal{L}$-theory, iff $T \vdash (\varphi \iff \psi)$.
+ 		\begin{prop}\label{prop:fam_eq_mod}
+ 			Let $\mathcal{T}$ be an $\mathcal{L}$-theory and $F$ be a collection of $\mathcal{L}$-formulae that includes all atomic formulae and is closed under Boolean combinations. If for every formula $\psi(\bar{x},y)$ in $F$ we have $\varphi(\bar{x})$ in $F$ such that 
+ 			\[
+ 				\mathcal{T} \vdash \forall \bar{x}: ((\exists y: \psi(\bar{x}, y))\iff \varphi(\bar{x})),
+ 			\]
+ 			then every $\mathcal{L}$-formula is equivalent modulo $\mathcal{T}$ to one in $F$ with the same free variables.
+ 		\end{prop}
+ 		\begin{proof}
+ 			By induction on the structure of formulae. Atomic formulae are in $F$ by hypothesis and $F$ is closed under Boolean combinations, so we only need to check the case for existential statements. But that's exactly the hypothesis.
+ 		\end{proof}
+ 		If $M$ is an elementary substructure of $N$ we denote this by $M \preccurlyeq N$.
+ 		\begin{prop}
+ 			Let $\mathcal{T}$ be an Skolem $\mathcal{L}$-theory. Then
+ 			\begin{enumerate}[label=(\arabic*)]
+ 				\item Every $\mathcal{L}$-formula $\varphi(\bar{x})$ with $\bar{x}\neq \emptyset$ is equivalent to some quantifier-free $\psi(\bar{x})$ modulo $\mathcal{T}$.
+ 				\item If $N \models \mathcal{T}$ and $X$ is a subset of $N$, then either $\langle X \rangle_N = \emptyset$ or $\langle X \rangle_N\preccurlyeq N$.
+ 			\end{enumerate}
+ 		\end{prop}
+ 		\begin{proof}\leavevmode
+ 			\begin{enumerate}[label=(\arabic*)]
+ 				\item This just follows from Proposition \ref{prop:fam_eq_mod} by taking $F$ to be the set of all quantifier-free formulae, and by the definition of Skolem theory.
+ 				\item Assume $X$ is nonempty (otherwise this is trivial). Let $M \coloneqq \langle X \rangle_N$; we will use the Tarski-Vaught test. Let $\varphi(x,\bar{y})$ be an $\mathcal{L}$-formula and $\bar{m}\in M$. Suppose that there is some $n\in N$ with $N \models \varphi(n,\bar{m})$. Then $N \models (\exists y)(\varphi(y,\bar{m}))$. Hence there is a Skolem function $t(\bar{x})$ such that $N \models \varphi(t(\bar{m}), \bar{m})$. As $M$ is a substructure of $N$ it is closed under interpretations  of terms, hence $t^N(\bar{m}) \in M$. We are done.\qedhere
+ 			\end{enumerate}
+ 		\end{proof}
+ 		\begin{thm}[Skolemization Theorem]
+ 			Every (first-order) language $\mathcal{L}$ can be expanded to some $\mathcal{L}^+ \supseteq \mathcal{L}$ that includes an $\mathcal{L}^+$-theory $\Sigma$ such that
+ 			\begin{enumerate}[label=(\arabic*)]
+ 				\item $\Sigma$ is a Skolem $\mathcal{L}^+$-theory.
+ 				\item Every $\mathcal{L}$-structure can be expanded to an $\mathcal{L}^+$-structure that models $\Sigma$.
+ 				\item $|\mathcal{L}| = |\mathcal{L}^+|$.
+ 			\end{enumerate}
+ 		\end{thm}
+ 		\begin{proof}
+ 			For an arbitrary language $\mathcal{L}$ and for every $\mathcal{L}$-formula of the form $\chi(\bar{x},y)$ with $\bar{x}\neq \emptyset$ we create an function symbol $F_{\chi}$ of arity $|\bar{x}|$. By adding all such function symbols to $\mathcal{L}$ we get a new language $\mathcal{L}^*$. We define $\Sigma(\mathcal{L})$ to be the $\mathcal{L}^*$-theory:
+ 			\[
+ 				\Sigma(\mathcal{L}) \coloneqq \{\forall \bar{x} ((\exists y: \chi(\bar{x}, y))\Rightarrow \chi(\bar{x}, F_{\chi}(\bar{x}))) \mid \chi(\bar{x},y) \text{ is an $\mathcal{L}$-formula and $\bar{x}\neq\emptyset$}\}.
+ 			\]
+ 			Intuitively, $\Sigma$ says that $\mathcal{L}^*$ has Skolem functions \emph{for all $\mathcal{L}$-formulae}. We would be basically done if this included $\mathcal{L}^*$ formulae too. The way to fix this is to iterate the construction.
+ 			
+ 			Let $\mathcal{L}$ be a language. Define a sequence of languages and theories as follows. Start with $\mathcal{L}_0 \coloneqq \mathcal{L}$ and $\Sigma_0 \coloneqq \emptyset$. For $n\geq 1$ define
+ 			\[
+ 				\mathcal{L}_{n} \coloneqq \mathcal{L}_{n-1}^* \,\,\,\text{ and }\,\,\,\Sigma_n \coloneqq \Sigma(\mathcal{L}_{n-1}) \cup \Sigma_{n-1}.
+ 			\]
+ 			Set $\mathcal{L}^+ \coloneqq \bigcup_{n \in \mathbb{N}} \mathcal{L}_n$ and $\Sigma \coloneqq \bigcup_{n\in \mathbb{N}} \Sigma_n$.
+ 			
+ 			It is easy to see that $\Sigma$ is an $\mathcal{L}^+$-theory. Furthermore, it is Skolem since every $\mathcal{L}^+$-formula of the required form is in some $\mathcal{L}_n$ and thus there is an Skolem function for it by $\Sigma_{n+1}$. Also $|\mathcal{L}| = |\mathcal{L}^+|$ by cardinal multiplication (countable cardinalities are absorbed).
+ 					
+ 			We now check the structure expansion property. We first check it step-by-step down the chain. Let $M$ be a nonempty $\mathcal{L}$-structure. Say we have $\chi(\bar{x},y)$ with $\bar{x}\neq\emptyset$ and a tuple $\bar{m}\in M$. If there is a $b$ such that $M \models \chi(\bar{m}, b)$, choose one and define $F_{\chi}^M(\bar{m}) \coloneqq b$. If there is no such $b$ interpret it as $m_0$ (or whatever).
+ 		\end{proof}
 \end{document}
