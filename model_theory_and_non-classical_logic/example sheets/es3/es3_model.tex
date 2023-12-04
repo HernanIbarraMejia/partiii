@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{stmaryrd}
+
+\theoremstyle{theorem}
+\newtheorem{claim}{Claim}
+
+\DeclareMathOperator{\tp}{tp}
+\DeclareMathOperator{\Diag}{Diag}
+\DeclareMathOperator{\Th}{Th}
+
+\begin{document}
+	\title{Model Theory and Non-Classical Logic\\ Example Sheet 3 Solutions}
+	\author{Hernán Ibarra Mejia}
+	\maketitle
+	\begin{enumerate}[leftmargin=*]
+		\item Let $p$ be a complete 1-type. Then for all $a\in \mathbb{Q}$ exactly one of $x<a$, $x=a$, and $x>a$ is in $p$.
+		
+		Suppose that $(x=a)\in p$ for some $a\in\mathbb{Q}$. We claim that $p = \tp^\mathbb{Q}(a/\mathbb{Q})$. By Corollary 1.4.7, there is an elementary extension $M$ of $\mathbb{Q}$ such that $p = \tp^{M}(a/\mathbb{Q})$, where we used the fact that $(x=a)\in p$. But $\tp^{M}(a/\mathbb{Q})=\tp^\mathbb{Q}(a/\mathbb{Q})$ as the extension is elementary, so the claim follows.
+		
+		Now assume that $(x=a)\notin p$ for all $a\in\mathbb{Q}$. Then the sets
+		\[
+			U\coloneqq \{a\in\mathbb{Q}\mid (x<a)\in p\} \,\,\,\text{ and }\,\,\, L\coloneqq \{b\in\mathbb{Q} \mid (b<x)\in p\}
+		\]
+		partition $\mathbb{Q}$. Note that if $a\in U$ and $b\in L$, then $b<a$. Indeed, the sets are disjoint, so the only alternative is that $a<b$. But from this it follows that in any realization of the type $p$, say by an element $c$, we must have $c<a<b<c$ and thus $c<c$. As $\mathbb{Q}\models \forall y. \neg(y<y)$ this is a contradiction. Hence the complete type $p$ gives rise to a partition $U,L$ of $\mathbb{Q}$ such that $L<U$ in the above sense.
+		
+		Conversely, suppose we had a partition 
+		\item 
+		\item First we show that, given a finite number of complete types $p_1,\ldots,p_k\in S_{n}^M(M)$ there is an elementary extension $N$ of $M$ realizing all of them. For $k=0$ this is trivial. Now suppose there is an elementarily extension $N'$ of $M$ realizing $p_1,\ldots,p_{k-1}$. Note that $S_{n}^M(M)= S_n^{M}(N')$ since the extension is elementary, so in particular $p_k\in S_n^{M}(N')$ and by Proposition 1.4.6 there is an elementary extension $N$ of $N'$ realizing $p_k$. Obviously $N$ is an elementary extension of $M$ realizing $p_1,\ldots, p_k$ so we are done by induction.
+		
+		Back to the main problem. To the language $\mathcal{L}$ we add a constant for each element of $M$ and we add $n$ constants $c_1^p,\ldots, c_n^p$ for every $p\in S_n^M(M)$. In the expanded language, consider the theory
+		\[
+			\left(\bigcup S_{n}^M(M)\right) \cup \Diag_{\text{el}}(M)  
+		\]
+		where  each $\varphi(\bar{x})\in p\in S_n^{N}$ is replaced by $\varphi(\bar{c}^p)$. Clearly if this theory is consistent then we are done. But every finite subset of this theory is satisfied by an elementary extension of $M$ that has to realize only finitely many types, so we are done by our previous result.
+		\item \leavevmode
+		\begin{enumerate}
+			\item Let $p,q$ be distinct types. Without loss of generality, we assume that there is a formula $\varphi(\bar{x})$ such that $\varphi\in p$ but $\varphi \notin q$. Then $\llbracket \varphi \rrbracket$ is a clopen set containing $p$ but not $q$. This shows that $S_n^M(A)$ is totally disconnected.
+			
+			For the second part, we need a claim.
+			\begin{claim}
+				Let $F$ be a set of $\mathcal{L}_A$ formulae with $n$ variables. Add $n$ new constants $\bar{c}$ to the language. Then the set $\mathcal{C}\coloneqq \{\,\llbracket\varphi\rrbracket \mid \varphi(\bar{x}) \in F\,\}$ covers $S_{n}^M(A)$ if and only if the theory
+				\[
+					\mathcal{T}\coloneqq \Th_A(M)\cup \{\,\neg \varphi(\bar{c}) \mid \varphi(\bar{x})\in F\,\}
+				\]
+				is inconsistent.
+			\end{claim}
+			\begin{proof}
+				Suppose $\mathcal{T}$ were consistent. Then $\neg F$ is an $n$-type, which, by the Ultrafilter Principle, can be extended to a complete $n$-type $q\in S_n^M(A)$. For all $\varphi\in F$ we must have $\neg\varphi \in q$, which means $\varphi\notin q$; thus $\mathcal{C}$ does not cover $q$.
+				
+				Conversely, suppose that there is some $q\in S_n^M(A)$ such that $\varphi\notin q$ for all $\varphi\in F$. That means that $\neg\varphi\in q$ for all $\varphi \in F$ since $q$ is complete. By definition of type, we have that $\Th_A(M)\cup q$ is consistent when we replace the variables $\bar{x}$ in $q$ by the constants $\bar{c}$. It follows that $\mathcal{T}$ is consistent.
+			\end{proof}
+			Back to the problem, let $\mathcal{C}$ be an open cover of $S_n^M(A)$. As open sets are unions of basis elements, we can assume that $\mathcal{C}$ is of the form $\{\,\llbracket\varphi\rrbracket \mid \varphi(\bar{x}) \in F\,\}$ for some set of $\mathcal{L}_A$-formulae $F$.
+			
+			Now we know that $\mathcal{T}$ is inconsistent, where $\mathcal{T}$ is as in Claim 1. By the Compactness Theorem (for first-order logic) there is a finite subset $\mathcal{T}'$ of $\mathcal{T}$ that is inconsistent. Hence there is a finite subset $F'$ of $F$ such that $\Th_A(M)\cup \{\neg\varphi(\bar{c}) \mid \varphi(\bar{x})\in F'\}$ is inconsistent. Again by Claim 1, the set $\mathcal{C}'\coloneqq \{\,\llbracket\varphi\rrbracket \mid \varphi(\bar{x}) \in F'\,\}$, which is a finite subset of $\mathcal{C}$, covers $S_n^M(A)$.
+			\item \textcolor{red}{I think that he meant to define $f^*(p)\coloneqq \{\phi(\bar{x},f(\bar{a}))\mid \phi(\bar{x},\bar{a})\in p\}$, and that we need to show that $f^*(p)\in S_n^N(f(A))$.}
+			
+			To show that $f^*(p)\in S_n^N(f(A))$ first we need to show that 
+			\[
+				\Th_{f(A)}(N) \cup f^*(p)
+			\]
+			is satisfiable. By assumption $p$ is an $n$-type, so there is an elementary extension $X$ of $M$ and a tuple $\bar{r}\in X$ with $\phi(\bar{r},\bar{a})$ for all $\phi(\bar{x},\bar{a})\in p$. Note that $X$ can also be interpreted as an $\mathcal{L}_{f(A)}$-structure. As $f$ is elementary it is clear that $X\models \Th_{f(A)}(N)$ and is immediate $X\models \phi(\bar{r},f(\bar{a}))$. This all shows that $f^*(p)$ is an $n$-type; and it is complete since $p$ is complete.
+			
+			Now we show that $f^*$ is continuous. By general topology, it suffices to show that for each basis element $\llbracket \varphi\rrbracket\subseteq S_n^{N}(f(A))$ the set $(f^*)^{-1}(\llbracket \varphi\rrbracket)$ is open in $S_n^M(A)$.
+			
+			So, let $\varphi(\bar{x},f(\bar{a}))$ be an $\mathcal{L}_{f(A)}$-formula. Then
+			\begin{align*}
+				(f^*)^{-1}(\llbracket \varphi\rrbracket) &= \{p\in S_n^M \mid f^*(p)\in \llbracket \varphi\rrbracket\}\\
+				&= \{p\in S_n^M \mid \varphi\in f^*(p)\}\\
+				&= \{p\in S_n^M \mid \varphi(\bar{x},f(\bar{a}))= \psi(\bar{x}, f(\bar{a})) \text{ for some }\psi(\bar{x},\bar{a})\in p\}.
+			\end{align*}
+			But notice that, as $f$ is injective, $\varphi(\bar{x},f(\bar{a}))= \psi(\bar{x}, f(\bar{a}))$ implies that $\psi = \phi$. Thus,
+			\[
+				(f^*)^{-1}(\llbracket \varphi\rrbracket) = \{p\in S_n^M \mid \varphi(\bar{x},\bar{a})\in p\} = \llbracket \varphi(\bar{x},\bar{a})\rrbracket
+			\] 
+			which is open in $S_n^M(A)$.
+		\end{enumerate}
+		
+	\end{enumerate}
+\end{document}
+

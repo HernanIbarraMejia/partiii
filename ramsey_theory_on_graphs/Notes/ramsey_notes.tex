@@ -530,4 +530,413 @@
 			\mathbb{P}(|S_n - pn| \geq t) \leq 2\exp\left(\frac{-t^2}{2pn} + \frac{t^3}{(pn)^2}\right)
 		\]
 	\end{thm}
+	We take this for granted. Then we can prove Lemma \ref{lem:high_prob_edges}.
+	\begin{proof}[Proof of Lemma \ref{lem:high_prob_edges}]
+		Consider the probability $P$ that there is some subset of size $k$ of $G \sim G(n,p)$ that contains strictly less than $\frac{pk^2}{8}$ edges. As this is an existential statement we can apply the union bound, so
+		\[
+			P \leq \binom{n}{k}\mathbb{P}\left(e(G[k]) < \frac{pk^2}{8} \right),
+		\]
+		where $e(G[k])$ denotes the number of edges in the subgraph of $G$ induced by $[k]$. Let $P' \coloneqq \mathbb{P}\left(e(G[k]) < \frac{pk^2}{8} \right)$ so that $P \leq \binom{n}{k}P'$. Note that $e(G[k])$ is a sum of $\binom{k}{2}$ i.i.d. Bernoulli random variables with parameter $p$. So 
+		\[
+			\mathbb{E}(e(G[k])) = p\binom{k}{2}
+		\]
+		{\color{red}What follows? The proof given in lectures doesn't seem to work.}
+	\end{proof}
+	\section{The Local Lemma}
+	\begin{defn}
+		Let $\mathcal{F} = \{A_1,\ldots, A_n\}$ be a family of events in a probability space. A \emph{dependency graph} $\Gamma$  for $\mathcal{F}$ is a graph with a vertex for each even of $\mathcal{F}$ such that for all $i\in[n]$ the event $A_i$ is independent of all events it's not adjacent to.
+	\end{defn}
+	\begin{rem}
+		A dependency graph is not necessarily unique. For example, the complete graph is always a dependency graph.
+	\end{rem}
+	\begin{thm}[The Local Lemma, Symmetric version]
+		Let $\mathcal{F} = \{A_1,\ldots, A_n\}$ be a family of events in a probability space. Suppose $\Gamma$ is a dependency graph for $\mathcal{F}$ with maximum degree $\Delta$.
+		
+		If
+		\[
+			\mathbb{P}(A_i) \leq \frac{1}{e(\Delta + 1)},
+		\]
+		then
+		\[
+			\mathbb{P}\left(\bigcap_{i=1}^n A_i^c\right) > 0
+		\]
+	\end{thm}
+	By taking complements in the conclusion, we see that this is much better than the union bound, if the hypotheses are satisfied of course. Intuitively, we think of $\mathcal{F}$ as a family of ``bad'' events: the Local Lemma says that there is some (maybe small but positive) chance that no bad event happens. This is useful in situations where the probabilistic method is hard to apply. Indeed, the probabilistic method is good ``for finding the hay in the haystack'', i.e. if some event is likely to happen then we are good. The Local Lemma is good for finding the needle in the haystack, as we will see shortly.
+	\begin{thm}[Spencer]
+		For all $k$ we have
+		\[
+			R(k) \geq (1-o(1))\frac{\sqrt{2}}{e}k2^{k/2}
+		\]
+	\end{thm}
+	\begin{proof}
+		Let $\varepsilon >0$ and define $n\coloneqq \floor{(1-\varepsilon) \frac{\sqrt{2}}{e} k 2^{k/2}}$. Suppose $\chi$ is a random colouring of $E(K_n)$ (like before, we assume each edge is coloured red or blue with equal probability). Define for $S\in [n]^{(k)}$ the event
+		\[
+			A_S \coloneqq \{S \text{ is monochromatic in }\chi\}.
+		\]
+		If we can show that there is a non-zero chance that none of the events in $A_S$ happens then we are done.  This is exactly the conclusion of the Local Lemma. If $\mathcal{F}\coloneqq \{A_S\}_{S\in[n]^{(k)}}$ then define a dependency graph on $\mathcal{F}$ by declaring that $A_S$ is adjacent to $A_T$ iff they share at least one edge. In other words
+		\[
+			A_S \sim A_T \iff 2 \leq |S\cap T| \leq  k-1.
+		\]
+		Simple counting reveals that the maximum degree of $\Gamma$ is given by
+		\[
+			\Delta\coloneqq \sum_{t = 2}^{k-1} \binom{k}{t}\binom{n-k}{k-t}.
+		\]	
+		On the other hand we clearly have 
+		\[
+			\mathbb{P}(A_S) = 2^{1 - \binom{k}{2}}
+		\]
+		for all $S\in [n]^{(k)}$. Therefore the problem is reduced to checking that
+		\[
+			2^{1 - \binom{k}{2}} \leq \frac{1}{e(\Delta + 1)}
+		\] 
+		{\color{red}TODO: Complete this check. It's nontrivial, but apparently the first term in the $\Delta$ sum dominates all other terms. We have to use the fact that $n>> k$ somehow.}
+		 
+	\end{proof}
+	How to prove the Local Lemma? It helps to consider a slight generalization, which also has applications on its own
+	\begin{thm}[Lopsided Local Lemma]
+		Let $\mathcal{F} = \{A_1,\ldots, A_n\}$ be a family of events in a probability space. Suppose $\Gamma$ is a dependency graph for $\mathcal{F}$. Let $0\leq x_1,\ldots,x_n < 1$ be real numbers satisfying
+		\[
+			\mathbb{P}(A_i) \leq x_i \prod_{j\colon A_j \sim A_i \text{ in }\Gamma}(1-x_j).
+		\]
+		Then 
+		\[
+			\mathbb{P}\left(\bigcap_{i=1}^n A_i^c\right) \geq \prod_{i = 1}^{n}(1-x_i) > 0
+		\]	
+	\end{thm}
+	Note that the restriction on $\mathbb{P}(A_i)$ gets stronger as $A_i$ is dependent on more things. If $A_i$ is independent of all other events then we can take it as an isolated vertex in $\Gamma$ and pick $x_i = \mathbb{P}(A_i)$ (assuming this is strictly less than 1). We give one other application before proving the Local Lemmmata.
+	\begin{thm}[Erd\H{o}s]
+		There is some constant $c>0$ such that for all $k$
+		\[
+			R(3,k) > c\left(\frac{k}{\log k}\right)^2
+		\]
+	\end{thm}
+	\begin{proof}
+		Let $\varepsilon > 0$ and set $n \coloneqq \floor{\varepsilon^4 \left(\frac{k}{\log k}\right)^2}$. Also, define $p \coloneqq \frac{\varepsilon}{\sqrt{n}}$. Consider $G\sim G(n,p)$. For all $T \in [n]^{(3)}$ define the event
+		\[
+			A_T \coloneqq \{T \text{ is contained in }G\}.
+		\]
+		Similarly, for all $I\in [n]^{(k)}$ define
+		\[
+			B_I \coloneqq \{I \text{ is independent in }G\}.
+		\]
+		We would like to apply the Lopsided Local Lemma to these events. Let $\mathcal{A} \coloneqq \{A_T\}_{T\in[n]^{(3)}}$ and $\mathcal{B} \coloneqq \{B_I\}_{I\in [n]^{(k)}}$. If $\mathcal{F} \coloneqq \mathcal{A} \cup \mathcal{B}$ then we can define a dependency graph on $\mathcal{F}$ by again stating that two events are adjacents if the corresponding graphs share at least one edge. More formally, we declare that
+		\begin{align*}
+			A_T \sim A_{T'} &\iff |T\cap T'| = 2\\
+			A_T \sim B_I &\iff 2\leq |I \cap T| \leq 3\\
+			B_I \sim B_{I'} &\iff 2\leq |I\cap I'| < k.
+		\end{align*}
+		We now note that any $A_T$ has $\binom{3}{2}(n - 3) = 3(n-3)$ neighbours in $\mathcal{A}$; so at most 3n neighbours in $\mathcal{A}$. Similarly, $A_T$ has $\binom{3}{2}\binom{n-3}{k-2} + \binom{n-3}{k-3}$ neighbours in $\beta$, which is at most $4n^{k-2}$.
+		
+		We do the same calculations for $B_I$. In $\mathcal{A}$ there are $\binom{k}{3} + \binom{k}{2} (n-k)$ neighbours of $B_I$, so at most $nk^2 + k^3$. Similarly, 
+		{\color{red}TODO: I can't get the bounds to work in this one}
+	\end{proof}
+	
+	\begin{proof}[Proof of Lopsided Local Lemma]
+		Note that
+		\[
+			\mathbb{P}\left(\bigcap_{i=1}^n A_{i}^c\right) = \prod_{i = 1}^{n}\mathbb{P}(A_i^c \mid A_1^c\cap\cdots\cap A_{i-1}^c),
+		\]
+		which can be seen by induction on $n$ and applying the identity $\mathbb{P}(A\cap B) = \mathbb{P}(A)\mathbb{P}(B \mid A)$. It follows that
+		\[
+			\mathbb{P}\left(\bigcap_{i=1}^n A_{i}^c\right) = \prod_{i = 1}^{n} \left(1- \mathbb{P}(A_i \mid A_1^c\cap\cdots\cap A_{i-1}^c)\right)
+		\]
+		since we have the identity $\mathbb{P}(A \mid B) = 1 - \mathbb{P}(A^c \mid B)$. Then it suffices to show that 
+		\[
+			\mathbb{P}(A_i \mid A_1^c \cap \cdots \cap A_{i-1}^c) \leq x_i
+		\]
+		for all $i$. So let $i\in [n]$. More generally, we prove that 
+		\begin{equation}\label{eq:lll_proof}
+			\mathbb{P}\left(A_i \mid \bigcap_{j\in S}A_j^c\right) \leq x_i
+		\end{equation}
+		for all $S\subseteq [n]$. This we will do by induction on $S$. 
+		
+		In the base case we have $S = \emptyset$ so (\ref{eq:lll_proof}) is true by hypothesis. Now we do the inductive step. Define
+		\[
+			\mathcal{I} \coloneqq \bigcap_{j\in S \colon i \nsim j} A_j^c \,\,\,\text{ and }\,\,\, \mathcal{D}\coloneqq \bigcap_{j\in S\colon i\sim j}A_j^c.
+		\]
+		Note that $A_i$ and $\mathcal{I}$ are independent events. Then
+		\begin{align}
+			\mathbb{P}\left(A_i \mid \bigcap_{j\in S}A_j^c\right) &= \mathbb{P}(A_i \mid \mathcal{I}\cap \mathcal{D})\notag\\[6pt]
+			&= \frac{\mathbb{P}(A_i \cap \mathcal{I}\cap\mathcal{D})}{\mathcal{I}\cap\mathcal{D}}\notag\\[6pt]
+			&\leq \frac{\mathbb{P}(A_i \cap \mathcal{I})}{\mathcal{I}\cap\mathcal{D}}\notag\\[6pt]
+			&= \frac{\mathbb{P}(A_i) \mathbb{P}(\mathcal{I})}{\mathcal{I}\cap\mathcal{D}}\notag\\[6pt]
+			&= \frac{\mathbb{P}(A_i)}{\mathbb{P}(\mathcal{D}\mid \mathcal{I})}\notag\\[6pt]
+			&\leq \frac{x_i \prod_{j\colon j \sim i}(1-x_j)}{\mathbb{P}(\mathcal{D}\mid \mathcal{I})}\label{eq:lll_ind}		
+		\end{align}
+		We now write $\mathcal{D} = \bigcap_{k=1}^mA_{i_k}^c$. Hence, by a similar argument as the one we gave at the start,
+		\[
+			\mathbb{P}(\mathcal{D}\mid\mathcal{I}) = \prod_{j = 1}^{m} \left(1 - \mathbb{P}(A_{i_j} \mid \mathcal{I}\cap A_{i_1}^c\cap \cdots \cap A_{i_{j-1}}^c)\right).
+		\]
+		We can apply the induction hypothesis to each factor (since they are conditioned on less than $|S|$ of the events $A_{i}^c$'s). It follows that
+		\[
+			\mathbb{P}(\mathcal{D}\mid\mathcal{I}) \geq \prod_{j = 1}^{m}(1-x_{i_j}) \geq \prod_{j\colon j \sim i }(1 - x_j).
+		\]
+		Applying this to (\ref{eq:lll_ind}) finishes the induction.
+	\end{proof}
+	\begin{proof}[Proof of Symmetric Local Lemma]
+		We use the Lopsided Local Lemma with $x_i = \frac{1}{\Delta + 1}$ for all $i$. Note that
+		\begin{align*}
+			x_i \prod_{j\colon j\sim i}(1- x_j) \geq \frac{1}{\Delta + 1}\left(1 - \frac{1}{\Delta + 1}\right)^\Delta \geq \frac{1}{e(\Delta + 1)} \geq \mathbb{P}(A_i)
+		\end{align*}
+		so the hypotheses indeed hold.
+	\end{proof}
+	\section{Upper bounds}
+	Thus far we have gotten pretty good lower bounds on $R(3,k)$ but no upper bounds apart from the naive quadratic bound at the beginning of the chapter. 
+	\begin{thm}[Ajtai, Kamlós, Szemerédi]\label{thm:AKS_R3k}
+		For all $k$ we have
+		\[
+			R(3,k) < c \frac{k^2}{\log k}
+		\]
+	\end{thm}
+	First we prove the following theorem.
+	\begin{thm}[Ajtai, Kamlós, Szemerédi]\label{thm:AKS_ind_trian_free}
+		Let $G$ be a triangle-free $n$ vertex graph with maximum degree $\Delta$. Then there is some $c>0$ (not depending on $n$ nor $\Delta$) such that $G$ contains an independent set of size at least $c \frac{n}{\Delta} \log \Delta$. In other words,
+		\[
+			\alpha(G) \geq c \frac{n}{\Delta} \log \Delta
+		\]
+	\end{thm}
+	Note that if we drop the assumption that $G$ is triangle-free then we can get a bound of the form $\frac{n}{\Delta}$. Indeed, perform a random greedy algorithm: at each stage pick a vertex not adjacent to the previous ones. The assumption of triangle-freeness means that the graph is more sparse and hence we get the extra $\log \Delta$ factor. 
+	
+	We will present two proofs of this theorem, the first due to Shearer\footnote{Warning: Shearer's proof reads like ``***king magic''}. His approach is to first define a function $f\colon [0,\infty) \to \mathbb{R}$ so that
+	\[
+		f(x) \coloneqq \frac{x\ln x - x + 1}{(x-1)^2}
+	\]
+	for $0< x < 1$, with the boundary values $f(0) = 1$ and $f(1) = 1/2$. Note that
+	\begin{itemize}
+		\item $f$ is continuous and (twice) differentiable for $x\geq 0$;
+		\item $f(x) \in [0,1]$ for all $x$;
+		\item $f'(x) \leq 0$ for all $x$;
+		\item $f''(x) \geq 0$ for all $x$;
+		\item $f$ always lies above its tangent line, i.e., for all $x,x_0$ we have
+		\[
+			f(x) \geq f(x_0) + (x - x_0)f'(x_0);
+		\]
+		\item $f$ satisfies the following differential equation
+		\[
+			(x+ 1)f = 1 + (x - x^2)f'
+		\]
+	\end{itemize}
+	These facts are not hard to prove using elementary real analysis, but, since this is not a course in real analysis, we skip the details. Shearer then proved the following.
+	\begin{lem}[Shearer]
+		Let $G$ be a triangle-free graph on $n$ vertices with average degree $d>0$. Then
+		\[
+			\alpha(G) \geq nf(d).
+		\]
+	\end{lem}
+	\begin{proof}
+		Induction on $n$. For $n = 2$ we can only have $d = 1$ and so we need to show $\alpha(G) \geq 2\frac{1}{2} = 1$ which is obviously true; this finishes the base case.
+		
+		Now let $x\in V(G)$ be a vertex to be chosen later. Define $G' \coloneqq G - x - N(x)$.  By induction hypothesis we have
+		\[
+			\alpha(G') \geq (n - d(x) - 1) f(d')
+		\]
+		where $d'$ is the average degree of $G'$. It follows that
+		\begin{align*}
+			\alpha(G) &\geq 1 + (n - d(x) - 1)f(d')\\
+			&\geq 1 + (n - d(x) - 1)f(d) + (d' - d)f'(d)(n - d(x) - 1) 
+		\end{align*}
+		since $f$ always lies above its tangent line. Then
+		\begin{align*}
+			\alpha(G) &\geq nf(d) + 1 - (d(x) + 1)f(d) + (n(d'-d) -d(x)d' - d' + d + d(x)d) f'(d)
+		\end{align*}
+		Note that
+		\begin{align*}
+			n(d-d') &= n(\frac{2e(G)}{n} - \frac{2e(G')}{n - d(x) - 1})\\
+			&= 2e(G) - (n - d(x) - 1)\frac{2e(G')}{n - d(x) - 1} + (d(x) + 1)d'\\
+			&= 2(e(G) - e(G')) + (d(x) + 1)d'\\
+			&= 2(\sum_{y\colon y\sim x}d(y)) - (d(x) + 1)d',
+		\end{align*}
+		where in the last equality we just noted that $e(G) - e(G')$ is the number of edges lost when deleting $x$ and $N(x)$ from $G$.
+	\end{proof}
+	\begin{proof}[Proof 1 of Theorem \ref{thm:AKS_ind_trian_free}]
+		{\color{red}TODO}
+	\end{proof}
+	\begin{proof}[Proof 2 of Theorem \ref{thm:AKS_ind_trian_free}]
+		{\color{red}TODO}
+	\end{proof}
+	Now we are ready to prove the desired upper bound on $R(3,k)$.
+	\begin{proof}[Proof of Theorem \ref{thm:AKS_R3k}]
+		content...
+	\end{proof}
+	\chapter{Hypergraph Ramsey Numbers}
+	Recall that an $r$-uniform \emph{hypergraph} $G$ consists of a set of vertices $V(G)$ together with a collection of (hyper)edges $E(G)$ which are subsets of $V(G)$ of size $r$. The graphs we have been discussing thus far are $2$-uniform hypergraphs. 
+	
+	We define $K_{n}^{(r)}$ to be the complete $r$-uniform hypergraph, i.e.,
+	\[
+		V(K_{n}^{(r)}) \coloneqq [n] \,\,\,\text{and}\,\,\, E(K_{n}^{(r)}) \coloneqq [n]^{(r)}.
+	\]
+	We define the $r$-uniform \emph{hypergraph Ramsey numbers} by
+	\[
+		R^{(r)}(l,k) \coloneqq \min \{n\colon \text{all red/blue colourings of $E(K_{n}^{(r)})$ contain a blue $K_l^{(r)}$ or a red $K_k^{(r)}$}\}.
+	\]
+	As before we define the $r$-uniform \emph{hypergraph diagonal Ramsey numbers} by $R^{(r)}(k)\coloneqq R^{(r)}(k,k)$.
+	\section{Off-diagonal 3-uniform hypergraph Ramsey numbers}
+	\begin{thm}[Erd\H{o}s-Rado]
+		For all $l,k\in\mathbb{N}$ we have
+		\[
+			R^{(3)}(l,k) \leq 2^{\binom{R(l-1,k-1)}{2}}.
+		\]
+	\end{thm}
+	\begin{proof}
+		{\color{red}TODO}
+	\end{proof}
+	We would like to study $R^{(3)}(4,k)$ since, given the above bound, we can use our knowledge of $R(3,k)$. We get (approximately) something of the form $R^{(3)}(4,k) \leq 2^{ck^4}$. Can we do any better?
+	\begin{thm}[Conlon, Fox, Sudakov, 2010]\label{thm:CFS_R^3_4k}
+		For all $k$ we have
+		\[
+			R^{(3)}(4,k) \leq k^{2k^2}.
+		\]
+	\end{thm}
+	Here is the strategy. The proof of the Erd\H{o}s-Rado bound suggests the following two-player game played on graphs.
+	\begin{defn}[The Ramsey Game]
+		{\color{red}TODO}
+	\end{defn} 
+	\begin{lem}
+		In the Ramsey Game, the Builder has a strategy that forces a blue $K_3$ or a red $K_{k-1}$ in at most $k^3$ moves. Furthermore, using this strategy at most $k^2$ of the edges revealed  will be blue.
+	\end{lem}
+	\begin{proof}
+		content...
+	\end{proof}
+	\begin{proof}[Proof of Theorem \ref{thm:CFS_R^3_4k}]
+		{\color{red}TODO}
+	\end{proof}
+	Now we focus on lower bounds. 
+	\begin{thm}
+		For all $k$ we have
+		\[
+			R^{(3)}(4,k) \geq 2^{\frac{k-1}{2}}
+		\]
+	\end{thm}
+	\begin{proof}
+		{\color{red}TODO}
+	\end{proof}
+	\begin{thm}[Conlon, Fox, Sudakov,2010]
+		For sufficiently large $k$ we have
+		\[
+			R^{(3)}(4,k) \geq k^{k/5}
+		\]
+	\end{thm}
+	\begin{proof}
+		{\color{red}TODO}
+	\end{proof}
+	\section{Diagonal Multicolour 3-uniform hypergraph Ramsey numbers}
+	We will show one result in this direction. By $R^{3}_4(k)$ we mean the minimum number $n$ such that every 4-colouring of $E(K_n^{(3)})$ contains a monochromatic $K_k^{(3)}$.
+	\begin{thm}[Erd\H{o}s-Hajnal-Rado, 1965]
+		There exists some $c>0$ such that for all $k$ we have
+		\[
+			R^{(3)}_4(k) \geq 2^{2^{ck}}.
+		\]
+	\end{thm}
+	This is clearly follows from the next lemma (and the lower bound we had from diagonal Ramsey numbers in the first chapter).
+	\begin{lem}
+		For all $k$ we have
+		\[
+			R^{(3)}_4 \geq 2^{R(k-1) - 1}
+		\]
+	\end{lem}
+	\begin{proof}
+		{\color{red}TODO}
+	\end{proof}
+	\chapter{The Szemerédi Regularity Lemma}
+	Informally, Szemerédi Regularity Lemma says that for all $\varepsilon >0$ and $l\in\mathbb{N}$ there exists some $L(\varepsilon,l) \in\mathbb{N}$ such that every graph $G$ can be partitioned
+	\[
+		V(G) = V_1 \sqcup \cdots \sqcup V_k
+	\]
+	where $k\leq L(\varepsilon,l)$ such that
+	\begin{itemize}
+		\item $||V_i| - |V_j|| \leq 1$ for all $i,j$; and
+		\item the graph between $V_i$ and $V_j$ looks random-like for all but $\varepsilon\binom{k}{2}$ pairs $i,j$.
+	\end{itemize}
+	We will make this ``random-like'' notion precise.
+	\section{The Lemma}
+	\begin{defn}[$\varepsilon$-uniform]
+		Let $\varepsilon>0$ and $G$ be a graph with some disjoint $X,Y\subseteq V(G)$. We say that the pair $(X,Y)$ is $\varepsilon$\emph{-uniform} iff for all $X'\subseteq X$ and $Y'\subseteq Y$ with $X' \geq \varepsilon |X|$ and $Y' \geq \varepsilon |Y|$ we have
+		\[
+			|d(X',Y') - d(X,Y)| \leq \varepsilon
+		\]
+		where we define
+		\[
+			d(X,Y) = \frac{e(X,Y)}{|X||Y|}.
+		\]
+	\end{defn}
+	Roughly, if $(X,Y)$ is $\varepsilon$-uniform, the bipartite graph they induce is almost regular ($\varepsilon$-regular is a synonym for $\varepsilon$-uniform) in the sense that the density of edges between $X$ and $Y$ stays roughly unchanged if we throw out some vertices from $X$ or $Y$ (but not too many vertices).
+	\begin{prop}
+		Let $\varepsilon > 0$ and $(X,Y)$ a $\varepsilon$-uniform pair in a graph $G$. If $p = d(X,Y)$, then
+		\begin{align*}
+			|\{x\in X \colon |N(x) \cap Y| < (p - \varepsilon)|Y|\}| &< \varepsilon |X|\text{ and}\\
+			|\{x\in X \colon |N(x) \cap Y| > (p + \varepsilon)|Y|\}| &< \varepsilon |X|
+		\end{align*}
+	\end{prop}
+	\begin{proof}
+		{\color{red}TODO}
+	\end{proof}
+	\begin{thm}[Embedding Lemma for triangles]
+	Let $\varepsilon > 0$, $p\in (0,1)$, and $G$ be a graph. Suppose $V(G)$ can be partitioned by sets $V_1$,$V_2$, and $V_3$ of the same size $m$. Furthermore, assume that these sets are pairwise $\varepsilon$-uniform, and that $d(V_i,V_j) \geq 2\varepsilon$ for all distinct $i,j$. Then there are at least $(1-2\varepsilon)(p-\varepsilon)^3m^3$ triangles in $G$.
+ 	\end{thm}
+ 	\begin{proof}
+ 		{\color{red}TODO}
+ 	\end{proof}
+ 	Before stating the Szemerédi Regularity Lemma we need a couple more definitions.
+ 	\begin{defn}[Equipartition]
+ 		For $G$ a graph, we say that a partition
+ 		\[
+ 			V(G) = V_1 \sqcup \cdots \sqcup V_k
+ 		\]
+ 		is an \emph{equipartition} if $||V_i| - |V_j|| \leq 1$ for all $i,j\in [k]$.
+ 	\end{defn}
+ 	\begin{defn}
+ 		For $\varepsilon>0$ and $G$ a graph we say that an equipartition of $G$ of size $k$ is $\varepsilon$-uniform if the elements of the partition are pairwise $\varepsilon$-uniform for all but $\varepsilon\binom{k}{2}$ pairs.
+ 	\end{defn}
+ 	\begin{thm}[Szemerédi Regularity Lemma]
+ 		For all $\varepsilon > 0$ and $l\in\mathbb{N}$ there is some $L(l,\varepsilon) \in\mathbb{N}$ such that every graph has a $\varepsilon$-uniform equipartition with $k$ parts where $l\leq k \leq L(l,\varepsilon)$.
+ 	\end{thm}
+ 	Since the proof of this is technical, we will just assume the result.
+ 	\begin{rem}
+ 		It is really important that $L(l,\varepsilon)$ does not depend on $G$. The lemma basically does not say anything about graphs with $e(G) = o(n^2)$.
+ 	\end{rem}
+ 	\section{Applications}
+ 	\begin{lem}[Triangle Removal Lemma]
+ 		For all $\varepsilon > 0$ there exists a $\delta >0$ such that if $G$ is a graph with fewer than $\delta n^3$ triangles, then we can remove $\varepsilon n^2$ edges or less from $G$ to make it triangle free.
+ 	\end{lem}
+ 	\begin{proof}
+ 		{\color{red} TODO}
+ 	\end{proof}
+ 	As an application, we prove the celebrated Roth's Theorem.
+ 	\begin{thm}[Roth's Theorem]
+ 		For all $\varepsilon > 0$ there exists some $n_0\in\mathbb{N}$ so that for all natural numbers $n \geq n_0$ we have that if $A\subseteq [n]$ with $|A| \geq \varepsilon n$, then $A$ contains a non-trivial three-term arithmetic progression.
+ 	\end{thm}
+ 	\begin{proof}
+ 		{\color{red} TODO}
+ 	\end{proof}
+ 	Recall Turán's Theorem.
+ 	\begin{thm}
+ 		Let $G$ be a $K_{r+1}$-free graph on $n$ vertices, where $r\geq 2$. Then
+ 		\[
+ 			e(G) \leq \left(1-\frac{1}{r}\right)\frac{n^2}{2}
+ 		\]
+ 	\end{thm}
+ 	This is sharp for complete multipartite graphs, i.e. Turán graphs.
+ 	\begin{proof}
+ 		{\color{red} TODO}
+ 	\end{proof}
+ 	\begin{defn}
+ 		For $\alpha\in(0,1)$ and $\varepsilon > 0$, and a partition 
+ 		\[
+ 		V(G) = V_1 \sqcup \cdots \sqcup V_k
+ 		\]
+ 		of a graph $G$, we define the \emph{reduced graph} $R_{\alpha,\varepsilon}$ by
+ 		\[
+ 		V(R_{\alpha,\varepsilon}) = \{V_1,\ldots, V_k\}
+ 		\]
+ 		and declaring that $V_i \sim V_j$ iff $i\neq j$ and $(V_i,V_j)$ is $\varepsilon$-uniform with $d(V_i, V_j) \geq \alpha$.
+ 	\end{defn}
+ 	\begin{thm}[Szemerédi]
+ 		For all $\varepsilon > 0$ there is some $\delta >0$  such that if $G$ is a $K_4$-free graph  with $\alpha(G) < \delta n$, then 
+ 		\[
+ 			e(G) \leq \frac{n^2}{8} +en^2
+ 		\]
+ 	\end{thm}
+ 	\begin{proof}
+ 		{\color{red} TODO}
+ 	\end{proof}
 \end{document} 

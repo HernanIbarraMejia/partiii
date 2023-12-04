@@ -34,9 +34,10 @@
 \usepackage{soul}
 
 \usepackage{lipsum}
+\usepackage{xfrac}
 
 %\addbibresource{main.bib}
-
+\usepackage{ stmaryrd }
 
 \newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
 
@@ -97,6 +98,7 @@
 \DeclareMathOperator{\ev}{ev}
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Diag}{Diag}
+\DeclareMathOperator{\Th}{Th}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 \DeclarePairedDelimiter\innprod{\langle}{\rangle}%
@@ -611,7 +613,7 @@
 		An injective $\mathcal{L}$-homomorphism is an $\mathcal{L}$-\emph{embedding} and an invertible one is an $\mathcal{L}$-\emph{isomorphism}. If $M$ and $N$ are isomorphic we write $M \cong N$. If $M\subseteq N$ and the inclusion map is an $\mathcal{L}$-homomorphism we say that $M$ is a \emph{substructure} of $N$, and $N$ is an \emph{extension} of $M$.
 	\end{defn}
 	We are going to stop writing $\bar{m}\in M^n$ where $n$ is the length of $\bar{m}$ and just write $\bar{m}\in M$ when $n$ can be inferred or its unimportant.
-	\begin{egs}\leavevmode
+	\begin{egs}\label{egs:substructures}\leavevmode
 		\begin{enumerate}
 			\item Let $\mathcal{L}$ be the language of groups. Then $(\mathbb{N},+,0)$ is a subset of the the integers $(\mathbb{Z},+,0)$, but it is not a substructure.
 			\item If $M$ is an $\mathcal{L}$-structure and $X\subseteq M$ then $X$ is the domain of a substructure of $M$ iff it is closed under the interpretation of all function symbols.
@@ -816,7 +818,7 @@
  				\item Every $\mathcal{L}$-structure that models $\mathcal{T}$ can be expanded to a model of $\mathcal{T}^+$.
  				\item The $\mathcal{L}^+$-theory $\mathcal{T}^+$ admits Skolem functions for every $\mathcal{L}^+$-formula $\varphi(\bar{x},y)$ with $\bar{x}\neq \emptyset$.
  			\end{enumerate}
- 			Finally, a theory $\mathcal{T}$ is a \emph{Skolem theory} if it is a skolemization of itself
+ 			Finally, a theory $\mathcal{T}$ is a \emph{Skolem theory} if it is a skolemization of itself.
  		\end{defn}
  		We say two $\mathcal{L}$-formulae $\varphi$ and $\psi$ are \emph{equivalent modulo} $\mathcal{T}$, where $\mathcal{T}$ is an $\mathcal{L}$-theory, iff $T \vdash (\varphi \iff \psi)$.
  		\begin{prop}\label{prop:fam_eq_mod}
@@ -830,7 +832,7 @@
  			By induction on the structure of formulae. Atomic formulae are in $F$ by hypothesis and $F$ is closed under Boolean combinations, so we only need to check the case for existential statements. But that's exactly the hypothesis.
  		\end{proof}
  		If $M$ is an elementary substructure of $N$ we denote this by $M \preccurlyeq N$.
- 		\begin{prop}
+ 		\begin{prop}\label{prop:skolem_qf}
  			Let $\mathcal{T}$ be an Skolem $\mathcal{L}$-theory. Then
  			\begin{enumerate}[label=(\arabic*)]
  				\item Every $\mathcal{L}$-formula $\varphi(\bar{x})$ with $\bar{x}\neq \emptyset$ is equivalent to some quantifier-free $\psi(\bar{x})$ modulo $\mathcal{T}$.
@@ -843,7 +845,7 @@
  				\item Assume $X$ is nonempty (otherwise this is trivial). Let $M \coloneqq \langle X \rangle_N$; we will use the Tarski-Vaught test. Let $\varphi(x,\bar{y})$ be an $\mathcal{L}$-formula and $\bar{m}\in M$. Suppose that there is some $n\in N$ with $N \models \varphi(n,\bar{m})$. Then $N \models (\exists y)(\varphi(y,\bar{m}))$. Hence there is a Skolem function $t(\bar{x})$ such that $N \models \varphi(t(\bar{m}), \bar{m})$. As $M$ is a substructure of $N$ it is closed under interpretations  of terms, hence $t^N(\bar{m}) \in M$. We are done.\qedhere
  			\end{enumerate}
  		\end{proof}
- 		\begin{thm}[Skolemization Theorem]
+ 		\begin{thm}[Skolemization Theorem]\label{thm:skolem}
  			Every (first-order) language $\mathcal{L}$ can be expanded to some $\mathcal{L}^+ \supseteq \mathcal{L}$ that includes an $\mathcal{L}^+$-theory $\Sigma$ such that
  			\begin{enumerate}[label=(\arabic*)]
  				\item $\Sigma$ is a Skolem $\mathcal{L}^+$-theory.
@@ -866,6 +868,768 @@
  			
  			It is easy to see that $\Sigma$ is an $\mathcal{L}^+$-theory. Furthermore, it is Skolem since every $\mathcal{L}^+$-formula of the required form is in some $\mathcal{L}_n$ and thus there is an Skolem function for it by $\Sigma_{n+1}$. Also $|\mathcal{L}| = |\mathcal{L}^+|$ by cardinal multiplication (countable cardinalities are absorbed).
  					
- 			We now check the structure expansion property. We first check it step-by-step down the chain. Let $M$ be a nonempty $\mathcal{L}$-structure. Say we have $\chi(\bar{x},y)$ with $\bar{x}\neq\emptyset$ and a tuple $\bar{m}\in M$. If there is a $b$ such that $M \models \chi(\bar{m}, b)$, choose one and define $F_{\chi}^M(\bar{m}) \coloneqq b$. If there is no such $b$ interpret it as $m_0$ (or whatever).
+ 			We now check the structure expansion property. We first check it step-by-step down the chain. Let $M$ be a nonempty $\mathcal{L}$-structure. Say we have $\chi(\bar{x},y)$ with $\bar{x}\neq\emptyset$ and a tuple $\bar{m}\in M$. If there is a $b$ such that $M \models \chi(\bar{m}, b)$, choose one and define $F_{\chi}^M(\bar{m}) \coloneqq b$. If there is no such $b$ interpret it as $m_0$ (or whatever). By construction, $M$ models $\Sigma(\mathcal{L})$ as an $\mathcal{L}^\ast$-structure. Repeating this process, we can add interpretations for all function symbols in $\mathcal{L}^+$ to $M$ so that $M \models \Sigma$.
  		\end{proof}
+ 		\begin{coro}
+ 			Any $\mathcal{L}$-theory $\mathcal{T}$ admits a Skolemization $\mathcal{T}^+$ in a language of the same cardinality as $\mathcal{L}$.
+ 		\end{coro}
+ 		\begin{proof}
+ 			Take $\mathcal{T}^{+}\coloneqq \mathcal{T} \cup \Sigma$ as in Theorem \ref{thm:skolem}. Clearly $\mathcal{T}^{+}$ has Skolem functions. Moreover any $M \models T$ can be expanded to some $M^{+}\models \Sigma$ so $M^{+}\models \mathcal{T}^+$.
+ 		\end{proof}
+ 		\begin{coro}
+ 			Let $M$ be an $\mathcal{L}$-structure and $X\subseteq M$ a subset such that 
+ 			\[
+ 				|\mathcal{L}| + |X| \leq \kappa \leq |M|,
+ 			\]
+ 			where $\kappa$ is an infinite cardinal. Then $M$ admits an elementary substructure $N$ with $X\subseteq N$ and $|N| = \kappa$.
+ 		\end{coro}
+ 		\begin{proof}
+ 			First, if necessary, add elements to $X$ until we get a set $X'\subseteq M$ such that $|X'| = \kappa$; this is possible by the size restrictions. Apply Theorem \ref{thm:skolem} to get a language $\mathcal{L}^{+}$ and a theory $\Sigma$; also, expand $M$ to an $\mathcal{L}^{+}$-structure that models $\Sigma$. By Proposition \ref{prop:skolem_qf} $N \coloneqq \langle X'\rangle_M$ is an elementary substructure of $M$ containing $X$. Furthermore we have by Example \ref{egs:substructures} (d) that
+ 			\[
+ 				\kappa = |X'|\leq |N| \leq |X'| + |\mathcal{L}^+| = \kappa + |\mathcal{L}|  = \max\{\kappa, |\mathcal{L}|\} = \kappa.\qedhere
+ 			\]
+ 		\end{proof}
+ 		Now we define what it means for a theory to have quantifier-elimination.
+ 		\begin{defn}[Quantifier-elimination]
+ 			Let $\mathcal{T}$ be an $\mathcal{L}$-theory. We say that a set $F$ of $\mathcal{L}$-formulae is an \emph{elimination set} for $\mathcal{T}$ is for all $\mathcal{L}$-formulae $\varphi$ there is a Boolean combination $\varphi^*$ of formulae in $F$ such that
+ 			\[
+ 				\mathcal{T} \vdash (\varphi \iff \varphi^*). 
+ 			\]
+ 			A theory $\mathcal{T}$ has \emph{quantifier-elimination} if the family of all quantifier-free $\mathcal{L}$-formulae is an elimination set for $\mathcal{T}$. 
+ 		\end{defn}
+ 		\begin{eg}
+ 			Consider a polynomial 
+ 			\[
+ 				p(x) \coloneqq x^3 - 31x^2 +6.
+ 			\]
+ 			To determine whether the sentence $\exists x. p(x)$ holds over an algebraically closed field we can equivalently check the quantifier-free sentence 
+ 			\[
+ 				(1\neq 0)\vee (-31 \neq 0).
+ 			\]
+ 			Similarly, for a real matrix $M$, the sentence saying that $M$ is invertible is equivalent to $\neg(\det(M) = 0)$.
+ 		\end{eg}
+ 		Why should we care about elimination sets and quantifier-elimination?
+ 		\begin{enumerate}[label=\arabic*.]
+ 			\item Deciding whether two models of $\mathcal{T}$ are elementary equivalent reduces to verifying whether they satisfy the same sentences in the elimination set.
+ 			\item In particular, completeness of $\mathcal{T}$ is reduced to checking decidability of sentences in the elimination set.
+ 			\item If the language $\mathcal{L}$ is recursive and the procedure of quantifier elimination is computable, then the question of whether there is an algorithm to decide whether a given sentence is provable from $\mathcal{T}$ or not boils down to checking sentences in the elimination set.
+ 			\item The elementary embeddings $M\hookrightarrow N$ are precisely those embeddings that preserve formulae in the elimination set and their negations.
+ 			\item Definable subsets in a model $M$ are Boolean combinations of subsets definable by formulae in the elimination set. 
+ 		\end{enumerate}
+ 		In what follows we will use the notation $\neg F$ for $\{\neg \varphi \colon \varphi \in F\}$.
+ 		\begin{prop}[Syntactic quantifier-elimination]\label{prop:syn_el}
+ 			Let $\mathcal{T}$ be an $\mathcal{L}$-theory and $F$ be a family of $\mathcal{L}$-formulae that includes all atomic formulae. Suppose that for every $\mathcal{L}$-formulae of the form
+ 			\[
+ 				\Theta(\bar{x})\coloneqq \exists y.\bigwedge_{i} \varphi_i(\bar{x},y)
+ 			\]
+ 			with $\varphi_i\in F\cup \mathcal{T}$ for all $i$, there is a Boolean combination $\Theta^*(\bar{x})$ for $F$-formulae such that
+ 			\[
+ 				\mathcal{T} \vdash \forall \bar{x}. (\Theta(\bar{x}) \iff \Theta^*(\bar{x})).
+ 			\]
+ 			Then $F$ is an elimination set for $\mathcal{T}$.
+ 		\end{prop}
+ 		\begin{proof}
+ 			Induction over the structure of formulae. All atomic formulae are in $F$ so the base case is trivial. If $\varphi,\psi$ are equivalent modulo $\mathcal{T}$ to formulae $\varphi',\psi'$ which are Boolean combinations of $F$-formulae, then $\varphi\wedge \psi$ is equivalent modulo $\mathcal{T}$ to $\varphi'\wedge \psi'$ which is still a Boolean combination of $F$-formulae. A similar argument works for negation.
+ 			
+ 			\textcolor{red}{I can't quite finish this argument. Isn't $F$ supposed to be closed under Boolean combinations?}
+ 		\end{proof}
+ 		\begin{eg}
+ 			The theory $\mathcal{T}_{\infty}$ of infinite sets (in the language with empty signature) has quantifier-elimination. See Example Sheet 2 for a proof of a more difficult statement.
+ 		\end{eg}
+ 		If $M$ and $N$ are $\mathcal{L}$-structures we write $M \Rightarrow_{1} N$ if every existential sentence modelled by $M$ is also modelled by $N$.
+ 		\begin{thm}[Existential amalgamation]
+ 			Let $M$ and $N$ be $\mathcal{L}$-structures, $S$ a subset of $M$, and $f\colon \langle S\rangle_{M}\to N$ a homomorphism. If $(N, f(S))\Rightarrow_1 (M, S)$, then there is an elementary extension $K$ of $M$ and an embedding $g\colon N \hookrightarrow K$ making the diagram commute.
+ 			% https://q.uiver.app/#q=WzAsNCxbMSwyLCJcXGxhbmdsZSBTXFxyYW5nbGVfTSJdLFswLDEsIk0iXSxbMiwxLCJOIl0sWzEsMCwiSyJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMiwiZiIsMl0sWzEsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCJnIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XV0=
+ 			\[\begin{tikzcd}
+ 				& K \\
+ 				M && N \\
+ 				& {\langle S\rangle_M}
+ 				\arrow[hook, from=3-2, to=2-1]
+ 				\arrow["f"', from=3-2, to=2-3]
+ 				\arrow[hook, from=2-1, to=1-2]
+ 				\arrow["g"', hook', from=2-3, to=1-2]
+ 			\end{tikzcd}\] 
+ 		\end{thm}
+ 		\begin{proof}
+ 			We can assume $M$ an $N$ are disjoint. Consider the $\mathcal{L}_{M\cup N}$-theory 
+ 			\[
+ 				\mathcal{T}\coloneqq \Diag_{\text{el}}(M)\cup\Diag(N)\cup\{\,s = f(s)\,\mid\, s\in S\,\}.
+ 			\]
+ 			Let $\mathcal{T}'\subseteq \mathcal{T}$ be finite. In particular it contains only finitely many of the sentences of $\Diag(N)$, so let $\varphi(\bar{n},\bar{k})$ be the conjunction of these quantifier-free sentences, where $\bar{n}\in N\setminus f(S)$ and $\bar{k}\in f(S)$. Suppose, for the sake of contradiction, that $\mathcal{T}'$ is inconsistent. Then $\Diag_{\text{el}}(M)\cup\{s = f(s) \mid s\in S\}$ must entail $\neg\varphi(\bar{n},\bar{k})$. But the elements $\bar{n}$ clearly do not appear in this theory so we must have 
+ 			\[
+ 				\Diag_{\text{el}}(M)\cup\{s = f(s) \mid s\in S\} \vdash \forall \bar{x}. \neg \varphi(\bar{x},\bar{k}).
+ 			\]
+ 			Equivalently,
+ 			\[
+ 				\Diag_{\text{el}}(M)\cup\{s = f(s) \mid s\in S\} \vdash \neg\exists \bar{x}. \varphi(\bar{x},\bar{k})
+ 			\]
+ 			By the sentences saying that $s= f(s)$, we can assume $\bar{k}\in S$, so that in particular we have that $(M,S) \nvDash \exists \bar{x}. \varphi(\bar{x},\bar{k})$. By assumption, this means that $(N,f(S))\nvDash \exists \bar{x}. \varphi(\bar{x},\bar{k})$ contradicting the fact that $N \models \varphi(\bar{n},\bar{k})$. So by Compactness $\mathcal{T}$ has a model $K$ which is an elementary extension of $M$, an extension of $N$, and which identifies $s$ with its image under $f$. The claim follows.
+ 		\end{proof}
+ 		We say that a class of $\mathcal{L}$-structures has the \emph{amalgamation property} when, given $\mathbb{K}$-structures $A,B,C$ and embeddings $C\hookrightarrow A$ and $C\hookrightarrow B$, then there is a structure $D$ in $\mathbb{K}$ and embeddings $A\hookrightarrow D$ and $B \hookrightarrow D$ making the diagram
+ 		% https://q.uiver.app/#q=WzAsNCxbMSwyLCJDIl0sWzAsMSwiQSJdLFsyLDEsIkIiXSxbMSwwLCJEIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XV0=
+ 		\[\begin{tikzcd}
+ 			& D \\
+ 			A && B \\
+ 			& C
+ 			\arrow[hook, from=3-2, to=2-1]
+ 			\arrow[hook', from=3-2, to=2-3]
+ 			\arrow[hook, from=2-1, to=1-2]
+ 			\arrow[hook', from=2-3, to=1-2]
+ 		\end{tikzcd}\]
+ 		commute.
+ 		\begin{defn}[Existentially closed]
+ 			Let $\mathbb{K}$ be a class of $\mathcal{L}$-structures and $M\in \mathbb{K}$. We say that $M$ is \emph{existentially closed} in $\mathbb{K}$ iff for every existential formula $\psi(\bar{x})$ and tuple $\bar{m}\in M$ the existence of an extension $M\hookrightarrow N$ with $N\models \psi(\bar{m})$ and $N \in \mathbb{K}$ forces $M \models \psi (\bar{m})$.
+ 		\end{defn} 
+ 		\begin{egs}
+ 			\begin{enumerate}
+ 				\item Every existentially closed field (in the class of all fields) is algebraically closed. Indeed, let $A$ be an existentially closed field and let $f(y)$ be a non-trivial polynomial with coefficients in $A$. For each $n\in \mathbb{N}$ define the $\mathcal{L}$-term (where $\mathcal{L}$ is the language of rings)
+ 				\[
+ 					p_n(\bar{x},y) \coloneqq x_ny^n + x_{n-1}y^{n-1} + \ldots + x_1 y + x_0.
+ 				\]
+ 				Then $f(y) = p_n(\bar{a},y)$ for some $n$ and some choices of $\bar{a}$.
+ 				
+ 				If $f$ is not irreducible it suffices to find a root for one of its factors, so assume $f$ is irreducible. Then the quotient $A[y]/(f)$ is a field extension of $A$ in which $f$ has a root, i.e.,
+ 				\[
+ 					A[y]/(f) \models \exists y. p(\bar{a},y) = 0.
+ 				\]
+ 				As $A$ is existentially closed, this implies that $f$ has a root in $A$. In fact, the existentially closed fields are precisely the algebraically closed ones. This is a version of the Nullstellensatz.
+ 				
+ 				\item The existentially closed linear orders are the dense total orders without endpoints. Indeed, for any linear order $L$ and two elements $x<y$ in $L$ we can add a new element $z$ such that $x<z<y$ and similarly add an element that is greater (or lesser) than any given element. This shows that existentially closed fields are DLOs without endpoints.
+ 				
+ 				Conversely, \textcolor{red}{what follows?}
+ 				\item The existentially closed ordered fields are the real closed fields (i.e. the ordered fields which are elementarily equivalent to the real numbers). \textcolor{red}{how to begin...}
+ 			\end{enumerate}
+ 		\end{egs}
+ 		\begin{thm}\label{thm:ax_ex_cl_imp_qe}
+ 			Let $\mathbb{K}$ be a class of $\mathcal{L}$-structures closed under isomorphisms and such that the class of all the substructures of $\mathbb{K}$-structures has the amalgamation property. Then every existential $\mathcal{L}$-formula is equivalent to a quantifier-free formula in all existentially closed structures in $\mathbb{K}$.
+ 			
+ 			In particular, if $\mathcal{T}$ is a theory axiomatising existentially closed structures in $\mathbb{K}$, then $\mathcal{T}$ has quantifier elimination
+ 		\end{thm}
+ 		\begin{proof}
+ 			Let $\varphi(\bar{x})$ be an existential formula. Call a pair $(M,\bar{m})$ a \emph{witnessing pair} if $M$ is existentially closed in $\mathbb{K}$ and $M\models \varphi(\bar{m})$. Let $\Theta_{(M,\bar{m})}(\bar{x})$ be the conjunction of all literals $\psi(\bar{x})$ such that $M\models \psi(\bar{m})$. Now, let $\chi(\bar{x})$ be the disjunction of all $\Theta_{(M,\bar{m})}(\bar{x})$. Here $\chi$ will be our ``infinite formula''.
+ 			
+ 			It is enough to show that if $N$ is existentially closed in $\mathbb{K}$, then, for all $\bar{n}\in N$, we have $N\models \varphi(\bar{n})$ if and only if $N \models \chi(\bar{n})$. One direction is clear: if $\bar{n}\in N$ is such that $N \models \varphi(\bar{n})$ then $(N,\bar{n})$ is a witnessing pair so $N \models \Theta_{(N,\bar{n})}(\bar{n})$ and thus $N \models \chi(\bar{n})$.
+ 			
+ 			Conversely, if $N \models \chi(\bar{n})$, then there must be a witnessing pair $(M,\bar{m})$ such that $N\models \Theta_{(M,\bar{m})}$. This means that if $\psi(\bar{x})$ is a literal and $M \models \psi(\bar{m})$ then $N \models \psi(\bar{n})$. This implies that there is an embedding $e\colon \langle \bar{m}\rangle_M \hookrightarrow N$ mapping $\bar{m}$ to $\bar{n}$ (\textcolor{red}{why?}).
+ 				
+ 			The amalgamation property provides an structure $\mathcal{C}$ together with some embeddings making the diagram
+ 			% https://q.uiver.app/#q=WzAsNCxbMSwyLCJcXGxhbmdsZSBcXGJhcnttfVxccmFuZ2xlX3tNfSJdLFswLDEsIk0iXSxbMiwxLCJOIl0sWzEsMCwiXFxtYXRoY2Fse0N9Il0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCJlIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMSwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV1d
+ 			\[\begin{tikzcd}
+ 				& {\mathcal{C}} \\
+ 				M && N \\
+ 				& {\langle \bar{m}\rangle_{M}}
+ 				\arrow[hook, from=3-2, to=2-1]
+ 				\arrow["e"', hook', from=3-2, to=2-3]
+ 				\arrow[hook, from=2-1, to=1-2]
+ 				\arrow[hook', from=2-3, to=1-2]
+ 			\end{tikzcd}\]
+ 			commute. \textcolor{red}{OK... I give up from here. How does the proof continue? It makes no sense to me. See Theorem 8.1.3 in Hodge's book}.
+ 		\end{proof}
+ 		\begin{eg}
+ 			\begin{enumerate}
+ 				\item The theory ACF of algebraically closed fields has quantifier elimination. Indeed, recall that this theory axiomatized the existentially closed fields. By Theorem \ref{thm:ax_ex_cl_imp_qe}, we just need to check that the class of all substructures of fields (i.e. integral domains) has the amalgamation property. Some field theory tells us that the class of fields has the amalgamation property, and by taking fraction fields we can extend this to integral domains. (\textcolor{red}{what's the exact argument? use uniqueness of algebraic closures somehow... })
+ 				
+ 				\item The theory of dense linear orders without endpoints has quantifier elimination. (\textcolor{red}{taking a coequalizer probably works but I don't want to work out the details})
+ 			\end{enumerate}
+ 		\end{eg}
+ 		\begin{defn}[Inductive classes]
+ 			A class $\mathbb{K}$ of $\mathcal{L}$-structures is \emph{inductive} if it is closed under isomorphisms and unions of embedding chains.
+ 		\end{defn}
+ 		\begin{thm}
+ 			Let $M$ be as structure in an inductive class $\mathbb{K}$. Then then there is some existentially closed extension $N$ of $M$ with $N \in \mathbb{K}$.
+ 		\end{thm}
+ 		\begin{proof}
+ 			We show that $M$ can be extended to a structure $M^*$ in $\mathbb{K}$ with the following property: for $\bar{m}\in M$ and existential formula $\varphi(\bar{x})$, if $\varphi(\bar{m})$ holds in some extension of $M^*$ in $\mathbb{K}$, then it holds in $M^*$.
+ 			
+ 			This is enough. Indeed, we could then recursively define a chain of $\mathcal{K}$-structures by setting $M^0\coloneqq M$ and
+ 			\[
+ 				M^{j+1} \coloneqq (M^{(j)})^*.
+ 			\]
+ 			Then let $N \coloneqq \bigcup_{j<\omega} M^{j}$. It follows that $N$ is in $\mathbb{K}$ as $\mathbb{K}$ is inductive. Furthermore, $N$ is existentially closed in $\mathbb{K}$. To see this, suppose that $\varphi(\bar{x})$ is an existential formula, $\bar{n}\in N$, and $D$ is a structure in $\mathbb{K}$ such that $D\models \varphi(\bar{n})$. By definition of $N$, $\bar{n}\in M^k$ for some $k<\omega$. Note that $D$ extends $M^{k+1} = (M^k)^*$ so, by the $\ast$-property, $M^{k+1}\models \varphi(\bar{n})$. But existential sentences are preserved under extensions, hence $N \models \varphi(\bar{n})$ as desired.
+ 			
+ 			To build $M^*$ we first list all pairs $(\varphi_\beta, \bar{m}_\beta)_{\beta < \delta}$ where $\varphi$ is existential and $\bar{m}\in M$. We construct a chain of $\mathbb{K}$-structures by transfinite induction. 
+ 			\begin{itemize}
+ 				\item $M_0 \coloneqq M$;
+ 				\item $M_{\beta + 1}\coloneqq$ some $\mathbb{K}$-structure $\mathcal{D}$ with $M_{\beta}\subseteq \mathcal{D} \models \varphi_{\beta}(\bar{m}_\beta)$ if this exists, else $M_\beta$;
+ 				\item $M_{\lambda} \coloneqq \bigcup_{\beta < \lambda} M_{\beta}$ for $\lambda \leq \delta$ a limit ordinal. 
+ 			\end{itemize} 
+ 			Finally, define $M^* \coloneqq M_{\delta}$. If $\varphi(\bar{x})$ is existential, $\bar{m}\in M$, and $\mathcal{D}\in \mathbb{K}$ is such that $M^* \subseteq \mathcal{D}\models \varphi(\bar{m})$ then $(\varphi,\bar{m})$ is $(\varphi_\beta,\bar{m}_\beta)$ for some $\beta < \delta$. But then the clause in the definition of $M_{\beta + 1}$ holds true and we must have $M_{\beta + 1} \models \varphi(\bar{m})$. We are done since $M_{\beta + 1} \subseteq M^*$ and existential formulae are preserved under extensions.
+ 		\end{proof}
+ 		Whenever two structures $M,N$ satisfy the same quantifier free sentences (this is weaker than elementary equivalence) we write $M \equiv_0 N$.
+ 		\begin{thm}\label{thm:qe_char}
+	 		Let $\mathcal{T}$ be an $\mathcal{L}$-theory. The following are equivalent.
+	 		\begin{enumerate}
+	 			\item $\mathcal{T}$ has quantifier elimination.
+	 			\item If $A,B \models \mathcal{T}$ and $\bar{a}\in A$ and $\bar{b}\in B$ are tuples of the same size such that $(A,\bar{a}) \equiv_0 (B,\bar{b})$ then in fact $(A,\bar{a}) \Rightarrow_{1} (B,\bar{b})$.
+	 			\item If $A,B\models \mathcal{T}$, $S$ is a subset of $A$, and $e\colon \langle S \rangle_{A} \hookrightarrow B$ is an embedding, then there is an elementary extension $D$ of $B$ and an embedding $f\colon A \to D$ extending $e$.
+	 			\item $\mathcal{T}$ is model-complete and $\mathcal{T}_{\forall}$ has the amalgamation property.
+	 			\item For every quantifier-free $\mathcal{L}$-formula $\varphi(\bar{x},y)$ the formula $\exists y. \varphi(\bar{x}, y)$ is $\mathcal{T}$-equivalent to a quantifier free formula $\psi(\bar{x})$.
+	 		\end{enumerate}
+	 		\begin{proof}\leavevmode
+	 			\begin{enumerate}
+	 				\item[$(a)\Rightarrow (b)$] This is obvious: just replace the existential sentences by quantifier-free ones.
+	 				\item[$(b)\Rightarrow (c)$]  By existential amalgamation, it suffices to show that $(A,S) \Rightarrow_{1} (B,e(S))$. But an $\mathcal{L}_S$-formula can only mention finitely many constants of $S$; thus it suffices to check $(A,\bar{a}) \Rightarrow_{1} (B,e(\bar{a}))$ for all $\bar{a}\in \langle S\rangle_{A}$. But existence of the embedding $e$ implies that $(A,\bar{a}) \equiv_0 (B,e(\bar{a}))$ by Proposition \ref{prop:qf_preser_substr}. So we are done by $(b)$.
+	 				\item[$(c)\Rightarrow (d)$] First we show that $\mathcal{T}$ is model complete using the result of Example Sheet 1, question 11 (c). Fix an embedding $h\colon M \hookrightarrow N$ between models of $\mathcal{T}$. We need to show that there's some $D$ model of $\mathcal{T}$ elementarily extending $M$ and an embedding $g\colon N \hookrightarrow D$  such that the diagram
+	 				% https://q.uiver.app/#q=WzAsMyxbMCwxLCJNIl0sWzIsMSwiTiJdLFsxLDAsIkQiXSxbMCwxLCJoIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCJcXHByZWNjdXJseWVxIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCJnIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XV0=
+	 				\[\begin{tikzcd}
+	 					& D \\
+	 					M && N
+	 					\arrow["h"', hook, from=2-1, to=2-3]
+	 					\arrow["\preccurlyeq", hook, from=2-1, to=1-2]
+	 					\arrow["g", hook', from=2-3, to=1-2]
+	 				\end{tikzcd}\]
+	 				commutes.
+	 				 
+	 				In (c) let $S = h(M)\subseteq N$ and define $e\coloneqq h^{-1}\colon h(M)\to M$. We then get an extension $D$ of $M$ and an embedding $g\colon N \hookrightarrow D$ such that the following diagram commutes.
+	 				% https://q.uiver.app/#q=WzAsNCxbMCwxLCJNIl0sWzIsMSwiTiJdLFsxLDAsIkQiXSxbMSwyLCJoKE0pIl0sWzAsMiwiXFxwcmVjY3VybHllcSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsMSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMywwLCJlIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCJnIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XV0=
+	 				\[\begin{tikzcd}
+	 					& D \\
+	 					M && N \\
+	 					& {h(M)}
+	 					\arrow["\preccurlyeq", hook, from=2-1, to=1-2]
+	 					\arrow[hook, from=3-2, to=2-3]
+	 					\arrow["e", hook, from=3-2, to=2-1]
+	 					\arrow["g"', hook', from=2-3, to=1-2]
+	 				\end{tikzcd}\]
+	 				This clearly makes the first diagram commute so we have shown that $\mathcal{T}$ is model-complete. 
+	 				
+	 				To see that $\mathcal{T}_{\forall}$ has the amalgamation property, let $C\hookrightarrow A'$ and $C\hookrightarrow B'$ be embeddings between models of $\mathcal{T}_{\forall}$. By Lemma \ref{lem:uni_consis_diag} $A'$ and $B'$ are substructures of models $A$ and $B$ of $\mathcal{T}$ respectively.
+	 				
+	 				Taking the instance of (c) where $S\coloneqq C$ and $e$ is the embedding $C\hookrightarrow B$ we have an elementary extension $D$ of $B$ and an embedding $f\colon A \hookrightarrow D$ making the diagram
+	 				% https://q.uiver.app/#q=WzAsNixbMCwyLCJCJyJdLFsyLDIsIkEnIl0sWzEsMywiQyJdLFswLDEsIkIiXSxbMiwxLCJBIl0sWzEsMCwiRCJdLFsyLDEsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV0sWzIsMCwiZSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV0sWzAsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMSw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFszLDUsIlxccHJlY2N1cmx5ZXEiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFs0LDUsImYiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dXQ==
+	 				\[\begin{tikzcd}
+	 					& D \\
+	 					B && A \\
+	 					{B'} && {A'} \\
+	 					& C
+	 					\arrow[hook', from=4-2, to=3-3]
+	 					\arrow["e", hook', from=4-2, to=3-1]
+	 					\arrow[hook', from=3-1, to=2-1]
+	 					\arrow[hook', from=3-3, to=2-3]
+	 					\arrow["\preccurlyeq", hook', from=2-1, to=1-2]
+	 					\arrow["f"', hook', from=2-3, to=1-2]
+	 				\end{tikzcd}\]
+	 				commute. As $B \preccurlyeq D$ and $B \models \mathcal{T}$ we have $D\models \mathcal{T}$ and thus $D\models \mathcal{T}_{\forall}$. Hence $\mathcal{T}_{\forall}$ has the amalgamation property.
+	 				\item[$(d)\Rightarrow (e)$] Since the models of $\mathcal{T}_{\forall}$ are precisely the substructures of $\mathcal{T}$ and by Example Sheet 1 question 11 (b), we can apply Theorem \ref{thm:ax_ex_cl_imp_qe} thanks to (d).
+	 				\item[$(e)\Rightarrow (a)$] Immediate from Proposition \ref{prop:syn_el}.\qedhere
+	 			\end{enumerate}
+	 		\end{proof}
+ 		\end{thm}
+ 		\begin{coro}
+ 			Let $A$ be a finite $\mathcal{L}$-structure. Then $\text{Th}(A)$ has quantifier elimination iff every isomorphism between finitely generated substructures of $A$ can be extended to an automorphism of $A$.
+ 		\end{coro}
+ 		\begin{proof}
+ 			Suppose that $\text{Th}(A)$ has quantifier elimination and let $e\colon \langle \bar{a} \rangle_A \stackrel{\cong}{\to} \langle \bar{b}\rangle_A \hookrightarrow A$. Let $A = B$ in Theorem \ref{thm:qe_char} so that we get a structure $D$, an elementary embedding $h\colon A \to D$ and an embedding $f\colon A \to D$.
+ 			
+ 			As $|A| = n$ for some $n<\omega$ we have a sentence saying so and $D$ must satisfy it. Thus the embeddings $h,f\colon A \hookrightarrow D$ are also surjective, i.e., they are isomorphisms. We also had the commutative diagram
+ 			% https://q.uiver.app/#q=WzAsNSxbMCwxLCJcXGxhbmdsZVxcYmFye2F9XFxyYW5nbGVfQSJdLFsyLDEsIlxcbGFuZ2xlXFxiYXJ7Yn1cXHJhbmdsZV9BIl0sWzIsMCwiQSJdLFswLDAsIkEiXSxbMSwwLCJEIl0sWzAsMSwiXFxjb25nIiwyXSxbMCwzXSxbMSwyXSxbMyw0LCJmIl0sWzIsNCwiaCIsMl1d
+ 			\[\begin{tikzcd}
+ 				A & D & A \\
+ 				{\langle\bar{a}\rangle_A} && {\langle\bar{b}\rangle_A}
+ 				\arrow["\cong"', from=2-1, to=2-3]
+ 				\arrow[from=2-1, to=1-1]
+ 				\arrow[from=2-3, to=1-3]
+ 				\arrow["f", from=1-1, to=1-2]
+ 				\arrow["h"', from=1-3, to=1-2]
+ 			\end{tikzcd}.\]
+ 			 So $h^{-1}f$ is an automorphism of $A$ extending the isomorphism.
+ 			 
+ 			 Conversely, we now assume that the isomorphisms can be extended and prove quantifier elimination of $\text{Th}(A)$. We show the condition in Theorem \ref{thm:qe_char} (b). So let $\bar{b}\in B\models \text{Th}(A)$ and $\bar{c}\in C\models \text{Th}(A)$ be such that $(B,\bar{b}) \equiv_0 (C,\bar{c})$. Note that $B$ and $C$ are elementarily equivalent to $A$ and by elementary amalgamation, together with the fact the structures are finite, we see that $A$, $B$, and $C$ are all isomorphic. Without loss of generality, assume $A=B=C$.
+ 			 
+ 			 As $(A,\bar{b}) \equiv_0 (A,\bar{c})$ in particular we have $\langle \bar{b} \rangle_A \models \Diag(\langle \bar{c} \rangle_A)$ so in particular there is an embedding $\langle \bar{b} \rangle_A$ into $\langle \bar{c} \rangle_A$ taking $b_i$ to $c_i$. Similarly there is an embedding the other way so, as the structures are finite, the embeddings are actually isomorphisms. By assumption we can extend this to an automorphism $f\colon A \to A$.
+ 			 
+ 			 Suppose $(A,\bar{b})\models \exists \bar{y}. \varphi(\bar{b},\bar{y})$ with witness $\bar{M}\in A$. Then $f(\bar{m})$ witnesses $\exists \bar{y}.\varphi(\bar{c},\bar{y})$ and hence $(A,\bar{b})\Rightarrow_1 (A,\bar{c})$.
+ 		\end{proof}
+ 		\begin{eg}
+ 			Let $V$ be a finite vector space (over a necessarily finite field). Any isomorphism between subspaces can be extended to an automorphism of $V$ by Steinitz lemma, so $\textnormal{Th}(V)$ has quantifier elimination.
+ 		\end{eg}
+ 		\begin{coro}\label{coro:qf_iim}
+ 			Let $\mathcal{T}$ be an $\mathcal{L}$-theory such that:
+ 			\begin{enumerate}
+ 				\item If $A,B\models \mathcal{T}$ with $A\subseteq B$, $\varphi(\bar{x},y)$ is a quantifier free formula, and $\bar{a}\in A$ is such that $B\models \exists y. \varphi(\bar{a}, y)$, then $A\models \exists y. \varphi(\bar{a},y)$.
+ 				\item For any $A\models \mathcal{T}$ and $C\subseteq A$, there is an initial intermediate model $A'\models \mathcal{T}$. This means that $C\subseteq A'\subseteq A$ and if $B\models \mathcal{T}$ with $C\subseteq B$ then there is an embedding $A' \hookrightarrow B$.
+ 			\end{enumerate}
+ 			Then $\mathcal{T}$ has quantifier elimination.
+ 		\end{coro}
+ 		\begin{proof}
+ 			Let $A,B\models \mathcal{T}$ and $\bar{a}\in A,\bar{b}\in B$ be such that $(A,\bar{a})\equiv_0 (B,\bar{b})$. It is enough to show that $(A,\bar{a})\Rightarrow_1 (B,\bar{b})$ by Theorem \ref{thm:qe_char} (b). Suppose $\varphi(\bar{x},\bar{y})$ is a quantifier-free $\mathcal{L}$-formula such that $A\models \exists \bar{y}. \varphi(\bar{x},\bar{y})$. We can have a witness $\bar{c} = (c_0,\ldots,c_{k-1})\in A$ such that $A\models \varphi(\bar{a},\bar{c})$.
+ 			
+ 			We claim that there is some elementary extension $B_0$ of $B$ and $d_0\in B_0$ such that $(A,\bar{a},c_0) \Rightarrow_0 (B_0,\bar{b},d_0)$, i.e. all quantifier-free formulae $\psi(\bar{x},y)$ such that $A\models \psi(\bar{a},c_0)$ also have $B_0\models \psi(\bar{b},d_0)$. Suppose, for a moment, that we can do this. Then iterate the procedure to get a sequence of extensions
+ 			\[
+ 				B \preccurlyeq B_0 \preccurlyeq \cdots \preccurlyeq B_{k-1}
+ 			\]
+ 			and elements $d_j\in B_j$ for all $j<k$ such that $(A,\bar{a},\bar{c}) \Rightarrow_0 (B_{k-1},\bar{b},\bar{d})$. Since $\varphi$ is quantifier free we must have $B_{k-1}\models \varphi(\bar{b},\bar{d})$. But then $B_{k-1} \models \exists \bar{y}.\varphi(\bar{b},\bar{y})$ and, as $B \preccurlyeq B_{k-1}$, we see that $B\models \exists \bar{y}.\varphi(\bar{b},\bar{y})$ and we are done.
+ 			
+ 			It remains to show that we can construct $B_0$. As $(A,\bar{a})\equiv (B,\bar{b})$ we have $(\langle \bar{a}\rangle_A,\bar{a}) \models \Diag (\langle \bar{b}\rangle_B,\bar{b})$ so there is an embedding $(\langle \bar{a}\rangle_A,\bar{a})$ into $(\langle \bar{b}\rangle_B,\bar{b})$, i.e. an embedding $\langle \bar{a}\rangle_A$ into $\langle \bar{b}\rangle_B$ mapping $a_i$ to $b_i$. But then the map is clearly surjective since $\bar{b}$ generates $\langle \bar{b}\rangle_B$. This all shows that there is an isomorphism $\langle \bar{a}\rangle_A \stackrel{\cong}{\to} \langle \bar{b}\rangle_B$.
+ 			
+ 			By assumption (b) there is an initial intermediate model $A'$ with respect to the extension $\langle\bar{a}\rangle_A \subseteq A$. But $\langle \bar{a}\rangle_A \stackrel{\cong}{\to} \langle \bar{b}\rangle_B \to A$ is an intermediate extension, so there is an embedding $A' \hookrightarrow \bar{b}\rangle_B$ fixing $\langle \bar{a}\rangle_A$. Without loss of generality, assume that this embedding is an inclusion.
+ 			
+ 			Let $\mathcal{L}^+$ be the language $\mathcal{L}$ with a constant for each element of $B$, separate constants for each element of $\bar{b}$, and an additional constant $d$. Consider the $\mathcal{L}^+$-theory:
+ 			\[
+ 				\Psi \coloneqq \Diag_{\text{el}}(B,\bar{b}) \cup \{\psi(\bar{b},d) \colon \psi \text{ is quantifier-free and } A \models \psi(\bar{a}, c_0) \}.
+ 			\]
+ 			A model of this theory is a structure $(B_0,\bar{b}, d_0)$ so that $(B_0,\bar{b})$ is an elementary extension of $(B,\bar{b})$ and there is $d_0\in B_0$ so that $A\models \psi(\bar{a},c_0)$ implies $B_0\models \psi(\bar{b},d_0)$ for $\psi$ quantifier-free, i.e. $(A,\bar{a},c_0) \Rightarrow_0 (B_0,\bar{b},d_0)$ as desired. So we are reduced to finding a model of $\Psi$. We do so by Compactness.
+ 			
+ 			We claim that $(B,\bar{b})$ is the domain of a model of any finite subset of $\Psi$. Indeed, it clearly satisfies $\Diag_{\text{el}}(B,\bar{b})$ so, as the conjunction of finitely many quantifier-free formulae is a single quantifier-free formula, we will be done if, given some $\psi\in \Psi$, we can find $d\in B$ with $\psi(\bar{b},d)$.
+ 	 			
+ 			As $\bar{a}\in A'$ we have that $A'\models \exists y. \psi(\bar{a},y)$ for all $\psi \in \Psi$ (this is by hypothesis (a)). Now $A'\subseteq B$ and existential formulae are preserved under extensions so $B\models \exists y. \psi(\bar{b},y)$, which is exactly what we wanted. 			
+ 		\end{proof}
+ 		\begin{eg}
+ 			The theory RCF of real closed fields (with signature $(+,\times, 0,1,<)$) has quantifier elimination. We will assume the following facts.
+ 			\begin{itemize}
+ 				\item Every ordered field admits a real closure, i.e. an ordered field extension that is real closed. Furthermore, this closure is unique up to unique isomorphism fixing the ground field.
+ 				\item All real closed fields satisfy the Intermediate Value Theorem (IVT) for polynomials. This means that if $R\models \text{RCF}$ and $f\in R[x]$ then if $f(a) < 0$ and $f(b) > 0$ for some $a<b \in R$ we have $f(c) = 0$ for some $a<c<b$.
+ 			\end{itemize}
+ 			We verify the conditions in Corollary \ref{coro:qf_iim}. Suppose we are given $A\subseteq B$ where $A,B$ are real closed fields, $\bar{a}\in A$, and a quantifier-free $\varphi(\bar{x},y)$ such that $B\models \exists y. \varphi(\bar{a},y)$. Let $b\in B$ be such that $B\models \varphi(\bar{a},b)$. By considering the Disjunction Normal Form (Example Sheet 1, question 1) we may assume that $\varphi(\bar{a,y})$ is a disjunction of conjunctions of literals.
+ 			
+ 			Pushing the existential inside the disjunction we can assume $\varphi$ isa conjunction of literals. Moreover $y\neq z$ and $\neg(y<z)$ can be written in terms of equality and $<$ so we can assume $\varphi$ is of the form
+ 			\[
+ 				\left(\bigwedge_{i<r}p_i(y) = 0\right) \wedge \left(\bigwedge_{j<s}q_j(y) > 0\right)
+ 			\]
+ 			where the $p_i$'s and $q_j$'s are polynomials in $y$ with coefficients in $A$.
+ 			
+ 			Suppose $\varphi$ contains some nontrivial equation $p_i(y) = 0$.  The witness $b$ is algebraic over $A$. This implies that $A$ already contains $b$ (\textcolor{red}{why?}) so we are done. Suppose thus that $r=0$.
+ 			
+ 			There are only finitely many points $c_0,\ldots,c_{n-1}$ in $A$ with $q_{j}(c_i)=0$ for one or more $j$ (a nonzero polynomial over a field can only have finitely many roots). Since RCFs have the IVT for polynomials the $q_j$'s can only change signs at one of these points.
+ 			
+ 			As $\mathbb{R}$ is dense, it follows that RCFs are also. Hence, as the $c_i$'s are in $A$, we have an element of $A$ between any pair of distinct $c_i$'s. Note that the $c_i$'s partition $B$ into finitely many intervals. Pick $a\in A$ such that it is in the same interval that $b$. It follows that $A\models \varphi(\bar{a},a)$ so we are done proving (a) of Corollary \ref{coro:qf_iim}.
+ 			
+ 			Now we need to prove the initial intermediate model property. Let $A$ be a real-closed field and let $C\subseteq A$ be a substructure. Clearly $C$ must be an ordered integral domain. The field of fractions $F(C)$ is naturally an ordered field by setting $\frac{a}{b}>0$ iff $ab>0$. 
+ 			
+ 			The embedding of $C$ into $A$ is an injective order-preserving ring homomorphism into an ordered field. By the universal property of $F(C)$ there's a unique order-preserving homomorphism $F(C) \to A$ extending $C \to A$.
+ 			
+ 			Let $A'$ be the real closure of $F(C)$. By the universal property of $A'$ there is an embedding $A' \to A$ extending the other embeddings. Further, $A'$ is the initial intermediate model by combining its two universal properties.  			
+ 		\end{eg}
+ 		\begin{coro}[Hilbert's Nullstellensatz]
+ 			Let $k$ be an algebraically closed field, and $I$ be a proper ideal of $k[x_1,\ldots,x_n]$. Then there's $\bar{a}\in k^n$ such that $f(\bar{a}) = 0$ for all $f\in I$.
+ 		\end{coro}
+ 		\begin{proof}
+ 			By Zorn's Lemma, we may assume that $I$ is a maximal ideal. Let $L\coloneqq \frac{k[x_1,\ldots,x_n]}{I}$ be its residue field; and $\bar{L}$ its algebraic closure. Choose a finite set of generators $I = (f_1,\ldots, f_r)$ for $I$ (this can be done by Hibert's basis theorem).
+ 			
+ 			Note that $\bar{L} \models \exists \bar{x}. f_1(\bar{x}) = 0 \wedge \cdots \wedge f_r(\bar{x}) = 0$ \textcolor{red}{(I have the same confusion as in ES2 Q4. Why is $f_i$ a term in this language?)}. We have embeddings $k\subseteq L \subseteq \bar{L}$ where $k$ and $\bar{L}$ are algebraically closed. But ACF is model-complete by quantifier elimination, and the result follows.
+ 		\end{proof}
+ 		Let $X$ be a topological space. Inductively, say that open sets are constructible and constructible sets are closed under finite Boolean operations. Below we consider $X= k^n$ with the Zariski topology.
+ 		\begin{coro}[Chevalley's Theorem]
+ 			Let $k$ be an algebraically closed field. Then the image of a constructible subset of $k^n$ under a polynomial map is constructible.
+ 		\end{coro}
+ 		\begin{proof}
+			Note that, as ACF has quantifier elimination, the definable subsets of $k^n$ are finite Boolean combinations of Zariski-closed subsets, which implies that a subset of $k^n$ is constructible if and only if it is definable.
+			
+			Let $X\subseteq k^n$ be definable, and $p$ a polynomial map, then $p(X) =\{y\in k^m \mid \exists x. p(x) = y\}$ \textcolor{red}{(Again, why on Earth are polynomials suddenly terms?)}. This is still definable in the same language.
+ 		\end{proof}
+ 		\section{Ultraproducts}
+ 		\begin{defn}[Product]
+ 			Let $\{M_i\colon i \in I\}$ be a set of $\mathcal{L}$-structures. The \emph{product} $\prod_{i\in I}M_i$ of this family is the $\mathcal{L}$-structure whose carrier set is $\prod_{i\in I}M_i$ as a Cartesian product with the following interpretations.
+ 			\begin{itemize}
+ 				\item An $n$-ary function symbol $f$ is interpreted as a function
+ 				 \[
+ 				 	f^{\prod_{i\in I}M_i} \colon \left(\prod_{i\in I}M_i\right)^n \to \prod_{i\in I}M_i
+ 				 \]
+ 				 given by
+ 				 \[
+ 				 	(\alpha_1,\ldots,\alpha_n) \mapsto (i\mapsto f^{M_i}(\alpha_1(i),\ldots,\alpha_n(i))).
+ 				 \]
+ 				 \item An $n$-ary relation symbol $R$ as the set
+ 				 \[
+ 				 	R^{\prod_{i\in I}M_i} \coloneqq \left\{(\alpha_1,\ldots,\alpha_n)\in \left({\prod_{i\in I}M_i}\right)^n \colon (\alpha_1(i),\ldots,\alpha_n(i))\in R^{M_i} \text{ for all }i\right\}
+ 				 \]
+ 			\end{itemize}
+ 		\end{defn}
+ 		\begin{defn}[Lattices and Boolean algebras]
+ 			A \emph{lattice} is a set $L$ equipped with binary commutative an associative operations $\wedge$ and $\vee$ that satisfy the absorption law
+ 			\[
+ 			a= a\vee (a \wedge b)  = a\wedge (a\vee b)
+ 			\]
+ 			for all $a,b\in L$.	The lattice is called
+ 			\begin{itemize}
+ 				\item Distributive iff $a \wedge (b \vee c) = (a\wedge b) \vee (a \wedge c)$ for all $a,b,c\in L$.
+ 				\item Bounded iff there are elements $\top,\bot \in L$ such that $a =a \vee \bot  = a \wedge \top $ for all $a\in L$
+ 				\item Complemented iff it is bounded and for every element $a\in L$ there is some $a^{\ast}\in L$ such that $a\vee a^* = \top$ and $a\wedge a^* = \bot$.
+ 			\end{itemize}
+ 			A \emph{Boolean algebra} is a complemented distributive lattice.
+ 		\end{defn}
+ 		Every lattice has an partial ordering induced by the algebraic structure: define $a\leq b$ to mean $a\wedge b = a$.
+ 		\begin{eg}
+ 			\begin{enumerate}[label=\arabic*.]
+ 				\item For every set $I$ the power set $\mathcal{P}(I)$ is the prototypical Boolean algebra with $\wedge \coloneqq \cap$ and $\vee \coloneqq \cup$. More generally, the clopen subsets of a topological space form a Boolean algebra (and, in a sense, all Boolean algebras arise in this way. This result is called Stone's representation theorem).
+ 				\item For any $\mathcal{L}$-structure $M$ and subset $B \subseteq M$, the set $\{\varphi(M) \coloneqq \varphi(x)\in \mathcal{L}_B\}$ of definable subsets of $M$ with parameters in $B$ form a Boolean algebra.
+ 			\end{enumerate}
+ 		\end{eg}
+ 			\begin{defn}[Filters]
+ 				Let $X$ be a lattice. A \emph{filter} $\mathcal{F}$ on $X$ is a subset of $X$ with the following properties.
+ 				\begin{enumerate}[label= \arabic*.]
+ 					\item $\mathcal{F} \neq \emptyset$
+ 					\item $\mathcal{F}$ is a terminal segment of $X$, i.e., if $f\leq x$ and $f\in \mathcal{F}$ then $x\in \mathcal{F}$. 
+ 					\item $\mathcal{F}$ is closed under finite meets, i.e., if $x,y\in \mathcal{F}$ then $x\wedge y \in \mathcal{F}$.
+ 				\end{enumerate}
+ 			\end{defn}
+ 			\begin{eg}
+ 				\begin{enumerate}[label=\arabic*.]
+ 					\item Given an element $j\in I$ the family $\mathcal{F}_j$ of all subsets of $I$ containing $j$ is a \emph{principal} filter. Filters that aren't principal are called \emph{free}.
+ 					\item The family of all cofinite subsets of $I$ (given that $I$ is infinite) is a filter on $\mathcal{P}(I)$, called the \emph{Frechét filter}.
+ 					\item The family of all measurable subsets of $[0,1]$ with Lebesgue measure 1 is a filter.
+ 				\end{enumerate}
+ 			\end{eg}
+ 			A filter $\mathcal{F}$ is \emph{proper} if it is not the whole lattice. A maximal (under inclusion) proper filter is called an \emph{ultrafilter}. Ultrafilters on $\mathcal{P}(I)$ are exactly those filters $\mathcal{F}$ such that for all subsets $U$ of $I$ we have $U \in \mathcal{F}$ or $I\setminus U \in \mathcal{F}$. 
+ 			\begin{prop}[Ultrafilter principle]
+ 				Given a set $I$, every proper filter on $\mathcal{P}(I)$ can be extended to an ultrafilter.
+ 			\end{prop}
+ 			\begin{proof}
+ 				Suppose $\mathcal{F}$ is a proper filter on $\mathcal{P}(I)$. Let $\Phi$ be the set of all proper filters on $\mathcal{P(I)}$ extending $\mathcal{F}$. We show that $\Phi$ contains a maximal element under inclusion using Zorn's Lemma.
+ 				
+ 				First, note that $\mathcal{F}\in \Phi$ so $F$ is nonempty. Suppose $T\subseteq \Phi$ is a chain of proper filters all containing $\mathcal{F}$, and let $U$ be the union of all elements of $T$. We show that $U$ is still a proper filter on $\mathcal{P}(I)$ that contains $\mathcal{F}$.
+ 				
+ 				Clearly $\mathcal{F}\subseteq U$ and $U \neq \emptyset$. Let $X\in U$ and suppose $Y\supseteq X$. Then $X$ belongs to some filter in $T$, so $Y$ belongs to that filter and thus to $U$. Hence $U$ is closed under supersets. Similarly, if $X,Y\in U$ then there is a single filter in $T$ that contains both $X$ and $Y$ and thus contains $X\cap Y$. This all shows that $U$ is a filter. Now the filter $U$ is proper iff $\emptyset \notin U$. As $\emptyset \notin t$ for all $t\in T$ we see that $U$ is a proper filter containing $\mathcal{F}$.
+ 				
+ 				Zorn's Lemma applies and gives us some proper filter $\mathcal{U}$ maximal among proper filters on $\mathcal{P}(I)$ containing $\mathcal{F}$. Let $A$ be a subset of $I$. Suppose that both $\mathcal{U}\cap A$ and $\mathcal{U}\cap A^c$ don't have the finite intersection property (Example Sheet 2 Question 5). Then there is $U,U'\in \mathcal{U}$ with $A\cap U = A^c \cap U' = \emptyset$. But $U\cap U' \in \mathcal{U}$ and 
+ 				\[
+ 					\emptyset = ((U\cap U') \cap A) \cup ((U\cap U') \cap A') = U\cap U'\neq \emptyset
+ 				\]
+ 				a contradiction. Therefore one of $\mathcal{U}\cap A$ and $\mathcal{U}\cap A^c$ has the finite intersection property. By Example Sheet 2 Question 5 we can extend the one with the property to a proper filter. But by maximality of $\mathcal{U}$ the extension must be trivial, i.e., one of $A$ or $A^c$ is in $\mathcal{U}$ already. This shows that $\mathcal{U}$ is an ultrafilter, as desired.
+ 			\end{proof}
+ 			We introduce some notation. For $\bar{\alpha}\in \prod_{i\in I}M_i$ and $\varphi(\bar{x})$ an $\mathcal{L}$-formula we write
+ 			\[
+ 				[\varphi(\bar{\alpha})] \coloneqq \{i\in I \colon M_i \models \varphi(\bar{\alpha}(i))\}.
+ 			\]
+ 			\begin{defn}[Reduced product]
+ 				Let $I$ be a set, $\mathcal{F}$ a filter on $\mathcal{P}(I)$, and $\mathcal{M}_i$ and $\mathcal{L}$-structure for all $i\in I$.
+ 				
+ 				The carrier set for the \emph{reduced product} $\sfrac{\prod_{i\in I}{M_i}}{\mathcal{F}}$ is the quotient of the Cartesian product $\prod_{i\in I}{M_i}$ by the equivalence relation defined by 
+ 				\[
+ 					\alpha \sim \beta \iff [\alpha = \beta]\in \mathcal{F}.
+ 				\]
+ 				Write $\langle \alpha \rangle$ for the class represented by $\alpha$. The interpretation of an n-ary function symbol $f$ is given by
+ 				\[
+ 					f^{\sfrac{\prod_{i\in I}M_i}{\mathcal{F}}} (\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle) \coloneqq \langle i \mapsto f^{M_i}(\alpha_1(i), \ldots,\alpha_n(i))\rangle.
+ 				\] 
+ 				An $n$-ary relation symbol $R$ is interpreted by the rule
+ 				\[
+ 					(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle) \in R^{\sfrac{\prod_{i\in I} M_i}{\mathcal{F}}}  \iff [R(\alpha_1,\ldots,\alpha_n)]\in \mathcal{F}.
+ 				\]
+ 				These turn out to be well-defined, so the reduced product is an $\mathcal{L}$-structure. If $\mathcal{F}$ is an ultrafilter we call the reduced product an \emph{ultraproduct}. If, in addition, all the $M_i$'s are equal, we call it an \emph{ultrapower}.
+ 			\end{defn}
+ 			Note that if the filter is principal then the reduced product is basically just the distinguished structure.
+ 			\begin{thm}[\L o\'s's Theorem]
+ 				Let $\{M_i\colon i\in I\}$ be a family of structures and $\mathcal{U}$ an ultrafilter on $\mathcal{P}(I)$. Then for every $(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)\in \left(\sfrac{\prod_{i\in I}M_i}{\mathcal{U}}\right)^n$ and $\mathcal{L}$-formula $\varphi(x_1,\ldots,x_n)$ we have that
+ 				\[
+ 					\sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \varphi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)
+ 				\]
+ 				if and only if
+ 				\[
+ 					[\varphi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)] \in \mathcal{U}.
+ 				\]
+ 				In particular, if, for all $i$, $M_i$ is the model of a theory $\mathcal{T}$ then $\sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \mathcal{T}$.
+ 			\end{thm}
+ 			\begin{proof}
+ 					By induction on the structure of $\phi$. The case for atomic formulae follows from the definition.
+ 					
+ 					Suppose the claim holds for $\psi(\bar{x})$ and $\varphi(\bar{x}) = \neg\psi(\bar{x})$. Then 
+ 					\begin{align*}
+ 						\sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \neg\psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle) \,\,\, &\text{ iff }\,\,\, \sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \nvDash \psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)\\
+ 						&\text{ iff }\,\,\,  [\psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)] \notin \mathcal{U}\\
+ 						&\text{ iff }\,\,\, I\setminus  [\psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)] \in \mathcal{U}\\
+ 						&\text{ iff }\,\,\, [\neg\psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)] \in \mathcal{U}\\
+ 					\end{align*}
+ 				where we have used the fact that, since $\mathcal{U}$ is an ultrafilter, it either contains a given subset of $I$ or its complement. Now assume the claim holds for $\psi_1(\bar{x})$ and $\psi_2(\bar{x})$ and suppose $\varphi(\bar{x}) = \psi_1(\bar{x})\vee \psi_2(\bar{x})$.
+ 				\begin{align*}
+ 					\sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \varphi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle) \,\,\,&\text{ iff }\,\,\, \sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \psi_1(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle) \vee \psi_2(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)\\
+ 					&\text{ iff }\,\,\, \sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \psi_1(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)\text{ or }\sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \psi_2(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)\\
+ 					&\text{ iff }\,\,\,  [\psi_1(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)] \in \mathcal{U} \text{ or }[\psi_2(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)] \in \mathcal{U}\\
+ 					&\text{ iff }\,\,\, [\psi_1(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)] \cup [\psi_2(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)]  \in \mathcal{U}\\
+ 					&\text{ iff }\,\,\, [\psi_1(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)\vee \psi_2(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)] \in \mathcal{U}\\
+ 				\end{align*}
+ 				where we have used the fact that in an ultrafilter $\mathcal{U}$ we have $A\cup B \in \mathcal{U}$ iff $A \in \mathcal{U}$ or $B\in \mathcal{U}$. 
+ 				
+ 				Finally, suppose the claim holds for $\psi(\bar{x},y)$ and $\varphi(\bar{x}) = \exists y. \psi(\bar{x},y)$. If we have 
+ 				\[
+ 					\sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle, \langle \alpha \rangle)
+ 				\]
+ 				for some $\alpha$ then, by inductive hypothesis, we have $[\psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle, \langle \alpha \rangle)] \in \mathcal{U}$. But
+ 				\[
+ 					[\psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle, \langle \alpha \rangle)] \subseteq [\exists y. \psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle, y)]
+ 				\]	
+ 				so, as $\mathcal{U}$ is closed under supersets, we see that $[\varphi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle)]\in\mathcal{U}$ and we have one direction.
+ 				
+ 				Conversely, suppose that $[\exists y. \psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle, y)]\in \mathcal{U}$. Using the axiom of choice, we can pick a witness $\alpha(i)\in M_i$ to the formula for each $i\in \mathcal{U}$; if $i\neq \mathcal{U}$ let $\alpha(i)$ be any element of $M_i$. Hence we have constructed an element $\langle \alpha\rangle\in \sfrac{\prod_{i\in I}M_i}{\mathcal{U}}$ that serves as a witness to
+ 				\[
+ 					\sfrac{\prod_{i\in I}M_i}{\mathcal{U}} \models \exists y. \psi(\langle \alpha_1\rangle, \ldots, \langle \alpha_n\rangle, y)
+ 				\] 
+ 			\end{proof}
+ 			\begin{eg}
+ 				The class of torsion abelian groups is not first-order axiomatizable (in the language with signature (+,0)). Suppose, for the sake of contradiction, that $\mathcal{T}$ axiomatized this class.
+ 				
+ 				For each $i\in\mathbb{Z}^+$ let $C_i$ denote the cyclic group of order $i$. Clearly these are all models of $\mathcal{T}$. Fix some free ultrafilter $\mathcal{U}$ on $\mathbb{Z}^+$. Form the ultraproduct
+ 				\[
+ 					G\models \sfrac{\prod_{i \in \mathbb{Z}^+} C_i}{\mathcal{U}}.
+ 				\]
+ 				If we write $g_i$ for the generator of $C_i$ we can define $g\coloneqq \langle i \mapsto g_i\rangle \in G$. We ask whether $g$ has finite order. This happens if there is some positive integer $n$ such that $[ng = 0]\in \mathcal{U}$.
+ 				
+ 				But for any fixed $n$ we have $ng_i = 0$ for finitely many $i$ and any free ultrafilter on an infinite set contains the Fréchet filter, and thus doesn't contain any finite set. Hence $g$ has infinite order, i.e. $G$ is not torsion even though $G\models \mathcal{T}$.
+ 			\end{eg}
+ 			\begin{eg}
+ 				Fix a free ultrafilter $\mathcal{U}$ on $\omega$ and consider the ultrapower
+ 				\[
+ 					\mathbb{N}^{\mathcal{U}} \coloneqq \sfrac{\prod_{i < \omega} \mathbb{N}}{\mathcal{U}}.
+ 				\]
+ 				Its elements are equivalence classes of sequences of natural umbers. If $\mathbb{N}$ carries its usual structure for the language of arithmetic then $\mathbb{N}^{\mathcal{U}}$ is a nonstandard model of arithmetic, by \L o\'s's Theorem.
+ 			\end{eg}
+ 			\begin{eg}
+ 				Similarly, $\mathbb{R}^{\mathcal{U}}$ is an elementary extension of $\mathbb{R}$. It includes `large numbers' bigger than any standard real (e.g., $\omega = \langle (n)_{n<\omega}\rangle$) and also infinitesimal numbers such as $\frac{1}{\omega}$. Infinitesimals are positive but smaller than any positive standard real number.
+ 			\end{eg}
+ 			We can now give a proof of the Compactness Theorem that doesn't rely on the Completeness Theorem.
+ 			\begin{coro}[Compactness]
+ 				Let $\mathcal{T}$ be a first-order theory such that every finite subset of $\mathcal{T}$ has a model. Then $\mathcal{T}$ itself has a model.
+ 			\end{coro}
+ 			\begin{proof}
+ 				Assume $\mathcal{T}$ is infinite since otherwise the claim is trivial. Let $I$ be the set of all finite subtheories of $\mathcal{T}$. For each axiom $\varphi$ in $\mathcal{T}$ let $X_{\varphi}\coloneqq \{\Delta \in I \mid \varphi \in \Delta\}$ be the set of all finite subtheories of $\mathcal{T}$ containing $\varphi$. 
+ 				
+ 				Let $\varphi_1,\ldots,\varphi_n\in \mathcal{T}$ and note $\bigcap_{i = 1}^n X_{\varphi_i}$ is nonempty since it contains $\{\varphi_1,\ldots,\varphi_{n}\}\in I$. Thus the set $X$ of all sets of the form $X_{\varphi}$ has the finite intersection property. By Example Sheet 2 Question 5 (a), there is a proper filter $D$ on $\mathcal{P}(I)$ containing $X$. By the Ultrafilter Principle, we can extend $D$ to an ultrafilter $\mathcal{U}$.
+ 				
+ 				Use the Axiom of Choice to pick a model $M_{\Delta}$ for each $\Delta\in I$, which we can do by hypothesis. For any $\varphi\in\mathcal{T}$ the and $\Delta \in I$ so that $\varphi \in \Delta$ we obviously have that $M_{\Delta} \models \varphi$. This shows that $X_{\varphi} \subseteq \{\Delta \in I \mid M_{\Delta} \models \varphi\}$ and, as $\mathcal{U}$ is closed under supersets, we have $\{\Delta \in I  \mid M_{\Delta} \models \varphi\} \in \mathcal{U}$ for all $\varphi\in \mathcal{T}$. \L o\'s's Theorem then implies that for all $\varphi\in\mathcal{T}$ we have
+ 				\[
+ 					\sfrac{\prod_{\Delta \in I} M_{\Delta}}{\mathcal{U}} \models \varphi.
+ 				\]
+ 				In other words, $\sfrac{\prod_{\Delta \in I} M_{\Delta}}{\mathcal{U}}$ is a model of $\mathcal{T}$. 				
+ 			\end{proof}
+ 	\section{Types}
+ 	Given a theory we would like to investigate its models; in particular, we would like to describe the sort of elements the models can and cannot posses. This leads to the notion of types
+ 	\begin{defn}[Definable sets]
+ 		Let $M$ be an $\mathcal{L}$-structure, $X\subseteq M^n$, and $P \subseteq M$ be a subset. We say that $X$ is \emph{definable with parameters in }$P$ if there is $\bar{p}\in P$ and some $\mathcal{L}_P$-formula $\varphi(\bar{x},\bar{y})$ such that
+ 		\[
+ 			X = \varphi(M,\bar{p}) \coloneqq \{\bar{m}\in M^n \colon M \models \varphi(\bar{m},\bar{p})\}.
+ 		\]
+ 	\end{defn}
+ 	\begin{eg}
+ 		Consider the natural numbers $\mathbb{N}$ as a structure for the language $\mathcal{L}$ with signature $(+,\cdot, 0,1)$. There is an $\mathcal{L}$-formula $T(e,x,s)$ such that $\mathbb{N}\models T(e,x,s)$ if and only if the Turing machine of code $e$ halts on input $x$ in at most $s$ steps. This implies that the set of all halting programmes is definable by $\exists s. T(e,x,s)$ (although not computable).
+ 	\end{eg}
+ 	Let $M$ be an $\mathcal{L}$-structure. We would like $M$ to have an element with particular properties. For example $\mathbb{R}$ to have infinitesimals (resulting in hyperreal numbers) or $\mathbb{N}$ to have infinitely large numbers. Though these structures don't themselves contain such elements, we would like to construct an extension of them that do. We can do this using Compactness. For example, an infinitesimal in $\mathbb{R}$ would have to satisfy the formulae
+ 	\[
+ 		0< x < 1,\,\,\, 0<x<\frac{1}{1+1},\,\,\, 0<x<\frac{1}{1+ 1 +1},\ldots
+ 	\]
+ 	which are expressible in the language of ordered fields. The above aren't sentences but if we ignore this fact for a moment we could take the collection of these formulae together with some suitable sentences to build a theory that will be consistent by Compactness ($\mathbb{R}$ would be a model for any finite subset of the theory). Hence we would obtain the desired element in some extension of $\mathbb{R}$.
+ 	
+ 	The idea is to first describe an element by a set $S$ of formulae just as we did above. These formulae generate a filter as follows. First, close $S$ under conjunction: if two formulae are satisfied by this ideal element then their conjunction is satisfied by the element too. Second, close $S$ under implication: if $\varphi(x)$ is satisfied by the ideal element and $\varphi(x)\implies\psi(x)$ then $\psi(x)$ is also satisfied by the ideal element. Hence we obtain a filter. Only proper filters are interesting since we don't want $S$ to contain or imply $\bot$. We might as well quotient out by formulae which the structure think are equivalent.
+ 	\begin{defn}[Lindenbaum-Tarski algebra and types]
+ 		Let $\mathcal{T}$ be a theory and $n\in \mathbb{N}$. We obtain an equivalence relation $\sim$ on the set $\mathcal{L}(\bar{x})$ or $\mathcal{L}$ formulae with $n$ free variables $\bar{x}$ by setting
+ 		\[
+ 			\varphi(\bar{x}) \sim \psi(\bar{x})\,\,\, \text{ iff }\,\,\, \mathcal{T} \vdash \forall x. (\varphi(\bar{x})\iff \psi(\bar{x}))
+ 		\]
+ 		The quotient $B_n(\mathcal{T}) \coloneqq \sfrac{\mathcal{L}(\bar{x})}{\sim}$ becomes a Boolean algebra by setting 
+ 		\begin{itemize}
+ 			\item $[\varphi] \wedge [\psi] \coloneqq [\varphi \wedge \psi]$
+ 			\item $[\varphi]\vee [\psi] \coloneqq [\varphi \vee \psi]$
+ 			\item $[\varphi]^* \coloneqq [\neg \varphi]$.
+ 		\end{itemize}
+ 		We call $B_n(\mathcal{T})$ the \emph{Lindenbaum-Tarski algebra of $\mathcal{T}$ on variables $\bar{x}$}.
+ 	\end{defn}
+ 	Now let $M$ be an $\mathcal{L}$-structure and $A\subseteq M$ a subset. In the special case where $\mathcal{T} \coloneqq \textnormal{Th}_A(M)$ is collection of all sentences with parameters in $A$ satisfied by $M$ we call the proper filters on $B_n(\mathcal{T})$ the $n$-\emph{types} of $M$ over $A$. We can alternatively define types as follows.
+ 	\begin{defn}[Types]
+ 		Let $M$ be an $\mathcal{L}$-structure and $A \subseteq M$. A set $p$ of $\mathcal{L}_A$ formulae with $n$ free variables $\bar{x}$ is an $n$\emph{-type of $M$} if, for all finite subsets $\Psi$ of $p$ the theory
+ 		\[
+ 			\Th_{A}(M)\cup \left\{\exists \bar{x}. \bigwedge_{\psi\in \Psi} \psi\right\}
+ 		\] 
+ 		is consistent (and thus has a model). More generally, we can replace $\Th_A(M)$ with a theory $\mathcal{T}$ above to define $n$-types of $\mathcal{T}$.
+ 		
+ 		An $n$-type $p$ is called \emph{complete} if it is maximal among the collection of $n$-types, in the sense that for every $\mathcal{L}$-formulae $\varphi(\bar{x})$ either $\varphi\in p$ or $\neg\varphi\in p$. We denote the set of complete $n$-types by $S_n(\mathcal{T})$, or $S_n^M(A)$ if $T = \textnormal{Th}_A(M)$. An element $\bar{m}\in M^n$ \emph{realises} a an $n$-type $p$ in $M$ if $M\models \varphi(\bar{m})$ for all $\varphi(\bar{x})\in p$. If no elements realize a type we say that the type is omitted in $M$.
+ 	\end{defn}
+ 	
+ 	To give another alternative definition, say we have an $\mathcal{L}$-theory $\mathcal{T}$ and a set $p$ of $\mathcal{L}$-formulae with $n$ free variables $\bar{x}$. Then $p$ is an $n$-type of $\mathcal{T}$ iff in the expanded language $\mathcal{L}_{\bar{x}}$ the theory $\mathcal{T} \cup p$ is consistent.
+ 	
+ 	Complete types correspond to ultrafilters under the old definition. Recall that any proper filter can be extended to an ultrafilter. Complete types are named so because they give a complete description of the element.
+ 	\begin{eg}
+ 		\begin{enumerate}
+ 		\item Let $M= (\mathbb{Q},<)$ and consider the formulae $n<x$ for each natural number $n$. This collection of formulae is a 1-type of $M$ over $\mathbb{N}$ as every finite subset of it is consistent. This type is omitted in $M$ but, as we will see, it is realized in an elementary extension of $\mathbb{Q}$.
+ 		\item Similarly the formulae $0<x<1/n$ form a 1-type of $\mathbb{R}$ over $\mathbb{N}$. This type is omitted in $\mathbb{R}$ but realized in, for example, an ultrapower with respect to a free ultrafilter.
+ 		\item For any $\mathcal{L}$-structure $M$, subset $A\subseteq M$, and tuple $\bar{m}\in M$, we can form the $n$-type of all $\mathcal{L}_A$-formulae that hold in $M$ of $\bar{m}$.
+ 		\[
+ 			\text{tp}^M(\bar{m}/A)\coloneqq \{\varphi(\bar{x})\in \mathcal{L}_A\colon M \models \varphi(\bar{m})\}.
+ 		\]
+ 		This is a complete $n$-type called the \emph{type of $\bar{m}$ over $A$}.
+ 	\end{enumerate}
+ 	\end{eg}
+ 	\begin{prop}\label{prop:type_real_ext}
+ 		Let $M$ be an $\mathcal{L}$-structure with $A \subseteq M$ and let $p$ be an $n$-type of $M$ over $A$. Then there is an elementary extension $N$ of $M$ that realizes $p$.
+ 	\end{prop}
+ 	\begin{proof}
+ 		Let $\bar{c}$ be an $n$-tuple of constants (disjoint from $M$) and consider the language $\mathcal{L}^+\coloneqq \mathcal{L}_{M\cup \bar{c}}$. It suffices to show that the $\mathcal{L}^+$-theory
+ 		\[
+ 			\Gamma \coloneqq \Diag_{\text{el}}(M) \cup p
+ 		\]
+ 		is consistent, where $p$ is interpreted as an $\mathcal{L}_{\bar{c}}$-theory. Let $\Delta$ be a finite subset of $\Gamma$. Define $\phi(\bar{m},\bar{a})$ to be the conjunctions of all sentences in $\Delta \cap \Diag_{\text{el}}(M)$, where $\bar{m}\in M\setminus A$, and similarly define $\psi(\bar{c},\bar{a}')$ to be the conjunction of all formulae in $\Delta \cap p$. We are done if we can find a model of $\phi \wedge \psi$.
+ 		
+ 		By definition of type, there is an $\mathcal{L}_A$-structure $N$ satisfying $\Th_{A}(M)\cup p$, so $N\models \psi$. By definition we have $M\models \phi(\bar{m},\bar{a})$, so in particular we have $M\models \exists \bar{y}. \phi(\bar{y},\bar{a})$, which is an $\mathcal{L}_A$ sentence. It follows that $N \models \exists \bar{y}. \phi(\bar{y},\bar{a})$, so we can interpret $\bar{m}$ in $N$ as a witness to this statement (and interpret all other constants as whatever). Hence $N$ is an $\mathcal{L}^+$ structure with $N\models \phi\wedge \psi$.
+ 	\end{proof}
+ 	\begin{coro}
+ 		An $n$-type $p$ of $M$ over $A\subseteq M$ is complete if and only if there is an elementary extension $N$ of $M$ and some $\bar{a}\in N$ such that $p = \text{tp}^N(\bar{a}/A)$
+ 	\end{coro}
+ 	\begin{proof}
+ 		Let $N$ be an elementary extension of $M$, and $\bar{a}\in N$ be such that $p = \text{tp}^N(\bar{a}/A)$. If $\phi(\bar{x})$ is an $\mathcal{L}_A$-formula then either $N \models \phi(\bar{a})$, in which case $\phi(\bar{x})\in p$, or $N\models \neg\phi(\bar{a})$, in which case $\phi(\bar{x})\notin p$, so $p$ is complete.
+ 		
+ 		Conversely, suppose $p$ is a complete $n$-type. By Proposition \ref{prop:type_real_ext} there is an extension $N$ of $M$ realizing $p$; let $\bar{a}\in N$ realize $p$, i.e., $p\subseteq \text{tp}^N(\bar{a}/A)$. Let $\phi(\bar{x})$ be an $\mathcal{L}_A$-formula with $N\models \phi(\bar{a})$ . Then, as we cannot have $\neg\phi \in p$, we must have $\phi\in p$ since $p$ is complete; hence $\text{tp}^N(\bar{a}/A)\subseteq p$. 
+ 	\end{proof}
+ 	Let $M$ be an $\mathcal{L}$-structure and $A \subseteq M$. As we've seen, complete types of $M$ over $A$ can be thought of as elements in extensions of $M$. Hence the set of all types over $M$ forms a kind of space, populated by these ideal elements.
+ 	
+ 	This idea can be made more precise, since we can topologize this set. Two types are thought to be close to each other when their realizations satisfy some of the same $\mathcal{L}_A$-formulae. This motivates the following definition.
+ 	
+ 	For each $\mathcal{L}_A$ formula $\varphi(x_1,\ldots,x_n)$ we consider the set
+ 	\[
+ 		\llbracket \varphi \rrbracket\coloneqq \{p \in S_n^M(A) \colon \varphi\in p\}.
+ 	\]
+ 	
+ 	Note that $\llbracket \varphi \vee \psi\rrbracket = \llbracket \varphi \rrbracket \cup \llbracket \psi \rrbracket$ and similarly $\wedge$ corresponds to $\cap$. Hence these sets form a basis for a topology on $S_n^M(A)$. Moreover each $\llbracket \varphi \rrbracket = S_n^M(A) \setminus \llbracket \neg \varphi\rrbracket$ is closed, so the topology is generated by clopen sets.
+ 	
+ 	A \emph{Stone space} is a compact, totally disconnected, topological space. Turns out that $S_n^M(A)$ is always a Stone space.
+ 	\begin{eg}
+ 		Let $F\models \text{ACF}$ and $k$ be a subfield of $F$. The complete $n$-types $p\in S_n^{F}(k)$ are determined by the prime ideals of $k[x_1,\ldots,x_n]$. For such a type $p$ define
+ 		\[
+ 			I_p \coloneqq \{f\in k[x_1,\ldots,x_n] \colon (f(\bar{x}) = 0)\in p\}.
+ 		\]
+ 		Each $I_p$ is a prime ideal and in fact every prime ideal is of this form (\textcolor{red}{why?}). The map $p\mapsto I_p$ is a continuous bijection (but not a homeomorphism) $S_n^F(k) \to \text{Spec}(k[x_1,\ldots,x_n])$ (\textcolor{red}{why?}), where the latter is the set of prime ideals of $k[x_1,\ldots,x_n]$ with the Zariski topology. Also we have a bound (\textcolor{red}{why?})
+ 		\[
+ 			|S_n^F(k)|\leq |k| + \aleph_0.
+ 		\]
+ 	\end{eg}
+ 		Recall that a point $p$ of a topological space is \emph{isolated} if $\{p\}$ is an open set. In the case $p\in S_n^F(k)$ we must have
+ 		\[
+ 			\{p\} = \bigcup_{i\in I}\llbracket\varphi_i\rrbracket
+ 		\]
+ 		for some $I$. It follows that $\{p\} = \llbracket \varphi\rrbracket$ for some $\varphi$. We say that $\varphi$ \emph{isolates} $p$. We generalize this to more general types as follows.
+ 		\begin{defn}
+ 			Let $\mathcal{T}$ be an $\mathcal{L}$-theory. A formula $\varphi(x_1,\ldots,x_n)$ \emph{isolates} an $n$-type $p$ if $\mathcal{T}\cup \{\varphi\}$ is satisfiable and
+ 			\[
+ 				\mathcal{T}\models \forall \bar{x}.(\varphi(\bar{x}) \Rightarrow \psi(\bar{x}))
+ 			\]
+ 			for all $\psi\in p$.
+ 		\end{defn}
+ 		\begin{prop}
+ 			If $\varphi$ isolates an $n$-type $p$, then $p$ is realized in any model of $\mathcal{T}\cup \{\exists \bar{x}. \varphi(\bar{x})\}$. In particular, if $\mathcal{T}$ is a complete theory, then every isolated type is realized in all models of $\mathcal{T}$.
+ 		\end{prop}
+ 		\begin{proof}
+	 		Let $M$ be a model of $\mathcal{T}\cup \{\exists \bar{x}. \varphi(\bar{x})\}$, and $\bar{m}\in M$ be such that $M\models \varphi(\bar{m})$. Then $M\models \psi(\bar{m})$ for all $\psi\in p$; hence $\bar{m}$ realizes $p$.
+	 		
+	 		Now assume that $\mathcal{T}$ is complete. Either $\exists \bar{x}. \varphi(\bar{x})$ or its negation is implied by $\mathcal{T}$. But $\mathcal{T}\cup\{\exists \bar{x}. \varphi(\bar{x})\}$ is consistent by definition. The claim follows.
+ 		\end{proof}
+ 		\begin{thm}
+ 			Let $\mathcal{L}$ be a countable language, $\mathcal{T}$ an $\mathcal{L}$-theory, and $p$ a non-isolated $n$-type of $\mathcal{T}$. Then there is a countable model $M\models \mathcal{T}$ that omits $p$.
+ 		\end{thm}
+ 		\begin{proof}
+ 			As the theory $\mathcal{T}$ has a type it is, in particular, consistent. Let $C=\{c_0,c_1,\ldots\}$ be a countable set of new constants. We expand $\mathcal{T}$ to a consistent $\mathcal{L}_C$-theory $\mathcal{T}^*$ by adding recursively defined sentences $\theta_0,\theta_1,\ldots$. This will be done in such a way that if $s<t$, then $\theta_t$ implies $\theta_s$.
+ 			
+ 			Enumerate the $n$-tuples $C^n = \{\bar{d}_0,\bar{d}_1,\ldots\}$ as well as the $\mathcal{L}_C$-sentences $\varphi_0,\varphi_1,\ldots$. Start with $\theta_0\coloneqq \forall x. x=x$ and suppose we already constructed $\theta_s$ such that $\mathcal{T}\cup$
+ 			
+ 			
+ 		\end{proof}
+ 		\section{Indiscernibles}
+ 		Given a linear order $\eta$ we write $[\eta]^k$ to be the set of ordered $k$-tuples of $\eta$, i.e.,
+ 		\[
+ 			[\eta]^k \coloneqq \{\bar{a}\in \eta^k \colon a_0 < a_1<\cdots < a_{k-1}\}.
+ 		\]
+ 		\begin{defn}[Indiscernibles]
+ 			Let $M$ be an $\mathcal{L}$-structure, $\eta$ a chain of elements of $M$, and $\Phi$ be a set of $\mathcal{L}$-formulae. We say $\eta$ is $\Phi$\emph{-indiscernible} in $M$ if
+ 			\[
+ 				M \models \varphi(\bar{a}) \iff \varphi(\bar{b})
+ 			\]
+ 			for all $\bar{a},\bar{b}\in [\eta]^k$ and $\varphi \in \Phi$. If $\Phi$ is the set of all $\mathcal{L}$-formulae, we simply say that $\eta$ is a sequence of \emph{indiscernibles}.
+ 		\end{defn}
+ 		\begin{eg}
+ 			\begin{enumerate}
+ 				\item Any ordered basis $B$ of a vector space provides a sequence of indiscernibles: given $\bar{a},\bar{b}\in [B]^k$ there is an automorphism mapping $\bar{a}$ to $\bar{b}$.
+ 				\item Similarly, any chain of algebraically independent elements of some algebraically closed field of characteristic zero is a sequence of indiscernibles.
+ 				\item If $R$ is a ring then the variables $x_1,x_2,\ldots,x_n$ form a set of indiscernibles of $R[x_1,\ldots,x_n]$. 
+ 			\end{enumerate}
+ 		\end{eg}
+ 		\begin{defn}[Ehrenfeucht–Mostowski functors]
+ 			An \emph{Ehrenfeucht–Mostowski functor} (henceforth abbreviated E.M. functor) is a functor $F$ from the category of linear orders and order embeddings to the category of $\mathcal{L}$-structures with structure embeddings which satisfies the following conditions.
+ 			\begin{itemize}
+ 				\item For all linear orders $\eta$ the structure $F(\eta)$ has (a copy of) $\eta$ as a subset and $F(\eta) = \langle \eta\rangle_{F(\eta)}$.
+ 				\item For each embedding $\eta \hookrightarrow \epsilon$ of linear orders, the corresponding embedding $F(\eta) \hookrightarrow F(\epsilon)$ extends it.
+ 			\end{itemize}
+ 		\end{defn}
+ 		This can be rephrased in purely categorical terms. Let $\mathcal{C}$ denote the category of linear order embeddings, $\mathcal{D}$ the category of $\mathcal{L}$-structure embeddings, and $\mathcal{E}$ the category of set injections. 
+ 		
+ 		There are obvious forgetful functors $U_\mathcal{C}\colon \mathcal{C}\to \mathcal{E}$ and $U_\mathcal{D}\colon\mathcal{D}\to \mathcal{E}$. Let $F \colon \mathcal{C} \to \mathcal{D}$. Then specifying a natural transformation $\alpha \colon U_\mathcal{C} \to U_{\mathcal{D}}F$ is the same as specifying an embedding of $\eta$ to $F(\eta)$ as sets for all $\eta$, and naturality is precisely the statement that embeddings $\eta \hookrightarrow \epsilon$ are extended as embeddings $F(\eta)\hookrightarrow F(\epsilon)$.
+ 		
+ 		Now for an $\mathcal{L}$-structure $M$ we consider the comma category $\mathcal{D}_M$ of structure-embeddings into $M$. Similarly we have the category $\mathcal{E}_{U_{\mathcal{D}}(M)}$ of set-injections into $U_{\mathcal{D}}(M)$; by an abuse of notation we denote this latter category by $\mathcal{E}_M$. The forgetful functor $U_{\mathcal{D}}\colon \mathcal{D}\to\mathcal{E}$ clearly restricts (or rather induces) a functor $U_{\mathcal{D},M}\colon \mathcal{D}_M\to\mathcal{E}_M$. This functor has a left adjoint $\langle - \rangle_M\colon \mathcal{E}_M \to \mathcal{D}_M$ (and what it does is obvious by the name).
+ 		
+ 		The natural transformation $\alpha$ gives for each linear order $\eta$ an injection $\alpha_\eta\colon U_{\mathcal{C}}(\eta) \to U_{\mathcal{D}}F(\eta)$. Taking $M = F(\eta)$ we see that this is an element of $\mathcal{E}_M$ and thus we can require that $\langle - \rangle_M(\alpha_{\eta})$ is an isomorphism (rather than only an embedding). This guarantees that $\eta$ generates $F(\eta)$. 
+ 		
+ 		To summarize, an E.M. functor is a functor $F\colon \mathcal{C}\to \mathcal{D}$ together with a natural transformation $\alpha \colon U_\mathcal{C} \to U_{\mathcal{D}}F$ such that for all linear orders $\eta$ the map $\langle - \rangle_{F(\eta)} (\alpha_\eta)$ is an isomorphism.
+ 		
+ 		\begin{prop}[Slicing]
+ 			Let $F$ be an E.M. functor, $\eta,\epsilon$ linear orders, and $\bar{a}\in[\eta]^k$,$\bar{b}\in[\epsilon]^k$. For every quantifier-free formula $\varphi(x_1,\ldots,x_k)$ we have
+ 			\[
+ 				F(\eta) \models \varphi \,\,\,\text{ iff } \,\,\, F(\epsilon) \models \varphi(\bar{b}).
+ 			\]
+ 		\end{prop}
+ 		\begin{proof}
+ 			\textcolor{red}{TODO}
+ 		\end{proof}
+ 		
+ 		We see that the chain $\eta \subseteq F(\eta)$ is indiscernible for quantifier-free formulae. Suppose we are given an $\mathcal{L}$-structure $M$ that contains a linear order $\eta\subseteq M$. The \emph{theory of} $\eta$ \emph{in} $M$, denoted $\textnormal{Th}(M,\eta)$ is the set of all $\mathcal{L}$-formulae $\varphi(\bar{x})$ so that 
+ 		\[
+ 			M \models \varphi(\bar{a})
+ 		\]
+ 		for all $\bar{a}\in [n]^k$.  Similarly, the theory of an E.M. functor $F$ is the set of all $\mathcal{L}$-formulae $\varphi(\bar{x})$ such that $F(\eta) \models \varphi(\bar{a})$ for all linear orders $\eta$ and $\bar{a}\in [n]^k$.
+ 		\begin{lem}(Stretching)
+ 			Let $M$ be an $\mathcal{L}$-structure that contains the linear order $\omega$ as a generating set, and suppose $\omega$ is indiscernible in $M$ by quantifier free formulae. Then there is an E.M. functor $F$ such that $M = F(\omega)$. This functor is unique up to natural isomorphism.
+ 		\end{lem}
+ 		\begin{proof}
+ 			\textcolor{red}{TODO}
+ 		\end{proof}
+ 		If $F$ is an E.M. functor and $\mathcal{T}$ is an $\mathcal{L}$-theory, then the models of $\mathcal{T}$ of the form $F(\eta)$ are called \emph{E.M. models} of $\mathcal{T}$. 
+ 		
+ 		Before moving on, we need a theorem from (infinitary) combinatorics.
+ 		\begin{thm}[Ramsey]
+ 			Let $X$ be a countable linear order, and $k$ and $n$ be positive integers. For every $f\colon [X]^k \to [n]$ there is an infinite subset $Y\subseteq X$ such that $f$ is constant on $[Y]^k$.
+ 		\end{thm}
+ 		\begin{proof}
+ 			\textcolor{red}{TODO}
+ 		\end{proof}
+ 		We will use Ramsey's Theorem to show that E.M. models of Skolem Theories with infinite models always exist.
+ 		\begin{lem}
+ 			Let $F$ be an E.M. functor such that $\textnormal{Th}(F(\omega))$ is Skolem. Then $\textnormal{Th}(F)$ includes $\varphi(\bar{x})$ or $\neg\varphi(\bar{x})$ for every $\mathcal{L}$-formula $\varphi(\bar{x})$. In particular all the structures $F(\eta)$ are elementarily equivalent and each linear order $\eta$ is indiscernible in $F(\eta)$.
+ 		\end{lem}
+ 		\begin{proof}
+ 			\textcolor{red}{TODO}
+ 		\end{proof}
+ 		\begin{thm}[Ehrenfeucht-Mostowski]
+ 			Let $M$ be an $\mathcal{L}$-structure whose theory is Skolem. If $\eta$ is an infinite linear order contained in $M$ as a set, then there is an E.M. functor $F$ whose theory expands $\textnormal{Th}(M,\eta)$.
+ 		\end{thm}
+ 		\begin{proof}
+ 			\textcolor{red}{TODO}
+ 		\end{proof}
+ 		
+ 		\chapter{Non-classical Logic}
+ 		\section{Intuitionistic Logic}
+ 		We will now redefine all the logic we've been currently using. In particular, we will redefine syntax and semantics of first-order logic. Consider the following statements.
+ 		\begin{itemize}
+ 			\item $\bot$ has no proof.
+ 			\item To prove $\varphi \wedge \psi$ is to give a proof of $\varphi$ together with a proof of $\psi$.
+ 			\item To prove $\varphi \Rightarrow \psi$ is to give a procedure that converts a proof of $\varphi$ into a proof of $\psi$.
+ 			\item To prove $\varphi \vee \psi$ is to specify a proof of $\varphi$ or a proof of $\psi$.
+ 		\end{itemize}
+ 		These are not exactly the rules we have been working with thus far. For example, previously we had the law of excluded middle, i.e., that
+ 		\[
+ 			\varphi \vee \neg \varphi
+ 		\]
+ 		is always provable. However, this law is clearly in contradiction with our new rule for disjunction. So this is a genuinely different logical system.
+ 		\begin{itemize}
+ 			\item To prove $\exists x.\varphi(x)$ is to give a term $t$ with a proof of $\varphi(t)$.
+ 			\item To prove $\forall x. \varphi(x)$ is to give a procedure that takes each term $t$ to a proof of $\varphi(t)$.
+ 		\end{itemize}
+ 		Weird things can happen with intuitionistic logic. Though we haven't given a formal description of this logic just yet, we can still understand the following theorem (and its proof)
+ 		\begin{thm}[Diaconescu]
+ 			The law of excluded middle can be intuitionistically deduced from the Axiom of Choice.  
+ 		\end{thm}
+ 		\begin{proof}
+ 			\textcolor{red}{TODO}
+ 		\end{proof}
+ 		Why bother with intuitionistic logic?
+ 		\begin{itemize}
+ 			\item We assume less than classical logic, so we develop a more general theory.
+ 			\item Notions that are classically conflated can be genuinely different in intuitionistic mathematics; there's a greater variety of concepts. For example, there are at least four non-intuitionistically-equivalent definitions of a finite set.
+ 			\item Constructive proofs have a computable content that is often missing from classical proofs. 
+ 			\item Intuitionistic logic is the internal logic of an arbitrary topos.
+ 		\end{itemize}
+ 		We will develop the Brouwer-Heyting-Kolmogorov interpretation of intuitionistic logic.
 \end{document}

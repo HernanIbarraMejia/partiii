@@ -1,0 +1,5 @@
+[0] Config.pm:306> INFO - This is Biber 2.18
+[0] Config.pm:309> INFO - Logfile is 'es2_model.blg'
+[231] biber-MSWIN64:340> INFO - === 
+[610] Utils.pm:410> ERROR - Cannot find 'es2_model.bcf'!
+[611] Biber.pm:135> INFO - ERRORS: 1

@@ -1,0 +1,219 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{xcolor}
+
+\DeclareMathOperator{\Diag}{Diag}
+
+\begin{document}
+	\title{Model Theory and Non-Classical Logic\\ Example Sheet 1 Solutions}
+	\author{Hernán Ibarra Mejia}
+	\maketitle
+	\begin{enumerate}[leftmargin=*]
+		\item This is an easy induction over the structure of formulae.
+		\item The first part is trivial (only tedious). We focus on the second part. Suppose, for the sake of contradiction, that the claim is false, so for all rings we can define its set of nilpotent elements using a first-order formulae with parameters in the ring.
+		
+		If $x$ is a nilpotent element in some ring, we define the \emph{index} of $x$ to be the least positive integer $n$ such that $x^n = 0$. We define a sequence of rings $R_{k}$ inductively as follows. Let $R_0$ be a commutative ring with nilpotent elements of arbitrarily large index. For example, we can let
+		\[
+			R_0 \coloneqq \prod_{i=0}^{\infty} \frac{\mathbb{Z}}{p^{i}\mathbb{Z}}
+		\]
+		where $p$ is any fixed prime. Now suppose $R_k$ has been defined, and we can inductively assume that $R_k$ has nilpotent elements of arbitrarily large index. Let $\mathcal{L}$ be the language of rings. By our assumption there is an $\mathcal{L}_{R_k}$-formula $\varphi_k(x)$ defining the nilpotent elements in $R_k$. Add one constant $c_{k+1}$ to the language $\mathcal{L}_{R_k}$ and consider the following theory in the expanded language. 
+		\[
+			\mathcal{T}_k \coloneqq \Diag_{\text{el}}(R_k) \cup \{\varphi_k(c_{k+1}) \wedge c_{k+1}^n \neq 0\,\mid\, n\in\mathbb{Z}^+\}
+		\]
+		For any finite subset $\mathcal{T}_k'$ of $\mathcal{T}_k$ we have that $R_k$ is a model of $\mathcal{T}_k'$. Indeed, as we require that $c_{k+1}^n\neq 0$ for finitely many $n$, we can let $c_{k+1}$ be a nilpotent element of $R_k$ of sufficiently large index, which of course satisfies $\varphi_k(c)$ by assumption. Obviously $R_k$ satisfies all sentences of its elementary diagram, so it is indeed a model of $T_k'$. By Compactness, there is a model of $T_k$, which will be our $R_{k+1}$. 
+		
+		It follows that $R_k \preccurlyeq R_{k+1}$ and so, as $R_k$ is a commutative ring, so is $R_{k+1}$. Furthermore, having elements of arbitrarily large index is a first-order property (consider the formula $\exists x. x^{n-1} \neq 0 \wedge x^n = 0$), so $R_{k+1}$ has elements of arbitrarily large index too. Finally, note that this construction implies that for $k>0$ we have an element $c_k$ of $R_k$ which is not nilpotent but satisfies $\varphi_{k-1}(x)$.
+		
+		Thus we have defined a sequence of commutative rings, which by construction form a chain of elementary embeddings $R_0\preccurlyeq R_1\preccurlyeq R_2\preccurlyeq\cdots$. Applying the result of the first part, we get a ring $R$ so that $R_k\preccurlyeq R$ for all $k$. Then there is some formula $\varphi_R(x)$, with parameters in $R$, that defines the nilpotent elements of $R$. But the formula is finite so it can only contain finitely many constants in $R$, which means $\varphi_R(x)$ is an $\mathcal{L}_{R_k}$ formula for some $k$. It clearly characterizes the nilpotent elements of $R_k$ so
+		\[
+			R_k\models \forall x. (\varphi_k(x) \Leftrightarrow \varphi_R(x))
+		\]
+		But then $c_{k+1} \in R_{k+1}$ satisfies $\varphi_R(x)$ and yet it is not nilpotent, giving our a contradiction.
+		\item (This is an informal argument). Let $M$ be a model of $\Diag(N)$. In particular, $M$ is an $\mathcal{L}$-structure with a constant $m_n\in M$ for each element $n\in N$. Hence we have a function $\eta \colon N \to M$ given by $\eta(n) \coloneqq m_n$. But $N\models \neg(n = n')$ for any distinct $n,n'\in N$. Thus, $M\models \neg(m_n = m_{n'})$ for distinct $n,n'\in N$, i.e. $\eta$ is injective. 
+		
+		Let $f$ be a function symbol. Then (bare with me on this) for all $\bar{n}\in N$ we have $N \models (f(\bar{n}) = f^{N}(\bar{n}))$ where the LHS is the function symbol $f$ applied to the constants $\bar{n}$ and the RHS is just the constant $f^{N}(\bar{n})$. Hence, $M\models (f(\eta(\bar{n})) = \eta(f^{N}(\bar{n})))$, i.e. we have
+		\[
+		f^M(\eta(\bar{n})) = \eta(f^N(\bar{n})).
+		\]
+		Also, if $R$ is a relation symbol, then for all $\bar{n}\in N$, if we have  $N \models R(\bar{n})$ then $M \models R(\eta(\bar{n}))$ then we have $N \models R(\bar{n})$. Conversely, if $N \nvDash R(\bar{n})$ then $N\models \neg R(\bar{n})$ and we apply the same argument. This all shows that $f$ is an injective homomorphism, so we can see $M$ as an extension of $N$. In summary, models of $\Diag(N)$ are just extensions of $N$.
+		
+		Similarly, models $\Diag_{\text{el}}(N)$ are elementary extensions of $N$. Indeed, if $M$ is such a model then $M$ is an extension of $N$ by the previous argument. Let $\varphi(\bar{x})$ be a formula and  let $\bar{m}\in M$. If $N \models \varphi(\bar{m})$ then $M \models \varphi(\bar{m})$ by definition of $\Diag_{\text{el}}(N)$. Conversely, if $M \models \varphi(\bar{m})$ we have that $N \models \varphi(\bar{m})$ by Proposition 1.1.3 if $\varphi$ is quantifier free, and otherwise it is obvious for universal formulae.
+		
+		Let $\mathcal{L}$ be the language generated by a single binary operation, denoted by concatenation. Let $T$ be the trivial $\mathcal{L}$-structure, i.e. $T = \{e\}$ is a singleton equipped with its unique binary operation $ee = e$. Then all groups are models of $\Diag(T)$. Indeed, atomic sentences in $\Diag(T)$ are of the form $(e^n = e^m)$ where $e^n$ and $e^m$ are just copies of $e$ concatenated in some way (the operation is not forced to be associative nor commutative), which are true in all groups with $e$ representing the identity element; the rest of the induction is trivial. But it is clear that different groups can satisfy different first-order sentences so $\Diag(T)$ cannot be complete.
+		
+		\item Define $\phi^P$ inductively as follows. If $\phi$ is atomic set $\phi^P \coloneqq \phi$. Set $(\neg\phi)^P \coloneqq \neg\phi^P$ and $(\phi \vee \psi)^P \coloneqq \phi^P \vee \psi^P$. Finally, set $(\exists x. \phi)^P$ to be the formula $\exists x. \phi \wedge Px$. It is then straightforward to verify the claim.
+		
+		\item By induction on the structure of formulae. The base case is trivial since atomic formulae are quantifier-free, and the claim is obviously true for quantifier-free formulae. The inductive hypothesis easily implies the case for Boolean connectives. 
+		
+		Finally, if $M \models \exists x. \phi(x,\bar{m})$ then clearly $N \models \exists x. \phi(x,\bar{m})$ as $M\subseteq N$ (and using the induction hypothesis). Conversely, suppose $N \models \exists x. \phi(x,\bar{m})$. Then there is $n\in N$ such that $N \models \phi(n,\bar{m})$. Use the assumption to obtain an automorphism of $N$ fixing $\bar{m}$ and sending $n$ to an element $f(n)\in M$. Hence $N \models \phi (f(n),\bar{m})$ and thus $M \models \exists x. \phi(x,\bar{m})$.
+		
+		Let $V$ be vector space and $W\subseteq V$ an infinite-dimensional subspace. We need to check the condition given and then we are done. Let $\bar{w}$ be a tuple of elements of $W$ and $v\in V$. If $v\in W$ then this is trivial, so assume $v\notin W$. Consider the subspace $W'$ of $W$ spanned by $\bar{w}$. This is finite dimensional so it cannot be all of of $W$ by assumption. Extend $\bar{w}$ to a basis $B'$ of $W$. As $v\notin W$ we must have $B'\cup\{v\}$ to be linearly independent. Extend $B'\cup\{v\}$ to a basis $B$ of $V$. As $\bar{w}$ is a proper subset of $B'$ we can pick some $w^*\in B' \setminus \bar{w}$. We have $w^*, v\in B$ so interchange them but leave all other basis elements unchanged: this induces the required automorphism of $V$.
+		
+		\item Let $\mathcal{L}$ be the language of totally ordered abelian groups (signature $(0,+,-,\leq)$)  and let $\text{TOAG}$ be the theory of totally ordered abelian groups, and notice that this latter is an universal theory. 
+		
+		Consider the $\mathcal{L}_G$ theory 
+		\[
+			\mathcal{T} \coloneqq \Diag(G) \cup \text{TOAG}.
+		\]
+		Let $\mathcal{T}'$ be a finite subset of $\mathcal{T}$. Then $\mathcal{T}'$ can only mention finitely many constants $g_1,\ldots,g_n$ corresponding to elements of $G$. Consider the subgroup $G'\coloneqq \langle g_1,\ldots,g_n\rangle \subseteq G$. As $G$ is torsion-free then so is $G'$. But, by the structure theorem, finitely generated torsion-free abelian groups are isomorphic to $\mathbb{Z}^{r}$ for some $r\in \mathbb{N}$, and this latter can be made into a totally ordered abelian group by the lexicographic order. Thus there is an order on $G'$ that satisfies the axioms of TOAG. As quantifier-free sentences are preserved under substructures, it is clear that $G'$ satisfies the sentences in $\Diag(G)$ contained in $\mathcal{T}'$. 
+		
+		This all shows that $\mathcal{T}'$ is consistent. By Compactness, there is a model $G^*$ of $\mathcal{T}$. It clearly has $G$ as a substructure. But TOAG is a universal theory so $G\models \text{TOAG}$ too.
+	
+		\item We define a sequence of subsets of $N$ as follows. First let $M_0$ be any countable subset of $N$. Suppose that $M_k$ has been defined and is countable. For all $\varphi(x,\bar{t})$ an $\mathcal{L}$-formula and $\bar{m}\in M_k$ consider the set
+		\[
+			\{n\in N \colon N \models \varphi(n,\bar{m})\}.
+		\] 
+		If it is nonempty take an element from it and add it to $M_k$, otherwise do nothing (here we use the axiom of choice). We end up with a set $M_{k+1} \subseteq N$. When we added elements to $M_k$ we can think of this as done in stages: first the case when $\bar{t}$ is empty, then when it is only one variable, and so on. Thus we end up with the bounds
+		\begin{align*}
+			\aleph_0 = |M_k| \leq |M_{k+1}| &\leq |M_k|  + \sum_{i = 0}^{\infty}|\mathcal{L}|\times |(M_k)^i|\\
+			&= |M_k| + \sum_{i=0}^{\infty} |\mathcal{L}| \times |M_k|\\
+			&= |M_k| + \aleph_0\times |\mathcal{L}|\times |M_k|\\
+			&= \aleph_0 + (\aleph_0)^3\\
+			&= \aleph_0,
+		\end{align*}
+		so $M_{k+1}$ is countable \textcolor{red}{(I have no idea if this is how you do cardinal arithmetic...)}. Now let $M = \cup_{k\in \mathbb{N}} M_k$. As the countable union of countable sets is countable we see that $M$ is countable.
+		
+		We show that $M$ is an elementary substructure of $N$ using the Tarski-Vaught test. Let $\varphi(x,\bar{t})$ be an $\mathcal{L}$-formula  and $\bar{m}\in M$. Suppose $N \models \varphi(n, \bar{m})$ for some $n\in N$. We must have $\bar{m}\in M_k$ for some $k$ and so, by construction $M_{k+1}\subseteq M$ has a witness $\hat{n}\in M_{k+1}$ such that $N \models \varphi(\hat{n},\bar{m})$. We are done.
+		
+		\item By induction on the structure of formulae. Atomic formulae are in $F$ by hypothesis and $F$ is closed under Boolean combinations, so we only need to check the case for existential statements. But that's exactly the hypothesis, so we can close the induction.
+		
+		For DLO we can use syntactic quantifier elimination and after the usual simplifications we are left with a formula of the form
+		\[
+			\exists y. \left(\bigwedge_{i\in I} x_i = y\right) \wedge \left(\bigwedge_{i\in J} x_i \neq y\right) \wedge \left(\bigwedge_{i\in K} x_i < y\right) \wedge \left(\bigwedge_{i\in L} \neg(x_i < y)\right)
+		\]
+		We can assume that $I$ is empty since it is easy to eliminate this quantifier. Then the above formula is equivalent to the quantifier-free formula
+		\[
+			\varphi \coloneqq \bigwedge_{k\in K,l\in L} x_k < x_l.
+		\] 
+		Indeed, suppose $\varphi$ isn't true. Then in the existential formula it is impossible to satisfy the third and fourth conjuncts simultaneously. Conversely, if $\varphi$ is true then we can pick $y$ in the set
+		\[
+			\left(\max_{k\in K}x_k \,\,\,,\,\,\, \min_{l\in L} x_l\right) \setminus\{x_j \colon j\in J\}.
+		\]
+		which is nonempty since nonempty intervals are infinite by denseness.
+		\item Let $\mathcal{T}$ be a Skolem $\mathcal{L}$-theory, $N$ and $M$ models of $\mathcal{T}$, and $f\colon M \hookrightarrow N$ an embedding. Note that $M$ is isomorphic to $f(M)$ and so if $\varphi(\bar{x})$ is an $\mathcal{L}$-formula we have
+		\[
+			M \models \varphi(\bar{m}) \,\,\,\text{ iff }\,\,\, f(M)\models \varphi(f(\bar{m})).
+		\]
+		By Proposition 1.2.3 we have $f(M) \preccurlyeq N$ so the claim follows. 
+		
+		The theory of dense linear orders without endpoints is model complete since it has quantifier-elimination. However the formula
+		\[
+			\varphi(x,y) \coloneqq \exists z. (x < z) \wedge (z < y)
+		\]
+		does not have a Skolem function. Indeed, any term $t(x,y)$ has to be either $x$ or $y$ since there are no function symbols in the language. Thus we see that 
+		\[
+			\text{DLO} \vdash \forall x,y. (\exists z. (x < z) \wedge (z < y) \Rightarrow (x < t(x,y)) \wedge (t(x,y) < y))
+		\]
+		is plain false.
+		\item It suffices to show the following claim: if $A$ is a model of $\mathcal{T}$ with $|A| \geq |\mathcal{L}|$ then it admits an existentially closed extension of cardinality $|A|$. Indeed, suppose for a moment that the claim was true. By Lemma 1.1.13, the there is a model $M'$ of the theory $\mathcal{T} \cup \Diag(M)$. Define $\kappa \coloneqq \max\{|\mathcal{L}|,|M|\}$ an infinite cardinal. As $M\subseteq M'$ we have $|M|\leq |M'|$, and  (here we use the fact that $M$ is infinite) by the Upwards Löwenheim–Skolem theorem, we can assume that $|\mathcal{L}|\leq |M'|$. Thus 
+		\[
+			|\mathcal{L}| \leq \kappa \leq |M'|.
+		\]
+		
+		If $\kappa = |M'|$ then we are happy, otherwise the Downwards Löwenheim–Skolem theorem applies and we can force the equality. All this creates a an extension $M'$ of $M$ of cardinality $\max\{|\mathcal{L}|,|M|\}$ that models $\mathcal{T}$. By our claim we can extend $M'$ to some $N$ existentially closed in $\mathcal{T}$ with $|N| = |M'|$ so we are done. It only remains to prove the claim.
+		
+		Let $A\models \mathcal{T}$ be such that $|A|\geq |\mathcal{L}|$. We basically want to apply Theorem 1.2.17 and be done, but that theorem doesn't tell us anything about the cardinality of the extension. Hence we modify the proof of Theorem 1.2.17 to get a bound on the cardinality.
+		
+		For an $\mathcal{L}$-structure $M$ with $|M|\geq |\mathcal{L}|$ we define $M^*$ as follows. List all pairs $(\varphi_\beta, \bar{m}_\beta)_{\beta < \delta}$ where $\varphi$ is existential and $\bar{m}\in M$. We would like to get a bound on the size of this set. As in Problem 7, we can think of the set as being divided into pairs with sentences, pairs with exactly one free variable, and so on. Hence we see that 
+		\begin{align*}
+			|\delta| &\leq |\mathcal{L}| + |\mathcal{L}|\times |M| + |\mathcal{L}| \times |M|^2 + \cdots\\
+			&= |\mathcal{L}| + |\mathcal{L}| \times \sum_{i=0}^{\infty}|M|^i\\
+			&= |\mathcal{L}| + |\mathcal{L}| \times \sum_{i=0}^{\infty}|M|\\
+			&= |\mathcal{L}| + |\mathcal{L}|\times\aleph_0 \times |M|\\
+			&= |M|.
+		\end{align*}
+		\textcolor{red}{(As in Problem 7, I have no idea if cardinal arithmetic is sound here.)} Now define a transfinite sequence as follows.
+		\begin{itemize}
+			\item $M_0 \coloneqq M$;
+			\item $M_{\beta + 1} \coloneqq \langle M \cup \{\,\bar{d}\,\}\rangle_{\mathcal{D}}$ where $\mathcal{D}$ is some model of $\mathcal{T}$ such that $M_{\beta}\subseteq \mathcal{D} \models \varphi_{\beta}(\bar{m}_\beta)$ and $\bar{d}\in D$ is a witness to this, if such a $\mathcal{D}$ exists, else $M_{\beta}$;
+			\item $M_{\lambda} \coloneqq \bigcup_{\beta < \lambda} M_{\beta}$ for $\lambda \leq \delta$ a limit ordinal. 
+		\end{itemize}
+		Now define $M^{*} \coloneqq M_\delta$. Note that this new definition of $M_{\beta + 1}$ still makes the $*$-property hold, so the proof of Theorem 1.2.17 still goes through. But notice that $|M_0| = |M|$ and if $|M_{\beta}| = |M|$ we have
+		\[
+			|M| = |M_{\beta}| \leq |M_{\beta + 1}| \leq |M_{\beta} \cup \{\,\bar{d}\,\}| + |\mathcal{L}| = |M_{\beta}| = |M|.
+		\]
+		Also, if $\lambda\leq \delta$ is a limit ordinal and $|M_{\beta}| = |M|$ for all $\beta < \lambda$ we have
+		\[
+			|M|\leq |M_{\lambda}| \leq \sum_{\beta < \lambda}|M_{\beta}| = |\lambda||M| \leq |\delta||M| \leq |M||M| = |M.|
+		\]
+		This all shows that cardinalities don't change during the construction and thus $|M^*| = |M|$. Finally, by defining $B_0 \coloneqq A$, and $B_{n+1} \coloneqq B_{n}^*$ and taking $B \coloneqq \bigcup_{n<\omega} B_n$ we get an existentially closed extension $B$ of $A$ and further
+		\[
+			|A|\leq |B| \leq |A| + |A^*| + |(A^*)^*| + \cdots = \aleph_0\times |A| = |A|.
+		\]
+		\item \leavevmode 
+		\begin{itemize}
+			\item[(a) $\Rightarrow$ (b):] Let $\varphi(\bar{x})$ be an existential formula and $M,N$ models of $\mathcal{T}$ so that $N$ extends $M$ and there is $\bar{m}\in M$ with $N \models \varphi(\bar{m})$. As $\mathcal{T}$ is model-complete the extension must be elementary so it follows that $N \models \varphi(\bar{m})$.
+			
+			\item[(b) $\Rightarrow$ (c):] Without loss of generality, we can assume $e$ is an inclusion. By existential amalgamation with $S = A$, it suffices to show that $(B,A)\Rightarrow_1 (A,A)$. But this follows since $A$ is existentially closed.
+			
+			\item[(c) $\Rightarrow$ (d):] Take any universal formula $\varphi(\bar{x})$ and suppose $A,B\models \mathcal{T}$ where $B$ is a $\mathcal{T}$-model extending $A$. Suppose $A \models \varphi(\bar{x})$. We have a model $D$ as in (c). But then $D\models \varphi(\bar{x})$ as $D$ is elementarily equivalent to $A$, and so $B\models \varphi(\bar{x})$ as universal formulae are preserved under substructures. Conversely, if $A \nvDash \varphi(\bar{x})$ then $A$ satisfies the existential formula $\neg \varphi(\bar{x})$, from which it follows that $B \nvDash \varphi(\bar{x})$ too. This all shows that universal formulae are preserved under extensions of models of $\mathcal{T}$.
+		
+			We have shown that universal formulae are preserved under extensions of models of $\mathcal{T}$. \textcolor{red}{What next? I'm not sure how the result follows from this.}
+			\item [(d) $\Rightarrow$ (e):] By induction on the structure of formulae. Atomic formulae are implied by (d). The induction hypothesis is trivial on conjunctions since universals distribute on those. On negations the universal turns into an existential so apply (d) again. Take universals for the final case of the induction and we are done.
+			
+			\item [(e) $\Rightarrow$ (a):] Let $f\colon A\hookrightarrow B$ be an embedding of $\mathcal{T}$-models, and $\varphi(\bar{x})$ be any formula. We need to show that for all $\bar{a}\in A$ we have $A\models \varphi(\bar{a})$ iff $B \models \varphi(f(\bar{a}))$.
+			
+			We use induction on $\varphi(\bar{x})$. If $\varphi(\bar{x})$ is atomic then this is obvious. Similarly for conjunctions and negations. Now suppose $A \models \exists \bar{y}. \varphi(\bar{a},\bar{y})$. It is clear that $B \models \exists \bar{y}. \varphi(f(\bar{a}),\bar{y})$ as $B$ is a superstructure of $A$. Conversely, if $B \models \exists \bar{y}. \varphi(f(\bar{a}),\bar{y})$ note that this is equivalent to a universal formula $B\models \psi(f(\bar{a}))$ by (e), and so $A \models \psi(\bar{a})$ which implies $A \models \exists \bar{y}. \varphi(\bar{a},\bar{y})$ as desired.
+		\end{itemize}
+		\item We would like to use criterion 11 (b). First, note that all $\mathcal{T}$-models of cardinality $\kappa$ are existentially closed. Indeed, if $A\models \mathcal{T}$ and $|A| = \kappa$ then, by the claim in problem 10, we can get an existentially closed extension $B$ of $A$ with $|B| = |A|$. As $\mathcal{T}$ is $\kappa$-categorical, it follows that $A$ is existentially closed. \textcolor{red}{What next? Is this even the right approach?}
+				
+		\item \textcolor{red}{Unfinished. I know that the theory of the hint is consistent and has quantifier-elimination. How does this help?} Let $\mathcal{L}$ be the language of graphs, which only has one binary relation symbol $\sim$ (representing adjacency). The theory of (simple) graphs SG is defined below.
+		\[
+			\text{SG}\coloneqq \{\,\forall x. \neg(x\sim x) \,,\, \forall x.\forall y. (x\sim y \Rightarrow y\sim x)\,\}.
+		\]
+		Consider the theory $\mathcal{T}$ of (nonempty) graphs with the property given in the hint. Formally, for $n,m\in\mathbb{N}$ we define the sentence
+		\[
+			\psi_{n,m} \coloneqq \forall \bar{x}.\forall\bar{y}.\left(\left( \bigwedge_{\substack{1\leq i \leq n\\ 1\leq j\leq m}} x_i\neq y_j\right)  \Rightarrow  \exists z. \left(\bigwedge_{i = 1}^n z \sim x_i\right) \wedge \left(\bigwedge_{j = 1}^m z \nsim y_i\right)\right)
+		\]
+		where $\bar{x} = (x_1,\ldots,x_n)$ and $\bar{y} = (y_1,\ldots,y_m)$ are all distinct variables. Now define 
+		
+		\[
+			\mathcal{T} \coloneqq \text{SG} \cup \{\,\exists x.\, x = x\,\} \cup \{\,\psi_{n,m} \,\mid\, n,m\in\mathbb{N}\,\}.
+		\]
+		It turns out that $\mathcal{T}$ is consistent and has quantifier elimination. We prove the latter first.
+		
+		The class of all substructures of graphs is the same as the class of all graphs, which clearly has the amalgamation property. By Theorem 1.2.14, if we $\mathcal{T}$ axiomatizes existentially closed graphs then $\mathcal{T}$ has quantifier elimination. We aim to prove this.
+		
+		First note that any model of $\mathcal{T}$ contains every finite graph as an induced subgraph (and thus is necessarily infinite); in other words, every finite graph embeds into it as an $\mathcal{L}$-structure. Indeed, suppose $M \models \mathcal{T}$ and let $G$ be a graph on $k$ vertices. The proof is by induction on $k$.
+		
+		For $k =0,1$ this is obvious (recall that $M$ is nonempty). Now suppose $k>1$. Let $v$ be any vertex of $G$ and consider the graph $G'\coloneqq G\setminus\{v\}$. By inductive hypothesis, we can embed $G'$ into $M$. The set of neighbours of $v$ in $G$ is a subset of $V(G')$ so let $X$ be the corresponding vertices in $M$; similarly let $Y\subset V(M)$ correspond to the non-neighbours of $v$ in $G$. By the property implied by $\mathcal{T}$, there is a vertex $v'\in V(M)$ that connects to everything in $X$ and nothing in $Y$, hence we can extend the embedding to all of $G$. This closes the induction.
+		
+		Now we prove that $\mathcal{T}$ axiomatizes existentially closed structures. let $M$ be a $\mathcal{T}$-model, $\exists \bar{y}. \varphi(\bar{y},\bar{x})$ an existential formula, and $N$ an extension of $M$. Suppose that there is some $\bar{m}$ so that $N \models \exists \bar{y}. \varphi(\bar{y},\bar{m})$. We need to show that $M\models \exists \bar{y}. \varphi(\bar{y},\bar{m})$.
+		
+		As $\varphi(\bar{y},\bar{x})$ is quantifier-free we can put it in disjunctive normal form by Exercise 1. In this case we can push the existential quantifier inside the disjunction and, since $N$ satisfies one of the disjuncts, we can reduce to the case where $\varphi(\bar{x},\bar{y})$ is a conjunction of literals. Hence we must have
+		
+		We show that $\mathcal{T}$ is consistent using Compactness. Let $\mathcal{T}'$ be a finite subset of $\mathcal{T}$. Then it is easy to see that a model of $\mathcal{T}'$ is a graph that satisfies $\psi_{n,m}$ for some fixed $n,m$, since $\psi_{n,m}$ implies $\psi_{n',m'}$ when $n'\leq n$ and $m'\leq m$. We use the probabilistic method (!) to show the existence of such a graph.
+		
+		We first compute the probability $P$ that $G = G(N,0.5)$ does not satisfy $\psi_{n,m}$; we will choose $N$ later but for now assume $N> n+m$. That means that there exists some disjoint $X,Y \subseteq V(G)$ with $|X|\leq n$ and $|Y| \leq m$ such that for all $v\in V(G)$ either there is a vertex $x\in X$ so that $v\nsim x$ or there is a vertex $y\in Y$ so that $v\sim y$. In other words,
+		\[
+			P \coloneqq \mathbb{P}\left(\bigcup_{\substack{X,Y\subseteq V(G)\\ |X|\leq n, |Y|\leq m}} \bigcap_{v\in V(G)} \bigcup_{\substack{x\in X \\ y\in Y}} \{v\nsim x\}\cup \{v\sim y\} \right).
+		\]
+		Apply the union bound so that we get for some \emph{fixed} $X$ and $Y$
+		\[
+			P \leq C(N)\cdot\mathbb{P}\left(\bigcap_{v\in V(G)} \bigcup_{\substack{x\in X \\ y\in Y}} \{v\nsim x\}\cup \{v\sim y\}\right)
+		\]
+		where $C(N)$ is the number of ways we had of choosing $X,Y$. Here $C(N)$ is some horrible sum of products of binomial coefficients but, crucially, $C(N)$ is \emph{polynomial} in $N$; this will be important later.
+		
+		If we intersect by fewer things then the event only grows larger. Hence we deduce
+		\[
+		P \leq C(N)\cdot\mathbb{P}\left(\bigcap_{v\in V(G)\setminus(X\cup Y)} \bigcup_{\substack{x\in X \\ y\in Y}} \{v\nsim x\}\cup \{v\sim y\}\right)
+		\]
+		But the events that $v\in V(G)$ are adjacent or not to at least one element of $X$ or $Y$ are all independent when $v\notin X\cup Y$. Thus for any fixed $v\in V(G)\setminus X\cup Y$ we have
+		\begin{align*}
+			P &\leq C(N)\cdot \left(\mathbb{P}\left(\bigcup_{\substack{x\in X \\ y\in Y}} \{v\nsim x\}\cup \{v\sim y\}\right)\right)^{N - (n+m)}\\
+			&= C(N)\cdot \left(1 - \mathbb{P}\left(\bigcap_{\substack{x\in X \\ y\in Y}} \{v\sim x\}\cap \{v\nsim y\}\right)\right)^{N - (n+m)}
+		\end{align*}
+		A moment's thought reveals that we are again dealing with independent events. Thus,
+		\begin{align*}
+			P &\leq C(N)\cdot \left(1 - \left(\frac{1}{2}\cdot\frac{1}{2}\right)^{nm}\right)^{N - (n+m)}\\
+			&= C(N)\left(1 - 4^{-nm}\right)^{N-n+m}
+		\end{align*}
+		The expression inside the parenthesis is strictly less than one; thus when raised to the exponent $N - n + m$ this expression tends \emph{exponentially} to zero as $N$ tends to infinity. As $C(N)$ tends to infinity only polynomially in $N$, we see that $P$ is arbitrarily small for large enough $N$. In particular, there is some $N$ so that $P < 1$. But $P$ is the probability that a graph on $N$ vertices doesn't satisfy $\psi_{n,m}$ so, as $P<1$, there must be some graph on $N$ vertices satisfying $\psi_{n,m}$. We have found our model of $\mathcal{T}'$.
+		
+		By Compactness $\mathcal{T}$ has a---necessarily infinite---model $R$.
+		
+	\end{enumerate}
+\end{document}

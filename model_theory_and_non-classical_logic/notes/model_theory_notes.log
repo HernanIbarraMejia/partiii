@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  31 OCT 2023 16:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  4 DEC 2023 14:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -994,61 +994,95 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_b_int=\count445
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
-\c@claim=\count446
-\c@ex=\count447
-\c@thm=\count448
-\c@prob=\count449
-\c@conj=\count450
-\c@task=\count451
-\@quotelevel=\count452
-\@quotereset=\count453
+
+(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xfrac\xfrac.
+sty (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xtemplate\xt
+emplate.sty
+Package: xtemplate 2023-01-16 L3 Experimental prototype document functions
+\l__xtemplate_tmp_dim=\dimen293
+\l__xtemplate_tmp_int=\count446
+\l__xtemplate_tmp_muskip=\muskip22
+\l__xtemplate_tmp_skip=\skip85
+)
+Package: xfrac 2023-01-16 L3 Experimental split-level fractions
+\l__xfrac_slash_box=\box68
+\l__xfrac_tmp_box=\box69
+\l__xfrac_denominator_bot_sep_dim=\dimen294
+\l__xfrac_numerator_bot_sep_dim=\dimen295
+\l__xfrac_numerator_top_sep_dim=\dimen296
+\l__xfrac_slash_left_sep_dim=\dimen297
+\l__xfrac_slash_right_sep_dim=\dimen298
+\l__xfrac_slash_left_muskip=\muskip23
+\l__xfrac_slash_right_muskip=\muskip24
+
+Package xtemplate Info: Declaring object type 'xfrac' taking 3 argument(s) on
+(xtemplate)             line 80.
+
+)
+(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\stmaryrd.sty
+Package: stmaryrd 1994/03/03 St Mary's Road symbol package
+\symstmry=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
+(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+)
+\c@claim=\count447
+\c@ex=\count448
+\c@thm=\count449
+\c@prob=\count450
+\c@conj=\count451
+\c@task=\count452
+\@quotelevel=\count453
+\@quotereset=\count454
+
 (model_theory_notes.aux)
 \openout1 = `model_theory_notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Info: Redefining \celsius on input line 154.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 154
-.
-
-
-Package gensymb Warning: Not defining \perthousand.
-
-LaTeX Info: Redefining \ohm on input line 154.
-Package gensymb Info: Using \Omega for \ohm on input line 154.
-
-Package gensymb Warning: Not defining \micro.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+\symgns@font=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `gns@font' in version `bold'
+(Font)                  TS1/cmr/m/n --> TS1/cmr/b/n on input line 156.
+Package gensymb Info: Math companion symbols declared on input line 156.
+LaTeX Info: Redefining \degree on input line 156.
+LaTeX Info: Redefining \celsius on input line 156.
+Package gensymb Info: Using text companion symbols for \degree, \celsius and \p
+erthousand on input line 156.
+LaTeX Info: Redefining \ohm on input line 156.
+Package gensymb Info: Using \textohm for \ohm on input line 156.
+Package gensymb Info: Using \textmu for \micro on input line 156.
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count454
-\scratchdimen=\dimen293
-\scratchbox=\box68
-\nofMPsegments=\count455
-\nofMParguments=\count456
+\scratchcounter=\count455
+\scratchdimen=\dimen299
+\scratchbox=\box70
+\nofMPsegments=\count456
+\nofMParguments=\count457
 \everyMPshowfont=\toks47
-\MPscratchCnt=\count457
-\MPscratchDim=\dimen294
-\MPnumerator=\count458
-\makeMPintoPDFobject=\count459
+\MPscratchCnt=\count458
+\MPscratchDim=\dimen300
+\MPnumerator=\count459
+\makeMPintoPDFobject=\count460
 \everyMPtoPDFconversion=\toks48
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -1077,49 +1111,53 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'model_theory_notes.bbl' not found.
 
 No file model_theory_notes.bbl.
-Package biblatex Info: Reference section=0 on input line 154.
-Package biblatex Info: Reference segment=0 on input line 154.
-Package hyperref Info: Link coloring OFF on input line 154.
+Package biblatex Info: Reference section=0 on input line 156.
+Package biblatex Info: Reference segment=0 on input line 156.
+Package hyperref Info: Link coloring OFF on input line 156.
 (model_theory_notes.out) (model_theory_notes.out)
 \@outlinefile=\write5
 \openout5 = `model_theory_notes.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 158
+LaTeX Font Info:    Trying to load font information for U+msa on input line 160
 .
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 158
+LaTeX Font Info:    Trying to load font information for U+msb on input line 160
 .
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 15
-8.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 16
+0.
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 1
+60.
+
+(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\ustmry.fd)
 [1
 
 {C:/Users/herna/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
-LaTeX Warning: Citation 'NOLAST' on page 1 undefined on input line 158.
+LaTeX Warning: Citation 'NOLAST' on page 1 undefined on input line 160.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.162 	\chapter
+l.164 	\chapter
                {Logic Background (INCOMPLETE)} [1]
 Chapter 0.
 [2
 
 ] [3] [4] [5] [6] [7] [8] [9] [10]
-Overfull \hbox (20.13933pt too wide) in paragraph at lines 460--462
+Overfull \hbox (20.13933pt too wide) in paragraph at lines 462--464
 \OT1/cmr/m/n/10 If $((\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML
 /cmm/m/it/10 p\OT1/cmr/m/n/10 )[](\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 ) = 0$ then
  the above equals 1, clearly. Now sup-pose $((\OMS/cmsy/m/n/10 8\OML/cmm/m/it/1
@@ -1132,14 +1170,14 @@ Chapter 1.
 [16
 
 ] [17] [18]
-Overfull \hbox (3.98781pt too wide) in paragraph at lines 734--735
+Overfull \hbox (3.98781pt too wide) in paragraph at lines 736--737
 []\OT1/cmr/m/n/10 Conversely, as-sume that the prop-erty holds. Con-sider the f
 or-mu-lae $\OML/cmm/m/it/10 '[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; []\OT1/cmr/
 m/n/10 ) [][]=
  []
 
 [19] [20] [21]
-Overfull \hbox (27.94492pt too wide) in paragraph at lines 793--794
+Overfull \hbox (27.94492pt too wide) in paragraph at lines 795--796
 []\OT1/cmr/m/n/10 In par-tic-u-lar, $(\OML/cmm/m/it/10 M; []\OT1/cmr/m/n/10 ) \
 OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 = (\OMS/cmsy/m/n/10 8[]\OT1/cmr/m/n/10 )\OMS
 /cmsy/m/n/10 :\OML/cmm/m/it/10 '\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; []\OT1/cm
@@ -1150,12 +1188,12 @@ r/m/n/10 )$,
  []
 
 
-Overfull \hbox (7.6846pt too wide) in paragraph at lines 808--808
+Overfull \hbox (7.6846pt too wide) in paragraph at lines 810--810
 []\OT1/cmr/bx/n/14.4 Existentially closed struc-tures and quantifier-
  []
 
 [22]
-Overfull \hbox (1.20738pt too wide) detected at line 858
+Overfull \hbox (1.20738pt too wide) detected at line 860
 \OT1/cmr/m/n/10 ^^F(\OMS/cmsy/m/n/10 L\OT1/cmr/m/n/10 ) [][]= \OMS/cmsy/m/n/10 
 f8[]\OT1/cmr/m/n/10 ((\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 y \OT1/cmr/m/n/10 : \O
 ML/cmm/m/it/10 ^^_\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; y\OT1/cmr/m/n/10 )) \OM
@@ -1164,12 +1202,61 @@ T1/cmr/m/n/10 ([]))) \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^_\OT1/cmr/m/n/10 ([]
 \OML/cmm/m/it/10 ; y\OT1/cmr/m/n/10 )[]\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 :
  []
 
-[23] [24] (model_theory_notes.aux)
+[23] [24] [25] [26] [27] [28] [29] [30] [31]
+Overfull \hbox (14.98488pt too wide) in paragraph at lines 1178--1180
+[][]\OT1/cmr/bx/n/10 Example 1.2.22. []\OT1/cmr/m/n/10 The the-ory RCF of real 
+closed fields (with sig-na-ture $(+\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 ^^B\OML/
+cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/i
+t/10 ; <
+ []
+
+[32] [33]
+Overfull \hbox (15.74829pt too wide) detected at line 1235
+\OML/cmm/m/it/10 R[] [][]\OT1/cmr/m/n/10 = []
+ []
+
+[34] [35] [36]
+Overfull \hbox (73.06093pt too wide) detected at line 1340
+[]
+ []
+
+[37]
+Overfull \hbox (26.37462pt too wide) in paragraph at lines 1386--1387
+[]\OT1/cmr/m/n/10 Let $\OML/cmm/m/it/10 '[]; [] ; '[] \OMS/cmsy/m/n/10 2 T$ \OT
+1/cmr/m/n/10 and note $[][] \OML/cmm/m/it/10 X[]$ \OT1/cmr/m/n/10 is nonempty s
+ince it con-tains $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 '[]; [] ; '[]\OMS/cmsy/m/
+n/10 g 2
+ []
+
+[38] [39] [40]
+Overfull \hbox (14.23398pt too wide) in paragraph at lines 1486--1488
+[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 k\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 x[]; [] 
+; x[]\OT1/cmr/m/n/10 ])$ ([]why?[]), where the lat-ter is the set of prime ide-
+als of $\OML/cmm/m/it/10 k\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 x[]; [] ; x[]\OT1/c
+mr/m/n/10 ]$
+ []
+
+[41] [42]
+Overfull \hbox (7.06172pt too wide) in paragraph at lines 1542--1544
+[][]\OT1/cmr/bx/n/10 Definition 1.5.3 \OT1/cmr/m/n/10 (Ehren-feucht{Mostowski f
+unc-tors)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/n/10 An \OT1/cmr/m/it/10 Ehren-feucht{
+Mostowski
+ []
+
+[43] [44]
+Chapter 2.
+[45
+
+] [46] (model_theory_notes.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 3.25pt have occurred.
+
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `model_theory_notes.out' has not changed.
-(rerunfilecheck)             Checksum: 6338BCA13B357ACCFF82634FD8E0B070;1872.
+(rerunfilecheck)             Checksum: B8522414A810B38AED357BEB3A200529;2497.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                model_theory_notes
@@ -1180,39 +1267,43 @@ Package logreq Info: Writing requests to 'model_theory_notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 31122 strings out of 476374
- 615878 string characters out of 5788855
- 1872340 words of memory out of 5000000
- 50899 multiletter control sequences out of 15000+600000
- 523814 words of font info for 77 fonts, out of 8000000 for 9000
+ 32421 strings out of 476374
+ 645347 string characters out of 5788855
+ 1874340 words of memory out of 5000000
+ 52066 multiletter control sequences out of 15000+600000
+ 530600 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 131i,16n,132p,717b,1223s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 131i,18n,132p,717b,1303s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\herna\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti
 1000.pk> <C:\Users\herna\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\tcrm1000.pk><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmbx10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/herna/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/herna/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/herna/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/her
-na/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/U
-sers/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.p
-fb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmr17.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr5.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/herna/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/herna/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/herna/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Us
-ers/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msb
-m10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/symbols/msbm7.pfb>
-Output written on model_theory_notes.pdf (25 pages, 342714 bytes).
+/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/herna/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/herna/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/User
+s/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+<C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+r10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr17.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr5.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/herna/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/herna/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Use
+rs/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam
+10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/symbols/msam7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/symbols/msbm10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/symbols/msbm5.pfb><C:/Users/herna/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/herna/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
+Output written on model_theory_notes.pdf (47 pages, 497268 bytes).
 PDF statistics:
- 391 PDF objects out of 1000 (max. 8388607)
- 130 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 638 PDF objects out of 1000 (max. 8388607)
+ 234 named destinations out of 1000 (max. 500000)
+ 133 words of extra memory for PDF output out of 10000 (max. 10000000)
 
