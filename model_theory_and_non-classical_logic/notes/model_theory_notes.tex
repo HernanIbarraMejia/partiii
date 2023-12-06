@@ -1515,8 +1515,26 @@
  		\begin{proof}
  			As the theory $\mathcal{T}$ has a type it is, in particular, consistent. Let $C=\{c_0,c_1,\ldots\}$ be a countable set of new constants. We expand $\mathcal{T}$ to a consistent $\mathcal{L}_C$-theory $\mathcal{T}^*$ by adding recursively defined sentences $\theta_0,\theta_1,\ldots$. This will be done in such a way that if $s<t$, then $\theta_t$ implies $\theta_s$.
  			
- 			Enumerate the $n$-tuples $C^n = \{\bar{d}_0,\bar{d}_1,\ldots\}$ as well as the $\mathcal{L}_C$-sentences $\varphi_0,\varphi_1,\ldots$. Start with $\theta_0\coloneqq \forall x. x=x$ and suppose we already constructed $\theta_s$ such that $\mathcal{T}\cup$
- 			
+ 			Enumerate the $n$-tuples $C^n = \{\bar{d}_0,\bar{d}_1,\ldots\}$ as well as the $\mathcal{L}_C$-sentences $\varphi_0,\varphi_1,\ldots$. Start with $\theta_0\coloneqq \forall x. x=x$ and suppose we already constructed $\theta_s$ such that $\mathcal{T}\cup\{\theta_s\}$ is consistent. We define $\theta_{s+1}$ as follows.
+ 			\begin{itemize}
+ 				\item If $s = 2i$ is even then we will design $\theta_{s+1}$ to turn $C$ into (the domain of) an elementary substructure of a model of $\mathcal{T}$.
+ 				
+ 				Suppose $\varphi_i$ is existential so that $\varphi_i = \exists x. \psi(x)$, and $\mathcal{T}\vdash \theta_{s} \Rightarrow \varphi_i$. As only finitely many constants from $C$ have been used thus far in the construction of the $\theta$'s we can find some unused $c\in C$. Let $\theta_{s+1}\coloneqq \theta_{s} \wedge \psi(c)$.
+ 				
+ 				We know that $\mathcal{T}\cup \{\theta_s\}$ is consistent, so let $N$ be a model for it. As $\mathcal{T}\vdash \theta_{s} \Rightarrow \varphi_i$ there is a witness $n\in N$ to $\psi$. By interpreting $c$ in $N$ as that witness we have $N\models \Theta_{s+1}$. So $\mathcal{T}\cup \{\theta_{s+1}\}$ is consistent.
+ 				
+ 				If $\varphi_i$ is not existential or $\mathcal{T}\nvdash \theta_{s} \Rightarrow \varphi_i$ then set $\theta_{s+1}\coloneqq \theta_{s}$.
+ 				
+ 				\item If $s= 2i + 1$ is odd we will design $\theta_{s+1}$ to guarantee that $C$ omits $p$. Write $\bar{d}_i = (e_1,\ldots, e_n)$. Remove every occurrence of $e_j$ from $\theta_s$ by replacing it with the variable $x_j$, and every occurrence other constants, say $c\in C$, by replacing them with a fresh variable $x_c$ together with a $\exists x_c$ in front of the formula.
+ 				
+ 				This yields a new formula $\psi(x_1,\ldots,x_n)$. As $p$ is not isolated there must be some $\varphi(\bar{x})$ that is not implied by $\psi(\bar{x})$ according to $\mathcal{T}$. Define $\theta_{s+1} \coloneqq \theta_s \wedge \neg\varphi(\bar{d}_i)$. Then $\mathcal{T}\cup\{\theta_{s+1}\}$ is consistent since $\mathcal{T}\cup\{\theta_{s}\}$ is consistent and $\exists \bar{x}. \neg\varphi(\bar{x})$ is independent of it.
+ 			\end{itemize}
+ 				
+ 			Let $\mathcal{T}^*\coloneqq \mathcal{T}\cup \{\theta_0,\theta_1,\theta_2,\ldots\}$. By Compactness, it follows that $\mathcal{T}^*$ is consistent. Let $M$ be a model for this theory. 
+ 				
+ 				It follows that $M$ has a countable subset $C$, and the construction of $\Theta_{2i+1}$ ensures that if $\varphi_i$ is an existential statement holding in $M$ then it holds in $C$. Thus $C$ is an elementary substructure of $M$ by the Tarski-Vaught test.
+ 				
+ 				Moreover, if $\bar{c}\in \mathcal{T}^*$ then $\bar{c} = \bar{d}_i$ for some $i$. As $C\models \theta_{2i + 2}$ we have that $\neg\varphi(\bar{c})$ for some $\varphi\in p$. So $\bar{c}$ cannot realise $p$ in $C$.	As $C\models \mathcal{T}$, we are done.
  			
  		\end{proof}
  		\section{Indiscernibles}

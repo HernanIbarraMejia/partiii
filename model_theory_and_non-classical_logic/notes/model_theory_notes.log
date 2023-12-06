@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  4 DEC 2023 14:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  5 DEC 2023 10:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1237,17 +1237,17 @@ mr/m/n/10 ]$
  []
 
 [41] [42]
-Overfull \hbox (7.06172pt too wide) in paragraph at lines 1542--1544
+Overfull \hbox (7.06172pt too wide) in paragraph at lines 1560--1562
 [][]\OT1/cmr/bx/n/10 Definition 1.5.3 \OT1/cmr/m/n/10 (Ehren-feucht{Mostowski f
 unc-tors)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/n/10 An \OT1/cmr/m/it/10 Ehren-feucht{
 Mostowski
  []
 
-[43] [44]
+[43] [44] [45]
 Chapter 2.
-[45
+[46
 
-] [46] (model_theory_notes.aux)
+] [47] (model_theory_notes.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.25pt have occurred.
@@ -1267,8 +1267,8 @@ Package logreq Info: Writing requests to 'model_theory_notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 32421 strings out of 476374
- 645347 string characters out of 5788855
+ 32422 strings out of 476374
+ 645354 string characters out of 5788855
  1874340 words of memory out of 5000000
  52066 multiletter control sequences out of 15000+600000
  530600 words of font info for 106 fonts, out of 8000000 for 9000
@@ -1301,9 +1301,9 @@ ublic/amsfonts/symbols/msbm10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/symbols/msbm5.pfb><C:/Users/herna/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/herna/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on model_theory_notes.pdf (47 pages, 497268 bytes).
+Output written on model_theory_notes.pdf (48 pages, 501499 bytes).
 PDF statistics:
- 638 PDF objects out of 1000 (max. 8388607)
- 234 named destinations out of 1000 (max. 500000)
+ 643 PDF objects out of 1000 (max. 8388607)
+ 235 named destinations out of 1000 (max. 500000)
  133 words of extra memory for PDF output out of 10000 (max. 10000000)
 

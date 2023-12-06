@@ -14,6 +14,8 @@
 \DeclareMathOperator{\tp}{tp}
 \DeclareMathOperator{\Diag}{Diag}
 \DeclareMathOperator{\Th}{Th}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
 
 \begin{document}
 	\title{Model Theory and Non-Classical Logic\\ Example Sheet 3 Solutions}
@@ -30,8 +32,9 @@
 		\]
 		partition $\mathbb{Q}$. Note that if $a\in U$ and $b\in L$, then $b<a$. Indeed, the sets are disjoint, so the only alternative is that $a<b$. But from this it follows that in any realization of the type $p$, say by an element $c$, we must have $c<a<b<c$ and thus $c<c$. As $\mathbb{Q}\models \forall y. \neg(y<y)$ this is a contradiction. Hence the complete type $p$ gives rise to a partition $U,L$ of $\mathbb{Q}$ such that $L<U$ in the above sense.
 		
-		Conversely, suppose we had a partition 
-		\item 
+		Conversely, any such partition can be extended to a complete type by the Ultrafilter Principle, and it is clear that this correspondence is bijective.
+		
+		\item \textcolor{red}{TODO}	
 		\item First we show that, given a finite number of complete types $p_1,\ldots,p_k\in S_{n}^M(M)$ there is an elementary extension $N$ of $M$ realizing all of them. For $k=0$ this is trivial. Now suppose there is an elementarily extension $N'$ of $M$ realizing $p_1,\ldots,p_{k-1}$. Note that $S_{n}^M(M)= S_n^{M}(N')$ since the extension is elementary, so in particular $p_k\in S_n^{M}(N')$ and by Proposition 1.4.6 there is an elementary extension $N$ of $N'$ realizing $p_k$. Obviously $N$ is an elementary extension of $M$ realizing $p_1,\ldots, p_k$ so we are done by induction.
 		
 		Back to the main problem. To the language $\mathcal{L}$ we add a constant for each element of $M$ and we add $n$ constants $c_1^p,\ldots, c_n^p$ for every $p\in S_n^M(M)$. In the expanded language, consider the theory
@@ -81,7 +84,43 @@
 			\] 
 			which is open in $S_n^M(A)$.
 		\end{enumerate}
+		\item In the proof of Theorem 1.4.11 we make a small modification. Let $f\colon \omega \to \omega \times \omega$ be a bijection. When we define $\theta_s$ for odd $s= 2i + 1$ then if $f(i) = (j,k)$ instead of taking $\bar{d}_i$ we take $\bar{d}_j$, run the same process to get $\psi$ and we let $\varphi$ be a formula in $p_k$ that is not implied by $\psi$. The rest of the proof is the same, except that at the very end we notice that if $\bar{c}\in C^n$ then $\bar{c}= \bar{d}_j$ for some $j$ and that if $k< \omega$ then we can define $i\coloneqq f^{-1}(j,k)$; it then follows that $\theta_{2i+2}$ implies that $\bar{c}$ does not realize $p_k$. As $\bar{c}$ and $k$ were arbitrary, we are done.
 		
-	\end{enumerate}
+		\item We need to find an uncountable language $\mathcal{L}$, an $\mathcal{L}$-theory $\mathcal{T}$, and a non-isolated $n$-type $p$ of $\mathcal{T}$ such that $p$ is realized in every countable model of $\mathcal{T}$. \textcolor{red}{Hmm... not sure about this one. Feels like it super easy though.}
+		
+		\item \textcolor{red}{Can't do it... I think it uses Omitting Types Theorem at some point.}
+		
+		\item Let $M \coloneqq \{m_1, m_2, \ldots\}$ and $N \coloneqq \{n_1,n_2,\ldots\}$ be two countable $\omega$-saturated, elementarily equivalent $\mathcal{L}$-structures. A partial function $f\colon M \to N$ is called \emph{elementary} if for all $\varphi(\bar{x})\in\mathcal{L}$ and $\bar{d}\in \dom(f)$
+		\[
+			M \models \varphi(\bar{d}) \,\,\,\iff\,\,\, N \models \varphi(f(\bar{d})).
+		\]
+		We construct a sequence $f_0,f_1,\ldots$ such that for all $i\in \mathbb{N}$:
+		\begin{itemize}
+			\item $f_i$ is an elementary partial function $M\to N$;
+			\item $f_{i+1}$ extends $f_i$;
+			\item $\dom(f_i)$ (and hence $\cod(f_i)$) is finite;
+			\item $\{m_1,\ldots,m_i\}\subseteq \dom(f_i)$ and $\{n_1,\ldots,n_i\}\subseteq \cod(f_i)$.
+		\end{itemize}
+		
+		Define $f_0$ to be the empty function, which is elementary since $M$ and $N$ are elementarily equivalent. Suppose $f_i$ has been defined, and let $D\coloneqq \dom(f_i)$ and $C\coloneqq \cod(f_i)$ be finite. Consider the complete 1-type
+		\[
+			\tp^M(m_{i+1}/D).
+		\]
+		Using the notation of Question 4 (b), we note that $f_i^*(p)$ is a complete 1-type of $N$ by basically the same argument as in Q4 and the fact that $f_i$ is elementary. Since $N$ is $\omega$-saturated, it follows that there is some $n\in N$ realizing this type. Let $g\colon D\cup\{m_{i+1}\} \to C\cup\{n\}$ be the extension of $f_i$ that sends $m_{i+1}\mapsto n$ (if $m_{i+1}\in D$ then just let $g=f_i$). Thus $g$ is elementary by construction.
+		
+		Similarly, consider the complete 1-type $p\coloneqq \tp^N(n_{i+1}/C\cup\{n\})$. As $g$ is elementary it follows that 
+		\[\{\varphi(x,\bar{d}) \colon \varphi(x,g(\bar{d}))\in p\text{ for some $\bar{d}\in D\cup\{m_{i+1}\}$}\}\]
+		is a 1-type for $M$ so it has a realization $m\in M$. Finally, we let $f_{i+1} \colon D\cup\{m,m_{i+1}\}\to C\cup\{n,n_{i+1}\}$ be the extension of $g$ mapping $m\mapsto n_{i+1}$. For the same reasons as before, $f_{i+1}$ is elementary. This finishes the construction.
+		
+		Now let $f\colon M \to N$ be the union of all $f_i$. By construction, $f$ is defined everywhere, elementary, and surjective. It is also injective since $N\models f(m) = f(m')$ will imply $M\models m = m'$. The fact that $f$ is a homomorphism can be similarly verified.
+		\end{enumerate}
 \end{document}
+\item \textcolor{red}{INCOMPLETE: Didn't really get the explanation in the example class. }We can assume that $\bar{a}$ and $\bar{b}$ don't share any elements since these do not pose additional restrictions to the automorphism. In this case none of the elements in $\bar{a},\bar{b}$ can be in $A$ since if $a_i\in A$ for example, the $\mathcal{L}_A$ formula $x = a_i$ is true for $a_i$ but not for $b_i$, contradicting $\tp^M(\bar{a}/A) = \tp^M(\bar{b}/A)$.
 
+Let $M_0\coloneqq M$. Note that $(M,A,\bar{a})\equiv (M,A,\bar{b})$ by assumption, so, by a variant of elementary amalgamation, there is an elementary extension $N_0$ of $M_0$ and an elementary embedding $f_0\colon M_0\to N_0$ that fixes $A$ and such that $f_0(\bar{a}) = \bar{b}$. 
+
+Now suppose we have defined $M\preccurlyeq M_i\preccurlyeq N_i$ and we have an elementary embedding $f_i\colon M_i \to N_i$ fixing $A$ and such that $f_i(\bar{a}) = \bar{b}$. It follows that $(M_i,M_i,\bar{a}) \equiv (N_i,M_i,\bar{b})$ where in the latter a constant corresponding to an element $m$ of $M_i$ is interpreted in $N$ as $f_i(m)$. So, by elementary amalgamation, there is an elementary extension $M_{i+1}$ of $M_i$ and an elementary embedding $g_i\colon N_i\to M_{i+1}$ such that $g_i(\bar{b}) = \bar{a}$ and $g_i(f_i(m)) = m$ for all $m\in M_i$.
+
+We claim that $(M_{i+1},M_i) \equiv (M_{i+1},g_i(f_i(M_i)))$. Let $\varphi(\bar{m})$ be an $\mathcal{L}$-formula where $\bar{m}\in M_i$, and suppose $M_{i+1} \models \varphi(\bar{m})$. As $M_{i}\preccurlyeq M_{i+1}$ this is equivalent to $M_i \models \varphi(\bar{m})$, and as $f_i$ and $g_i$ are both elementary embeddings this is the same as $M_{i+1}\models \varphi(g_i(f_i(\bar{m})))$
+
+Again, by elementary amalgamation, there is some elementary extension $N_{i+1}$ of $M_{i+1}$ and an elementary embedding $f_{i+1}\colon M_{i+1} \to N_{i+1}$ such that $f_{i+1}(m) = g_i(f_i(m))$ for all $m\in M_i$.
