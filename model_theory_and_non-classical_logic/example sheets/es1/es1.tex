@@ -160,7 +160,7 @@
 		\end{itemize}
 		\item We would like to use criterion 11 (b). First, note that all $\mathcal{T}$-models of cardinality $\kappa$ are existentially closed. Indeed, if $A\models \mathcal{T}$ and $|A| = \kappa$ then, by the claim in problem 10, we can get an existentially closed extension $B$ of $A$ with $|B| = |A|$. As $\mathcal{T}$ is $\kappa$-categorical, it follows that $A$ is existentially closed. \textcolor{red}{What next? Is this even the right approach?}
 				
-		\item \textcolor{red}{Unfinished. I know that the theory of the hint is consistent and has quantifier-elimination. How does this help?} Let $\mathcal{L}$ be the language of graphs, which only has one binary relation symbol $\sim$ (representing adjacency). The theory of (simple) graphs SG is defined below.
+		\item Let $\mathcal{L}$ be the language of graphs, which only has one binary relation symbol $\sim$ (representing adjacency). The theory of (simple) graphs SG is defined below.
 		\[
 			\text{SG}\coloneqq \{\,\forall x. \neg(x\sim x) \,,\, \forall x.\forall y. (x\sim y \Rightarrow y\sim x)\,\}.
 		\]
@@ -173,21 +173,22 @@
 		\[
 			\mathcal{T} \coloneqq \text{SG} \cup \{\,\exists x.\, x = x\,\} \cup \{\,\psi_{n,m} \,\mid\, n,m\in\mathbb{N}\,\}.
 		\]
-		It turns out that $\mathcal{T}$ is consistent and has quantifier elimination. We prove the latter first.
+		It turns out that $\mathcal{T}$ is consistent, complete and has quantifier elimination. We prove the latter first.
 		
-		The class of all substructures of graphs is the same as the class of all graphs, which clearly has the amalgamation property. By Theorem 1.2.14, if we $\mathcal{T}$ axiomatizes existentially closed graphs then $\mathcal{T}$ has quantifier elimination. We aim to prove this.
+		We use syntactic quantifier elimination. Note that the only terms are variables, and the atomic formulae are either equalities or of the form $x\sim y$. Hence it suffices to eliminate quantifiers from formulae of the form
+		\begin{multline*}
+			\exists y. \left(\bigwedge_{i\in I}y = x_i\right)\wedge\left(\bigwedge_{i\in J}y \neq x_i\right)\wedge \left(\bigwedge_{i,j\in K}x_i = x_j\right)\wedge\left(\bigwedge_{i,j\in L}x_i \neq x_j\right)\\
+			\wedge\left(\bigwedge_{i\in I'}y \sim x_i\right)\wedge\left(\bigwedge_{i\in J'}y \not\sim x_i\right)\wedge \left(\bigwedge_{i,j\in K'}x_i \sim x_j\right)\wedge\left(\bigwedge_{i,j\in L'}x_i \not\sim x_j\right).
+		\end{multline*}
+		We can assume $I$ is empty since otherwise it is easy to elminate the quantifiers. Also, we can push the quantifier into conjuncts where $y$ actually appears. Hence we are left with
+		\[
+		\exists y.\left( \bigwedge_{i\in J} y \neq x_i \right) \wedge \left(\bigwedge_{i\in I'} y \sim x_i \right)\wedge \left(\bigwedge_{i\in J'} y\not\sim x_i\right) \wedge \varphi(\bar{x}).
+		\]
+		If $I'\cap J'$ is nonempty the above is equivalent to $\bot$, but if $I\cap J' = \emptyset$ then by the defining property of $\mathcal{T}$ the formula is equivalent to $\varphi(\bar{x})$. This shows that $\mathcal{T}$ has quantifier elimination.		
 		
-		First note that any model of $\mathcal{T}$ contains every finite graph as an induced subgraph (and thus is necessarily infinite); in other words, every finite graph embeds into it as an $\mathcal{L}$-structure. Indeed, suppose $M \models \mathcal{T}$ and let $G$ be a graph on $k$ vertices. The proof is by induction on $k$.
+		Now we show that $\mathcal{T}$ is consistent using Compactness. Let $\mathcal{T}'$ be a finite subset of $\mathcal{T}$. Then it is easy to see that a model of $\mathcal{T}'$ is a graph that satisfies $\psi_{n,m}$ for some fixed $n,m$, since $\psi_{n,m}$ implies $\psi_{n',m'}$ when $n'\leq n$ and $m'\leq m$. We use the probabilistic method (!) to show the existence of such a graph.
 		
-		For $k =0,1$ this is obvious (recall that $M$ is nonempty). Now suppose $k>1$. Let $v$ be any vertex of $G$ and consider the graph $G'\coloneqq G\setminus\{v\}$. By inductive hypothesis, we can embed $G'$ into $M$. The set of neighbours of $v$ in $G$ is a subset of $V(G')$ so let $X$ be the corresponding vertices in $M$; similarly let $Y\subset V(M)$ correspond to the non-neighbours of $v$ in $G$. By the property implied by $\mathcal{T}$, there is a vertex $v'\in V(M)$ that connects to everything in $X$ and nothing in $Y$, hence we can extend the embedding to all of $G$. This closes the induction.
-		
-		Now we prove that $\mathcal{T}$ axiomatizes existentially closed structures. let $M$ be a $\mathcal{T}$-model, $\exists \bar{y}. \varphi(\bar{y},\bar{x})$ an existential formula, and $N$ an extension of $M$. Suppose that there is some $\bar{m}$ so that $N \models \exists \bar{y}. \varphi(\bar{y},\bar{m})$. We need to show that $M\models \exists \bar{y}. \varphi(\bar{y},\bar{m})$.
-		
-		As $\varphi(\bar{y},\bar{x})$ is quantifier-free we can put it in disjunctive normal form by Exercise 1. In this case we can push the existential quantifier inside the disjunction and, since $N$ satisfies one of the disjuncts, we can reduce to the case where $\varphi(\bar{x},\bar{y})$ is a conjunction of literals. Hence we must have
-		
-		We show that $\mathcal{T}$ is consistent using Compactness. Let $\mathcal{T}'$ be a finite subset of $\mathcal{T}$. Then it is easy to see that a model of $\mathcal{T}'$ is a graph that satisfies $\psi_{n,m}$ for some fixed $n,m$, since $\psi_{n,m}$ implies $\psi_{n',m'}$ when $n'\leq n$ and $m'\leq m$. We use the probabilistic method (!) to show the existence of such a graph.
-		
-		We first compute the probability $P$ that $G = G(N,0.5)$ does not satisfy $\psi_{n,m}$; we will choose $N$ later but for now assume $N> n+m$. That means that there exists some disjoint $X,Y \subseteq V(G)$ with $|X|\leq n$ and $|Y| \leq m$ such that for all $v\in V(G)$ either there is a vertex $x\in X$ so that $v\nsim x$ or there is a vertex $y\in Y$ so that $v\sim y$. In other words,
+		We first compute the probability $P$ that $G = G(N,p)$ does not satisfy $\psi_{n,m}$; here $p\in (0,1)$ and we will choose $N$ later so for now assume $N> n+m$. This is the probability that there exists some disjoint $X,Y \subseteq V(G)$ with $|X|\leq n$ and $|Y| \leq m$ such that for all $v\in V(G)$ either there is a vertex $x\in X$ so that $v\nsim x$ or there is a vertex $y\in Y$ so that $v\sim y$. In other words,
 		\[
 			P \coloneqq \mathbb{P}\left(\bigcup_{\substack{X,Y\subseteq V(G)\\ |X|\leq n, |Y|\leq m}} \bigcap_{v\in V(G)} \bigcup_{\substack{x\in X \\ y\in Y}} \{v\nsim x\}\cup \{v\sim y\} \right).
 		\]
@@ -207,13 +208,28 @@
 			&= C(N)\cdot \left(1 - \mathbb{P}\left(\bigcap_{\substack{x\in X \\ y\in Y}} \{v\sim x\}\cap \{v\nsim y\}\right)\right)^{N - (n+m)}
 		\end{align*}
 		A moment's thought reveals that we are again dealing with independent events. Thus,
-		\begin{align*}
-			P &\leq C(N)\cdot \left(1 - \left(\frac{1}{2}\cdot\frac{1}{2}\right)^{nm}\right)^{N - (n+m)}\\
-			&= C(N)\left(1 - 4^{-nm}\right)^{N-n+m}
-		\end{align*}
-		The expression inside the parenthesis is strictly less than one; thus when raised to the exponent $N - n + m$ this expression tends \emph{exponentially} to zero as $N$ tends to infinity. As $C(N)$ tends to infinity only polynomially in $N$, we see that $P$ is arbitrarily small for large enough $N$. In particular, there is some $N$ so that $P < 1$. But $P$ is the probability that a graph on $N$ vertices doesn't satisfy $\psi_{n,m}$ so, as $P<1$, there must be some graph on $N$ vertices satisfying $\psi_{n,m}$. We have found our model of $\mathcal{T}'$.
+		\begin{equation*}
+			P \leq C(N)\cdot (1 - p^{nm}(1-p)^{nm})^{N - (n+m)}
+		\end{equation*}
+		As $p\in(0,1)$ it follows that $p(1-p)\in (0,1)$ and hence expression inside the parenthesis is strictly less than one; thus when raised to the exponent $N - n + m$ this expression tends \emph{exponentially} to zero as $N$ tends to infinity. As $C(N)$ tends to infinity only polynomially in $N$, we see that $P$ is arbitrarily small for large enough $N$. In particular, there is some $N$ so that $P < 1$. But $P$ is the probability that a graph on $N$ vertices doesn't satisfy $\psi_{n,m}$ so, as $P<1$, there must be some graph on $N$ vertices satisfying $\psi_{n,m}$. We have found our model of $\mathcal{T}'$.	By Compactness, $\mathcal{T}$ must be consistent
 		
-		By Compactness $\mathcal{T}$ has a---necessarily infinite---model $R$.
+		Notice that we proved something stronger, namely that for all $n,m\in\mathbb{N}$ and $p\in(0,1)$ we have
+		\[
+			\lim_{N\to \infty} \mathbb{P}(G(N,p) \models \neg \psi_{n,m}) = 0,
+		\]
+		or, equivalently,
+		\[
+			\lim_{N\to \infty} \mathbb{P}(G(N,p) \models \psi_{n,m}) = 1.
+		\]
+		This gets us one step closer to the solution.
+		
+		Finally, we prove that $\mathcal{T}$ is complete. This is easy: since we know that $\mathcal{T}$ has quantifier elimination we only need to show that for every quantifier-free sentence $\varphi$ either $\mathcal{T}\models \varphi$ or $\mathcal{T}\models \neg\varphi$. But there are no quantifier free sentences other than Boolean combinations of $\bot$ so this is definitely true. 
+		
+		Now we can prove the main result. Suppose that $\varphi$ is an arbitrary $\mathcal{L}$-sentence. As $\mathcal{T}$ is complete and consistent we see that exactly one of $\mathcal{T}\models \varphi$ and $\mathcal{T}\models \neg\varphi$ is true. But if $\mathcal{T}\models \varphi$ then by Completeness $\mathcal{T}\vdash \varphi$ and, as proofs are finite, there is some finite $\mathcal{T}'\subseteq \mathcal{T}$ such that $\mathcal{T}'\vdash \varphi$. But we just saw that the probability of $G(N,p)$ satisfying $\psi_{n,m}$ tended to $1$ so
+		\[
+			\lim_{N\to\infty} \mathbb{P}(G(N,p) \models \varphi)\geq \lim_{N\to\infty} \mathbb{P}(G(N,p) \models \mathcal{T}') = 1
+		\]
+		and a similar argument shows that $\mathcal{T}\models \neg\varphi$ implies $\lim_{N\to\infty} \mathbb{P}(G(N,p) \models \varphi) = 0$
 		
 	\end{enumerate}
 \end{document}

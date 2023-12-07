@@ -363,8 +363,99 @@
 		\end{tikzcd}\]
 		where I have added the extra dashed arrows. Then, if you tilt your head a little, this is a parallelepiped. If we rotate towards the page, we see that the top face and the bottom face are the naturality diagrams for $\alpha$ with respect to $f$ but with $F'$ and $G'$ applied to them respectively. The right and left faces are commutative by our previous argument. Finally, the front and the back faces are just naturality squares for $\alpha'$ with respect to $Gf$ and $Ff$ respectively. Hence the whole diagram commutes (!). This finishes the construction.
 		
-		In the special case when $F=G$ and $\alpha = 1_{F}$ we denote $\alpha' \ast \alpha$ by $\alpha'F$. Similarly we define $F'\alpha$.
+		In the special case when $F=G$ and $\alpha = 1_{F}$ we denote $\alpha' \ast \alpha$ by $\alpha'F$. Similarly we define $F'\alpha$. 
 	\end{defn}
+	Horizontal composition is a well-behaved operation, as the next two propositions show.
+	\begin{prop}[Associativity of Horizontal Composition]
+		Given categories, functors, and natural transformations as in the diagram
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q30iXSxbMSwwLCJcXG1hdGhjYWx7RH0iXSxbMiwwLCJcXG1hdGhjYWx7RX0iXSxbMywwLCJcXG1hdGhjYWx7Rn0iXSxbMCwxLCJGIiwwLHsib2Zmc2V0IjotM31dLFsxLDIsIkciLDAseyJvZmZzZXQiOi0zfV0sWzIsMywiSCIsMCx7Im9mZnNldCI6LTN9XSxbMCwxLCJGJyIsMix7Im9mZnNldCI6M31dLFsxLDIsIkcnIiwyLHsib2Zmc2V0IjozfV0sWzIsMywiSCciLDIseyJvZmZzZXQiOjN9XSxbNCw3LCJcXGFscGhhIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dLFs1LDgsIlxcYmV0YSIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XSxbNiw5LCJcXGdhbW1hIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dXQ==
+		\[\begin{tikzcd}
+			{\mathcal{C}} & {\mathcal{D}} & {\mathcal{E}} & {\mathcal{F}}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "F", shift left=3, from=1-1, to=1-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "G", shift left=3, from=1-2, to=1-3]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "H", shift left=3, from=1-3, to=1-4]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{F'}"', shift right=3, from=1-1, to=1-2]
+			\arrow[""{name=4, anchor=center, inner sep=0}, "{G'}"', shift right=3, from=1-2, to=1-3]
+			\arrow[""{name=5, anchor=center, inner sep=0}, "{H'}"', shift right=3, from=1-3, to=1-4]
+			\arrow["\alpha", shorten <=2pt, shorten >=2pt, Rightarrow, from=0, to=3]
+			\arrow["\beta", shorten <=2pt, shorten >=2pt, Rightarrow, from=1, to=4]
+			\arrow["\gamma", shorten <=2pt, shorten >=2pt, Rightarrow, from=2, to=5]
+		\end{tikzcd}\]
+		we have
+		\[
+			(\gamma \ast \beta) \ast \alpha = \gamma \ast (\beta \ast \alpha).
+		\]
+	\end{prop}
+	\begin{proof}
+		Let $A\in\ob\mathcal{C}$. Consider the diagram
+		% https://q.uiver.app/#q=WzAsOCxbMCwwLCJIR0ZBIl0sWzIsMCwiSEdGJ0EiXSxbMCwyLCJIRydGQSJdLFsyLDIsIkhHJ0YnQSJdLFsyLDQsIkgnR0ZBIl0sWzQsNCwiSCdHRidBIl0sWzIsNiwiSCdHJ0ZBIl0sWzQsNiwiSCdHJ0YnQSJdLFswLDEsIkhHKFxcYWxwaGFfQSkiXSxbMCwyLCJIXFxiZXRhX3tGQX0iLDJdLFsxLDMsIkhcXGJldGFfe0YnQX0iLDJdLFsyLDMsIkhHJyhcXGFscGhhX0EpIiwyXSxbMiw2LCJcXGdhbW1hX3tHJ0ZBfSIsMl0sWzAsNCwiXFxnYW1tYV97R0ZBfSIsMix7ImxhYmVsX3Bvc2l0aW9uIjo4MH1dLFszLDcsIlxcZ2FtbWFfe0cnRidBfSIsMix7ImxhYmVsX3Bvc2l0aW9uIjo4MH1dLFsxLDUsIlxcZ2FtbWFfe0dGJ0F9IiwwLHsibGFiZWxfcG9zaXRpb24iOjcwfV0sWzYsNywiSCdHJyhcXGFscGhhX0EpIiwyXSxbNCw2LCJIJ1xcYmV0YV97RkF9Il0sWzUsNywiSCdcXGJldGFfe0YnQX0iXSxbNCw1LCJIJ0coXFxhbHBoYV9BKSJdXQ==
+		\[\begin{tikzcd}
+			HGFA && {HGF'A} \\
+			\\
+			{HG'FA} && {HG'F'A} \\
+			\\
+			&& {H'GFA} && {H'GF'A} \\
+			\\
+			&& {H'G'FA} && {H'G'F'A}
+			\arrow["{HG(\alpha_A)}", from=1-1, to=1-3]
+			\arrow["{H\beta_{FA}}"', from=1-1, to=3-1]
+			\arrow["{H\beta_{F'A}}"', from=1-3, to=3-3]
+			\arrow["{HG'(\alpha_A)}"', from=3-1, to=3-3]
+			\arrow["{\gamma_{G'FA}}"', from=3-1, to=7-3]
+			\arrow["{\gamma_{GFA}}"'{pos=0.8}, from=1-1, to=5-3]
+			\arrow["{\gamma_{G'F'A}}"'{pos=0.8}, from=3-3, to=7-5]
+			\arrow["{\gamma_{GF'A}}"{pos=0.7}, from=1-3, to=5-5]
+			\arrow["{H'G'(\alpha_A)}"', from=7-3, to=7-5]
+			\arrow["{H'\beta_{FA}}", from=5-3, to=7-3]
+			\arrow["{H'\beta_{F'A}}", from=5-5, to=7-5]
+			\arrow["{H'G(\alpha_A)}", from=5-3, to=5-5]
+		\end{tikzcd}\]
+		Commutativity of each face is clear. Rotate towards the page by pushing the top bit. Then going along the top face diagonal and then straight down to $H'G'F'A$ is $(\gamma\ast(\beta \ast \alpha))_{A}$ (equivalently go straight down at the start and then go along the diagonal of the bottom face). However, going one step to the right at the beginning and then going along the diagonal of the right face (alternatively start by going along the diagonal of the left face and then right one step) is $((\gamma \ast \beta) \ast \alpha)_A$.
+	\end{proof}
+	\begin{prop}[Interchange Law]
+		Given categories, functors, and natural transformations as in the diagram
+		% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30iXSxbMSwwLCJcXG1hdGhjYWx7RH0iXSxbMiwwLCJcXG1hdGhjYWx7RX0iXSxbMCwxLCJHIiwxXSxbMCwxLCJGIiwwLHsiY3VydmUiOi00fV0sWzAsMSwiSCIsMix7ImN1cnZlIjo0fV0sWzEsMiwiRiciLDAseyJjdXJ2ZSI6LTR9XSxbMSwyLCJIJyIsMix7ImN1cnZlIjo0fV0sWzEsMiwiRyciLDFdLFs0LDMsIlxcYWxwaGEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9fV0sWzMsNSwiXFxiZXRhIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfX1dLFs2LDgsIlxcYWxwaGEnIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfX1dLFs4LDcsIlxcYmV0YSciLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9fV1d
+		\[\begin{tikzcd}
+			{\mathcal{C}} & {\mathcal{D}} & {\mathcal{E}}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "G"{description}, from=1-1, to=1-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "F", curve={height=-24pt}, from=1-1, to=1-2]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "H"', curve={height=24pt}, from=1-1, to=1-2]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{F'}", curve={height=-24pt}, from=1-2, to=1-3]
+			\arrow[""{name=4, anchor=center, inner sep=0}, "{H'}"', curve={height=24pt}, from=1-2, to=1-3]
+			\arrow[""{name=5, anchor=center, inner sep=0}, "{G'}"{description}, from=1-2, to=1-3]
+			\arrow["\alpha", shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
+			\arrow["\beta", shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=2]
+			\arrow["{\alpha'}", shorten <=5pt, shorten >=5pt, Rightarrow, from=3, to=5]
+			\arrow["{\beta'}", shorten <=5pt, shorten >=5pt, Rightarrow, from=5, to=4]
+		\end{tikzcd}\]
+		we have
+		\[
+			(\beta' \circ \alpha')\ast (\beta \circ \alpha) = (\beta' \ast \beta)\circ (\alpha'\ast\alpha).
+		\]
+	\end{prop}
+	\begin{proof}
+		Let $A\in\ob\mathcal{C}$. Consider the following diagram.
+		% https://q.uiver.app/#q=WzAsOSxbMCwwLCJGJ0ZBIl0sWzAsMSwiRydGQSJdLFswLDIsIkgnRkEiXSxbMSwyLCJIJ0dBIl0sWzEsMSwiRydHQSJdLFsxLDAsIkYnR0EiXSxbMiwwLCJGJ0ZBIl0sWzIsMSwiRydIQSJdLFsyLDIsIkgnSEEiXSxbMCw1LCJGJyhcXGFscGhhX0EpIl0sWzUsNiwiRicoXFxiZXRhX0EpIl0sWzAsMSwiXFxhbHBoYSdfe0ZBfSIsMl0sWzUsNCwiXFxhbHBoYSdfe0dBfSIsMV0sWzYsNywiXFxhbHBoYSdfe0hBfSJdLFsxLDIsIlxcYmV0YSdfe0ZBfSIsMl0sWzQsMywiXFxiZXRhJ197R0F9IiwxXSxbNyw4LCJcXGJldGEnX3tIQX0iXSxbMiwzLCJIJyhcXGFscGhhX0EpIiwyXSxbMyw4LCJIJyhcXGJldGFfQSkiLDJdLFsxLDQsIkcnKFxcYWxwaGFfQSkiLDFdLFs0LDcsIkcnKFxcYmV0YV9BKSIsMV1d
+		\[\begin{tikzcd}[sep=large]
+			{F'FA} & {F'GA} & {F'FA} \\
+			{G'FA} & {G'GA} & {G'HA} \\
+			{H'FA} & {H'GA} & {H'HA}
+			\arrow["{F'(\alpha_A)}", from=1-1, to=1-2]
+			\arrow["{F'(\beta_A)}", from=1-2, to=1-3]
+			\arrow["{\alpha'_{FA}}"', from=1-1, to=2-1]
+			\arrow["{\alpha'_{GA}}"{description}, from=1-2, to=2-2]
+			\arrow["{\alpha'_{HA}}", from=1-3, to=2-3]
+			\arrow["{\beta'_{FA}}"', from=2-1, to=3-1]
+			\arrow["{\beta'_{GA}}"{description}, from=2-2, to=3-2]
+			\arrow["{\beta'_{HA}}", from=2-3, to=3-3]
+			\arrow["{H'(\alpha_A)}"', from=3-1, to=3-2]
+			\arrow["{H'(\beta_A)}"', from=3-2, to=3-3]
+			\arrow["{G'(\alpha_A)}"{description}, from=2-1, to=2-2]
+			\arrow["{G'(\beta_A)}"{description}, from=2-2, to=2-3]
+		\end{tikzcd}\]
+		Going around the big square either way yields $((\beta' \circ \alpha')\ast (\beta \circ \alpha))_A$, whereas going through the diagonal of the top left square and then the diagonal of the bottom right square yields $((\beta' \ast \beta)\circ (\alpha'\ast\alpha))_A$.
+	\end{proof}
+		
 	\begin{defn}[Equivalence of categories]
 		Let $\mathcal{C}$ and $\mathcal{D}$ be categories. By an \emph{equivalence} between $\mathcal{C}$ and $\mathcal{D}$ we mean a pair of functors $F\colon \mathcal{C}\to\mathcal{D}$ and $G\colon \mathcal{D} \to \mathcal{C}$, together with natural isomorphisms $\alpha\colon 1_{\mathcal{C}} \to GF$ and $\beta \colon FG \to 1_{\mathcal{D}}$.
 		
