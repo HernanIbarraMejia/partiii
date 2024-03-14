@@ -1,0 +1,265 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\cf}{cf}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{nondefn}[thm]{Non-definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{noneg}[thm]{Non-example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\begin{document}
+	\title{Geometric Group Theory}
+	\maketitle
+	We need a theorem from topology throughout the course.
+	\begin{thm*}[Seifert-Van Kampen]
+		Let $X$ be a topological space that is the union of two open subsets $U,V\subseteq X$. Suppose that $U,V$, and $U\cap V$ are path connected. Then for all $p\in U\cap V$ the functor $\pi_1(-)$ preserves the pushout square in $\textbf{Top}_\ast$
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCIoVVxcY2FwIFYscCkiXSxbMSwwLCIoVSxwKSJdLFswLDEsIihWLHApIl0sWzEsMSwiKFgscCkiXSxbMCwyXSxbMCwxXSxbMiwzXSxbMSwzXV0=
+		\[\begin{tikzcd}
+			{(U\cap V,p)} & {(U,p)} \\
+			{(V,p)} & {(X,p)}
+			\arrow[from=1-1, to=2-1]
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=1-2, to=2-2]
+		\end{tikzcd}.\]
+	\end{thm*}
+	This theorem allows us to compute the fundamental group of a space by breaking it up into two simpler spaces.
+	
+	\begin{defn*}[Covering maps]
+		Let $q\colon E \to X$ be a continuous map, an open subset $U\subseteq X$ is said to be \emph{evenly covered by $q$} if $q^{-1}(U)$ is a disjoint union of connected open subset of $E$. A \emph{covering map} is a continuous map $q\colon E \to X$ such that $E$ is connected and locally path-connected and every point of $X$ has an evenly covered neighbourhood.
+	\end{defn*}
+	
+	\chapter{Combinatorial Group Theory}
+	Combinatorial group theory is a predecessor of geometric group theory and their histories intertwine quite a bit. Both study infinite discrete groups, whereas most mathematicians care about finite groups and most physicists care about smooth groups or Lie groups.
+	\section{Free groups and presentations}
+	Let $A$ be a set. A group $F$ is \emph{free on }$A$ if there is a set-function $j\colon A \to F$ such that for all set-functions $f\colon A \to G$ where $G$ is a group we have a unique group homomorphism $\sigma \colon F \to G$ making the diagram
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiRiJdLFsxLDEsIkciXSxbMCwxLCJqIl0sWzAsMiwiZiIsMl0sWzEsMiwiXFxleGlzdHMhXFxzaWdtYSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\[\begin{tikzcd}
+		A & F \\
+		& G
+		\arrow["j", from=1-1, to=1-2]
+		\arrow["f"', from=1-1, to=2-2]
+		\arrow["{\exists \sigma}", dashed, from=1-2, to=2-2]
+	\end{tikzcd}.\]
+	By abstract nonsense $F$ is defined up to a unique isomorphism if it exists. To show it exists we give to equivalent but quite different definitions.
+	
+	Topologically, a free group on $A$ is just the fundamental group of $\bigwedge_{a\in A}\mathbf{S}^1$. By the Seifert-Van Kampen theorem, this works.
+	
+	Combinatorially, we define $A^*$ to be words (i.e. finite strings) on $A$ and $A^{-1} \coloneqq \{a^{-1} \mid a \in A\}$ (we are just adding formal inverses here). A word is \emph{reducible} if it has as a subword $aa^{-1}$ or $a^{-1}a$ for some $a\in A$; otherwise it is \emph{reduced}. We define a group operation on $A^*$ by concatenation and reduction. It is possible but very tedious to verify that this is well-defined and forms a group operation, so we omit the proof.
+	
+	A \emph{presentation} is a set $A$ (the \emph{generators}) together with a set $R\subseteq FA$ (the \emph{relations}). We usually write this as $\langle A \mid R\rangle$. This presents the group $FA$ quotiented out by its smallest normal subgroup containing $R$.
+	
+	Every group arises as the fundamental group of some space. First give the group some presentation. Then have a bouquet of circles with a circle for each generator. Attach disks for each relation in such a way you make the relevant word the boundary of the disk. This space will have a fundamental group isomorphic to the group we started with, and is called the \emph{presentation complex} of the group.
+	
+	In 1911, Max Dehn, a topologist who studied fundamental groups, proposed three problems that have shaped our subject considerably.
+	\begin{itemize}
+		\item The word problem. Give an algorithm that determines, for any a presentation of a group, whether a given word is the identity. 
+		\item The conjugacy problem. Give an algorithm that determines, for any presentation of a group, whether two given words are conjugate.
+		\item The isomorphism problem. Give an algorithm that determines, for any two presentations, whether they present isomorphic groups.
+	\end{itemize}
+	\begin{rems}\leavevmode
+		\begin{enumerate}
+			\item The conjugacy problem is stronger than the word problem since the identity is only conjugate to itself.
+			\item Dehn was motivated by topology, but the problems asked for algorithms. We will often solve the these kind of problems using geometry.
+			\item All three problems were proven to be undecidable in the 1950s. 
+		\end{enumerate}
+	\end{rems}
+	Despite the undecidability in general of these problems, positive solutions are known for many ``reasonable'' classes of groups. For instance, in free groups the word problem is obviously solvable: given any word just reduce it by deleting cancellable pairs, and see if the resulting reduced word is the identity or not. We can also solve the conjugacy problem in free groups without too much effort.
+	
+	If $A$ is a finite alphabet, there is a natural action of $\mathcal{Z}$ on the set $A^*$ that cyclically permutes the words. If $w\in A^*$ we call the elements in the orbit $\mathbb{Z}w$ of $w$ the \emph{cyclic conjugates} of $w$. 
+	
+	The orbits in $\mathcal{Z}/A^*$ are called \emph{cyclic words}. A word is called \emph{cyclically reduced} if all of its cyclic conjugates are reduced.  For instance $aba^{-1}$ is reduced but not cyclically reduced since it has a cyclic conjugate $ba^{-1}a$, which is not reduced.
+	
+	Clearly if $w$ is reduced but not cyclically reduced then $w = aw'a^{-1}$ for some $a\in A\cup A^{-1}$ (imagine the word in a circle). Note that $w'$ is conjugate to $w$ and shorter than $w$. Hence, after repeating this process a finite number of times, we get that $w$ is conjugate to a cyclically reduced word. Thus, it is sufficient to solve the conjugacy problem for cyclically reduced words.
+	
+	\begin{lem}
+		If $u,v\in F(A)$ are cyclically reduced then $u$ is conjugate to $v$ iff the corresponding cyclic words are equal.
+	\end{lem}
+	\begin{proof}
+		If $u$ and $v$ have the same cyclic word then
+		\begin{align*}
+			u &= a_1\cdots a_n\\
+			v &= a_{k+1} a_{k+2} \cdots a_n a_1 \cdots a_k
+		\end{align*}
+		for some $n,k$ and $a_i\in A\cup A^{-1}$. Now if $g = a_1\cdot a_k$ then $u = gvg^{-1}$ as required.
+		
+		Conversely, suppose $u=gvg^{-1}$ for some $g$. By induction on the length of $g$ we may assume $g=a\in A\cup A^{-1}$.
+		
+		From this it follows that $v = a^{-1}v'$ or $v=v'a$ since $v$ is cyclically reduced. In either case it follows that $u$ and $v$ are cyclic conjugates. 
+	\end{proof}
+	\section{Historical Remarks}
+	\section{Van Kampen diagrams}
+	\begin{defn}[Combinatorial maps]
+		A map of cell complexes $f\colon Y \to X$ is called \emph{combinatorial} if for every $k$-cell $e^k$ of $Y$ we have that $f$ maps the interior of $e^k$ to the interior of a $k$-cell of $X$.
+	\end{defn}
+	\begin{defn}
+		A singular disc diagram is a compact, contractible $2$-complex $D$ with an embedding $D\hookrightarrow \mathbb{R}^2$.
+	\end{defn}
+	Let's consider the presentation $G= \langle a_i | r_j\rangle$ and the associated presentation complex $X$. A disc diagram is said to be \emph{over} $X$ if it is equipped with a combinatorial map $D\to X$. Equivalently, every (oriented) 1-cell of $D$ is labelled by some $a_i$ so that each $2$-cell of $D$ reads a cyclic conjugate of some $r_j^{\pm 1}$.
+	
+	As $D$ is compact, it is easy to see that it has a boundary which is a cycle of $1$-cells. The (cyclic) word that this boundary spells in called the \emph{boundary cycle}. We claim that the boundary cycle is the identity in $G$.
+	
+	Indeed, consider the following commutative diagram.
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTXjEiXSxbMiwwLCJYIl0sWzEsMSwiRCJdLFswLDEsInciXSxbMCwyXSxbMiwxXV0=
+	\[\begin{tikzcd}
+		{S^1} && X \\
+		& D
+		\arrow["w", from=1-1, to=1-3]
+		\arrow[from=1-1, to=2-2]
+		\arrow[from=2-2, to=1-3]
+	\end{tikzcd}\]
+	Applying the fundamental group functor yields the result.
+\end{document}

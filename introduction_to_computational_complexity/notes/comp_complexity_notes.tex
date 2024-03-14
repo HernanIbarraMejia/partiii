@@ -1,0 +1,392 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\begin{document}
+	\title{Introduction to Computational Complexity}
+	\maketitle
+	Given a graph $G$ and two vertices $x,y\in V(G)$, is there a path from $x$ to $y$? This is an example of a computational problem. These problems have variable input (in this case the graph $G$) and an output. If the output is either yes or no (as is the case here) then the problem is called a \emph{decision problem}.
+	
+	Write $\{0,1\}^*$ for the set of 0-1 strings of arbitrarily (finite) length, i.e. the set $\bigcup_{n=1}^\infty\{0,1\}^n$. Then a decision problem can, in principle be encoded as a Boolean function, that is, a function $f\colon \{0,1\}^*\to \{0,1\}$. In our problem we could, for example, encode the graph $G$ by its adjacency matrix, which will give a string of 0s and 1s representing the input.
+	
+	The set $\{x\in \{0,1\}^* \mid f(x) = 1\}$ is called the \emph{language} defined by $f$ (n.b. this is a silly name).
+	
+	\subsubsection*{Turing Machines}
+	A $k$-tape Turing machine consists of the following items and rules.
+	\begin{itemize}
+		\item A finite set $A$ called the \emph{alphabet}.
+		\item A collection of $k$ \emph{tapes}, where a tape is an infinite sequence (indexed by $\mathbb{N}$) of \emph{cells}, and each cell contains an element of $A$.
+		\item A finite set $S$ of \emph{states}, containing two special states, namely $S_{\text{init}}$ and $S_{\text{halt}}$. A state is a function $A^k\times S \to A^k \times S\times \{\text{L,N,R}\}^k$ (here L,N,R are just meaningless symbols).\footnote{If it bothers you that $S$ contains functions defined on $S$ (since this is technically a circular definition) just imagine $S$ being the set $[1,n]$ for some $n$ and the states are defined on $[1,n]$.}
+		\item A \emph{head}, which is in a state and in a position in each tape at all times. The head reads the entries of the tapes it can see and
+		\begin{itemize}
+			\item rewrites the entries with the values given by its state;
+			\item changes its state according to the rule;
+			\item moves left, right, or not at all in each tape according to which values of $L,N,R$ the state dictated.
+		\end{itemize}
+		\item One tape is designated as the input tape and never rewritten. Another is the output tape (which can be changed).
+		\item All tapes other than the input tape start full of zeroes (I am assuming $0\in A$.) Also the head starts at state $S_{\text{init}}$
+		\item If the machine reaches $S_{\text{halt}}$ it stops, and if the input is $x$ and the output $y$, we say the machine computed $y$ given $x$.
+	\end{itemize}
+	There are some variants to this definition. We can, for example assume that $A=\{0,1\}$, that $k=1$ (with a different convention for input/output tapes), the tapes are 2-sided, etc., etc.
+	\section{Some Complexity Classes}
+	\begin{defn}[Polynomial time]
+		The complexity class P consists of all Boolean functions $f\colon \{0,1\}^*\to\{0,1\}$ such that there exists a Turing machine $T$ and a polynomial $p$ such that for every $x\in \{0,1\}^*$ we have that $T$ computes $f(x)$ in at most $p(|x|)$ steps, where $|x|$ is the length of $x$.
+	\end{defn}
+	For example, consider the problem STCON, whose input is a directed graph and two vertices $s,t$, and whose output is 1 if there is a directed path from $s$ to $t$ and 0 otherwise. This problem is known to belong to P, and this is not hard to see. Starting at $s$, compute the vertices that are reachable with a path of length 1, then do length 2,3, and so on. This terminates after at most $\binom{n}{2} = \frac{1}{2}n(n-1)$ steps where $n$ is the number of vertices of $G$. Independently of how you represent the graph (via adjacency matrix or otherwise) the algorithm will run in polynomial time, so STCON is in P.	
+	
+	There is a variant of P called NP, short for non-deterministic polynomial time. An example for something in NP is the following computational problem.
+	\begin{itemize}
+		\item Input: A graph $G$.
+		\item Output: 1 if $G$ contains a Hamilton cycle, 0 otherwise.
+	\end{itemize}
+	A nondeterministic polynomial algorithm will run as follows. First, pick a vertex. Then randomly choose neighbours of that vertex and repeat (and at the end try to come back to the original vertex). This is nondeterministic since I didn't specify which neighbours to choose.
+	
+	More formally a \emph{nondeterministic Turing machine} is a Turing machine which has two transition functions, and at each step it applies one or the other. We say a nondeterministic Turing machine computes a Boolean function $f$ if for all $x\in\{0,1\}^*$ we have that $f(x) = 1$ iff there is a sequence of choices of transition functions that leads to output $1$ when input is $x$. 
+	
+	\begin{defn}[Nondeterministic polynomial time]
+		The complexity class NP is the class of Boolean functions computable in polynomial time by a nondeterministic Turing machine.
+	\end{defn}
+	\begin{prop}\label{prop:NP_snd_defn}
+		A Boolean function $f$ is in NP if and only if there is a polynomial $p$ and a function $g\in \text{P}$ such that for all $x\in\{0,1\}^*$ we have that $f(x) = 1$ iff there exists $y\in\{0,1\}^*$ with $|y|=p(|x|)$ such that $g(x,y) = 1$.
+	\end{prop}
+	\begin{proof}
+		First suppose $f$ is in NP and let $T$ be a nondeterministic Turing machine computing $f$ in polynomial time. We can construct a deterministic Turing machine $T'$ such that it takes input $x$ and $y$ and outputs what $T$ would've outputted with $x$ as an input, with choices of transition functions encoded in $y$ (we don't need two input tapes for this since we can, for example, agree that even positions are supposed to be $x$ and odd positions are $y$). Let $g$ be the function computed by $T'$. Then it is not hard to see that $g\in P$ and we can pick $y$ so that $g(x,y) = 1$ iff $f(x) = 1$ subject to the conditions in the size of $y$.
+		
+		On the other direction, suppose we are given $g$ and $p$. Let $T'$ be the Turing machine computing $g$ in polynomial time. We can reverse the above process by constructing a nondeterministic Turing machine that, given $x$, tries to write down the corresponding $y$ randomly and then computing $g(x,y)$. As $|y| = p(|x|)$ and $g\in \text{P}$ we see that this new Turing machine computes $f$ in polynomial time.
+	\end{proof}
+	\begin{coro}
+		$P\subseteq NP$.
+	\end{coro}
+	The major open problem in theoretical computer science is whether P=NP. This is probably not true.
+	\begin{defn}[co-NP]
+		The complexity class co-NP consists of Boolean functions $f$ such that $\neg f \coloneqq 1 - f \in \text{NP}$.
+	\end{defn}
+	Alternatively, $f\in\text{co-NP}$ iff there is a polynomial $p$ and some $g\in\text{P}$ such that for all $x\in\{0,1\}^*$ we have that $f(x) = 1$ iff for all $y\in\{0,1\}^{p(|x|)}$ we have $g(x,y) = 1$. For example, testing whether a number is composite is both in NP and co-NP.
+	
+	Now we arrive to something known as the polynomial hierarchy.
+	
+	\begin{defn}[Polynomial hierarchy]
+		Define $\Sigma_0^P$ and $\Pi_0^P$ to be P. Assuming that $\Sigma_k^P$ and $\Pi_k^P$ have been defined, we say that for Boolean functions $f$:
+		\begin{itemize}
+			\item $f\in \Sigma_{k+1}^P$ if and only if there exists a polynomial $p$ and some $g\in \Pi_{k}^P$ such that $f(x) = 1$ iff there exists $y\in\{0,1\}^{p(|x|)}$ with $g(x,y) = 1$.
+			\item $f\in \Pi_{k+1}^P$ if and only if there exists a polynomial $p$ and some $g\in \Sigma_{k}^P$ such that $f(x) = 1$ iff for all $y\in\{0,1\}^{p(|x|)}$ with $g(x,y) = 1$.
+		\end{itemize}
+		We define $\text{PH}\coloneqq \bigcup_{k=0}^\infty \Sigma^P_k \cup \Pi_k^P$.
+	\end{defn}
+	For example $\Sigma_1^P$ is nothing but NP and $\Pi_1^P$ is co-NP.
+	\begin{prop}
+		If P=NP, then P=PH.
+	\end{prop}
+	\begin{proof}
+		Note that if P=NP then P=co-NP (negate the function and compute it in polynomial time). If $f\in \Sigma^P_{k+1}$ then there is some $g\in \Pi_{k}^P$ and a polynomial $p$ such that $f(x) = 1$ iff there is some $y\in \{0,1\}^{p(|x|)}$ such that $g(x,y) = 1$. By induction $g\in \text{P}$ and Proposition \ref{prop:NP_snd_defn} says that $f$ is in NP=P. The proof for $\Pi_{k+1}^P$ is similar.
+	\end{proof}
+	Next, we define a complexity class which is quite different to the ones we have defined before.
+	\begin{defn}[Polynomial space]
+		The class PSPACE consists of Boolean functions that can be computed by a Turing machine which uses only a polynomial amount of tape (no restriction on the number of steps).
+	\end{defn}
+	\begin{prop}
+		$\text{NP}\subseteq \text{PSPACE}$.
+	\end{prop}
+	\begin{proof}
+		First assume that $\text{P}\subseteq \text{PSPACE}$. Then if $f$ is in NP there is some $g$ in PSPACE and a polynomial $p$ such that $f(x) = 1$ iff there is some $y\in\{0,1\}^{p(|x|)}$ such that $g(x,y) = 1$. But then we can build a Turing machine that, given an input $x$ does a brute-force search on $y\in\{0,1\}^{p(|x|)}$ and computes $g(x,y)$. If we erase $y$'s that don't work and reuse the space then this clearly only takes a polynomial amount of tape to do.
+		
+		It only remains to show that $\text{P}\subseteq \text{PSPACE}$. But if a function can be computed in polynomial time then the corresponding Turing machine only reads and writes on a polynomial amount of tape (!).
+	\end{proof}
+	We now leave the world of polynomial machines to introduces another class.
+	\begin{defn}[Exponential time]
+		The class EXPTIME consists of Boolean functions that can be computed in time $\exp(O(n^k))$ for some $k$ (where $n$ is the size of the input).
+	\end{defn}
+	\begin{prop}
+		$PSPACE \subseteq EXPTIME$
+	\end{prop}
+	\begin{proof}
+		Given a Turing machine $T$ in the middle of a computation, define its \emph{configuration} to be its state, its position on each tape, and the values in all the cells on the tapes.
+		
+		Let $x$ be an input of size $n$. If $T$ uses only a polynomial amount of space $p(n)$, has $k$ tapes, has states $S$, and works in an alphabet $A$, then the number of possible configurations is $|S|\times (p(n))^k \times |A|^{kp(n)}$. If $T$ goes on for longer than that amount of time then, by the pigeonhole principle, its configuration repeats and hence it is eventually periodic so it doesn't halt. Thus if $T$ computes a function in PSPACE we see that it must do so in exponential time.
+	\end{proof}
+	We can run the same constructions as we did before with polynomial machines.
+	\begin{defn}[Nondeterministic exponential time]
+		The class NEXPTIME consists of all Boolean functions that can be computed in by a nondeterministic Turing machine in exponential time. Equivalently, $f$ is in NEXPTIME iff there exists a function $g$ in EXPTIME such that for all $x\in\{0,1\}^*$ we have that $f(x) = 1$ iff there is some $y\in\{0,1\}^{*}$ with $|y| = \exp(O(|x|^k))$ for some $k$ such that $g(x,y) = 1$.
+	\end{defn}
+	\begin{defn}[Exponential space]
+		A function is in EXPSPACE if there is a polynomial $p$ such that for all inputs of size $n$ the function can be computed using at most $\exp(p(n))$ space.
+	\end{defn}
+	The following is known but we do not know whether any of the inclusions are equalities (and these are all major open problems).
+	\[
+		\text{P}\subseteq\text{NP}\subseteq \text{PSPACE}\subseteq \text{EXPTIME}\subseteq \text{NEXPTIME}\subseteq \text{EXPSPACE}.
+	\]
+	\section{Circuit complexity}
+	A \emph{circuit} is a directed acyclic graph (DAG) such that each vertex is labelled an input, an AND gate, an OR gate, or a NOT gate. An input is a vertex of in-degree 0. A NOT gate has to have in degree 1. Vertices of in-degree greater than 1 are either AND gates or OR gates (but not both).
+	
+	Vertices of out-degree 0 are called outputs. Using the obvious rules, we have a well-defined function $\{0,1\}^I \to \{0,1\}^O$ where $I$ is the set of inputs and $O$ is the set of outputs. 
+	
+	If every AND and OR gate as in-degree less than or equal to some $k$ we say that the circuit is of fan-in less than or equal to $k$. Often we restrict to circuits with fan-in less than or equal to 2.
+	
+	\begin{defn}[Straight-line computation]
+		Let $f\colon \{0,1\}^* \to \{0,1\}$. A \emph{straight-line computation} of $f$ is a sequence of functions $f_1,\ldots,f_m$ such that if $x = (x_1,\ldots,x_n)$ then $f_i(x) = x_i$ for all $1\leq i \leq n$ and for $i>n$ we have either
+		\begin{itemize}
+			\item $f_i = \min\{f_{j_1}, \ldots, f_{j_k}\}$ for some $j_1\ldots,j_k <i$; or
+			\item $f_i = \max\{f_{j_1}, \ldots, f_{j_k}\}$ for some $j_1\ldots,j_k <i$; or
+			\item $f_i = 1-f_j$ for some $j<i$,
+		\end{itemize}
+		and such that $f_m = f$. Here $m$ is referred to as the \emph{length} of the computation.
+	\end{defn}
+	Clearly circuits and straight-line computations are equivalent concepts.
+	\begin{lem}\label{lem:circuit_comp_bool}
+		Every function $f\colon \{0,1\}^n \to \{0,1\}$ can be computed in a circuit of size at most exponential in $n$.
+	\end{lem}
+	\begin{proof}
+		\textcolor{red}{MISSING}
+	\end{proof}
+	\begin{prop}\label{prop:circuit_comp_poly}
+		Let $f$ be a function that can be computed by a $k$-tape Turing machine $T$ in a time $t(n)$ for inputs of size $n$. Then there is a family $(C_n)$ for circuits such that $|C_n| = O(t(n)^{k+2})$ and $C_n$ computes $f$ for inputs of size $n$.
+	\end{prop}
+	\begin{proof}
+		Let $S=\{s_1,\ldots,s_r\}$ be the set of states of $T$, and assume that the alphabet is $\{0,1\}$. Then we can encode the configuration of $T$ at time $t$ as follows. 
+		\begin{itemize}
+			\item For $1\leq i \leq r$ define $\sigma_i(t)$ to be 1 if $T$ is in state $s_i$ at time $t$ and 0 otherwise.
+			\item For $1\leq i\leq t(n)$ and $1\leq h \leq k$ define $\pi_i^h(t)$ to be 1 iff the head is at position $i$ on tape $h$ at time $t$.
+			\item  For $1\leq i\leq t(n)$ and $1\leq h \leq k$ define $v_i^h(t)$ to be the value in cell $i$ of tape $h$ at time $t$.
+		\end{itemize}
+		Let $\tau$ denote the transition function of $T$. Note that $\sigma_i(t) = 1$ iff there exists $1\leq j\leq r$ and some $i_1,\ldots, i_k$ such that $\sigma_j(t-1) = 1$ and $\pi_{i_h}^h(t-1) = 1$ for all $1\leq h\leq k$ and 
+		\[
+			\tau(s_j, v_{i_1}^{1}(t-1), \ldots, v_{i_k}^k(t-1))
+		\]
+		has state component $s_i$.
+		
+		Suppose we are given $1\leq i_1,\ldots, i_k\leq t(n)$ to be the position of the head in the $k$ tapes and $j$ the state number we are in. To compute the next state we need to compute a function on $k+1$ variables which by Lemma \ref{lem:circuit_comp_bool} we can do with a circuit of size exponential in $k$, i.e. a constant time in terms of $n$.
+		
+		It follows that we can calculate $\sigma_i(t)$ in terms of the previous configuration with a circuit of size $O(t(n)^k)$ by just searching through all of the possible $i_1,\ldots,i_k$. 
+		
+		Similarly we can calculate $\pi$ and $v$ with circuits of size $O(t(n)^k)$ each. So, we can compute the configuration at time $t$ from the configuration at time $t-1$ with a circuit of size $O(t(n)^{k+1})$ so we can compute the configuration at all times with a circuit of size $O(t(n)^{k+2})$.
+	\end{proof}
+	With this result, we can define yet another complexity class.
+	\begin{defn}[P/poly]
+		The complexity class P/poly is defined by any of the following three equivalent conditions.
+		\begin{enumerate}
+			\item $f$ is in P/poly iff there is a family $(C_n)$ of polynomial-sized circuits such that $C_n$ computes $f(x)$ when $|x| = n$.
+			\item $f$ is in P/poly iff there is a polynomial $p$ and a sequence $y_n$ with $|y_n| = p(n)$ and a function $g$ in P such that 
+			\[
+				f(x) = 1 \iff g(x,y_{|x|}) = 1.
+			\]
+			\item $f$ is in P/poly iff there is a sequence $(T_n)$ of Turing machines a polynomial $p$ such that $T_n$ has at most $p(n)$ states and $T_n$ computes $f(x)$ when $|x| = n$.
+		\end{enumerate}
+	\end{defn}
+	A sequence $(C_n)$ of circuits is \emph{P-uniform} if there is a polynomial time algorithm that given $n$ it generates $C_n$ (encoded in a suitable way).
+	\begin{proof}[Proof of equivalence]\leavevmode
+		\begin{itemize}
+			\item[$(1)\Rightarrow (2)$] Let $y_n$ be an encoding of $C_n$ and let $g(x,y) = 1$ iff the circuit encoded by $y$ outputs $1$ with input $x$. 
+			\item [$(2)\Rightarrow (1)$]
+			Using Proposition \ref{prop:circuit_comp_poly} let $C_n'$ be a circuit computing $g$ such that $C_n'$ has polynomial size. Let $C_n$ be $C_n'$ but with the last $p(n)$ inputs restricted to $y_n$.
+			\item [$(2)\Rightarrow (3)$]
+			Fix some $n$ and let $T$ compute $g$. Define $T_n$ be a Turing machine that prints out $y_n$ and then uses $T$ to compute $g(x,y_n)$.
+			\item [$(3)\Rightarrow (2)$]
+			Let $y_n$ be an encoding of $T_n$ and let $g(x,y) = 1$ iff the Turing machine encoded by $y$ outputs $1$ with input $x$.
+		\end{itemize}
+	\end{proof}
+	\section{Search and decision problems}
+	Let $g$ be a Boolean function of two variables. Then for any given $x$ we get the decision problem ``Does there exist a $y$ such that $g(x,y) = 1$'' and the corresponding search problem of finding such a $y$ if it exists. A solution to the search problem is an algorithm that outputs $y$ if it exists.
+	\begin{prop}
+		Suppose P = NP and let $f$ be such that there exists a $g$ in P and a polynomial $p$ such that for all $x\in\{0,1\}^*$ we have $f(x) = 1$ iff there exists a $y\in\{0,1\}^{p(|x|)}$ with $g(x,y) = 1$ (that is, $f$ is in NP). Then there is a polynomial-time algorithm that computes a function $h\colon \{0,1\}^* \to \{0,1\}^*$ such that if $f(x) = 1$ then $g(x,h(x)) = 1$.
+	\end{prop}
+	\begin{proof}
+		For each $i$ let $g_i$ be the function that takes as input $x$ and $u_i$ where $|u_i| = i$ and outputs $1$ iff there is some $v$ with $|v| = p(|x|) - i$ such that $g(x, u,v) = 1$. Clearly all $g_i$'s are in NP
+		
+		Now run the following procedure. Start by calculating $g_1(x,1)$ in polynomial time, which is possible since P=NP and let $u_1 = g_1(x,1)$. Continue this process and we obtain $u = (u_1,\ldots, u_{p|x|})$ such that $g(x,u) = 1$.
+	\end{proof}
+	\begin{lem}\label{lem:np_in_p/poly_imp_crct}
+		Suppose NP is contained in P/poly and let $f$ be such that there exists a $g$ in P and a polynomial $p$ such that for all $x\in\{0,1\}^*$ we have $f(x) = 1$ iff there exists a $y\in\{0,1\}^{p(|x|)}$ with $g(x,y) = 1$ (that is, $f$ is in NP). Then there is a polynomial-sized family of circuits $(C_n)$ such that if $|x| = n$ then $C_n$ with input $x$ computes $y$ such that $g(x,y)$.  
+	\end{lem}
+	\begin{proof}
+		Fix some $n$. Note that $g_i$, as in the previous proof, is in NP and hence in P/poly. Thus there are polynomial-sized circuit $C_i'$ that computes $g_i$.
+		
+		Now put together the circuits $C'_1, \ldots, C'_{p(n)}$ as follows. Let $C'_1$ take the input $x_1,\ldots, x_n,1$ and output $u_1$. Then $C_2'$ takes inputs $x_1,\ldots, x_n, u_1,1$ and outputs $u_2$. Continue all the way to $C_{p(n)}'$. Call this new circuit $C_n$ and we are done.
+	\end{proof}
+	\begin{thm}[The Karp-Lipton theorem]
+		If $NP \subseteq P/poly$ then $\Sigma_2^P = \Pi_2^P$ (and therefore $PH=\Sigma_2^P = \Pi_2^P$).
+	\end{thm}
+	\begin{proof}
+		Let $f$ be in $\Pi_2^P$ and let $h$ in P be such that $f(x) = 1$ iff for all $y$ there is some $z$ such that $h(x,y,z) = 1$ (where $y,z$ are of appropriate polynomial-size depending on $x$). Define $g(x,y)$ to be 1 iff there exists some $z$ (whose size depends polynomially on $|x|$) such that $h(x,y,z) = 1$. Clearly $g$ belongs to NP, so by hypothesis and Lemma \ref{lem:np_in_p/poly_imp_crct} there is a circuit family $(C_n)$ of polynomial size such that for all $x$, if $|x| = n$ and $g(x,y) = 1$, then $h(x,y,C_n(x,y)) = 1$.
+		
+		It follows that $f(x) = 1$ implies that there exists some $C_n$ for all $y$ such that $h(x,y,C_n(x,y)) = 1$. Conversely, if $f(x) = 0$ then there exists some $y$ such that for all $z$ we have $h(x,y,z) = 0$ just by definition of $h$. Therefore $f\in\Sigma_2^P$. To show the reverse implication $\Sigma_2^P\subseteq \Pi_2^P$ just replace $f$ by $1-f$.
+	\end{proof}
+	\begin{lem}\label{lem:bool_fun_neg_comp_crct}
+		For every $k$ there is a Boolean function $f\colon \{0,1\}^* \to \{0,1\}$ that can be computed by a circuit family $(C_n)$ of circuits of size $n^{k+1}$ but not by a family of circuits of size $n^k$.
+	\end{lem}
+	\begin{proof}
+		\textcolor{red}{ES1}
+	\end{proof}
+	\begin{thm}[Kannan]\label{thm:bool_neg_circt}
+		For every $k$ there is a Boolean function $f\in \Sigma_4^P$ that cannot be computed by a circuit family of circuits of size $n^k$.
+	\end{thm}
+	\begin{proof}
+		For $n$ sufficiently large, Lemma \ref{lem:bool_fun_neg_comp_crct} gives us some $f'_n\colon \{0,1\}^n \to \{0,1\}$ that can be computed by a circuit of size $n^{k+1}$ but not by a circuit of size $n^k$. Choose a sensible ordering on circuits of size at most $n^{k+1}$. Let $f_n(x)\colon \{0,1\}^n \to \{0,1\}$ be $C_n(x)$, where $C_n$ be the first circuit in this ordering such that $|C_n|\leq n^{k+1}$ and no circuit of size less than or equal to $n^k$ computes the same $f_n$ as $C_n$.
+		
+		Then let $f = (f_n)^\infty$. Then if $|x| = n$, we have that $f(x) = 1$ iff there exists a circuit $C_n$ such that for all circuits $D$ with $|D|\leq n^k$ there exists a $y$ with $C_n(y)\neq D(y)$ and for all circuits $E$ with $E<C_n$ there exists some circuit $F$ with $|F|\leq n^k$ with property that for all $z$ we have $E(z) = F(z)$ and $C_n(x) =1$. This shows that $f\in \Sigma_4^{P}$.
+	\end{proof}
+	\begin{coro}
+		For every $k$ there is a function $f\in\Sigma_2^P\cap \Pi_2^P$ that cannot be computed by a circuit family of size $n^k$.
+	\end{coro}
+	\begin{proof}
+		If NP is contained in P/poly the just combine the Karp-Lipton theorem with Theorem \ref{thm:bool_neg_circt}. If NP is not contained in P/poly we get the stronger result that there is some $f\in\text{NP}$ that cannot be computed by any circuit family of polynomial size.
+	\end{proof}
+	Now we define the class of logarithmic space. As $n>\log n$ we need to give the Turing machine the ability to read the whole input in the first place.
+	\begin{defn}[Logarithmic space]
+		A function $f$ belongs to the complexity class L iff there is a Turing Machine that computes $f$ with a read-only input tape, and a work tape of size $O(\log n)$ for inputs of size $n$.
+	\end{defn}
+	\begin{defn}[Nondeterministic logarithmic space]
+		We say $f$ belongs to the class NL iff there is a Turing Machine with a read-only input tape, a work tape of size $O(\log n)$, and a read-once certificate tape (in which the head can only stay still or move to the right) such that $f(x)=1$ iff there is some $y$ of polynomial size in $n$ such that $y$ can be put in the certificate tape and then $T$ outputs 1 when inputted $x$.
+	\end{defn}
+\end{document}

@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{quiver}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Diag}{Diag}
+
+
+\addbibresource{main.bib}
+
+\begin{document}
+	\section{Introduction}
+	A monoid is a set together with a binary operation that is associative and has an identity element. The question of whether a given monoid can be embedded into a group arose first in connection to ring theory. A ring can be embedded into a field if and only if it is an integral domain. In his book \emph{Moderne Algebra} \cite[Vol. I, Chap. III, Sect. 12]{van1930moderne}, van der Waerden asks for a characterization of rings which embed into skew fields, i.e. not-necessarily-commutative rings in which every non-zero element has a multiplicative inverse. Clearly rings that embed into skew fields must have no zero divisors other than zero. A ring $R$ with this latter property is called a \emph{domain}, and it follows that $R\setminus\{0\}$ is a monoid under multiplication. So, for $R$ to be embeddable into a skew-field $F$, we need $R\setminus\{0\}$ to be embed into the group $F\setminus\{0\}$.
+	
+	Call a monoid \emph{embeddable} if it can be embedded into a group. Not every monoid is embeddable. To see this, consider the following definition.
+	\begin{defn}[Cancellative monoids]
+		Say that a monoid $M$ is \emph{left cancellative} (respectively \emph{right cancellative}) if $ab = ac$ (respectively $ba=ca$) implies $b = c$ for all $a,b,c\in M$. We say that a monoid is \emph{cancellative} if it is both left and right cancellative
+	\end{defn}
+	Obviously, being cancellative is a necessary condition for being embeddable. Now, for any set $S$, consider the monoid $\End(S)$ of functions $S\to S$ under composition. Then the monoid $\End(\{0,1\})$ has two constant functions $c_0$ and $c_1$, that satisfy $c_0 c_1 = c_0 c_0$ even though $c_0\neq c_1$. Hence $\End(\{0,1\})$ is not cancellative and thus cannot be embedded into any group, and a similar result holds for $\End(S)$ whenever $|S| > 1$.
+	
+	In 1935, Sushkevich \cite{sushkevich1935extension} `proved' that being cancellative is equivalent to being embeddable, by explicit construction of a group out of a cancellative monoid so that the latter embeds in the former. However, Malcev quickly pointed out in a 1937 paper \cite{malcev1937immersion} that this claim could not possibly be true, since there is a cancellative monoid which does not embed into a group; Sushkevich's proof turned out to be flawed.  We now give Malcev's counterexample since it is easy to construct. First, we need another necessary condition, which Malcev called condition Z.
+	
+	\begin{prop}[Condition Z]
+		Let $M$ be an embeddable monoid, and let $a,b,c,d,x,y,u,v\in M$. Suppose that
+		\begin{align*}
+			ax=by\\
+			cx = dy\\
+			au= bv.
+		\end{align*}
+		Then we must have that $cu=dv$.
+	\end{prop}
+	\begin{proof}
+		We work in a group $G$ into which $M$ embeds. Then
+		\begin{align*}
+			b^{-1}a=yx^{-1}\\
+			d^{-1}c = yx^{-1}\\
+			b^{-1}a= vu^{-1},
+		\end{align*}
+		in $G$.	It follows that $d^{-1}c = vu^{-1}$ and thus $cu=dv$.
+	\end{proof}
+	
+	
+	\begin{eg}[Malcev]
+		Malcev constructs a monoid which is cancellative but fails to satisfy condition Z. It is natural to consider the monoid given by the presentation\footnote{In this paper, we always denote monoid presentations by square brackets, and reserve angle brackets for group presentations.}
+		\[
+			[\,a,b,c,d,x,y,u,v \mid ax=by,cx=dy, au= bv\,]
+		\]
+		And indeed, this monoid is cancellative but does not satisfy condition $Z$. Proving this rigorously requires some discussion on monoid presentations, and the proof of a more general result will be given later in this paper ({\color{red}{MISSING}}).
+	\end{eg}
+	
+	We remark that, if we assume commutativity, then cancellability is a sufficient condition, and we can formally add inverses to the monoid. This is a well-known result that, while it obviously has occurred to many mathematicians since van der Waerden, it is hard to find it written down explicitly. The proof mimics the construction of the field of a fractions of an integral domain.
+	\begin{prop}
+		A commutative cancellable monoid is embeddable.
+	\end{prop}
+	\begin{proof}
+		Let $M$ be a commutative cancellable monoid. Define a relation on $M\times M$ by the rule $(a,b)\sim (a',b')$ if and only if $ab' = a'b$. This relation is clearly reflexive and symmetric. Transitivity holds precisely because of commutativity and cancellability: if $(a,b)\sim (a',b')$ and $(a',b')\sim (a'',b'')$ then
+		\begin{equation*}
+			(ab'')a' = a(a'b'')
+			= a(a''b')
+			= a''(ab')
+			= a''(a'b)
+			= (a''b)a',
+		\end{equation*}
+		which implies $ab'' = a''b$, i.e., $(a,b)\sim (a'',b'')$. Let $G$ be the quotient $M\times M / \sim$. 
+		
+		Define a binary operation on $G$ extending the operation of $M$ pointwise, that is the operation $(a,b)(c,d) = (ac,bd)$. It is easy to check that this operation respects the equivalence relation and thus is well-defined. Clearly $G$ is a group with identity $(1,1)$ and inverses defined by $(a,b)^{-1} = (b,a)$. Furthermore, $M$ embeds into $G$ via the function $m\mapsto (m,1)$.
+	\end{proof}
+	The proof also shows that there is no obvious way to replicate the construction without assuming commutativity, which is not a necessary condition.  
+	
+	After giving his counterexample, Malcev kept working on this problem and over the series of two more papers (\cite{malcev1939immersionI} and \cite{malcev1940immersionII}) proved the following.
+	\begin{thm}[Malcev, 1940]
+		There is no finite list of first-order axioms (in the language of monoids) that are necessary and collectively sufficient for a monoid to be embeddable.
+	\end{thm}
+	Furthermore, he explicitly gave an infinite list of conditions that were necessary and sufficient for a monoid to be embeddable. However, Malcev's conditions were complicated and the proof somewhat convoluted, so in the following years many mathematicians have extended and reinterpreted Malcev's work. Famously, Lambek \cite{lambek1951immersibility} came up with an infinite list of necessary and sufficient conditions, different from the Malcev conditions, which had a geometric interpretation in terms of polyhedra. 
+	
+	However, in this paper we mainly focus on the work of Krsti\'c \cite{krstic1985embedding}, to whom we attribute the idea of using the tools of geometric group theory to study the problem. We believe this approach is elegant and generalizes to other questions involving topology, which were implicitly posed by Johnstone in the paper \cite{johnstone2008embedding}. In the first part of this paper we give a modern account of Krsti\'c's results, and give a solution to the problem of identifying embeddable monoids. We do this by using \emph{van Kampen diagrams}, a tool often used in the area of geometric group theory. These diagrams are drawn on the plane or on the sphere (which amounts to the same by stereographic projection). As Lambek already pointed out, diagrams of this sort give rise to axioms necessary for a monoid to be embeddable, and all of these axioms together are sufficient. It is natural to extend the results to other 2-manifolds, which we do in the second part of this paper. We give an original result in this direction: axioms corresponding to orientable surfaces of positive genus correspond to monoids that embed into abelian groups; and non-orientable surfaces correspond to monoids embedding into Boolean groups\footnote{Groups in which every element squares to the identity.}.
+	
+	\section{Some Model Theory}
+	The aim of this section is to prove a standard result in universal algebra, which is the first step in all searches for conditions axiomatizing embeddable monoids (even Malcev knew this result). First we need a definition.
+	\begin{defn}[Universal Horn Axioms]
+		Let $E, E_1,\ldots, E_n$ be equations in the variables $x_1,\ldots, x_m$ (e.g. $x_1x_4 = x_2x_2x_5$). A \emph{universal Horn axiom} is a propositional sentence of the form
+		\[
+			\forall x_1 \forall x_2 \cdots \forall x_m. (E_1\wedge E_2 \wedge \cdots \wedge E_n \implies E).
+		\]
+	\end{defn} 
+	
+	For instance, the (right) cancellative law
+	\[
+		\forall a,b,c\,\,(ac = bc \implies a = b)
+	\] 
+	is a universal Horn axiom satisfied by all groups. The main result of this section is the following.
+	\begin{lem}
+		A monoid $M$ is embeddable if and only if whenever we have a universal Horn axiom $\varphi$ which is satisfied by all groups, we also have $M$ satisfying $\varphi$.
+	\end{lem}
+	Actually we will prove a stronger result using some basic model theory. This is so we can replace the words `groups' in the above lemma by `abelian groups' so long as we assume $M$ is commutative, and similarly with regards to Boolean groups. In fact, we will show that an analogous result holds for the more general question of which categories embed into groupoids (i.e. a category in which ever morphism is invertible), a direction explored by Johnstone in \cite{johnstone2008embedding}. 
+	
+	So, for the rest of this section, we assume some basic familiarity with first-order logic and model theory, in particular with the compactness theorem and the method of diagrams (in particular, familiarity with the Part III Model Theory course will suffice). The reader will not lose continuity if they skip this section and take its results as given.
+	
+	We work in first-order logic with equality. Let $\mathcal{L}$ be a language. If $\mathcal{T}$ is any $\mathcal{L}$-theory then we write $\mathcal{T}_{\forall}$ for the set of universal sentences implied by $\mathcal{T}$. If $M$ is an $\mathcal{L}$-structure then $\mathcal{L}_M$ denotes the language obtained by adding $|M|$ constants to the signature of $\mathcal{L}$.
+	
+	Recall that for any $\mathcal{L}$-structure $M$ we can define the diagram of $M$, written $\Diag(M)$, to be an $\mathcal{L}_M$ theory: the set of all quantifier-free $\mathcal{L}$-sentences with parameters in $M$ that are satisfied by $M$. Furthermore, models of $\Diag(M)$ correspond to extensions (i.e. superstructures) of $M$.
+	
+	\begin{lem}
+		Let $\mathcal{T}$ be an $\mathcal{L}$-theory. The class of substructures of models of $\mathcal{T}$ is axiomatized by $\mathcal{T}_{\forall}$.
+	\end{lem}
+	\begin{proof}
+		Since universal sentences are preserved under substructures, it is clear that a substructure of a model of $\mathcal{T}$ is a model of $\mathcal{T}_{\forall}$.
+	\end{proof}
+	\printbibliography
+	
+\end{document}

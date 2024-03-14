@@ -1,0 +1,221 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\begin{document}
+	\title{Topics in Convex Optimization\\ Things stated without proof}
+	\section{Lecture 1}
+	\section{Lecture 2}	
+	\begin{thm}[Projection theorem]
+		Let $C\subseteq \mathbb{R}^n$ be a closed convex set. For all points $y\in\mathbb{R}^n$ there is a unique $p_C(y)\in C$ so that $||y - x|| \geq ||y - p_C(y)||$ for all $x\in C$.
+ 	\end{thm}
+ 	\begin{proof}
+ 		This is a special case of Hilbert's projection theorem, which has an elementary proof on Wikipedia.
+ 	\end{proof}
+	\begin{prop}[Obtuse angle criterion]
+		Let $C\subseteq \mathbb{R}^n$ be a closed convex set and $y\in \mathbb{R}^n$. Then, for all $x\in C$,
+		\[
+			\langle y - p_C(y), x- p_C(y)\rangle \leq 0.
+		\] 
+	\end{prop}
+	\begin{proof}
+		Let $\lambda \in (0,1)$. As $x$ and $p_C(y)$ are in $C$, so is any convex combination. By definition of $p_C(y)$ we must have
+		\begin{align*}
+			||p_C(y) - y||^2 &\leq ||\lambda x + (1-\lambda)p_C(y) - y||^2\\
+			&= ||\lambda (x - p_C(y)) -(y-p_C(y))||^2\\
+			&= \lambda^2||x-p_C(y)||^2 -2\lambda \langle x - p_C(y), y-p_C(y)\rangle + ||p_C(y) - y||^2.
+		\end{align*}
+		It follows by cancelling and rearranging that 
+		\[
+			\langle y - p_C(y), x- p_C(y)\rangle  \leq \frac{\lambda}{2}||x-p_C(y)||^2.
+		\]
+		As $\lambda$ can be made arbitrarily small, we are done.
+	\end{proof}
+	Next we prove the Separating hyperplane theorem. First, a lemma.
+	\begin{lem}
+		Let $C\subseteq \mathbb{R}^n$ be a convex set. The function $y\mapsto p_C(y)$ is continuous.
+	\end{lem}
+	\begin{proof}
+		Let $\varepsilon>0$ be arbitrary. Suppose $y,y'\in\mathbb{R}^n$ are such that $||y-y'||\leq \delta$ where $\delta\coloneqq \varepsilon$. Then, by the Obtuse angle criterion, 
+		\begin{align*}
+			0&\geq \langle y - p_C(y), p_C(y') - p_C(y)\rangle\\
+			&= \langle (y-p_C(y')) +(p_C(y') - p_C(y)), p_C(y') - p_C(y)\rangle\\
+			&= \langle y-p_C(y'), p_C(y') - p_C(y)\rangle + ||p_C(y') - p_C(y)||^2.
+		\end{align*}
+		It follows that
+		\begin{align*}
+			||p_C(y') - p_C(y)||^2 &\leq \langle p_C(y') - y, p_C(y') - p_C(y)\rangle\\
+			&= \langle (p_C(y') - y') +(y'- y), p_C(y') - p_C(y)\rangle\\
+			&= \langle p_C(y') - y', p_C(y') - p_C(y)\rangle + \langle y'- y, p_C(y') - p_C(y)\rangle\\
+			&\leq \langle y'- y, p_C(y') - p_C(y)\rangle,
+		\end{align*}
+		where we have used the Obtuse angle criterion in the last inequality. By the Cauchy-Schwarz inequality, we finally obtain
+		\[
+			||p_C(y') - p_C(y)||^2 \leq ||y'- y|| \cdot ||p_C(y') - p_C(y)||,
+		\]
+		from which it follows that $||p_C(y') - p_C(y)|| \leq \varepsilon$ as desired.
+	\end{proof}
+	\begin{thm}[Separating hyperplane theorem]
+		Let $C \subseteq \mathbb{R}^n$ be a convex set and let $y\notin C$. Then there is $a\in\mathbb{R}^n\setminus\{0\}$ and $b\in \mathbb{R}$ such that for all $x\in C$ we have
+		\[
+			\langle a, x\rangle \leq b  \,\,\,\text{ and }\,\,\, \langle a,y\rangle\geq b.
+		\]
+	\end{thm}
+	\begin{proof}
+		The proof for $C$ closed was given in lectures. If $C$ is not closed, take the closure $\bar{C}$ of $C$ and obtain $a$ and $b$ as required. The only case where this does not work is if $y \in \partial C$, so we assume $y\in \partial C$.
+		
+		Recall that $p\in \partial C$ if and only if every neighbourhood of $p$ contains a point in $C$ and a point not in $C$. In particular, there is a sequence of points $(y_k)_{k=0}^{\infty}$ converging to $y$ such that $y_k\in \mathbb{R}^n\setminus C$ for all $k$.
+	\end{proof}
+\end{document}

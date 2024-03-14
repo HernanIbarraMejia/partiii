@@ -1,0 +1,240 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{johnstone2008embedding}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=699dbaece968cea1c962c7c10d8ac344}{%
+           family={Johnstone},
+           familyi={J\bibinitperiod},
+           given={P.\bibnamedelimi T.},
+           giveni={P\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{699dbaece968cea1c962c7c10d8ac344}
+      \strng{fullhash}{699dbaece968cea1c962c7c10d8ac344}
+      \strng{bibnamehash}{699dbaece968cea1c962c7c10d8ac344}
+      \strng{authorbibnamehash}{699dbaece968cea1c962c7c10d8ac344}
+      \strng{authornamehash}{699dbaece968cea1c962c7c10d8ac344}
+      \strng{authorfullhash}{699dbaece968cea1c962c7c10d8ac344}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Mathematical Proceedings of the Cambridge Philosophical Society}
+      \field{number}{2}
+      \field{title}{On embedding categories in groupoids}
+      \field{volume}{145}
+      \field{year}{2008}
+      \field{pages}{273\bibrangedash 294}
+      \range{pages}{22}
+    \endentry
+    \entry{krstic1985embedding}{article}{}
+      \name{author}{1}{}{%
+        {{hash=38217c70a14782fd8ee8cc08adfab15b}{%
+           family={Krstic},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{38217c70a14782fd8ee8cc08adfab15b}
+      \strng{fullhash}{38217c70a14782fd8ee8cc08adfab15b}
+      \strng{bibnamehash}{38217c70a14782fd8ee8cc08adfab15b}
+      \strng{authorbibnamehash}{38217c70a14782fd8ee8cc08adfab15b}
+      \strng{authornamehash}{38217c70a14782fd8ee8cc08adfab15b}
+      \strng{authorfullhash}{38217c70a14782fd8ee8cc08adfab15b}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Publications de l’Institut Mathematique, nouvelle serie, tome38 (52)}
+      \field{title}{Embedding semigroups in groups: a geometrical approach}
+      \field{year}{1985}
+      \field{pages}{69\bibrangedash 82}
+      \range{pages}{14}
+    \endentry
+    \entry{lambek1951immersibility}{article}{}
+      \name{author}{1}{}{%
+        {{hash=bc225c040004cf5aff8b9441b32e1df8}{%
+           family={Lambek},
+           familyi={L\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{bc225c040004cf5aff8b9441b32e1df8}
+      \strng{fullhash}{bc225c040004cf5aff8b9441b32e1df8}
+      \strng{bibnamehash}{bc225c040004cf5aff8b9441b32e1df8}
+      \strng{authorbibnamehash}{bc225c040004cf5aff8b9441b32e1df8}
+      \strng{authornamehash}{bc225c040004cf5aff8b9441b32e1df8}
+      \strng{authorfullhash}{bc225c040004cf5aff8b9441b32e1df8}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Canadian Journal of Mathematics}
+      \field{title}{The immersibility of a semigroup into a group}
+      \field{volume}{3}
+      \field{year}{1951}
+      \field{pages}{34\bibrangedash 43}
+      \range{pages}{10}
+    \endentry
+    \entry{malcev1937immersion}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2eff2c9f9868a42665a6f54ab19e8a8b}{%
+           family={Malcev},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{fullhash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{bibnamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authorbibnamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authornamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authorfullhash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \field{extraname}{1}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematische Annalen}
+      \field{number}{1}
+      \field{title}{On the immersion of an algebraic ring into a field}
+      \field{volume}{113}
+      \field{year}{1937}
+      \field{pages}{686\bibrangedash 691}
+      \range{pages}{6}
+    \endentry
+    \entry{malcev1939immersionI}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2eff2c9f9868a42665a6f54ab19e8a8b}{%
+           family={Malcev},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{fullhash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{bibnamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authorbibnamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authornamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authorfullhash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mat. Sbornik}
+      \field{number}{48}
+      \field{title}{On the immersion of associative systems in groups}
+      \field{volume}{6}
+      \field{year}{1939}
+      \field{pages}{331\bibrangedash 336}
+      \range{pages}{6}
+    \endentry
+    \entry{malcev1940immersionII}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2eff2c9f9868a42665a6f54ab19e8a8b}{%
+           family={Malcev},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{fullhash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{bibnamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authorbibnamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authornamehash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \strng{authorfullhash}{2eff2c9f9868a42665a6f54ab19e8a8b}
+      \field{extraname}{3}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mat. Sbornik}
+      \field{number}{50}
+      \field{title}{On the immersion of associative systems in groups II}
+      \field{volume}{8}
+      \field{year}{1940}
+      \field{pages}{251\bibrangedash 264}
+      \range{pages}{14}
+    \endentry
+    \entry{sushkevich1935extension}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ca5c7e77b1ea563b404e7b14dbfc31a8}{%
+           family={Sushkevich},
+           familyi={S\bibinitperiod},
+           given={A.K.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{ca5c7e77b1ea563b404e7b14dbfc31a8}
+      \strng{fullhash}{ca5c7e77b1ea563b404e7b14dbfc31a8}
+      \strng{bibnamehash}{ca5c7e77b1ea563b404e7b14dbfc31a8}
+      \strng{authorbibnamehash}{ca5c7e77b1ea563b404e7b14dbfc31a8}
+      \strng{authornamehash}{ca5c7e77b1ea563b404e7b14dbfc31a8}
+      \strng{authorfullhash}{ca5c7e77b1ea563b404e7b14dbfc31a8}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Zapiski Kharkovskogo matematicheskogo obshchestva}
+      \field{title}{On the extension of a semigroup to the whole group}
+      \field{volume}{12}
+      \field{year}{1935}
+      \field{pages}{81\bibrangedash 87}
+      \range{pages}{7}
+    \endentry
+    \entry{van1930moderne}{book}{}
+      \name{author}{1}{}{%
+        {{hash=e29fe95543d4eb104d717e832f3ce0f5}{%
+           family={Van\bibnamedelimb der\bibnamedelima Waerden},
+           familyi={V\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim W\bibinitperiod},
+           given={B.L.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag Berlin Heidelberg}%
+      }
+      \strng{namehash}{e29fe95543d4eb104d717e832f3ce0f5}
+      \strng{fullhash}{e29fe95543d4eb104d717e832f3ce0f5}
+      \strng{bibnamehash}{e29fe95543d4eb104d717e832f3ce0f5}
+      \strng{authorbibnamehash}{e29fe95543d4eb104d717e832f3ce0f5}
+      \strng{authornamehash}{e29fe95543d4eb104d717e832f3ce0f5}
+      \strng{authorfullhash}{e29fe95543d4eb104d717e832f3ce0f5}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Moderne algebra}
+      \field{volume}{1}
+      \field{year}{1930}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

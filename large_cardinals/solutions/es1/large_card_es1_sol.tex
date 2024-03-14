@@ -1,0 +1,166 @@
+\documentclass{article}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\cf}{cf}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\setlist{parsep=0pt,listparindent=\parindent}
+\begin{document}
+	\title{Large Cardinals\\ Example Sheet 1 Solutions}
+	\maketitle
+	\begin{enumerate}
+		\item 
+		\item First we show that $\cf(\lambda) =\min \{\mu \mid \text{there is a cofinal function with domain }\mu\}$. 
+	\end{enumerate}
+\end{document}

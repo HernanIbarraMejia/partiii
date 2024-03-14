@@ -1,0 +1,240 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\cf}{cf}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{nondefn}[thm]{Non-definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{noneg}[thm]{Non-example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\begin{document}
+	\title{Large Cardinals}
+	\maketitle
+	\section{Introduction}
+	Modern set theory is all about understanding the consequences of Gödel's incompleteness theorems, which say, roughly, that any reasonable set theory $T$ is incomplete, and furthermore it cannot prove its own consistency.
+	
+	Hence there are sentences $\varphi$ such that
+	\[
+		\{\psi \mid T\vdash \psi\} \subsetneq \{\psi \mid T \cup \{\varphi\} \vdash \psi\}.
+	\]
+	We express this by saying that $T$ has strictly fewer consequences than $T+\varphi$, i.e., $T<_{\text{consequence}} T+\varphi$. Set theory is concerned about understanding the ordering $\leq_{\text{consequence}}$ and other similar relations. Large cardinal axioms form the most natural hierarchy to form the basis of measuring the strengths of different set theories.
+	
+	The irony is that we will not be formally defining what a large cardinal is.
+	\begin{nondefn}[Large Cardinal]
+		A \emph{large cardinal property} is a formula $\Phi(x)$ in the language of set theory such that $\Phi(\kappa)$ implies that 
+		\begin{itemize}
+			\item $\kappa$ is a very large cardinal; and
+			\item $\kappa$ is so large that its existence cannot be proved in ZFC.
+		\end{itemize}
+		By a \emph{large cardinal axiom} we mean a sentence $\Phi C$ of the form $\exists \kappa. \Phi(\kappa)$ with $\Phi$ as above.
+	\end{nondefn}
+	\begin{noneg}
+		A cardinal $\kappa$ is called an $\aleph$ \emph{fixed point} if $\kappa = \aleph_\kappa$. These are \emph{very} large. Obviously $n \neq  \aleph_{n}$ for finite $n$. But not even $\aleph_{\omega}$ is an $\aleph$ fixed point.
+		
+		However we have the following result. Say a class function $F\colon \text{Ord} \to \text{Ord}$ is \emph{normal} if it satisfies the following conditions.
+		\begin{itemize}
+			\item If $\alpha \leq \beta$ then $F(\alpha) \leq F(\beta)$.
+			\item If $\lambda$ is a limit ordinal then $F(\lambda) = \bigcup_{\alpha < \lambda}F(\alpha)$.
+		\end{itemize}
+		It is a theorem that all normal functions have arbitrarily large fixed points (this will be in ES1). As the map $\alpha \mapsto \aleph_\alpha$ is normal, we have that ZFC proves the existence of $\aleph$ fixed points.
+	\end{noneg}
+	\begin{noneg}
+		Let $\Phi$ be the formula $(\kappa =  \aleph_{\kappa}) \wedge \text{Con(ZFC)}$ where Con(ZFC) is the formula expressing that ZFC is consistent (Gödel showed that there is such a thing). By the second incompleteness theorem we see that $\text{ZFC}\nvdash \Phi C$. 
+		
+		While this technically satisfies our non-definition, it is cheating. We would like the size $\kappa$ to be the reason we cannot prove $\Phi C$.
+	\end{noneg}
+	In order to find a genuine example of a large cardinal axiom, we make an analogy with $\omega$. Note that $\omega$ is far bigger that any $n<\omega$. So, we will try to express this in mathematical properties and use them as a large cardinal property.
+	\begin{enumerate}
+		\item If $n<\omega$ then $n^+ < \omega$ where $n^+$ denotes the cardinal successor of $n$ (i.e. the smallest cardinal bigger than $n$). So, define $\Lambda(\kappa)$ to be the formula $\forall \alpha. (\alpha < \kappa \Rightarrow \alpha^+ < \kappa)$. If $\Lambda(\kappa)$ is true we call $\kappa$ a \emph{limit cardinal}. For example, $\aleph_{\omega}$ is a limit cardinal. Hence limit cardinals are neither very large nor their existence unprovable.
+		\item If $n<\omega$ then $2^n< \omega$. So, define $\Sigma(\kappa)$ to be the formula $\forall \alpha.(\alpha < \kappa \Rightarrow 2^{\alpha} < \kappa)$. We say that $\kappa$ is a \emph{strong limit cardinal} if $\Sigma(\kappa)$ is true.
+		
+		Similarly to the $\aleph$-hierarchy we can define the $\beth$ operator as follows
+		\begin{align*}
+			\beth_0 &\coloneqq \aleph_0\\
+			\beth_{\alpha^+} &\coloneqq 2^{\beth_{\alpha}}\\
+			\beth_{\lambda} &\coloneqq \sup\{\beth_\alpha \mid \alpha < \lambda\}. 
+		\end{align*}
+		By induction $\aleph_{\alpha} \leq \beth_{\alpha}$. Clearly $\kappa$ is a strong limit cardinal iff $\kappa = \beth_{\lambda}$ for a limit cardinal $\lambda$ (\textcolor{red}{why? see \url{https://math.stackexchange.com/questions/434205/are-the-strong-limit-cardinals-precisely-those-of-the-form-beth-lambda-wher}}). Thus $\text{ZFC} \vdash \Sigma C$.
+		
+		\item If $s\colon n \to \omega$ is a function then $\sup s < \omega$ for all $n<\omega$.
+		\begin{defn}[Cofinality]
+			Let $\lambda$ be a limit ordinal. We say $C\subseteq \lambda$ is \emph{cofinal} or \emph{unbounded} if $\bigcup C = \lambda$. The \emph{cofinality} of $\lambda$ is
+			\[
+				\cf(\lambda)\coloneqq \min\{|C| \,\mid \, C \text{ is cofinal in }\lambda\}.
+			\]
+		\end{defn}
+		Clearly $\cf(\lambda)\leq |\lambda|$.  So if $\lambda$ is a cardinal we have $\cf(\lambda)\leq \lambda$. Note that the following definition makes sense since all infinite cardinals are limit ordinals.
+		\begin{defn}[Regular cardinals]
+			An infinite cardinal $\kappa$ is called \emph{regular} if $\cf(\kappa) = \kappa$, and \emph{singular} if $\cf(\kappa) < \kappa$.
+		\end{defn}
+		\begin{egs}
+			$\aleph_0$ is regular. Moreover, $\aleph_1$ is regular since union of countable sets are countable. In general $\aleph_{\alpha+1}$ is always regular (ES1).
+			
+			Note that $\aleph_{\omega} = \bigcup\{\aleph_{n} \mid n\in \mathbb{N}\}$. But then $\{\aleph_{n} \mid n\in \mathbb{N}\}$ is a cofinal set in $\aleph_{\omega}$ of countable cardinality. Hence $\aleph_{\omega}$ is singular. Limit cardinals tend to be singular. 
+		\end{egs}
+	\end{enumerate}
+	\begin{defn}[Inaccessible cardinals]
+		A cardinal $\kappa$ is called \emph{weakly inaccessible} if it's an uncountable regular limit cardinal. It is called \emph{strongly inaccessible} (or just inaccessible) if it is, in addition, a strong limit cardinal.
+	\end{defn}
+	Let $\text{WI}(\kappa)$ be the formula expressing that $\kappa$ is weakly inaccessible and $\text{I}(\kappa)$ to be the one expressing that $\kappa$ is strongly inaccessible. Our goal is to argue that WI and I are large cardinal properties in the sense of our non-definition. First we show they are very large indeed.
+	\begin{prop}
+		Weakly inaccessible cardinals are $\aleph$ fixed points.
+	\end{prop}
+	\begin{proof}
+		Suppose $\kappa$ is not an $\aleph$ fixed point. Then $\kappa < \aleph_k$. It follows that $\kappa = \aleph_{\alpha}$ for some ordinal $\alpha < \kappa$. If $\alpha$ is a successor ordinal $\alpha = \beta + 1$ then $\kappa$ is the successor cardinal of $\aleph_\beta$; hence $\kappa$ is not weakly inaccessible. On the other hand, if $\alpha$ is a limit ordinal we have
+		\[
+			\kappa = \aleph_{\alpha} = \bigcup_{\beta < \alpha}\aleph_{\beta}
+		\]
+		and so $\cf(\kappa) \leq |\alpha| < \kappa$ and hence $\kappa$ is singular. In particular, $\kappa$ is not weakly inaccessible.
+	\end{proof}
+\end{document}

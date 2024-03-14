@@ -102,6 +102,7 @@
 \DeclareMathOperator{\mor}{mor}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 \DeclarePairedDelimiter\innprod{\langle}{\rangle}%
@@ -1734,19 +1735,19 @@
 		\begin{proof}
 			Just apply uniqueness of left adjoints and composition of left adjoints.
 		\end{proof}
-		Given an adjunction $(F \dashv G)$ so that $\alpha\colon \mathcal{D}(F-,-) \to \mathcal{C}(-,G-)$ is a natural isomorphism, we have defined a natural transformation $\eta\colon 1_{\mathcal{C}} \to GF$. We call $\eta$ the \emph{unit} of the adjunction. Dually we can define the \emph{counit} $\varepsilon\colon {FG}\to 1_{\mathcal{D}}$ given by $\varepsilon_B \coloneqq \alpha^{-1}_{GB,B}(1_{GB})$. This is a dual definition: $\varepsilon$ is the unit of the adjunction $(G^{op} \dashv F^{op})$ given by $\alpha^{-1}$. By duality, $\varepsilon$ is a natural transformation.
+		Given an adjunction $(F \dashv G)$ so that $\alpha\colon \mathcal{D}(F-,-) \to \mathcal{C}(-,G-)$ is a natural isomorphism, we have defined a natural transformation $\eta\colon 1_{\mathcal{C}} \to GF$. We call $\eta$ the \emph{unit} of the adjunction. Dually we can define the \emph{counit} $\epsilon\colon {FG}\to 1_{\mathcal{D}}$ given by $\epsilon_B \coloneqq \alpha^{-1}_{GB,B}(1_{GB})$. This is a dual definition: $\epsilon$ is the unit of the adjunction $(G^{op} \dashv F^{op})$ given by $\alpha^{-1}$. By duality, $\epsilon$ is a natural transformation.
 		\begin{thm}
-			Given functors $F\colon \mathcal{C} \to \mathcal{D}$ and $G\colon \mathcal{D} \to \mathcal{C}$ there is a bijective correspondence between adjunctions $(F \dashv G)$ and natural transformations $\eta\colon 1_{\mathcal{C}} \to GF$, $\varepsilon\colon {FG}\to 1_{\mathcal{D}}$ satisfying the `triangular identities'
+			Given functors $F\colon \mathcal{C} \to \mathcal{D}$ and $G\colon \mathcal{D} \to \mathcal{C}$ there is a bijective correspondence between adjunctions $(F \dashv G)$ and natural transformations $\eta\colon 1_{\mathcal{C}} \to GF$, $\epsilon\colon {FG}\to 1_{\mathcal{D}}$ satisfying the `triangular identities'
 			% https://q.uiver.app/#q=WzAsNixbMCwwLCJGIl0sWzEsMCwiRkdGIl0sWzEsMSwiRiJdLFszLDAsIkciXSxbNCwwLCJHRkciXSxbNCwxLCJHIl0sWzAsMSwiRlxcZXRhIl0sWzAsMiwiMV9GIiwyXSxbMSwyLCJcXHZhcmVwc2lsb24gRiJdLFszLDQsIlxcZXRhIEciXSxbMyw1LCIxX0ciLDJdLFs0LDUsIkdcXHZhcmVwc2lsb24iXV0=
 			\[\begin{tikzcd}
 				F & FGF && G & GFG \\
 				& F &&& G
 				\arrow["F\eta", from=1-1, to=1-2]
 				\arrow["{1_F}"', from=1-1, to=2-2]
-				\arrow["{\varepsilon F}", from=1-2, to=2-2]
+				\arrow["{\epsilon F}", from=1-2, to=2-2]
 				\arrow["{\eta G}", from=1-4, to=1-5]
 				\arrow["{1_G}"', from=1-4, to=2-5]
-				\arrow["G\varepsilon", from=1-5, to=2-5]
+				\arrow["G\epsilon", from=1-5, to=2-5]
 			\end{tikzcd}\]
 		\end{thm}
 		\begin{proof}
@@ -1763,7 +1764,7 @@
 			Hence we have
 			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHZhcmVwc2lsb25fe0ZBfSJdLFswLDEsIjFfe0dGQX0iXSxbMSwwLCJcXHZhcmVwc2lsb25fe0ZBfUZcXGV0YV9BID0gMV97RkF9Il0sWzEsMSwiXFxldGFfQSJdLFswLDIsIiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwzLCIiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEsMCwiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFszLDIsIiIsMix7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
 			\[\begin{tikzcd}
-				{\varepsilon_{FA}} & {\varepsilon_{FA}F\eta_A = 1_{FA}} \\
+				{\epsilon_{FA}} & {\epsilon_{FA}F\eta_A = 1_{FA}} \\
 				{1_{GFA}} & {\eta_A}
 				\arrow[shorten <=3pt, shorten >=3pt, maps to, from=1-1, to=1-2]
 				\arrow[shorten <=6pt, shorten >=6pt, maps to, from=2-1, to=2-2]
@@ -1772,7 +1773,7 @@
 			\end{tikzcd}\]
 			which is the first triangular identity. By duality, the second triangular identity holds.
 			
-			Conversely, suppose $\eta\colon 1_{\mathcal{C}}\to GF$ and $\varepsilon\colon FG \to 1_{\mathcal{D}}$ satisfy the triangular identities. We have to show that there is a natural isomorphism $\alpha\colon \mathcal{D}(F-,-)\to \mathcal{C}(-,G-)$ that gives rise to an adjunction whose unit and counit are precisely $\eta$ and $\varepsilon$.
+			Conversely, suppose $\eta\colon 1_{\mathcal{C}}\to GF$ and $\epsilon\colon FG \to 1_{\mathcal{D}}$ satisfy the triangular identities. We have to show that there is a natural isomorphism $\alpha\colon \mathcal{D}(F-,-)\to \mathcal{C}(-,G-)$ that gives rise to an adjunction whose unit and counit are precisely $\eta$ and $\epsilon$.
 			
 			For $A\in\ob\mathcal{C}$, $B\in\ob\mathcal{D}$, and $f\colon FA \to B$ define
 			\[
@@ -1780,26 +1781,26 @@
 			\]
 			Clearly $\alpha_{A,FA}(1_{FA}) = \eta_A$ so we are in good shape. Now define $\beta\colon \mathcal{C}(-,G-) \to \mathcal{D}(F-,-)$ such that for $g\colon A \to GB$ we have
 			\[
-				\beta_{A,B}(g) \coloneqq \varepsilon_{B}(Fg) \colon FA \to B
+				\beta_{A,B}(g) \coloneqq \epsilon_{B}(Fg) \colon FA \to B
 			\]
-			We have that $\beta_{GB,B}(1_{GB}) = \varepsilon_{B}$. Thus, if we can show that $\beta = \alpha^{-1}$ and these are natural we can conclude that these form an adjunction with unit and counit $\eta$ and $\varepsilon$ respectively.
+			We have that $\beta_{GB,B}(1_{GB}) = \epsilon_{B}$. Thus, if we can show that $\beta = \alpha^{-1}$ and these are natural we can conclude that these form an adjunction with unit and counit $\eta$ and $\epsilon$ respectively.
 			
 			But
 			\begin{align*}
 				\beta_{A,B}\alpha_{A,B}(f) &= \beta_{A,B}((Gf)\eta_A)\\
-				&= \varepsilon_B(F((Gf)\eta_A))\\
-				&= (\varepsilon_B(FGf))F\eta_A\\
-				&= f\varepsilon_{FA}F\eta_A\\
+				&= \epsilon_B(F((Gf)\eta_A))\\
+				&= (\epsilon_B(FGf))F\eta_A\\
+				&= f\epsilon_{FA}F\eta_A\\
 				&=f
 			\end{align*}
-			where we have used naturality of $\varepsilon$
+			where we have used naturality of $\epsilon$
 			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGR0ZBIl0sWzEsMCwiRkdCIl0sWzAsMSwiRkEiXSxbMSwxLCJCIl0sWzIsMywiZiIsMl0sWzAsMiwiXFx2YXJlcHNpbG9uX3tGQX0iLDJdLFsxLDMsIlxcdmFyZXBzaWxvbl9CIl0sWzAsMSwiRkdmIl1d
 			\[\begin{tikzcd}
 				FGFA & FGB \\
 				FA & B
 				\arrow["f"', from=2-1, to=2-2]
-				\arrow["{\varepsilon_{FA}}"', from=1-1, to=2-1]
-				\arrow["{\varepsilon_B}", from=1-2, to=2-2]
+				\arrow["{\epsilon_{FA}}"', from=1-1, to=2-1]
+				\arrow["{\epsilon_B}", from=1-2, to=2-2]
 				\arrow["FGf", from=1-1, to=1-2]
 			\end{tikzcd}\]
 			and the first triangular identity. Dually, we have $\alpha_{A,B}\beta_{A,B}(g) = g$. Hence $\beta = \alpha^{-1}$. It remains to verify that $\alpha$ is natural. Let $f\colon A' \to A$ be a morphism in $\mathcal{C}$ and $g\colon B \to B'$ a morphism in $\mathcal{D}$. We need to check that the following commutes.
@@ -1844,6 +1845,130 @@
 				\arrow["{(F\alpha G)^{-1}}", from=1-2, to=1-3]
 				\arrow["\beta", from=1-3, to=1-4]
 			\end{tikzcd}.\]
-			
+			\textcolor{red}{TODO}
 		\end{proof}
+		\begin{lem}
+			Let $(F\dashv G)$ be an adjunction with counit $\epsilon$. Then
+			\begin{enumerate}
+				\item $\epsilon$ is pointwise epic iff $G$ is faithful.
+				\item $\epsilon$ is an isomorphism iff $G$ is full and faithful.
+			\end{enumerate}
+		\end{lem}
+		\begin{proof}
+			Suppose $\epsilon$ is pointwise epic. Let $g,g'\colon B \to B'$ be morphisms in $\mathcal{D}$ such that $Gg = Gg'$. Then the following diagram commutes by naturality of $\epsilon$
+			% https://q.uiver.app/#q=WzAsNixbMCwwLCJCIl0sWzEsMCwiQiciXSxbMCwxLCJGR0IiXSxbMSwxLCJGR0InIl0sWzAsMiwiQiJdLFsxLDIsIkInIl0sWzAsMSwiZyJdLFs0LDUsImYiLDJdLFsyLDAsIlxcZXBzaWxvbl9CIl0sWzMsMSwiXFxlcHNpbG9uX3tCJ30iLDJdLFszLDUsIlxcZXBzaWxvbl97Qid9Il0sWzIsNCwiXFxlcHNpbG9uX3tCfSIsMl0sWzIsMywiRkdnPUZHZyJdXQ==
+			\[\begin{tikzcd}[column sep=large]
+				B & {B'} \\
+				FGB & {FGB'} \\
+				B & {B'}
+				\arrow["g", from=1-1, to=1-2]
+				\arrow["{g'}"', from=3-1, to=3-2]
+				\arrow["{\epsilon_B}", from=2-1, to=1-1]
+				\arrow["{\epsilon_{B'}}"', from=2-2, to=1-2]
+				\arrow["{\epsilon_{B'}}", from=2-2, to=3-2]
+				\arrow["{\epsilon_{B}}"', from=2-1, to=3-1]
+				\arrow["{FGg=FGg'}", from=2-1, to=2-2]
+			\end{tikzcd}.\]
+		In particular we have $g\epsilon_B = g'\epsilon_B$ so, as $\epsilon_B$ is epic, we have $g=g'$, so $G$ is faithful.
+		
+		If we assume that $\varepsilon$ is an isomorphism then in particular it is pointwise epic, so $G$ will be faithful. Now, let $B,B'\in\ob\mathcal{D}$ and suppose we have a morphism $f\colon GB \to GB'$ in $\mathcal{C}$. Note that the following diagram is commutative by naturality of $\eta$.
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHQiJdLFsxLDAsIkdCJyJdLFswLDEsIkdGR0IiXSxbMSwxLCJHRkdCJyJdLFswLDEsImYiXSxbMCwyLCJcXGV0YV97R0J9IiwyXSxbMSwzLCJcXGV0YV97R0InfSJdLFsyLDMsIkdGZiIsMl1d
+		\[\begin{tikzcd}
+			GB & {GB'} \\
+			GFGB & {GFGB'}
+			\arrow["f", from=1-1, to=1-2]
+			\arrow["{\eta_{GB}}"', from=1-1, to=2-1]
+			\arrow["{\eta_{GB'}}", from=1-2, to=2-2]
+			\arrow["GFf"', from=2-1, to=2-2]
+		\end{tikzcd}\]
+		However, the second triangular identity implies that $\eta_{GB} = G(\epsilon_B^{-1})$ and similarly for $B'$. It quickly follows that $g\coloneqq \epsilon_{B'} Ff (\epsilon_B)^{-1}$ has the property that $Gg = f$, so $G$ is full.
+		
+		Conversely, assume $G$ is faithful. Let $B,B'$ be objects of $\mathcal{D}$ and let $g,g'\colon B \to B'$ be morphisms such that $g\epsilon_B = g'\epsilon_{B}$. Then we have $G(g)G(\epsilon_B) = G(g')G(\epsilon_{B})$ and also
+		\[
+			G(g)G(\epsilon_B)\eta_{GB} = G(g')G(\epsilon_B)\eta_{GB}.
+		\]
+		By the second triangular identity it follows that $G(g) = G(g')$ and by faithfulness $g=g'$. Hence $\epsilon$ is pointwise epic.
+		
+		Now suppose that $G$ is, in addition, full. Then for $B\in\ob\mathcal{D}$ we see that $\eta_{GB}$ is a morphism $GB\to GFGB$ and so, by fullness, there is a morphism $(\epsilon_B)^{-1}\colon B \to FGB$. To verify that this is an inverse to $\epsilon_B$ just apply $G$ and use faithfulness together with the second triangular identity.
+	\end{proof}
+		\begin{defn}[Reflections]
+			A \emph{reflection} is an adjunction where the counit is an isomorphism. A \emph{reflective subcategory} of a given category is a just full subcategory for which the inclusion functor has a left adjoint.
+		\end{defn}
+		\newpage
+		\section{Limits}
+		\begin{defn}[Diagrams]
+			Let $J$ be a category. A \emph{diagram of shape $J$ in $\mathcal{C}$} is a functor $D\colon J \to C$. We refer to the objects $D(j)$ for $j\in \ob J$ as \emph{vertices} of the diagrams, while morphisms $D(\alpha)$ for $\alpha\in\mor J$ are referred as \emph{edges}.
+		\end{defn}
+		\begin{defn}[Cones and Limits]
+			Let $D\colon J \to \mathcal{C}$ be a diagram. A \emph{cone over $D$} is an object $A$ of $\mathcal{C}$ (the \emph{apex} of the cone) together with morphisms $\lambda_j\colon A \to D(j)$ for each $j\in \ob J$ (its \emph{legs}) making the diagram
+			% https://q.uiver.app/#q=WzAsMyxbMCwxLCJEKGkpIl0sWzIsMSwiRChqKSJdLFsxLDAsIkEiXSxbMCwxLCJEKFxcYWxwaGEpIl0sWzIsMCwiXFxsYW1iZGFfaSIsMl0sWzIsMSwiXFxsYW1iZGFfaiJdXQ==
+			\[\begin{tikzcd}
+				& A \\
+				{D(i)} && {D(j)}
+				\arrow["{D(\alpha)}", from=2-1, to=2-3]
+				\arrow["{\lambda_i}"', from=1-2, to=2-1]
+				\arrow["{\lambda_j}", from=1-2, to=2-3]
+			\end{tikzcd}\]
+			commute for each $\alpha \colon i \to j$ in $\mor J$.
+			
+			Given two cones over $D$, a morphism of cones, say $(A,(\lambda_j))\to (B,(\mu_j))$, is a morphism $f\colon A\to B$ in $\mathcal{C}$ such that the diagram
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQiJdLFsxLDEsIkQoaikiXSxbMCwxLCJmIl0sWzAsMiwiXFxsYW1iZGFfaiIsMl0sWzEsMiwiXFxtdV9qIl1d
+			\[\begin{tikzcd}
+				A && B \\
+				& {D(j)}
+				\arrow["f", from=1-1, to=1-3]
+				\arrow["{\lambda_j}"', from=1-1, to=2-2]
+				\arrow["{\mu_j}", from=1-3, to=2-2]
+			\end{tikzcd}\]
+			commutes for all $j\in \ob J$. It is immediate that the class of all cones over $D$ forms a category, denoted $\Cone(D)$.
+			
+			A \emph{limit} for $D$ is a terminal object of $\Cone(D)$, if it exists. Dually, we have the notion of a cone \emph{under} $D$ (sometimes called a \emph{cocone}), and a \emph{colimit} for $D$ is an initial cone under $D$.
+		\end{defn}
+		If $J$ is the category
+		% https://q.uiver.app/#q=WzAsMyxbMSwwLCJcXGJ1bGxldCJdLFsxLDEsIlxcYnVsbGV0Il0sWzAsMSwiXFxidWxsZXQiXSxbMiwxXSxbMCwxXV0=
+		\[\begin{tikzcd}
+			& \bullet \\
+			\bullet & \bullet
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=1-2, to=2-2]
+		\end{tikzcd}\]
+		then a limit for a diagram of shape $J$ is called a \emph{pullback}. Conversely, a colimit for a diagram of shape $J^{\text{op}}$ is called a \emph{pushout}.
+		\begin{prop}
+			Let $\mathcal{C}$ be a category. 
+			\begin{enumerate}
+				\item If $\mathcal{C}$ has equalizers and all small products, then $\mathcal{C}$ has all small limits (i.e., limits for all diagrams whose shapes are small categories).
+				\item If $\mathcal{C}$ has equalizers and all finite products, then $\mathcal{C}$ has all finite limits.
+				\item If $\mathcal{C}$ has pullbacks and a terminal object, then $\mathcal{C}$ has all finite limits.
+			\end{enumerate}
+		\end{prop}
+		\begin{proof}
+			The proof of the first two claims is identical so we give them together. Suppose we are given a diagram $D\colon J \to \mathcal{C}$, where $J$ is small or finite as appropriate. Define $P \coloneqq \prod_{j\in \ob J}D(j)$.  Then $P$ has mappings $\pi_j\colon P \to D(j)$ for all $j\in \ob J$ but it may not be a cone over $D$ since the compatibility with morphisms in $J$ is not necessarily satisfied.
+			
+			To fix this, let $Q\coloneqq \prod_{\alpha\in\mor J}D(\cod\alpha)$. We define morphisms $f,g\colon P \to Q$ via the universal property of $Q$. We declare that $\pi_{\alpha}f = \pi\cod\alpha$ and $\pi_{\alpha}g = (D\alpha)\pi_{\dom \alpha}$; this uniquely defines $f$ and $g$. Finally, let $e\colon L \to P$ be the equalizer of $(f,g)$ and define $\lambda_j\coloneqq \pi_je\colon L \to D(j)$. We claim that $(L,(\lambda_j\mid j \in \ob J))$ is a limit for $D$.
+			
+			Firstly we verify that this gives a cone over $D$. This is immediate since the diagram
+			% https://q.uiver.app/#q=WzAsNCxbMSwwLCJMIl0sWzEsMSwiUCJdLFswLDIsIkRcXGRvbVxcYWxwaGEiXSxbMiwyLCJEXFxjb2RcXGFscGhhIl0sWzAsMSwiZSJdLFsxLDIsIlxccGlfe1xcZG9tIFxcYWxwaGF9IiwyXSxbMSwzLCJcXHBpXFxjb2RcXGFscGhhIl0sWzIsMywiRFxcYWxwaGEiLDFdXQ==
+			\[\begin{tikzcd}
+				& L \\
+				& P \\
+				D\dom\alpha && D\cod\alpha
+				\arrow["e", from=1-2, to=2-2]
+				\arrow["{\pi_{\dom \alpha}}"', from=2-2, to=3-1]
+				\arrow["\pi\cod\alpha", from=2-2, to=3-3]
+				\arrow["D\alpha"{description}, from=3-1, to=3-3]
+			\end{tikzcd}\]
+			commutes for each $\alpha\in\mor J$. The universal properties of $P$ and $L$ then guarantee the first two claims.
+			
+			For the third claim, we shall show that the second claim holds. Suppose $1$ is a terminal object of $\mathcal{C}$
+		\end{proof}
+		We call a category \emph{complete} if it has all small limits (dually, we call it \emph{cocomplete} if it has all small colimits).
+		\begin{defn}
+			Let $G\colon \mathcal{D} \to \mathcal{C}$ be a functor.
+			\begin{enumerate}
+				\item We say $G$ \emph{preserves} limits of shape $J$ if, whenever $D\colon J \to \mathcal{D}$ is a diagram, and $(L,(\lambda_j))$ is a limit for $D$, then $(GL,(G\lambda_j))$ is a limit for $GD$.
+				\item We say $G$ \emph{reflects} limits of shape $J$ if, whenever $D\colon J \to \mathcal{D}$ is a diagram, then any cone over $D$ which is mapped by $G$ to a limit for $GD$ is itself a limit for $D$.
+				\item We say $G$ \emph{creates} limits of shape $J$ if, given a diagram $D\colon J \to \mathcal{D}$ and a limit $(L,(\lambda_j))$ for $GD$, there exists a cone over $D$ whose image under $G$ is isomorphic to $(L,(\lambda_j))$, and any such cone is a limit for $D$.
+			\end{enumerate}
+		\end{defn}
+		Normally, we assume in (a) that $\mathcal{D}$ has limits of shape $J$, and in (b) and (c) that $\mathcal{C}$ does. With these additional conditions, creation of limits is equivalent to the conjunction of preservation and reflection plus the fact that $\mathcal{D}$ has limits of shape $J$.
 \end{document} 

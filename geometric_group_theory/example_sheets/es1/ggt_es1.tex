@@ -1,0 +1,204 @@
+\documentclass{article}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathdots}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand\binuparrow{\mathbin{\uparrow}}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\setlist{parsep=0pt,listparindent=\parindent}
+\begin{document}
+	\title{Geometric Group Theory\\ ES1 Solutions}
+	\date{}
+	\maketitle
+	\begin{enumerate}
+		\item Torus and Klein bottle respectively,
+		\item \begin{enumerate}
+			\item It suffices to show that $z$ commutes with the generators, but this is immediate.
+			\item The centre of $A_5$ is trivial so $z$ must be send to the identity (here we use surjectivity). It remains to find elements of order 2 and 3 in $A_5$ such that their product has order 5 and they generate the whole group. The permutations $(1\,2)(3\,4)$ and $(1\,3\,5)$ satisfy these conditions.
+		\end{enumerate}
+		\item Define $\varphi(k)\coloneqq ba^kb^{-1}a^{-2^k}$ for $k\geq 1$. Check by induction that
+		\[
+			\varphi(k) =\prod_{r=0}^{k-1}a^{2^{r}}(bab^{-1}a^{-2})a^{-2^r}
+		\]
+		in $F\coloneqq F(\{a,b\})$. It follows that $\varphi(k)$ is trivial in $BS(1,2)$ for all $k\geq 1$. Now define $\Phi(n,k)\coloneqq b^{n-1}\varphi(k)b^{-(n-1)}$ for all $n,k\geq 1$. Obviously $\Phi(n,k)$ becomes trivial in $BS(1,2)$. An induction on $m$ shows that for all $1\leq m\leq n$ we have the following identity in $F$
+		\[
+			 \prod_{r=0}^{m-1} \Phi(n-r,2^r)= b^{n}ab^{-m}a^{-(2\binuparrow\binuparrow m)}b^{-(n-m)},
+		\]
+		where $2\binuparrow\binuparrow m$ refers to the number $2^{2^{2^{\iddots}}}$ where $2$ appears $m$ times (this is Knuth's arrow notation). In particular, for $m=n$ we have
+		\[
+			\Psi(n)\coloneqq \prod_{r=0}^{n-1} \Phi(n-r,2^r)= b^nab^{-n}a^{-(2\binuparrow\binuparrow n)} .
+		\]
+		Hence
+		\begin{align*}
+			\Phi(n)a\Phi^{-1}(n)a^{-1} &= b^nab^{-n}a^{-(2\binuparrow\binuparrow n)} a(a^{2\binuparrow\binuparrow n}b^na^{-1}b^{-n})a^{-1}\\
+			&= b^nab^{-n}(a^{-(2\binuparrow\binuparrow n)} aa^{2\binuparrow\binuparrow n})(b^na^{-1}b^{-n})a^{-1}\\
+			&= b^nab^{-n}ab^na^{-1}b^{-n}a^{-1}\\
+			&= w_n.
+		\end{align*}
+		We can then calculate an upper bound for the area of $w_n$. Clearly the area of $\phi(k)$ is at most $k$, and hence the same goes for $\Phi(n,k)$, independently of $n$. It then follows that $\Psi(n)$ has area at most 
+		\[
+			1 + 2 + 4+ \ldots + 2^{n-1} = 2^n -1.
+		\]
+		Thus the area of $w_n$ is at most $(2^n - 1) + (2^n -1) = 2^{n+1} - 2$.
+		\item Let $X$ be the presentation complex of $\mathbb{Z}^2 \cong \langle a,b \mid [a,b]\rangle$. Let $D\hookrightarrow X$ be a van-Kampen diagram for $w_n$ of minimal area. The covering map $\tilde{X}\to X$ induces a map $\tilde{X}\to D$ $\ldots$
+		\item \begin{enumerate}
+			\item Isometries are affine maps with determinant $\pm 1$. In $\mathbb{R}$, this means that all isometries are either translations or multiplication by $-1$ followed by translations. It immediately follows that $B$ generates $D_{\infty}$ and since $sr= t$ we get that $A$ is also a generating set.
+			\item Omitted 
+		\end{enumerate}
+		\item Suppose $\langle A\mid R\rangle$ has a solvable word problem. Given some $n$, it is easy to find an algorithm that will construct the closed ball of radius $n$ around 1 of $\text{Cay}_A(F(A))$; call this graph $G_n$. As $G_n$ is finite, we can check, using the algorithm for the word problem, which vertices should be identified in $G_n$ according to $R$. The result will be $B_n$.
+		
+		Conversely, suppose we can construct $B_n$ for any $n$. Given a word of length $n$, simply check whether the corresponding path in $B_n$ ends at the identity or not.
+		\item 
+	\end{enumerate}
+\end{document}

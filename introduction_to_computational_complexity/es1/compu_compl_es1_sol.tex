@@ -1,0 +1,182 @@
+\documentclass{article}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\setlist{parsep=0pt,listparindent=\parindent}
+\begin{document}
+\title{Introduction to Computational Complexity\\ ES1 Solutions}
+\date{}
+\maketitle
+\begin{enumerate}
+	\item First suppose $f$ is in NP and let $T$ be a nondeterministic Turing machine computing $f$ in polynomial time. We can construct a deterministic Turing machine $T'$ such that it takes input $x$ and $y$ and outputs what $T$ would've outputted with $x$ as an input, with choices of transition functions encoded in $y$ (we don't need two input tapes for this since we can, for example, agree that even positions are supposed to be $x$ and odd positions are $y$). Let $g$ be the function computed by $T'$. Then it is not hard to see that $g\in P$ and we can pick $y$ so that $g(x,y) = 1$ iff $f(x) = 1$ subject to the conditions in the size of $y$.
+	
+	On the other direction, suppose we are given $g$ and $p$. Let $T'$ be the Turing machine computing $g$ in polynomial time. We can reverse the above process by constructing a nondeterministic Turing machine that, given $x$, tries to write down the corresponding $y$ randomly and then computing $g(x,y)$. As $|y| = p(|x|)$ and $g\in \text{P}$ we see that this new Turing machine computes $f$ in polynomial time.
+	
+	\item Just because we can solve the decision problem in polynomial time, it doesn't mean we can solve the corresponding search problem in polynomial time; though this would follow from P=NP as was shown in lectures.
+	\item We need to check that the problem ``Is $n$ prime?'' is in NP. We can assume $n>2$ because we can check the case $n=2$ separately. Let $g(n,a, p_1,\ldots,p_k)$ be the Boolean function defined to be 1 if and only if
+	\begin{enumerate}[label=(\arabic*)]
+		\item $a^{n-1} \equiv 1 \pmod{n}$; and
+		\item $p_1,\ldots, p_k$ are the prime factors of $n-1$; and 
+		\item $a^{\frac{n-1}{p_i}} \not\equiv 1 \pmod{n}$ for all $i$.
+	\end{enumerate}
+	First we show that $n$ is prime iff there is $a,p_1,\ldots,p_k$ such that $g(n,a, p_1,\ldots,p_k) = 1$. If $n$ is prime then take $a$ to a generator of the cyclic group $(\mathbb{Z}/n\mathbb{Z})^*$ and the $p_i$'s to be the prime factors of $n-1$. Then (1) is satisfied by Fermat's little theorem, (2) is obviously satisfied, and (3) is satisfied since the order of $a$ is $n-1$.
+	
+	Conversely, suppose we have found $a,p_1,\ldots,p_k$ such that $g(n,a, p_1,\ldots,p_k) = 1$. As $n>2$, we see that $aa^{n-2}\equiv 1 \pmod{n}$ so $a$ has a multiplicative inverse and thus $a\in (\mathbb{Z}/n\mathbb{Z})^*$, i.e., $a$ is coprime to $n$. In particular, the order of $a$ divides the order of the group, which is $n-1$. So, if $|a|<n-1$, we see that $|a|$ divides $\frac{n-1}{p_i}$ for some $i$, contradicting (3); so by the hint we see that $n$ is prime. \textcolor{red}{Missing}
+	\item 
+	\item Suppose $f$
+	
+	
+\end{enumerate}
+\end{document}

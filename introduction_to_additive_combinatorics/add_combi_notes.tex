@@ -1,0 +1,232 @@
+\documentclass{report}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\begin{document}
+	\title{Introduction to Additive Combinatorics}
+	\maketitle
+	\section{Fourier-analytic techniques}
+	Though the questions we will study are mostly about the integers, many of our results translate very well to other abelian groups. Hence we start by considering the finite vector space $\mathbb{F}_p^n$, where $p$ is a small prime and $n$ is large.
+	
+	A piece of notation: given a finite set $B$ and any function $f\colon B \to \mathbb{C}$ we write
+	\[
+		\mathbb{E}_{x\in B} f(x) \coloneqq \frac{1}{|B|}\sum_{x\in B}f(x).
+	\]
+	Intuitively, if we take one element $x$ of $B$ at random this would be the expected value of $f(x)$. Often we drop the subscript $x\in B$ when it can be inferred from the context.
+	
+	Ww write $\omega \coloneqq e^{\frac{2\pi i}{p}}$ to be the standard $p$-th root of unity. Note that $\sum_{a\in \mathbb{F}_p} \omega^a = 0$ by a geometric series argument.
+	
+	\begin{defn}[Discrete Fourier Transform]
+		Given $f\colon \mathbb{F}_p^n\to \mathbb{C}$, define its Fourier transform $\hat{f}\colon \mathbb{F}^n_p\to \mathbb{C}$ by 
+		\[
+			\hat{f}(t)\coloneqq \mathbb{E}_{x\in \mathbb{F}^n_p}(f(x)\omega^{x\cdot t})
+		\]
+		for all $t\in \mathbb{F}_p^n$.
+	\end{defn}
+	
+	It is easy to verify the \emph{inversion formula}: for all $x\in \mathbb{F}_p^n$ we have
+	\[
+		f(x) = \sum_{t\in \mathbb{F}_p^n}\hat{f}(t)\omega^{-x\cdot t}.
+	\]
+	Indeed,
+	\begin{align*}
+		\sum_{t\in \mathbb{F}^n_p}\mathbb{E}_{y\in \mathbb{F}^n_p}(f(y)\omega^{y\cdot t})\omega^{-x\cdot t}&= \frac{1}{p^n}\sum_{t\in \mathbb{F}^n_p}\sum_{y\in\mathbb{F}^n_p}f(y)\omega^{y\cdot t}\omega^{-x\cdot t}\\
+		&= \frac{1}{p^n}\sum_{y\in\mathbb{F}^n_p}f(y)\sum_{t\in \mathbb{F}^n_p}\omega^{t\cdot (y-x)}\\
+	\end{align*}
+	We argue that $\sum_{t\in \mathbb{F}^n_p}\omega^{t\cdot (y-x)}$ is $p^n$ if $y = x$ and $0$ otherwise. The former statement is clear and for the latter we use induction on $n$. For $n = 1$ we see that if $y\neq x$ then it follows that $y-x$ is a unit in $\mathbb{F}_p$ and so the assignment $t\mapsto t(y-x)$ is a bijection from $\mathbb{F}_p$ to itself. Thus
+	\[\sum_{t\in \mathbb{F}_p}\omega^{t (y-x)} = \sum_{t\in \mathbb{F}_p} \omega^{t} = 0.\]
+	Now suppose we know the statement is true for some $n$ and consider $\sum_{t\in \mathbb{F}^{n+1}_p}\omega^{t\cdot (y-x)}$. Write $t= (t_{1},t')$ where $t'\in \mathbb{F}_{p}^n$ and $t_1\in \mathbb{F}_p$, and similarly for other variables. Then we have 
+	\[
+		\sum_{t\in \mathbb{F}^{n+1}_p}\omega^{t\cdot (y-x)} = \sum_{t'\in \mathbb{F}^{n+1}_p;t_1\in\mathbb{F}_p}\omega^{t_1(y_1-x_1)+ t'\cdot (y'-x')}.
+	\]
+	If $y' = x'$ then this forces $y_1\neq x_1$ and the above equals 0 by the $n=1$ case. Similarly, if $y_1 = x_1$ then $y' \neq x'$ and the above equals 0 by the inductive hypothesis. So, assume $y'\neq x'$ and $y_1\neq x_1'$. Then $t_1\mapsto t_1(y_1-x_1)$ is a bijection and thus the above is
+	\[
+		\sum_{t_1 = 0}^{p-1}\sum_{t'\in \mathbb{F}^{n+1}_p}\omega^{t_1+ t'\cdot (y'-x')}.
+	\]
+	Clearly for any fixed $t_1$ the above is zero so the sum equals 0 as desired. This closes the induction.
+	
+	Back to the inversion formula, we had that
+	\begin{align*}
+		\sum_{t\in \mathbb{F}_p^n}\hat{f}(t)\omega^{-x\cdot t} &= \frac{1}{p^n}\sum_{y\in\mathbb{F}_p^n}f(y)\sum_{t\in\mathbb{F}_p^n}\omega^{t\cdot (y-x)}\\
+		&=\frac{1}{p^n}\sum_{y\in\mathbb{F}_p^n}f(y)p^n\cdot \mathbf{1}_{y=x}\\
+		&= f(x).
+	\end{align*}
+	
+	We need some more notation.  Given a subset $A$ of a finite group $G$ we write
+	\begin{itemize}
+		\item $\mathbf{1}_A$ for the \emph{characteristic} (or \emph{indicator}) function of $A$;
+		\item $f_A$ for the \emph{balanced} function of $A$, i.e., $f_A = \mathbf{1}_A - \alpha$ where $\alpha \coloneqq \frac{|A|}{|G|}$ is the \emph{density} of $A$;
+		\item $\mu_A$ for the \emph{characteristic measure} of $A$, i.e., $\mu_A = \alpha^{-1}\mathbf{1}_A$.
+	\end{itemize}
+	Note that $\mathbb{E}f_A = 0$ and $\mathbb{E}\mu_A = 1$ regardless of $A$.
+	
+	Let us investigate the Fourier transform of $\mathbf{1}_A$ for $A\subseteq \mathbb{F}_p^n$. By definition we have
+	\[
+		\widehat{\mathbf{1}_A}(t) = \mathbb{E}_{x}\mathbf{1}_A(x)\omega^{x\cdot t}.
+	\]
+	For $t =0$ we get $\widehat{\mathbf{1}_A}(0) = \alpha$. Writing $-A \coloneqq \{-a\mid a\in A\}$ we have 
+	\begin{align*}
+		\widehat{\mathbf{1}_{-A}}(t) &= \mathbb{E}_{x}\mathbf{1}_{-A}(x)\omega^{x\cdot t}\\
+		&=\mathbb{E}_{x}\mathbf{1}_{A}(x)\omega^{-x\cdot t}\\
+		&= \overline{\widehat{\mathbf{1}_A}(t)},
+	\end{align*}
+	so negation of the set correspond to taking the complex conjugate of the Fourier transform.
+	\begin{eg}
+		Let $V \subseteq \mathbb{F}_p^n$ be a subspace. Then
+		\[
+			\widehat{\mathbf{1}_V}(t) = \mathbb{E}_x \mathbf{1}_V(x)\omega^{x\cdot t}
+		\]
+	\end{eg}
+\end{document}

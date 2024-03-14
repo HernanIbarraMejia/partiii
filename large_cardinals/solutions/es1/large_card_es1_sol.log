@@ -1,25 +1,24 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  29 DEC 2023 17:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  5 FEB 2024 15:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./category_theory_notes.tex
-(category_theory_notes.tex
+**./large_card_es1_sol.tex
+(large_card_es1_sol.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-02>
-(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
-Document Class: report 2022/07/02 v1.4n Standard LaTeX document class
+(C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
-\c@chapter=\count186
-\c@section=\count187
-\c@subsection=\count188
-\c@subsubsection=\count189
-\c@paragraph=\count190
-\c@subparagraph=\count191
-\c@figure=\count192
-\c@table=\count193
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
@@ -44,14 +43,14 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count194
+\inf@bad=\count193
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count195
-\leftroot@=\count196
+\uproot@=\count194
+\leftroot@=\count195
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count197
-\DOTSCASE@=\count198
+\classnum@=\count196
+\DOTSCASE@=\count197
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -64,20 +63,20 @@ LaTeX Info: Redefining \Bigg on input line 725.
 \big@size=\dimen143
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count199
+\macc@depth=\count198
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count266
+\c@MaxMatrixCols=\count199
 \dotsspace@=\muskip16
-\c@parentequation=\count267
-\dspbrk@lvl=\count268
+\c@parentequation=\count266
+\dspbrk@lvl=\count267
 \tag@help=\toks17
-\row@=\count269
-\column@=\count270
-\maxfields@=\count271
+\row@=\count268
+\column@=\count269
+\maxfields@=\count270
 \andhelp@=\toks18
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
@@ -111,21 +110,21 @@ Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count272
-\calc@Bcount=\count273
+\calc@Acount=\count271
+\calc@Bcount=\count272
 \calc@Adimen=\dimen150
 \calc@Bdimen=\dimen151
 \calc@Askip=\skip53
 \calc@Bskip=\skip54
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count274
+\calc@Ccount=\count273
 \calc@Cskip=\skip55
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count275
+\g_MT_multlinerow_int=\count274
 \l_MT_multwidth_dim=\dimen152
 \origjot=\skip56
 \l_MT_shortvdotswithinadjustabove_dim=\dimen153
@@ -233,14 +232,14 @@ libraryfiltered.code.tex
 \pgf@yd=\dimen173
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count276
-\c@pgf@countb=\count277
-\c@pgf@countc=\count278
-\c@pgf@countd=\count279
+\c@pgf@counta=\count275
+\c@pgf@countb=\count276
+\c@pgf@countc=\count277
+\c@pgf@countd=\count278
 \t@pgf@toka=\toks32
 \t@pgf@tokb=\toks33
 \t@pgf@tokc=\toks34
-\pgf@sys@id@count=\count280
+\pgf@sys@id@count=\count279
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
 fg
@@ -259,8 +258,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 ssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count281
-\pgfsyssoftpath@bigbuffer@items=\count282
+\pgfsyssoftpath@smallbuffer@items=\count280
+\pgfsyssoftpath@bigbuffer@items=\count281
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 sprotocol.code.tex
@@ -295,7 +294,7 @@ code.tex)
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
 r.code.tex
 \pgfmath@dimen=\dimen174
-\pgfmath@count=\count283
+\pgfmath@count=\count282
 \pgfmath@box=\box55
 \pgfmath@toks=\toks35
 \pgfmath@stack@operand=\toks36
@@ -323,7 +322,7 @@ ions.integerarithmetics.code.tex)
 code.tex)
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
 .code.tex
-\c@pgfmathroundto@lastzeros=\count284
+\c@pgfmathroundto@lastzeros=\count283
 ))
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.
 tex)
@@ -363,7 +362,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box56
 \pgf@hbox=\box57
 \pgf@layerbox@main=\box58
-\pgf@picture@serial@count=\count285
+\pgf@picture@serial@count=\count284
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 egraphicstate.code.tex
@@ -398,8 +397,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 eshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen198
-\pgf@sys@shading@range@num=\count286
-\pgf@shadingcount=\count287
+\pgf@sys@shading@range@num=\count285
+\pgf@shadingcount=\count286
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 eimage.code.tex
@@ -469,7 +468,7 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
 aryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count288
+\pgf@plot@mark@count=\count287
 \pgfplotmarksize=\dimen259
 )
 \tikz@lastx=\dimen260
@@ -484,19 +483,19 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box62
 \tikz@tempbox=\box63
 \tikz@tempbox@bg=\box64
-\tikztreelevel=\count289
-\tikznumberofchildren=\count290
-\tikznumberofcurrentchild=\count291
-\tikz@fig@count=\count292
+\tikztreelevel=\count288
+\tikznumberofchildren=\count289
+\tikznumberofcurrentchild=\count290
+\tikz@fig@count=\count291
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 matrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count293
-\pgfmatrixcurrentcolumn=\count294
-\pgf@matrix@numberofcolumns=\count295
+\pgfmatrixcurrentrow=\count292
+\pgfmatrixcurrentcolumn=\count293
+\pgf@matrix@numberofcolumns=\count294
 )
-\tikz@expandcount=\count296
+\tikz@expandcount=\count295
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarytopaths.code.tex
@@ -535,7 +534,7 @@ decorations.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen274
 \pgfdecoratedinputsegmentremainingdistance=\dimen275
 \pgf@decorate@distancetomove=\dimen276
-\pgf@decorate@repeatstate=\count297
+\pgf@decorate@repeatstate=\count296
 \pgfdecorationsegmentamplitude=\dimen277
 \pgfdecorationsegmentlength=\dimen278
 )
@@ -560,8 +559,8 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@outerparindent=\dimen279
 \enit@toks=\toks40
 \enit@inbox=\box66
-\enit@count@id=\count298
-\enitdp@description=\count299
+\enit@count@id=\count297
+\enitdp@description=\count298
 ) (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/cancel\cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 )
@@ -580,7 +579,7 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 ) (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count300
+\etb@tempcnta=\count299
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
@@ -589,7 +588,7 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )) (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count301
+\lrq@indent=\count300
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
@@ -601,49 +600,49 @@ Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-\c@tabx@nest=\count302
-\c@listtotal=\count303
-\c@listcount=\count304
-\c@liststart=\count305
-\c@liststop=\count306
-\c@citecount=\count307
-\c@citetotal=\count308
-\c@multicitecount=\count309
-\c@multicitetotal=\count310
-\c@instcount=\count311
-\c@maxnames=\count312
-\c@minnames=\count313
-\c@maxitems=\count314
-\c@minitems=\count315
-\c@citecounter=\count316
-\c@maxcitecounter=\count317
-\c@savedcitecounter=\count318
-\c@uniquelist=\count319
-\c@uniquename=\count320
-\c@refsection=\count321
-\c@refsegment=\count322
-\c@maxextratitle=\count323
-\c@maxextratitleyear=\count324
-\c@maxextraname=\count325
-\c@maxextradate=\count326
-\c@maxextraalpha=\count327
-\c@abbrvpenalty=\count328
-\c@highnamepenalty=\count329
-\c@lownamepenalty=\count330
-\c@maxparens=\count331
-\c@parenlevel=\count332
-\blx@tempcnta=\count333
-\blx@tempcntb=\count334
-\blx@tempcntc=\count335
-\c@blx@maxsection=\count336
-\blx@maxsegment@0=\count337
-\blx@notetype=\count338
-\blx@parenlevel@text=\count339
-\blx@parenlevel@foot=\count340
-\blx@sectionciteorder@0=\count341
-\blx@sectionciteorderinternal@0=\count342
-\blx@entrysetcounter=\count343
-\blx@biblioinstance=\count344
+\c@tabx@nest=\count301
+\c@listtotal=\count302
+\c@listcount=\count303
+\c@liststart=\count304
+\c@liststop=\count305
+\c@citecount=\count306
+\c@citetotal=\count307
+\c@multicitecount=\count308
+\c@multicitetotal=\count309
+\c@instcount=\count310
+\c@maxnames=\count311
+\c@minnames=\count312
+\c@maxitems=\count313
+\c@minitems=\count314
+\c@citecounter=\count315
+\c@maxcitecounter=\count316
+\c@savedcitecounter=\count317
+\c@uniquelist=\count318
+\c@uniquename=\count319
+\c@refsection=\count320
+\c@refsegment=\count321
+\c@maxextratitle=\count322
+\c@maxextratitleyear=\count323
+\c@maxextraname=\count324
+\c@maxextradate=\count325
+\c@maxextraalpha=\count326
+\c@abbrvpenalty=\count327
+\c@highnamepenalty=\count328
+\c@lownamepenalty=\count329
+\c@maxparens=\count330
+\c@parenlevel=\count331
+\blx@tempcnta=\count332
+\blx@tempcntb=\count333
+\blx@tempcntc=\count334
+\c@blx@maxsection=\count335
+\blx@maxsegment@0=\count336
+\blx@notetype=\count337
+\blx@parenlevel@text=\count338
+\blx@parenlevel@foot=\count339
+\blx@sectionciteorder@0=\count340
+\blx@sectionciteorderinternal@0=\count341
+\blx@entrysetcounter=\count342
+\blx@biblioinstance=\count343
 \labelnumberwidth=\skip61
 \labelalphawidth=\skip62
 \biblabelsep=\skip63
@@ -655,9 +654,9 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@bcfin=\read3
 \blx@bcfout=\write4
 \blx@langwohyphens=\language79
-\c@mincomprange=\count345
-\c@maxcomprange=\count346
-\c@mincompwidth=\count347
+\c@mincomprange=\count344
+\c@maxcomprange=\count345
+\c@mincompwidth=\count346
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -666,74 +665,74 @@ File: blx-dm.def 2022/07/12 v3.18b biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count348
-\c@savedafterword=\count349
-\c@annotator=\count350
-\c@savedannotator=\count351
-\c@author=\count352
-\c@savedauthor=\count353
-\c@bookauthor=\count354
-\c@savedbookauthor=\count355
-\c@commentator=\count356
-\c@savedcommentator=\count357
-\c@editor=\count358
-\c@savededitor=\count359
-\c@editora=\count360
-\c@savededitora=\count361
-\c@editorb=\count362
-\c@savededitorb=\count363
-\c@editorc=\count364
-\c@savededitorc=\count365
-\c@foreword=\count366
-\c@savedforeword=\count367
-\c@holder=\count368
-\c@savedholder=\count369
-\c@introduction=\count370
-\c@savedintroduction=\count371
-\c@namea=\count372
-\c@savednamea=\count373
-\c@nameb=\count374
-\c@savednameb=\count375
-\c@namec=\count376
-\c@savednamec=\count377
-\c@translator=\count378
-\c@savedtranslator=\count379
-\c@shortauthor=\count380
-\c@savedshortauthor=\count381
-\c@shorteditor=\count382
-\c@savedshorteditor=\count383
-\c@labelname=\count384
-\c@savedlabelname=\count385
-\c@institution=\count386
-\c@savedinstitution=\count387
-\c@lista=\count388
-\c@savedlista=\count389
-\c@listb=\count390
-\c@savedlistb=\count391
-\c@listc=\count392
-\c@savedlistc=\count393
-\c@listd=\count394
-\c@savedlistd=\count395
-\c@liste=\count396
-\c@savedliste=\count397
-\c@listf=\count398
-\c@savedlistf=\count399
-\c@location=\count400
-\c@savedlocation=\count401
-\c@organization=\count402
-\c@savedorganization=\count403
-\c@origlocation=\count404
-\c@savedoriglocation=\count405
-\c@origpublisher=\count406
-\c@savedorigpublisher=\count407
-\c@publisher=\count408
-\c@savedpublisher=\count409
-\c@language=\count410
-\c@savedlanguage=\count411
-\c@origlanguage=\count412
-\c@savedoriglanguage=\count413
-\c@pageref=\count414
-\c@savedpageref=\count415
+\c@afterword=\count347
+\c@savedafterword=\count348
+\c@annotator=\count349
+\c@savedannotator=\count350
+\c@author=\count351
+\c@savedauthor=\count352
+\c@bookauthor=\count353
+\c@savedbookauthor=\count354
+\c@commentator=\count355
+\c@savedcommentator=\count356
+\c@editor=\count357
+\c@savededitor=\count358
+\c@editora=\count359
+\c@savededitora=\count360
+\c@editorb=\count361
+\c@savededitorb=\count362
+\c@editorc=\count363
+\c@savededitorc=\count364
+\c@foreword=\count365
+\c@savedforeword=\count366
+\c@holder=\count367
+\c@savedholder=\count368
+\c@introduction=\count369
+\c@savedintroduction=\count370
+\c@namea=\count371
+\c@savednamea=\count372
+\c@nameb=\count373
+\c@savednameb=\count374
+\c@namec=\count375
+\c@savednamec=\count376
+\c@translator=\count377
+\c@savedtranslator=\count378
+\c@shortauthor=\count379
+\c@savedshortauthor=\count380
+\c@shorteditor=\count381
+\c@savedshorteditor=\count382
+\c@labelname=\count383
+\c@savedlabelname=\count384
+\c@institution=\count385
+\c@savedinstitution=\count386
+\c@lista=\count387
+\c@savedlista=\count388
+\c@listb=\count389
+\c@savedlistb=\count390
+\c@listc=\count391
+\c@savedlistc=\count392
+\c@listd=\count393
+\c@savedlistd=\count394
+\c@liste=\count395
+\c@savedliste=\count396
+\c@listf=\count397
+\c@savedlistf=\count398
+\c@location=\count399
+\c@savedlocation=\count400
+\c@organization=\count401
+\c@savedorganization=\count402
+\c@origlocation=\count403
+\c@savedoriglocation=\count404
+\c@origpublisher=\count405
+\c@savedorigpublisher=\count406
+\c@publisher=\count407
+\c@savedpublisher=\count408
+\c@language=\count409
+\c@savedlanguage=\count410
+\c@origlanguage=\count411
+\c@savedoriglanguage=\count412
+\c@pageref=\count413
+\c@savedpageref=\count414
 \shorthandwidth=\skip69
 \shortjournalwidth=\skip70
 \shortserieswidth=\skip71
@@ -758,19 +757,19 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.def
 File: biblatex.def 2022/07/12 v3.18b biblatex compatibility (PK/MW)
-\c@textcitecount=\count416
-\c@textcitetotal=\count417
-\c@textcitemaxnames=\count418
-\c@biburlbigbreakpenalty=\count419
-\c@biburlbreakpenalty=\count420
-\c@biburlnumpenalty=\count421
-\c@biburlucpenalty=\count422
-\c@biburllcpenalty=\count423
+\c@textcitecount=\count415
+\c@textcitetotal=\count416
+\c@textcitemaxnames=\count417
+\c@biburlbigbreakpenalty=\count418
+\c@biburlbreakpenalty=\count419
+\c@biburlnumpenalty=\count420
+\c@biburlucpenalty=\count421
+\c@biburllcpenalty=\count422
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count424
+\c@smartand=\count423
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
@@ -784,8 +783,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\standard.b
 bx
 File: standard.bbx 2022/07/12 v3.18b biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count425
-\c@bbx:relatedtotal=\count426
+\c@bbx:relatedcount=\count424
+\c@bbx:relatedtotal=\count425
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -820,7 +819,7 @@ Package: expl3 2023-02-02 L3 programming layer (loader)
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count427
+\l__color_backend_stack_int=\count426
 \l__pdf_internal_box=\box67
 ))
 Package biblatex Info: ... and expl3
@@ -871,11 +870,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count428
+\c@section@level=\count427
 )
 \@linkdim=\dimen280
-\Hy@linkcounter=\count429
-\Hy@pagecounter=\count430
+\Hy@linkcounter=\count428
+\Hy@pagecounter=\count429
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2022-11-13 v7.00u Hyperref: PDFDocEncoding definition (HO)
@@ -888,7 +887,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count431
+\Hy@SavedSpaceFactor=\count430
  (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2022-11-13 v7.00u Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -901,7 +900,7 @@ Package hyperref Info: Plain pages OFF on input line 4177.
 Package hyperref Info: Backreferencing OFF on input line 4182.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4410.
-\c@Hy@tempcnt=\count432
+\c@Hy@tempcnt=\count431
 LaTeX Info: Redefining \url on input line 4748.
 \XeTeXLinkMargin=\dimen281
 
@@ -913,7 +912,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count433
+\Fld@menulength=\count432
 \Field@Width=\dimen282
 \Fld@charsize=\dimen283
 Package hyperref Info: Hyper figures OFF on input line 6027.
@@ -928,9 +927,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6057.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count434
-\c@Item=\count435
-\c@Hfootnote=\count436
+\Hy@abspage=\count433
+\c@Item=\count434
+\c@Hfootnote=\count435
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
@@ -941,8 +940,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count437
-\c@bookmark@seq@number=\count438
+\Fld@listcount=\count436
+\c@bookmark@seq@number=\count437
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
 echeck.sty
@@ -974,10 +973,10 @@ Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
 \SOUL@hyphkern=\dimen287
 \SOUL@dimen=\dimen288
 \SOUL@dimeni=\dimen289
-\SOUL@minus=\count439
-\SOUL@comma=\count440
-\SOUL@apo=\count441
-\SOUL@grave=\count442
+\SOUL@minus=\count438
+\SOUL@comma=\count439
+\SOUL@apo=\count440
+\SOUL@grave=\count441
 \SOUL@spaceskip=\skip84
 \SOUL@ttwidth=\dimen290
 \SOUL@uldp=\dimen291
@@ -989,7 +988,7 @@ Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
 \UL@skip=\skip85
 \UL@hook=\toks47
 \UL@height=\dimen293
-\UL@pe=\count443
+\UL@pe=\count442
 \UL@pixel=\dimen294
 \ULC@box=\box70
 Package: ulem 2019/11/18
@@ -1001,9 +1000,9 @@ eys2e.sty
 Package: l3keys2e 2023-01-16 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count444
-\l__lipsum_a_int=\count445
-\l__lipsum_b_int=\count446
+\g__lipsum_par_int=\count443
+\l__lipsum_a_int=\count444
+\l__lipsum_b_int=\count445
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/breqn\breqn.sty
@@ -1048,8 +1047,8 @@ LaTeX Info: Redefining \scriptstyle on input line 99.
 LaTeX Info: Redefining \scriptscriptstyle on input line 101.
 LaTeX Info: Redefining \genfrac on input line 149.
 ))
-\inf@bad=\count447
-\maxint=\count448
+\inf@bad=\count446
+\maxint=\count447
 \listwidth=\dimen296
 \eqnumsep=\dimen297
 \eqmargin=\dimen298
@@ -1060,12 +1059,12 @@ LaTeX Info: Redefining \genfrac on input line 149.
 \eqdelimoffset=\muskip23
 \eqindentstep=\dimen300
 \eqstyle=\toks48
-\eqbreakdepth=\count449
-\eqinterlinepenalty=\count450
-\intereqpenalty=\count451
+\eqbreakdepth=\count448
+\eqinterlinepenalty=\count449
+\intereqpenalty=\count450
 \intereqskip=\skip88
-\prerelpenalty=\count452
-\prebinoppenalty=\count453
+\prerelpenalty=\count451
+\prebinoppenalty=\count452
 \Dmedmuskip=\muskip24
 \Dthickmuskip=\muskip25
 \eqleftskip=\skip89
@@ -1078,10 +1077,10 @@ LaTeX Info: Redefining \genfrac on input line 149.
 \eq@wdNum=\dimen301
 \GRP@numbox=\box74
 \grp@wdNum=\dimen302
-\eq@lines=\count454
-\eq@curline=\count455
-\eq@badness=\count456
-\EQ@vims=\count457
+\eq@lines=\count453
+\eq@curline=\count454
+\eq@badness=\count455
+\EQ@vims=\count456
 \eq@dp=\dimen303
 \eq@wdL=\dimen304
 \eq@wdT=\dimen305
@@ -1098,57 +1097,57 @@ LaTeX Info: Redefining \genfrac on input line 149.
 \eq@hshift=\dimen316
 \eq@given@sidespace=\dimen317
 \mathindent=\dimen318
-\eq@final@linecount=\count458
+\eq@final@linecount=\count457
 \eq@wdR=\dimen319
 \EQ@continue=\toks49
-\lr@level=\count459
+\lr@level=\count458
 \GRP@queue=\toks50
 \GRP@box=\box75
 \GRP@wholebox=\box76
 \darraycolsep=\skip92
-\cur@row=\count460
-\cur@col=\count461
+\cur@row=\count459
+\cur@col=\count460
 \conditionsep=\skip93
 )
-\c@claim=\count462
-\c@ex=\count463
-\c@thm=\count464
-\c@prob=\count465
-\c@conj=\count466
-\c@task=\count467
-\@quotelevel=\count468
-\@quotereset=\count469
+\c@claim=\count461
+\c@ex=\count462
+\c@thm=\count463
+\c@prob=\count464
+\c@conj=\count465
+\c@task=\count466
+\@quotelevel=\count467
+\@quotereset=\count468
 
-(category_theory_notes.aux)
-\openout1 = `category_theory_notes.aux'.
+(large_card_es1_sol.aux)
+\openout1 = `large_card_es1_sol.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Info: Redefining \celsius on input line 157.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 157
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Info: Redefining \celsius on input line 159.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 159
 .
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 157.
-Package gensymb Info: Using \Omega for \ohm on input line 157.
+LaTeX Info: Redefining \ohm on input line 159.
+Package gensymb Info: Using \Omega for \ohm on input line 159.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -1156,16 +1155,16 @@ Package gensymb Warning: Not defining \micro.
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count470
+\scratchcounter=\count469
 \scratchdimen=\dimen320
 \scratchbox=\box77
-\nofMPsegments=\count471
-\nofMParguments=\count472
+\nofMPsegments=\count470
+\nofMParguments=\count471
 \everyMPshowfont=\toks51
-\MPscratchCnt=\count473
+\MPscratchCnt=\count472
 \MPscratchDim=\dimen321
-\MPnumerator=\count474
-\makeMPintoPDFobject=\count475
+\MPnumerator=\count473
+\makeMPintoPDFobject=\count474
 \everyMPtoPDFconversion=\toks52
 )
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -1188,153 +1187,74 @@ File: english.lbx 2022/07/12 v3.18b biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout4 = `category_theory_notes.bcf'.
+\openout4 = `large_card_es1_sol.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'category_theory_notes.bbl' not found.
+Package biblatex Info: ... file 'large_card_es1_sol.bbl' not found.
 
-No file category_theory_notes.bbl.
-Package biblatex Info: Reference section=0 on input line 157.
-Package biblatex Info: Reference segment=0 on input line 157.
-Package hyperref Info: Link coloring OFF on input line 157.
-(category_theory_notes.out) (category_theory_notes.out)
+No file large_card_es1_sol.bbl.
+Package biblatex Info: Reference section=0 on input line 159.
+Package biblatex Info: Reference segment=0 on input line 159.
+Package hyperref Info: Link coloring OFF on input line 159.
+(large_card_es1_sol.out) (large_card_es1_sol.out)
 \@outlinefile=\write5
-\openout5 = `category_theory_notes.out'.
+\openout5 = `large_card_es1_sol.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 161
+LaTeX Font Info:    Trying to load font information for U+msa on input line 162
 .
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 161
+LaTeX Font Info:    Trying to load font information for U+msb on input line 162
 .
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 16
-1.
+2.
 
 (C:\Users\herna\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
+
+LaTeX Warning: No \author given.
+
+
+Overfull \hbox (2.63463pt too wide) in paragraph at lines 164--165
+[]\OT1/cmr/m/n/10 First we show that $[](\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) 
+= \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 ^^V \OMS/cmsy/m/n/10 j []\OML/cmm/m/it/10 
+^^V\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 . 
+ []
+
 [1
 
 {C:/Users/herna/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(category_theory_notes.toc)
-\tf@toc=\write6
-\openout6 = `category_theory_notes.toc'.
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.162 	\newpage
-                [1
-
-]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sout' on input line 164.
-
-[2] [3] [4] [5] [6] [7] [8] [9] [10] [11]
-Overfull \hbox (8.56021pt too wide) in paragraph at lines 609--610
-[]\OT1/cmr/m/n/10 Given an ob-ject $\OML/cmm/m/it/10 A$ \OT1/cmr/m/n/10 of a lo
--cally small cat-e-gory $\OMS/cmsy/m/n/10 C$ \OT1/cmr/m/n/10 we de-fine a func-
-tor $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A; \OMS/cmsy/m/n/10 ^^
-@\OT1/cmr/m/n/10 ): \OMS/cmsy/m/n/10 C !
- []
-
-[12] [13]
-
-LaTeX Warning: Citation 'Leinster2014' on page 14 undefined on input line 699.
-
-
-Overfull \hbox (0.80516pt too wide) in paragraph at lines 708--709
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 f; g\OT1/cmr/m/n/10 ): (\OML/cmm/m/it/10 A[];
- B[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A[];
- B[]\OT1/cmr/m/n/10 )$ and $(\OML/cmm/m/it/10 h; i\OT1/cmr/m/n/10 ): (\OML/cmm/
-m/it/10 A[]; B[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 (\OML/cmm/
-m/it/10 A[]; B[]\OT1/cmr/m/n/10 )$ and $(\OML/cmm/m/it/10 j; k\OT1/cmr/m/n/10 )
-: (\OML/cmm/m/it/10 A[]; B[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 !
- []
-
-[14]
-Overfull \hbox (5.18639pt too wide) detected at line 741
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 F[]h\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 F[]g\O
-T1/cmr/m/n/10 ) = (\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (1[]\OML/cmm/m/it/10 ; h\O
-T1/cmr/m/n/10 ))(\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (1[]\OML/cmm/m/it/10 ; g\OT1
-/cmr/m/n/10 )) = \OML/cmm/m/it/10 F\OT1/cmr/m/n/10 ((1[]\OML/cmm/m/it/10 ; h\OT
-1/cmr/m/n/10 )(1[]\OML/cmm/m/it/10 ; g\OT1/cmr/m/n/10 )) = \OML/cmm/m/it/10 F\O
-T1/cmr/m/n/10 (1[]\OML/cmm/m/it/10 ; hg\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 F[]
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 hg\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;
- []
-
-[15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29]
-Overfull \hbox (17.53986pt too wide) in paragraph at lines 1412--1413
-[]\OT1/cmr/m/n/10 For $\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 2 [] C$ \OT1/cmr/m/n
-/10 and $\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 FA$ \OT1/cmr/m/
-n/10 we have a nat-u-ral trans-for-ma-tion $	[](\OML/cmm/m/it/10 x\OT1/cmr/m/n/
-10 ): \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A; \OMS/cmsy/m/n/10 ^
-^@\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 !
- []
-
-[30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43]
-(category_theory_notes.aux)
-
-LaTeX Warning: There were undefined references.
-
-Package rerunfilecheck Info: File `category_theory_notes.out' has not changed.
-(rerunfilecheck)             Checksum: 324858697370DC20E1E41B6F358A633C;477.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                category_theory_notes
-(biblatex)                and rerun LaTeX afterwards.
-
-Package logreq Info: Writing requests to 'category_theory_notes.run.xml'.
-\openout1 = `category_theory_notes.run.xml'.
+(large_card_es1_sol.aux)
+Package rerunfilecheck Info: File `large_card_es1_sol.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'large_card_es1_sol.run.xml'.
+\openout1 = `large_card_es1_sol.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36191 strings out of 476374
- 734231 string characters out of 5788855
- 1897340 words of memory out of 5000000
- 55934 multiletter control sequences out of 15000+600000
- 525145 words of font info for 82 fonts, out of 8000000 for 9000
+ 31376 strings out of 476374
+ 616671 string characters out of 5788855
+ 1854340 words of memory out of 5000000
+ 51267 multiletter control sequences out of 15000+600000
+ 520338 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 131i,18n,132p,1026b,1220s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\herna\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1000.pk><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmbx10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/herna/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/herna/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/herna/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/herna/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/User
-s/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-<C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-r12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmr17.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmr5.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmr6.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/herna/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/herna/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/herna/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/herna/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/
-herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><
-C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmt
-i7.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmti8.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/font
-s/type1/public/rsfs/rsfs10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/rsfs/rsfs7.pfb>
-Output written on category_theory_notes.pdf (44 pages, 482260 bytes).
+ 131i,6n,132p,693b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr12.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmr17.pfb><C:/Users/herna/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on large_card_es1_sol.pdf (1 page, 58257 bytes).
 PDF statistics:
- 475 PDF objects out of 1000 (max. 8388607)
- 138 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 PDF objects out of 1000 (max. 8388607)
+ 4 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

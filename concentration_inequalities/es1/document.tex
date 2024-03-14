@@ -1,0 +1,205 @@
+\documentclass{article}
+%Setting margins
+%\usepackage[margin = 1.75in]{geometry}
+%Basic Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{gensymb}
+%For definining theorem-like environments
+\usepackage{amsthm}
+%For beautiful letters (e.g. for a partition, see $\mathscr{P}$)
+\usepackage{mathrsfs}
+%For importing the solution file
+%\usepackage{import}
+%For drawing commutative diagrams
+\usepackage{quiver}
+%For pretty colours
+\usepackage{xcolor}
+%For scaling some relations, for instance see https://tex.stackexchange.com/a/108482
+\usepackage{mleftright}
+%Set paragraph spacing. I believe this is close to what is used in the book.
+%\usepackage[skip=.3\baselineskip, indent = 15pt]{parskip}
+%To customize lists
+\usepackage{enumitem}
+%To strikethrough terms in equations
+\usepackage{cancel}
+%For bibliography
+\usepackage[backend=biber]{biblatex}
+%For pictures
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{lipsum}
+\usepackage{breqn}
+
+%\addbibresource{main.bib}
+
+
+\newcommand{\myhy}[2]{\href{#1}{\color{blue}\setulcolor{blue}\ul{#2}}}
+
+%Fix section numbering to match the book's convention
+\renewcommand\thesection{\arabic{section}}
+
+%Displays "Exercises". To put after each section.
+\newcommand{\extitle}{\subsection*{Exercises}}
+
+%For personal notes
+\newcommand{\note}[1]
+{\smallskip {\noindent\textbf{Note} #1}}
+
+%Roman numerals!
+\newcommand{\RNo}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%San-serif for names of categories
+\newcommand{\serif}[1]{{\fontfamily{cmss}\selectfont #1}}
+\newcommand{\srf}{\textsf}
+
+%Shorthands for common sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\zmod}[1]{\bZ/#1\bZ}
+
+%Miscellaneous commands
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\divides}{\mid}
+\newcommand{\legendre}[2]{\ensuremath{\left( \frac{#1}{#2} \right) }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mbold}[1]{\mathrm{\mathbf{#1}}}
+
+
+%Useful operations and delimiters
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rf}{ref}
+\DeclareMathOperator{\Symm}{Symm}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\innprod{\langle}{\rangle}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%Claim environment
+\newtheorem{claim}{Claim}
+
+
+%Exercise environment
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+%Standard theorem-like environment
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prob}{Problem}
+\newtheorem{conj}{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{egs}[thm]{Examples}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{task}{Task}
+
+
+
+%Solution environment
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+	{\end{proof}}
+
+%Function restrictions
+% From https://tex.stackexchange.com/a/22255
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+
+%\newcommand\nvdash{\mkern-2mu\not\mkern2mu\vdash}
+
+\makeatother
+\setlist{parsep=0pt,listparindent=\parindent}
+\begin{document}
+	\title{Concentration Inequalities\\ ES1 Solutions}
+	\date{}
+	\maketitle
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
+		\item \leavevmode \begin{enumerate}
+			\item Note that 
+			\begin{align*}
+				\mathbb{E}(e^{\lambda Y}) &= \sum_{k=0}^\infty e^{\lambda k}\mathbb{P}(Y=k)\\
+				&= \sum_{k=0}^\infty e^{\lambda k}\frac{e^{-v}v^k}{k!}\\
+				&= e^{-v}\sum_{k=0}^\infty \frac{(e^{\lambda} v)^k}{k!}\\
+				&= \exp(e^\lambda v - v).
+			\end{align*}
+			Hence,
+			\[
+				\mathbb{E}(e^{\lambda Z}) = e^{-\lambda v}\mathbb{E}(e^{\lambda Y}) = \exp(e^{\lambda}v - v - \lambda v).
+			\]
+			It follows that $\psi_Z(\lambda) = ve^{\lambda} - v - \lambda v$. Hence, as $t>0 = \mathbb{E}(Z)$ we have
+			\begin{align*}
+				\psi_Z^*(t) &= \sup_{\lambda} \lambda t - ve^{\lambda} + v + \lambda v\\
+				&= \sup_{\lambda} \lambda(t+ v) -ve^{\lambda} + v.
+			\end{align*}
+			Let $f(x)\coloneqq x(t+v) -ve^{x} + v$. Then $f'(x) = t+v -ve^{x}$. By setting the derivative equal to zero, we get that $x = \ln(\frac{t}{v} + 1)$ yields a maximum of $f$ (we can check this is a maximum by computing the second derivative). And
+			\[
+				\psi_Z^*(t) = f\left(\ln\left(\frac{t}{v} + 1\right)\right) = (t + v)\ln\left(\frac{t}{v} + 1\right) -t.
+			\]
+			Then the Chernoff bound yields 
+			\begin{align*}
+			\mathbb{P}(Z\geq t) &\leq \exp\left(-(t + v)\ln\left(\frac{t}{v} + 1\right) +t\right)\\
+			 &= e^t\left(\frac{t}{v} + 1\right)^{-(t+v)}\\
+			 &= e^{-v}\left(\frac{ev}{t+v}\right)^{t+v}.
+			\end{align*}
+			\item We clearly have $\psi_{-Z}(\lambda) = \psi_Z(-\lambda) = ve^{-\lambda} - v + \lambda v$. Hence
+			\begin{align*}
+				\psi^*_{-Z}(t) &= \sup_{\lambda }\lambda t -ve^{-\lambda} + v - \lambda v\\
+				&=\sup_{\lambda} \lambda(t-v) - ve^{-\lambda} + v
+			\end{align*}
+			If $t > v$ then the $\psi^*_{-Z}(t) = +\infty$ and the Chernoff bound gives a probability of zero. Assume then that $t < v$. It then follows by taking derivatives that the supremum is achieved when $\lambda = \ln(\frac{v}{v-t})$ and so $\psi^*_{-Z}(t) = (t-v)\ln(\frac{v}{v-t}) + t$. The Chernoff bound yields
+			\begin{align*}
+				\mathbb{P}(Z\leq -t) &\leq \exp\left((v-t)\ln\left(\frac{v}{v-t}\right) - t\right)\\
+				&= e^{-t}\left(\frac{v}{v-t}\right)^{v-t}\\
+				&= e^{-v}\left(\frac{ev}{v-t}\right)^{v-t}.\\
+			\end{align*}
+		\end{enumerate}
+		
+		
+	\end{enumerate}
+\end{document}
