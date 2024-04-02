@@ -19,6 +19,35 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{hollings2014embedding}{article}{}
+      \name{author}{1}{}{%
+        {{hash=e0b8703332a65d9dac231427075215bb}{%
+           family={Hollings},
+           familyi={H\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{e0b8703332a65d9dac231427075215bb}
+      \strng{fullhash}{e0b8703332a65d9dac231427075215bb}
+      \strng{bibnamehash}{e0b8703332a65d9dac231427075215bb}
+      \strng{authorbibnamehash}{e0b8703332a65d9dac231427075215bb}
+      \strng{authornamehash}{e0b8703332a65d9dac231427075215bb}
+      \strng{authorfullhash}{e0b8703332a65d9dac231427075215bb}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Archive for history of exact sciences}
+      \field{number}{5}
+      \field{title}{Embedding semigroups in groups: not as simple as it might seem}
+      \field{volume}{68}
+      \field{year}{2014}
+      \field{pages}{641\bibrangedash 692}
+      \range{pages}{52}
+    \endentry
     \entry{johnstone2008embedding}{inproceedings}{}
       \name{author}{1}{}{%
         {{hash=699dbaece968cea1c962c7c10d8ac344}{%
@@ -47,6 +76,37 @@
       \field{year}{2008}
       \field{pages}{273\bibrangedash 294}
       \range{pages}{22}
+    \endentry
+    \entry{vankampen1933lemma}{article}{}
+      \name{author}{1}{}{%
+        {{hash=378f31f9a12effadee1e1bba8a032740}{%
+           family={Kampen},
+           familyi={K\bibinitperiod},
+           given={E.\bibnamedelimi R.},
+           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Johns Hopkins University Press}%
+      }
+      \strng{namehash}{378f31f9a12effadee1e1bba8a032740}
+      \strng{fullhash}{378f31f9a12effadee1e1bba8a032740}
+      \strng{bibnamehash}{378f31f9a12effadee1e1bba8a032740}
+      \strng{authorbibnamehash}{378f31f9a12effadee1e1bba8a032740}
+      \strng{authornamehash}{378f31f9a12effadee1e1bba8a032740}
+      \strng{authorfullhash}{378f31f9a12effadee1e1bba8a032740}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Mathematics}
+      \field{number}{1}
+      \field{title}{On Some Lemmas in the Theory of Groups}
+      \field{volume}{55}
+      \field{year}{1933}
+      \field{pages}{268\bibrangedash 273}
+      \range{pages}{6}
     \endentry
     \entry{krstic1985embedding}{article}{}
       \name{author}{1}{}{%

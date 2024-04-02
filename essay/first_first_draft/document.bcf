@@ -2349,15 +2349,20 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">main.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">van1930moderne</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">sushkevich1935extension</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">malcev1937immersion</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">malcev1939immersionI</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">malcev1940immersionII</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">lambek1951immersibility</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">krstic1985embedding</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">johnstone2008embedding</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">johnstone2008embedding</bcf:citekey>
+    <bcf:citekey order="1" intorder="1">hollings2014embedding</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">van1930moderne</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">sushkevich1935extension</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">malcev1937immersion</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">malcev1937immersion</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">malcev1939immersionI</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">malcev1940immersionII</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">lambek1951immersibility</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">krstic1985embedding</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">johnstone2008embedding</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">krstic1985embedding</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">vankampen1933lemma</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">krstic1985embedding</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">johnstone2008embedding</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

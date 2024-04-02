@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Fundamental example}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Embedding monoids into groups}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Basic observations}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Other previous work and outline of the paper}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Krsti\'c's solution}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Universal Horn Axioms}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Diagrams}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Embeddability and the spherical axioms}{10}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Non-spherical surfaces}{14}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Statement of the result}{14}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Implications between diagrams}{16}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Proof of the result}{18}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Concluding remarks}{19}{section.4}%
