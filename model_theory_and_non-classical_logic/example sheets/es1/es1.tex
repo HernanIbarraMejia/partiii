@@ -149,17 +149,26 @@
 			
 			\item[(b) $\Rightarrow$ (c):] Without loss of generality, we can assume $e$ is an inclusion. By existential amalgamation with $S = A$, it suffices to show that $(B,A)\Rightarrow_1 (A,A)$. But this follows since $A$ is existentially closed.
 			
-			\item[(c) $\Rightarrow$ (d):] Take any universal formula $\varphi(\bar{x})$ and suppose $A,B\models \mathcal{T}$ where $B$ is a $\mathcal{T}$-model extending $A$. Suppose $A \models \varphi(\bar{x})$. We have a model $D$ as in (c). But then $D\models \varphi(\bar{x})$ as $D$ is elementarily equivalent to $A$, and so $B\models \varphi(\bar{x})$ as universal formulae are preserved under substructures. Conversely, if $A \nvDash \varphi(\bar{x})$ then $A$ satisfies the existential formula $\neg \varphi(\bar{x})$, from which it follows that $B \nvDash \varphi(\bar{x})$ too. This all shows that universal formulae are preserved under extensions of models of $\mathcal{T}$.
-		
-			We have shown that universal formulae are preserved under extensions of models of $\mathcal{T}$. \textcolor{red}{What next? I'm not sure how the result follows from this.}
+			\item[(c) $\Rightarrow$ (d):] Take any universal formula $\varphi(\bar{x})$ and suppose $A,B\models \mathcal{T}$ where $B$ is a $\mathcal{T}$-model extending $A$. Suppose $A \models \varphi(\bar{x})$. We have a model $D$ as in (c). But then $D\models \varphi(\bar{x})$ as $D$ is elementarily equivalent to $A$, and so $B\models \varphi(\bar{x})$ as universal formulae are preserved under substructures. Conversely, if $A \nvDash \varphi(\bar{x})$ then $A$ satisfies the existential formula $\neg \varphi(\bar{x})$, from which it follows that $B \nvDash \varphi(\bar{x})$ too. This all shows that universal formulae are preserved under extensions of models of $\mathcal{T}$. Apply Tarski-Los. 
 			\item [(d) $\Rightarrow$ (e):] By induction on the structure of formulae. Atomic formulae are implied by (d). The induction hypothesis is trivial on conjunctions since universals distribute on those. On negations the universal turns into an existential so apply (d) again. Take universals for the final case of the induction and we are done.
 			
 			\item [(e) $\Rightarrow$ (a):] Let $f\colon A\hookrightarrow B$ be an embedding of $\mathcal{T}$-models, and $\varphi(\bar{x})$ be any formula. We need to show that for all $\bar{a}\in A$ we have $A\models \varphi(\bar{a})$ iff $B \models \varphi(f(\bar{a}))$.
 			
 			We use induction on $\varphi(\bar{x})$. If $\varphi(\bar{x})$ is atomic then this is obvious. Similarly for conjunctions and negations. Now suppose $A \models \exists \bar{y}. \varphi(\bar{a},\bar{y})$. It is clear that $B \models \exists \bar{y}. \varphi(f(\bar{a}),\bar{y})$ as $B$ is a superstructure of $A$. Conversely, if $B \models \exists \bar{y}. \varphi(f(\bar{a}),\bar{y})$ note that this is equivalent to a universal formula $B\models \psi(f(\bar{a}))$ by (e), and so $A \models \psi(\bar{a})$ which implies $A \models \exists \bar{y}. \varphi(\bar{a},\bar{y})$ as desired.
 		\end{itemize}
-		\item We would like to use criterion 11 (b). First, note that all $\mathcal{T}$-models of cardinality $\kappa$ are existentially closed. Indeed, if $A\models \mathcal{T}$ and $|A| = \kappa$ then, by the claim in problem 10, we can get an existentially closed extension $B$ of $A$ with $|B| = |A|$. As $\mathcal{T}$ is $\kappa$-categorical, it follows that $A$ is existentially closed. \textcolor{red}{What next? Is this even the right approach?}
-				
+		\item We would like to use criterion 11 (b). First, note that all $\mathcal{T}$-models of cardinality $\kappa$ are existentially closed. Indeed, if $A\models \mathcal{T}$ and $|A| = \kappa$ then, by the claim in problem 10, we can get an existentially closed extension $B$ of $A$ with $|B| = |A|$. As $\mathcal{T}$ is $\kappa$-categorical, it follows that $A$ is existentially closed.
+		
+		If $\mathcal{T}$ is not model complete then there is a model $M \models \mathcal{T}$ which is not existentially closed. This means that there is an extension $N$ of $M$, an existential formula $\varphi(\bar{x})$, and a tuple $\bar{m}\in M$ such that $N\models \varphi(\bar{m})$ but $M\models \neg \varphi(\bar{m})$.
+		
+		We expand the language by adding a unary symbol $P$, call the resulting language $\mathcal{L}^+$. We make $N$ into an $\mathcal{L}^+$-structure $N^+$ by interpreting $P$ to be (the indicator of) $M$. Hence question 4 applies and, using the notation of that question, we have $N^+\models \neg\varphi^P(\bar{m})$.  Thus,
+		\[
+			N^+ \models \exists \bar{x}. (P(x_1)\wedge \cdots \wedge P(x_n) \wedge \neg\varphi^P(\bar{x})).
+		\]
+		
+		Clearly $|\mathcal{L}^+| < \kappa$. Thus we can find a model $D$ of $\text{Th}(N^+)$ such that $|D|= \kappa$ and the interpretation of $P$ in $D$ also has size $\kappa$ (straightforward compactness argument: add $\kappa$-many constants, say they are distinct and belong in $P$, then we get a model whose interpretation of $P$ has size at least $\kappa$; then use Downwards-LS to get a model of size $\kappa$ and this forces $P$ to have size exactly $\kappa$).
+		
+		Then the interpretation of $P$ in $D$ is a substructure of (the $\mathcal{L}$-reduct of) $D$: this is because $D$ satisfies $\text{Th}(N^+)$ which has sentences saying that $P$ is a substructure. Thus the interpretation of $P$ becomes a non-existentially closed model of $\mathcal{T}$ of size $\kappa$.
+		
 		\item Let $\mathcal{L}$ be the language of graphs, which only has one binary relation symbol $\sim$ (representing adjacency). The theory of (simple) graphs SG is defined below.
 		\[
 			\text{SG}\coloneqq \{\,\forall x. \neg(x\sim x) \,,\, \forall x.\forall y. (x\sim y \Rightarrow y\sim x)\,\}.

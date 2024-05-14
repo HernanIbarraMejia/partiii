@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  30 MAR 2024 07:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  11 MAY 2024 18:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1202,52 +1202,58 @@ T1/cmr/m/n/10 ([]))) \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^_\OT1/cmr/m/n/10 ([]
 \OML/cmm/m/it/10 ; y\OT1/cmr/m/n/10 )[]\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 :
  []
 
-[23] [24] [25] [26] [27] [28] [29] [30] [31]
-Overfull \hbox (14.98488pt too wide) in paragraph at lines 1178--1180
-[][]\OT1/cmr/bx/n/10 Example 1.2.22. []\OT1/cmr/m/n/10 The the-ory RCF of real 
+[23] [24] [25] [26]
+Overfull \hbox (9.65218pt too wide) detected at line 1012
+\OML/cmm/m/it/10 M \OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 = \OML/cmm/m/it/10 '\OT1
+/cmr/m/n/10 ([])  \OMS/cmsy/m/n/10 ([])  []\OML/cmm/m/it/10 :
+ []
+
+[27] [28] [29] [30] [31] [32] [33]
+Overfull \hbox (14.98488pt too wide) in paragraph at lines 1236--1238
+[][]\OT1/cmr/bx/n/10 Example 1.2.23. []\OT1/cmr/m/n/10 The the-ory RCF of real 
 closed fields (with sig-na-ture $(+\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 ^^B\OML/
 cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/i
 t/10 ; <
  []
 
-[32] [33]
-Overfull \hbox (15.74829pt too wide) detected at line 1235
+[34] [35]
+Overfull \hbox (15.74829pt too wide) detected at line 1293
 \OML/cmm/m/it/10 R[] [][]\OT1/cmr/m/n/10 = []
  []
 
-[34] [35] [36]
-Overfull \hbox (73.06093pt too wide) detected at line 1340
+[36] [37]
+Overfull \hbox (73.06093pt too wide) detected at line 1398
 []
  []
 
-[37]
-Overfull \hbox (26.37462pt too wide) in paragraph at lines 1386--1387
+[38] [39]
+Overfull \hbox (26.37462pt too wide) in paragraph at lines 1444--1445
 []\OT1/cmr/m/n/10 Let $\OML/cmm/m/it/10 '[]; [] ; '[] \OMS/cmsy/m/n/10 2 T$ \OT
 1/cmr/m/n/10 and note $[][] \OML/cmm/m/it/10 X[]$ \OT1/cmr/m/n/10 is nonempty s
 ince it con-tains $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 '[]; [] ; '[]\OMS/cmsy/m/
 n/10 g 2
  []
 
-[38] [39] [40]
-Overfull \hbox (14.23398pt too wide) in paragraph at lines 1486--1488
+[40] [41] [42]
+Overfull \hbox (14.23398pt too wide) in paragraph at lines 1544--1546
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 k\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 x[]; [] 
 ; x[]\OT1/cmr/m/n/10 ])$ ([]why?[]), where the lat-ter is the set of prime ide-
 als of $\OML/cmm/m/it/10 k\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 x[]; [] ; x[]\OT1/c
 mr/m/n/10 ]$
  []
 
-[41] [42]
-Overfull \hbox (7.06172pt too wide) in paragraph at lines 1560--1562
+[43] [44]
+Overfull \hbox (7.06172pt too wide) in paragraph at lines 1618--1620
 [][]\OT1/cmr/bx/n/10 Definition 1.5.3 \OT1/cmr/m/n/10 (Ehren-feucht{Mostowski f
 unc-tors)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/n/10 An \OT1/cmr/m/it/10 Ehren-feucht{
 Mostowski
  []
 
-[43] [44] [45]
+[45] [46] [47]
 Chapter 2.
-[46
+[48
 
-] [47] (model_theory_notes.aux)
+] [49] (model_theory_notes.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.25pt have occurred.
@@ -1267,10 +1273,10 @@ Package logreq Info: Writing requests to 'model_theory_notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 32422 strings out of 476374
- 645354 string characters out of 5788855
+ 32436 strings out of 476374
+ 645624 string characters out of 5788855
  1874340 words of memory out of 5000000
- 52066 multiletter control sequences out of 15000+600000
+ 52075 multiletter control sequences out of 15000+600000
  530600 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,18n,132p,717b,1303s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1301,9 +1307,9 @@ ublic/amsfonts/symbols/msbm10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/symbols/msbm5.pfb><C:/Users/herna/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/herna/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on model_theory_notes.pdf (48 pages, 501205 bytes).
+Output written on model_theory_notes.pdf (50 pages, 508247 bytes).
 PDF statistics:
- 643 PDF objects out of 1000 (max. 8388607)
- 235 named destinations out of 1000 (max. 500000)
+ 656 PDF objects out of 1000 (max. 8388607)
+ 240 named destinations out of 1000 (max. 500000)
  133 words of extra memory for PDF output out of 10000 (max. 10000000)
 

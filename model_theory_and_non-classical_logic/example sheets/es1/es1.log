@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  7 DEC 2023 19:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.8)  13 MAY 2024 20:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -260,7 +260,7 @@ Here is how much of TeX's memory you used:
  24404 multiletter control sequences out of 15000+600000
  519611 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,15n,63p,789b,350s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,15n,63p,789b,352s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\herna\AppData\Local\MiKT
 eX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/herna/AppData/Local
 /Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/herna/AppD
@@ -280,7 +280,7 @@ pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users
 .pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 symbols/msbm10.pfb><C:/Users/herna/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/symbols/msbm7.pfb>
-Output written on es1.pdf (10 pages, 218826 bytes).
+Output written on es1.pdf (10 pages, 219715 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

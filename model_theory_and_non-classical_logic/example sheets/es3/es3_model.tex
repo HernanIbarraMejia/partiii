@@ -7,20 +7,48 @@
 \usepackage{url}
 \usepackage{xcolor}
 \usepackage{stmaryrd}
+\usepackage{quiver}
 
 \theoremstyle{theorem}
 \newtheorem{claim}{Claim}
+\newtheorem{prop}{Proposition}
 
 \DeclareMathOperator{\tp}{tp}
 \DeclareMathOperator{\Diag}{Diag}
 \DeclareMathOperator{\Th}{Th}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\im}{im}
+
+
 
 \begin{document}
 	\title{Model Theory and Non-Classical Logic\\ Example Sheet 3 Solutions}
 	\author{Hernán Ibarra Mejia}
 	\maketitle
+	A partial function $f\colon M \to N$ is called \emph{partial elementary} if for all $\varphi(\bar{x})\in\mathcal{L}$ and $\bar{d}\in \dom(f)$
+	\[
+	M \models \varphi(\bar{d}) \,\,\,\iff\,\,\, N \models \varphi(f(\bar{d})).
+	\]
+	In particular, these functions are injective (consider $\varphi(x,y)$ to be the formula $(x=y)$). If $f\colon M \to N$ is partial elementary and $A \coloneqq \dom f$ then we call the map $f\colon A \to N$ just elementary.
+	
+	We also use the following strengthening of elementary amalgamation (which is proved in the same way).
+	\begin{prop}
+		Let $M$ be a structure. Suppose $A$ is a subset of $M$ and $f\colon A \to M$ is an elementary map. Then there exists an elementary extension $N$ of $M$ and an elementary embedding $g\colon M \to N$ such that the following diagram commutes.
+		% https://q.uiver.app/#q=WzAsNCxbMSwyLCJBIl0sWzAsMSwiTSJdLFsyLDEsIk0iXSxbMSwwLCJOIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCJmIiwyXSxbMSwzLCJnIl0sWzIsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XV0=
+		\[\begin{tikzcd}[cramped]
+			& N \\
+			M && M \\
+			& A
+			\arrow["g", from=2-1, to=1-2]
+			\arrow[hook', from=2-3, to=1-2]
+			\arrow[hook, from=3-2, to=2-1]
+			\arrow["f"', from=3-2, to=2-3]
+		\end{tikzcd}\]
+	\end{prop}
+	\begin{proof}
+		
+	\end{proof}
 	\begin{enumerate}[leftmargin=*]
 		\item Let $p$ be a complete 1-type. Then for all $a\in \mathbb{Q}$ exactly one of $x<a$, $x=a$, and $x>a$ is in $p$.
 		
@@ -34,8 +62,47 @@
 		
 		Conversely, any such partition can be extended to a complete type by the Ultrafilter Principle, and it is clear that this correspondence is bijective.
 		
-		\item \textcolor{red}{TODO}	
-		\item First we show that, given a finite number of complete types $p_1,\ldots,p_k\in S_{n}^M(M)$ there is an elementary extension $N$ of $M$ realizing all of them. For $k=0$ this is trivial. Now suppose there is an elementarily extension $N'$ of $M$ realizing $p_1,\ldots,p_{k-1}$. Note that $S_{n}^M(M)= S_n^{M}(N')$ since the extension is elementary, so in particular $p_k\in S_n^{M}(N')$ and by Proposition 1.4.6 there is an elementary extension $N$ of $N'$ realizing $p_k$. Obviously $N$ is an elementary extension of $M$ realizing $p_1,\ldots, p_k$ so we are done by induction.
+		\item We prove a more general result. Let $M$ be a structure and $S$ a subset of $M$ together with an elementary map $f\colon S \to M$. Then there is an elementary extension $N$ of $M$ and an automorphism of $N$ extending $f$.
+		
+		To see that the result immediately solves the problem, observe the following. As $\tp^M(\bar{a}/A) = \tp^M(\bar{b}/B)$ it follows that the map $f\colon A\cup \{\bar{a}\} \to M$ given by fixing $A$ and sending $\bar{a}\mapsto \bar{b}$ is elementary.
+		
+		Now we prove the result. We construct a chain of structures and maps $(M_i,f_i)_{i<\omega}$ satisfying the following properties for all $i\geq 0$.
+		\begin{itemize}
+			\item $M_i\preccurlyeq M_{i+1}$.
+			\item $\im f_i \subseteq \dom f_{i+1}$ and $f_{i+1}$ extends $f_i$.
+			\item If $i$ is even $\dom(f_{i + 1}) = M_{i}$.
+			\item If $i$ is odd $\im(f_{i + 1}) = M_{i}$.
+		\end{itemize}
+		Furthermore we will have $M_0 \coloneqq M$ and $f_0 =f$.
+		
+		Suppose, for a moment, that we have finished the construction. Then let $N \coloneqq \bigcup_{i<\omega}M_i$, which is an elementary extension of $M$. Also let $\sigma \coloneqq \bigcup_{i<\omega} f_i\colon N \to N$, which is clearly an automorphism since $\dom(\sigma)=\im(\sigma)= N$. Also $\sigma$ extends $f_0 = f$ so we will be done.
+		
+		We continue with the construction. Use elementary amalgamation to have the following diagram.
+		% https://q.uiver.app/#q=WzAsNCxbMSwyLCJTIl0sWzAsMSwiTV8wIl0sWzIsMSwiTV8wIl0sWzEsMCwiTV8xIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCJmPWZfMCIsMl0sWzEsMywiZl8xIl0sWzIsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XV0=
+		\[\begin{tikzcd}[cramped]
+			& {M_1} \\
+			{M_0} && {M_0} \\
+			& S
+			\arrow["{f_1}", from=2-1, to=1-2]
+			\arrow[hook', from=2-3, to=1-2]
+			\arrow[hook, from=3-2, to=2-1]
+			\arrow["{f=f_0}"', from=3-2, to=2-3]
+		\end{tikzcd}\]
+		It is easy to check that this satisfies the requirements. We can apply amalgamation to $f_1^{-1}$ to obtain the following diagram
+		% https://q.uiver.app/#q=WzAsNSxbMSwzLCJcXGltKGZfMSkiXSxbMCwyLCJNXzAiXSxbMCwxLCJNXzEiXSxbMiwxLCJNXzEiXSxbMSwwLCJNXzIiXSxbMCwxLCJmXzFeey0xfSJdLFswLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDQsImciLDJdXQ==
+		\[\begin{tikzcd}[cramped]
+			& {M_2} \\
+			{M_1} && {M_1} \\
+			{M_0} \\
+			& {\im(f_1)}
+			\arrow[hook, from=2-1, to=1-2]
+			\arrow["g"', from=2-3, to=1-2]
+			\arrow[hook, from=3-1, to=2-1]
+			\arrow[hook, from=4-2, to=2-3]
+			\arrow["{f_1^{-1}}", from=4-2, to=3-1]
+		\end{tikzcd}\]
+		Define $f_2\colon \im g \to M_1$ to be $g^{-1}$. It follows from the diagram that $g\circ f_1(x) = x$ for $x\in M_0$. Hence we have $f_1(x) = f_2(x)$ for all $x\in M_0$ and so $f_2$ extends $f_1$. Furthermore it is easy to see that $f_2$ is an isomorphism $\im g \to M_1$ so in particular it is surjective and so $\im(f_2) = M_1$. Hence all conditions are satisfied. Keep going on in this way... 
+		\item First we show that, given a finite number of complete types $p_1,\ldots,p_k\in S_{n}^M(M)$ there is an elementary extension $N$ of $M$ realizing all of them. For $k=0$ this is trivial. Now suppose there is an elementarily extension $N'$ of $M$ realizing $p_1,\ldots,p_{k-1}$. Note that $S_{n}^M(M)= S_n^{N'}(M)$ since the extension is elementary, so in particular $p_k\in S_n^{N'}(M)$ and by Proposition 1.4.6 there is an elementary extension $N$ of $N'$ realizing $p_k$. Obviously $N$ is an elementary extension of $M$ realizing $p_1,\ldots, p_k$ so we are done by induction.
 		
 		Back to the main problem. To the language $\mathcal{L}$ we add a constant for each element of $M$ and we add $n$ constants $c_1^p,\ldots, c_n^p$ for every $p\in S_n^M(M)$. In the expanded language, consider the theory
 		\[
@@ -86,15 +153,95 @@
 		\end{enumerate}
 		\item In the proof of Theorem 1.4.11 we make a small modification. Let $f\colon \omega \to \omega \times \omega$ be a bijection. When we define $\theta_s$ for odd $s= 2i + 1$ then if $f(i) = (j,k)$ instead of taking $\bar{d}_i$ we take $\bar{d}_j$, run the same process to get $\psi$ and we let $\varphi$ be a formula in $p_k$ that is not implied by $\psi$. The rest of the proof is the same, except that at the very end we notice that if $\bar{c}\in C^n$ then $\bar{c}= \bar{d}_j$ for some $j$ and that if $k< \omega$ then we can define $i\coloneqq f^{-1}(j,k)$; it then follows that $\theta_{2i+2}$ implies that $\bar{c}$ does not realize $p_k$. As $\bar{c}$ and $k$ were arbitrary, we are done.
 		
-		\item We need to find an uncountable language $\mathcal{L}$, an $\mathcal{L}$-theory $\mathcal{T}$, and a non-isolated $n$-type $p$ of $\mathcal{T}$ such that $p$ is realized in every countable model of $\mathcal{T}$. \textcolor{red}{Hmm... not sure about this one. Feels like it super easy though.}
-		
-		\item \textcolor{red}{Can't do it... I think it uses Omitting Types Theorem at some point.}
-		
-		\item Let $M \coloneqq \{m_1, m_2, \ldots\}$ and $N \coloneqq \{n_1,n_2,\ldots\}$ be two countable $\omega$-saturated, elementarily equivalent $\mathcal{L}$-structures. A partial function $f\colon M \to N$ is called \emph{elementary} if for all $\varphi(\bar{x})\in\mathcal{L}$ and $\bar{d}\in \dom(f)$
+		\item Let $\mathcal{L}$ be the language which has as signature $\aleph_2$ constants, say $\{c_\alpha\}_{\alpha < \aleph_2}$. Let $\mathcal{T}$ be the theory of uncountable sets, i.e.
 		\[
-			M \models \varphi(\bar{d}) \,\,\,\iff\,\,\, N \models \varphi(f(\bar{d})).
+			\mathcal{T} \coloneqq \{c_\alpha \neq c_{\alpha'} \mid \alpha<\alpha' <\aleph_1\}.
 		\]
-		We construct a sequence $f_0,f_1,\ldots$ such that for all $i\in \mathbb{N}$:
+		Define
+		\[
+			p \coloneqq \{x \neq c_{\alpha} \mid \alpha < \aleph_2\}.
+		\]
+		It is easy to check that this is a 1-type of $\mathcal{T}$ (any set of cardinality bigger than $\aleph_2$ is a model of $\mathcal{T}$ realizing $p$). 
+		
+		For the sake of contradiction, suppose this type is isolated by a formula $\varphi(x)$. This means that $\mathcal{T}\cup \{\varphi(x)\}$ is satisfiable and
+		\[
+			\mathcal{T} \models \forall x. (\varphi(x) \rightarrow x \neq c_{\alpha})
+		\]
+		for all $\alpha < \aleph_2$. Choose $\alpha$ such that $c_{\alpha}$ does not appear in $\mathcal{T}$ nor in $\varphi(x)$; this is possible because $\mathcal{T}$ mentions only $\aleph_1$-many constants and $\varphi(x)$ only finitely many. Hence by generalization we have
+		\[
+		\mathcal{T} \models \forall x,y. (\varphi(x) \rightarrow x \neq y).
+		\]
+		In particular,
+		\[
+		\mathcal{T} \models \forall x. (\varphi(x) \rightarrow x \neq x).
+		\]
+		contradicting the fact that $\mathcal{T} \cup{\varphi(x)}$ is satisfiable. Thus $p$ is not isolated. However there can be no countable model of $\mathcal{T}$ ommiting $p$ since $\mathcal{T}$ has no countable models!
+		
+		\item Let $\mathcal{M}$ be a countable model of PA. If $\mathcal{L}$ denotes the language of arithmetic, we add a constant $c$ to the language and let $\mathcal{L}^+ \coloneqq \mathcal{L}_{\{c\}\cup \mathcal{M}}$. We define the $\mathcal{L}^+$-theory
+		\[
+			\mathcal{T} \coloneqq \Diag_{\text{el}}(M) \cup \{c > m \mid m\in \mathcal{M}\}.
+		\]
+		This theory is clearly consistent by Compactness. 
+		
+		Say an element $m\in \mathcal{M}$ is \emph{natural} if the interval $[0,m]$ is finite. If $m$ is natural then there are $m_1,\ldots,m_k\in \mathcal{M}$ such that
+		\[
+			\mathcal{M} \models \forall x. \left(\bigwedge_{i=1}^k x \neq m_i \rightarrow x > m\right)
+		\]
+		
+		If $m_0$ is not natural we say it is \emph{unnatural}. For every unnatural $m_0\in \mathcal{M}$ we define 
+		\[
+			p_{m_0} \coloneqq \{x \neq  m \mid m\in \mathcal{M}\} \cup\{x < m_0\}.
+		\]
+		We claim that $p_{m_0}$ is a non-isolated type over $\mathcal{T}$ for all unnatural $m_0\in\mathcal{M}$. Firstly, if $p\subseteq p_{m_0}$ is finite then $\mathcal{T}\cup p$ is satisfiable precisely because $[0,m_0]$ is infinite, so $p_{m_0}$ is a 1-type over $\mathcal{T}$. 
+		
+		Suppose, for the sake of contradiction, that $p_{m_0}$ is isolated by an $\mathcal{L}^+$-formula $\varphi(x)$. Write $\varphi(x) = \psi(x,c)$ where $\psi$ is an $\mathcal{L}_{\mathcal{M}}$-formula. As $\varphi$ is an isolating formula we have that $\mathcal{T}\cup\{\varphi(x)\}$ is satisfiable. So let $\mathcal{M}'$ be a satisfying structure. Clearly $\mathcal{M}'$ is an elementary extension of $\mathcal{M}$ that includes two constants $c^{\mathcal{M}'},d^{\mathcal{M'}}$ such that $\mathcal{M'} \models c^{\mathcal{M}'} > m$ for all $m\in\mathcal{M}$ and $\mathcal{M'} \models \psi(d^{\mathcal{M'}},c^{\mathcal{M'}})$. As $\varphi(x)$ isolates $p_{m_0}$ we have in particular that $\psi(x,c)$ implies that $x < m_0$. Thus
+		\[
+			\mathcal{M}' \models \psi(d^{\mathcal{M'}},c^{\mathcal{M'}}) \wedge d^{\mathcal{M'}} < m_0.
+		\]
+		It follows that 
+		\[
+			\mathcal{M}' \models \exists z < m_0. \psi(z,c^{\mathcal{M'}}).
+		\]
+		Furthermore, for all $m\in \mathcal{M}$ we have that 
+		\[
+			\mathcal{M}' \models \exists y > m \exists z < m_0. \psi(z,y).
+		\]
+		Thus, as $\mathcal{M}$ is an elementary substructure of $\mathcal{M}'$ we have that 
+		\[
+			\mathcal{M} \models \exists y > m. \exists z < m_0. \psi(z,y),
+		\]
+		for all $m\in\mathcal{M}$. Hence,
+		\[
+		\mathcal{M} \models \forall x. \exists y > x.\exists z < m_0. \psi(z,y).
+		\]
+		Now, PA proves the pigeonhole principle. Think of $z$ as the pigeonholes, $y$ as the pigeons, and $\psi(z,y)$ as the statement ``pigeon $y$ is assigned pigeonhole $z$''; then it is clear that, as we are trying to fit infinitely many pigeons in finitely many pigeonholes there is a pigeonhole with arbitrarily many pigeoholes (of course $[0,m_0]$ is not actually finite but PA proves the pigeonhole principle nevertheless). Thus,
+		\[
+		\mathcal{M} \models \exists z < m_0.\forall x. \exists y > x. \psi(z,y).
+		\]
+		In particular, there is some $m_1\in \mathcal{M}$ such that $m_1< m_0$ and 
+		\[
+		\mathcal{M} \models \forall x. \exists y > x. \psi(m_1,y).
+		\]
+		We claim that $\mathcal{T}\cup\{\psi(m_1,c)\}$ is consistent. If it were inconsistent then, by Compactness, there is $n\in \mathcal{M}$ such that
+		\[
+			\Diag_{\text{el}}(M) \cup \{c> n\} \models \neg\psi(m_1,c),
+		\]
+		and thus $\Diag_{\text{el}}(M) \models c > n \rightarrow \neg\psi(m_1,c)$. As $\Diag_{\text{el}}(M)$ does not mention $c$ we have, by generalization, 
+		\[
+			\Diag_{\text{el}}(M) \models \forall y> n. \neg\psi(m_1,c),
+		\]
+		contradicting the defining property of $m_1$. We conclude that $\mathcal{T}\cup\{\psi(m_1,c)\}$ is consistent. As $\varphi(x)$ isolates $p_{m_0}$ we also must have
+		\[
+			\mathcal{T} \models \psi(m_1,c) \rightarrow m_1 \neg m_1,
+		\]
+		a contradiction. Thus none of the types $p_{m_0}$ is isolated. By Q5, and the fact that $\mathcal{L}^+$ is countable, there is a countable model $\mathcal{N}$ of $\mathcal{T}$ omitting all $p_{m_0}$ for $m_0\in \mathcal{M}$ unnatural.
+		
+		We claim that $\mathcal{N}$ is a proper end extension. It is clearly an (elementary) extension, and it is proper since $c^{\mathcal{N}}$ is greater than all elements of $\mathcal{M}$. If it weren't an end extension then there must be some $n\in\mathcal{N}\setminus\mathcal{M}$ and $m_0\in\mathcal{M}$ such that $n<m_0$. Clearly this cannot happen for $m_0$ unnatural since $\mathcal{N}$ omits $p_{m_0}$. So suppose $m_0$ is natural. But then there are $m_1,\ldots,m_k\in \mathcal{M}$ such that
+		\[
+		\mathcal{M} \models \forall x. \left(\bigwedge_{i=1}^k x \neq m_i \rightarrow x > m_0\right).
+		\] 
+		As $\mathcal{N}$ is an elementary extension, we have that $\mathcal{N}$ also models this sentence, and thus $n > m_0$ as well as $n < m_0$, a contradiction. Thus $\mathcal{N}$ is a proper end extension of $\mathcal{M}$.
+		\item Let $M \coloneqq \{m_1, m_2, \ldots\}$ and $N \coloneqq \{n_1,n_2,\ldots\}$ be two countable $\omega$-saturated, elementarily equivalent $\mathcal{L}$-structures. We construct a sequence $f_0,f_1,\ldots$ such that for all $i\in \mathbb{N}$:
 		\begin{itemize}
 			\item $f_i$ is an elementary partial function $M\to N$;
 			\item $f_{i+1}$ extends $f_i$;
@@ -113,14 +260,65 @@
 		is a 1-type for $M$ so it has a realization $m\in M$. Finally, we let $f_{i+1} \colon D\cup\{m,m_{i+1}\}\to C\cup\{n,n_{i+1}\}$ be the extension of $g$ mapping $m\mapsto n_{i+1}$. For the same reasons as before, $f_{i+1}$ is elementary. This finishes the construction.
 		
 		Now let $f\colon M \to N$ be the union of all $f_i$. By construction, $f$ is defined everywhere, elementary, and surjective. It is also injective since $N\models f(m) = f(m')$ will imply $M\models m = m'$. The fact that $f$ is a homomorphism can be similarly verified.
+		
+		\item We assume $\mathcal{T}$ is, in addition, consistent, since otherwise the result is trivial.
+		
+		Suppose there are finitely many equivalence classes for formulae (of a given arity). We claim that countable $\mathcal{T}$-models are $\omega$-saturated. Indeed, suppose $M\models\mathcal{T}$ is a model and let $\bar{a}\subseteq M$ be a finite tuple. Let $p\in S_n^M(\bar{a})$; we have to show that $M$ realizes $p$. 
+		
+		By assumption we can consider $p$ as a finite set of formulae to be satisfied, since $M\models \mathcal{T}$ and $\mathcal{T}$ has finitely many equivalence classes for formulae of a given arity, and the arity of formulae in $p$ is bounded by $n + |\bar{a}|$. By taking the conjunction of all these formulae, we are left with a single formulae $\varphi(\bar{x}, \bar{a})$ and we have to show that $M \models \exists \bar{x}. \varphi(\bar{x}, \bar{a})$. But as $p$ is a type, we know it is realized in an elementary extension $N$ of $M$, and so $N \models\exists \bar{x}. \varphi(\bar{x}, \bar{a})$. As the extension is elementary we get that $M$ realizes $p$. This shows that all models of $\mathcal{T}$ are $\omega$-saturated.
+		
+		Now, any two countable models of $\mathcal{T}$ are elementarily equivalent (since $\mathcal{T}$ is complete) and $\omega$-saturated, thus isomorphic by Q8. Hence $\mathcal{T}$ is $\aleph_0$-categorical, as desired.
+		
+		Conversely, suppose there is some $n$ such that are infinitely many $\mathcal{T}$-equivalence classes of formulae with $n$ variables $\bar{x} = (x_1,\ldots,x_n)$. We claim the following.
+		\begin{claim}
+			All models of $\mathcal{T}$ are infinite.
+		\end{claim}
+		\begin{proof}
+			Suppose $\mathcal{T}$ has a finite model $M$. Then $M$ thinks there are only finitely many equivalence classes of formulae with $n$-variables. Indeed, the equivalence class of a formulae $\varphi(\bar{x})$ is determined by its truth value on its inputs, i.e. we can see the formula as a Boolean function $M^n \to \{0,1\}$, and there are only finitely many of those since $M$ is finite. Hence there are formulae $\varphi_1(\bar{x}),\ldots, \varphi_k(\bar{x})$ such that
+			for all formulae $\varphi(\bar{x})$ there is some $i\leq k$ with
+			\[
+				M \models \forall x. (\varphi(\bar{x}) \leftrightarrow \varphi_i(\bar{x})).
+			\]
+			As $\mathcal{T}$ is complete we see that the same is true if we replace $M$ by $\mathcal{T}$ in the above, and thus there are only finitely many $\mathcal{T}$-equivalence classes of formulae with $n$ variables, a contradiction.
+		\end{proof}
+		
+		Now, the condition on the equivalence classes can be equivalently stated to say that the Lindenbaum-Tarski algebra $\mathcal{B}_n(\mathcal{T})$ is infinite. Hence the Fréchet filter on $\mathcal{B}_n(\mathcal{T})$ is proper and can be extended to a free ultrafilter on $\mathcal{B}_n(\mathcal{T})$ (this is by ES2 Q5(b)). This ultrafilter corresponds to a complete type $p$, and the fact that is free means that $p$ is not isolated (!).
+		
+		By the ommitting types theorem (here we use the countability of the language), there is a countable model $N\models \mathcal{T}$ that omits $p$. By definition of types there is a model $M \models \mathcal{T}$ that realizes $p$, say with a tuple $\bar{m}\in M$. By our claim $M$ is infinite. Using the downwards Löwenheim–Skolem theorem (again using $|\mathcal{L}| = \aleph_0$) we can find an elementary substructure $M'$ of $M$ such that $M'$ is countable and $\bar{m}\in M'$. As the substructure is elementary, we have $M'\models \mathcal{T}$ and that $\bar{m}$ realizes $p$ in $M'$. 
+		
+		But then $M'$ and $N$ are countable models of $\mathcal{T}$, and one of the realizes $p$ while the other ones omits $p$. We conclude that $\mathcal{T}$ is \emph{not} $\aleph_0$-categorical.
+		
+		Consider a theory $\mathcal{S}$ with quantifier elimination in a language whose signature has finitely many relation symbols (of arity at least 1) and no function symbols. The language clearly is countable. We claim that $\mathcal{S}$ is complete. Indeed, it suffices to decide quantifier-free sentences, but these are only Boolean combinations of $\bot$ by the signature, so this is trivial. 
+		
+		Again, by quantifier-elimination, each formula is equivalent to a quantifier-free formula, and using the disjunctive normal form and by analysing all the possible literals we can reduce everything to finitely many formulae.
+		
+		\item Let $\varepsilon$ be an infinite linear order contained in an infinite model of $\mathcal{T}$. It follows from the Ehrenfeucht–Mostowski theorem (by Skolemizing the language first) that there is an Ehrenfeucht–Mostowski functor $F$ such that $\Th(F)$ expands $\Th(M,\eta)$. As a particular case of this, the sentences satisfied in $M$ are also satisfied in $\Th(F)$. More particularly, $F$ takes values in $\mathcal{T}$-models.
+		
+		Note that there is a homomorphism $G\to F(\eta)$ given by $g\mapsto F(g)$; that this is a homomorphism follows from functoriality of $F$. But if $F(g) = F(h)$ then, as $F$ extends maps, we have that $g=h$, and so this homomorphism identifies $G$ with a subgroup of $\text{Aut}(F(\eta))$.
+		
+		\item Let $T$ be the set of all closed terms in $\mathcal{L}$, and define an equivalence relation on $T$ by saying that for all $s,t\in T$
+		\[
+			s\sim t \iff s=t \in \Gamma.
+		\]
+		We claim that this is an equivalence relation. It is reflexive by the first condition of $=$-closed. Suppose $s=t\in \Gamma$. If we define $\varphi(x)\coloneqq (x=s)$ then, as $\varphi(s) \in \Gamma$ we have $\varphi(t) = (t=s)\in \Gamma$; hence the relation is symmetric. Finally, suppose $s=t$ and $t = u$ are in $\Gamma$. Let $\psi(x)\coloneqq x = u$. Then as $s = t$ and $\psi(t)\in \Gamma$ it follows that $\psi(s)\in \Gamma$, and so $s=u$ is in $\Gamma$; this shows that the relation is transitive.
+		
+		Define $M\coloneqq T/{\sim}$, and if $t\in T$ we denote by $[t]$ the corresponding equivalence class. We make $M$ into an $\mathcal{L}$-structure as follows. For a constant $c$ we define $c^M \coloneqq [c]$. For a function symbol $f$ of arity $n$ we inductively define
+		\[	
+			f([t_1],\ldots,[t_n]) = [f(t_1,\ldots,t_n)].
+		\]
+		We need to check that this assignment is well-defined. Suppose $t_1,\ldots,t_n,t_1',\ldots,t_n'$ are such that $t_i\sim t_i'$ for all $i$. It can be proved by induction on $n$ that 
+		\[
+			f(t_1,\ldots,t_n) \sim f(t_1',\ldots,t_n').
+		\]	
+		For relation symbols $R$ we define
+		\[
+			([t_1],\ldots,[t_n])\in R^M  \iff R(t_1,\ldots,t_n)\in T.
+		\] 
+		It can be checked that this is well-defined and thus $M$ becomes an $\mathcal{L}$-structure. The rest can be easily shown by induction over the structure of formulae.
+		
+		\item \leavevmode
+		\begin{enumerate}
+			\item 
+		\end{enumerate}
 		\end{enumerate}
 \end{document}
-\item \textcolor{red}{INCOMPLETE: Didn't really get the explanation in the example class. }We can assume that $\bar{a}$ and $\bar{b}$ don't share any elements since these do not pose additional restrictions to the automorphism. In this case none of the elements in $\bar{a},\bar{b}$ can be in $A$ since if $a_i\in A$ for example, the $\mathcal{L}_A$ formula $x = a_i$ is true for $a_i$ but not for $b_i$, contradicting $\tp^M(\bar{a}/A) = \tp^M(\bar{b}/A)$.
-
-Let $M_0\coloneqq M$. Note that $(M,A,\bar{a})\equiv (M,A,\bar{b})$ by assumption, so, by a variant of elementary amalgamation, there is an elementary extension $N_0$ of $M_0$ and an elementary embedding $f_0\colon M_0\to N_0$ that fixes $A$ and such that $f_0(\bar{a}) = \bar{b}$. 
-
-Now suppose we have defined $M\preccurlyeq M_i\preccurlyeq N_i$ and we have an elementary embedding $f_i\colon M_i \to N_i$ fixing $A$ and such that $f_i(\bar{a}) = \bar{b}$. It follows that $(M_i,M_i,\bar{a}) \equiv (N_i,M_i,\bar{b})$ where in the latter a constant corresponding to an element $m$ of $M_i$ is interpreted in $N$ as $f_i(m)$. So, by elementary amalgamation, there is an elementary extension $M_{i+1}$ of $M_i$ and an elementary embedding $g_i\colon N_i\to M_{i+1}$ such that $g_i(\bar{b}) = \bar{a}$ and $g_i(f_i(m)) = m$ for all $m\in M_i$.
-
-We claim that $(M_{i+1},M_i) \equiv (M_{i+1},g_i(f_i(M_i)))$. Let $\varphi(\bar{m})$ be an $\mathcal{L}$-formula where $\bar{m}\in M_i$, and suppose $M_{i+1} \models \varphi(\bar{m})$. As $M_{i}\preccurlyeq M_{i+1}$ this is equivalent to $M_i \models \varphi(\bar{m})$, and as $f_i$ and $g_i$ are both elementary embeddings this is the same as $M_{i+1}\models \varphi(g_i(f_i(\bar{m})))$
-
-Again, by elementary amalgamation, there is some elementary extension $N_{i+1}$ of $M_{i+1}$ and an elementary embedding $f_{i+1}\colon M_{i+1} \to N_{i+1}$ such that $f_{i+1}(m) = g_i(f_i(m))$ for all $m\in M_i$.
