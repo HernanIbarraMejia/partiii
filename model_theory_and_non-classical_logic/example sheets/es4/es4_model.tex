@@ -1,0 +1,598 @@
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{stmaryrd}
+\usepackage{pdflscape}
+\usepackage{quiver}
+\usepackage{bussproofs}
+
+\theoremstyle{plain}
+\newtheorem{claim}{Claim}
+\newtheorem{prop}{Proposition}
+
+\DeclareMathOperator{\tp}{tp}
+\DeclareMathOperator{\Diag}{Diag}
+\DeclareMathOperator{\Th}{Th}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\im}{im}
+
+
+
+\begin{document}
+	\title{Model Theory and Non-Classical Logic\\ Example Sheet 4 Solutions}
+	\author{Hernán Ibarra Mejia}
+	\maketitle
+	\begin{enumerate}
+		\item Suppose every subset of a Bishop-finite set is Bishop-finite. Let $\varphi$ be any proposition---we want to show that $\varphi\vee \neg \varphi$. The set $[1]$ is clearly Bishop-finite. Define 
+		\begin{equation*}
+			A \coloneqq \{x \in [1] \mid \varphi \}.
+		\end{equation*}
+		Then there is a bijection $f\colon A \to [m]$ for some $m\in \mathbb{N}$. There is an algorithm such that given $m$ it checks whether $[m]$ is inhabited (say by checking whether $0\in[m]$). Hence we can decide whether $[m]$ is inhabited (if you are fussy, you can prove this by induction too). 
+		
+		If $[m]$ is inhabited then we get a proof of $\varphi$ by considering $f^{-1}$, while if it is not inhabited then we get a proof of $\neg\varphi$ by first assuming that there is a proof of $\varphi$, from which it follows that $A$ is inhabited, and then considering the image of $f$.
+		
+		Conversely, suppose the law of the excluded middle holds. We let $A\subseteq B$ and suppose we can list $B=\{b_0,\ldots,b_{n-1}\}$. Then for all $b_i\in B$ we can ask whether it is in $A$ or not, and if it is not we delete it. We get a subsequence which can be easily reindexed to enumerate $A$. Clearly this also works if we do not accept excluded middle but $A$ is decidable in $B$.
+		\item 
+		\begin{enumerate}
+			\item $\lambda q \colon (\phi \to \psi) \times (\chi \to \rho). \lambda r \colon \phi \to \chi. \lambda t \colon \phi. \langle \pi_1(q)t,\pi_2(q)rt\rangle.$
+			\item $\lambda p \colon (\phi \to \psi). \lambda q \colon \psi \to \chi. \lambda r \colon \phi. q(pr).$
+			\item $\lambda p \colon \phi \to (\psi \to \chi). \lambda q\colon \phi \times \psi. (p\pi_1(q))\pi_2(q)$.
+			\item $\lambda p \colon \psi \times \phi \to \chi. \lambda q \colon \phi. \lambda r \colon \psi. p\langle r,q\rangle$.
+			\item $\lambda p \colon (\phi \to \chi) \times (\psi \to \chi). \lambda q\colon \phi + \psi. \text{case}(q;x\colon \phi. \pi_1(p)x;y\colon \psi. \pi_2(p)y)$.
+		\end{enumerate}
+		\item 
+		\begin{enumerate}
+			\item This is pictorially obvious: if $X > M_1 > \cdots > M_k$ and $X > N_1 > \cdots > N_l$ then consider an algorithm going as follows (it looked better on paper)
+			% https://q.uiver.app/#q=WzAsMTQsWzMsNiwiWCJdLFsyLDUsIk1fMSJdLFsxLDQsIk1fMiJdLFswLDMsIk1fMyJdLFs0LDUsIk5fMSJdLFs1LDQsIk5fMiJdLFs2LDMsIk5fMyJdLFszLDQsIllfMSJdLFsyLDMsIllfMV5NIl0sWzQsMywiWV8xXk4iXSxbMywyLCJZXzIiXSxbMSwyLCJZXzJeTSJdLFs1LDIsIlleTl8yIl0sWzMsMCwiWV8zIl0sWzAsMV0sWzAsNF0sWzQsNV0sWzUsNl0sWzEsMl0sWzIsM10sWzEsN10sWzQsN10sWzIsOF0sWzcsOF0sWzUsOV0sWzcsOV0sWzgsMTBdLFs5LDEwXSxbMywxMV0sWzEwLDExXSxbNiwxMl0sWzEwLDEyXSxbMTEsMTNdLFsxMiwxM11d
+			\[\begin{tikzcd}[cramped]
+				&&& {Y_3} \\
+				\\
+				& {Y_2^M} && {Y_2} && {Y^N_2} \\
+				{M_3} && {Y_1^M} && {Y_1^N} && {N_3} \\
+				& {M_2} && {Y_1} && {N_2} \\
+				&& {M_1} && {N_1} \\
+				&&& X
+				\arrow[from=3-2, to=1-4]
+				\arrow[from=3-4, to=3-2]
+				\arrow[from=3-4, to=3-6]
+				\arrow[from=3-6, to=1-4]
+				\arrow[from=4-1, to=3-2]
+				\arrow[from=4-3, to=3-4]
+				\arrow[from=4-5, to=3-4]
+				\arrow[from=4-7, to=3-6]
+				\arrow[from=5-2, to=4-1]
+				\arrow[from=5-2, to=4-3]
+				\arrow[from=5-4, to=4-3]
+				\arrow[from=5-4, to=4-5]
+				\arrow[from=5-6, to=4-5]
+				\arrow[from=5-6, to=4-7]
+				\arrow[from=6-3, to=5-2]
+				\arrow[from=6-3, to=5-4]
+				\arrow[from=6-5, to=5-4]
+				\arrow[from=6-5, to=5-6]
+				\arrow[from=7-4, to=6-3]
+				\arrow[from=7-4, to=6-5]
+			\end{tikzcd}\]
+			\item \textcolor{red}{Rather unenlightening checking}
+		\end{enumerate}
+		\item Suppose $\vdash_{IPC(\rightarrow)} \bot$. By the Curry-Howard correspondence, there is a $\lambda$-term $M$ such that $\Vdash M \colon 0$. Using $\beta$-normalisation and subject reduction we can assume $M$ is in $\beta$-normal form. As $M$ cannot have any free variables, we must have $M$ to be of the form $\lambda x\colon \sigma. P$. Hence the corresponding proof would be of the form $A \rightarrow B$, but this is not the form of $\bot$, contradiction.
+		\item Recall that we define $a\leq b$ to be the case iff $a\wedge b = a$. Then if $a\leq b$ we have, by the absorption laws that
+		\[
+			a \vee b = (a \wedge b) \vee b = b.
+		\]
+		Conversely, if $a\vee b = b$ then 
+		\[
+			a \wedge b = a \wedge (a \vee b) = a,
+		\]
+		so $a \vee b = b$ is an equivalent definition for $a\leq b$.
+		
+		We also note that from the definition of lattices we can deduce that $\wedge$ and $\vee$ are idempotent. Indeed, if $a$ is an element of a lattice then, using both absorption laws,
+		\[
+			a \vee a = a\vee (a \wedge (a \vee a)) = a,
+		\]
+		and similarly,
+		\[
+			a \wedge a = a \wedge (a \vee (a\wedge a)) = a.
+		\]
+		
+		Using these results we can prove that the operations $a \wedge -$ and $a \vee -$ are order preserving. Indeed, if $b\leq c$ then
+		\[
+			(a \wedge b) \wedge (a \wedge c) = (a \wedge a) \wedge (b \wedge c) = a \wedge b,
+		\]
+		and so $a \wedge b \leq a \wedge c$. Similarly, we have
+		\[
+			(a \vee b) \vee (a \vee c) = (a \vee a) \vee (b \vee c) = a \vee c,
+		\]
+		and so $a \vee b \leq a \vee c$.
+		
+		Note as well that the absorption laws can be restated in terms of $\leq$ to say that $a \leq a\vee b$ and $a \wedge b \leq a$.
+		
+		Finally I will prove the universal property of products for $\wedge$ and of coproducts for $\vee$. That is, if $c\leq a$ and $c\leq b$ we have that 
+		\[
+			(a \wedge b) \wedge c = a \wedge (b \wedge c) = a\wedge c = c,
+		\]
+		so $c\leq a\wedge b$. Similarly, if we now assume that $a\leq c$ and $b\leq c$ then
+		\[
+			(a \vee b) \vee c = a\vee (b \vee c) = a \vee c = c,
+		\]
+		from which it follows that $a \vee b \leq c$.
+		\begin{enumerate}
+			\item Suppose $b\leq c$. As $a \Rightarrow b \leq a \Rightarrow b$ we have that
+			\[
+				(a\Rightarrow b) \wedge a \leq b \leq c.
+			\]
+			Thus $a\Rightarrow b \leq a\Rightarrow c$. Now we do the other direction. As $- \wedge x$ preserves order we have that
+			\[
+				b \wedge (c \Rightarrow a) \leq c \wedge (c \Rightarrow a).
+			\]
+			We also have $c \Rightarrow a \leq c \Rightarrow a$, from which it follows that $c \wedge (c \Rightarrow a) \leq a$. Putting the inequalities together we get that 
+			\[
+				b \wedge (c \Rightarrow a) \leq a,
+			\]
+			and hence $c\Rightarrow a \leq b \Rightarrow a$ as desired.
+			\item By the absorption laws we have $a \leq a \vee b$. As $- \Rightarrow \bot$ is order-reversing by the previous item we have that $\neg(a\vee b) \leq \neg a$. By symmetry we also get $\neg (a\wedge b) \leq \neg b$. But then by universal product property of $\wedge$ we have $\neg (a\vee b) \leq \lnot a \wedge \lnot b$. 
+			
+			Also, from $x\wedge y \leq x$ we get that 
+			\[
+				\lnot a \wedge \lnot b \leq a \Rightarrow \bot,
+			\]
+			and so
+			\[
+				(\lnot a \wedge \lnot b ) \wedge a \leq \bot,
+			\]
+			and hence
+			\[
+				a \leq (\lnot a \wedge \lnot b) \Rightarrow \bot. 
+			\]
+			By symmetry we also have
+			\[
+				b \leq (\lnot a \wedge \lnot b) \Rightarrow \bot.
+			\]
+			Using the universal coproduct property of $\vee$ we have that 
+			\[
+				a \vee b \leq (\lnot a \wedge \lnot b) \Rightarrow \bot.
+			\]
+			Using the definition of $\Rightarrow$ now we get 
+			\[
+				(\lnot a \wedge \lnot b) \wedge (a\vee b) \leq \bot,
+			\]
+			and hence $\lnot a \wedge \lnot b \leq \neg (a\vee b)$, so indeed we have $\neg (a\vee b) = \lnot a \wedge \lnot b$. 
+			
+			\textcolor{red}{The other law has a typo and it should read $\neg a \vee \neg b \leq \neg (a\wedge b)$.} Now we prove the other law. By the absorption laws we have $a\wedge b \leq a$. As $- \Rightarrow \bot$ is order-reversing we have that $\neg a \leq \neg(a\wedge b)$. By symmetry we also have $\neg b \leq \neg(a\wedge b)$. Hence by universal coproduct property of $\vee$ we get that $\neg a \vee \neg b \leq \neg (a\wedge b)$ as desired.
+			
+			\item First we show that $a\leq \neg\neg a$ (the reverse inequality isn't true in general). This follows from the fact that $a\Rightarrow \bot \leq a\Rightarrow \bot$ for then we have 
+			\[
+				a\wedge (a\Rightarrow \bot) \leq \bot,
+			\]
+			and so $a\leq (a\Rightarrow \bot)\Rightarrow \bot = \neg\neg a$. As $- \Rightarrow \bot$ is order-reversing we have that $\neg\neg\neg a \leq \neg a$.
+			
+			In the other direction, note that as $\neg\neg a \leq \neg\neg a$ we get by definition of $\Rightarrow$ that
+			\[
+				\neg a \wedge \neg\neg a \leq \bot,
+			\]
+			and so $\neg a \leq \neg\neg a \Rightarrow \bot = \neg\neg\neg a$.
+			\item By absorption law $a\wedge b \leq b$ and thus $b \leq a \Rightarrow b$. Using $b\wedge \top = b$ we have that $\top \wedge b \leq a\Rightarrow b$. It follows that $\top \leq b \Rightarrow (a\Rightarrow b)$. The reverse inequality is true as $\top$ is maximal so $\top = b \Rightarrow (a\Rightarrow b)$ as desired.
+			\item By now we have repeatedly used the fact that $(x\Rightarrow y) \wedge x\leq y$ by observing that it follows from $x\Rightarrow y \leq x \Rightarrow y$. Now note that 
+			\begin{align*}
+				a\wedge (a\Rightarrow b) \wedge ( a \Rightarrow (b\Rightarrow c))  &= (a \wedge (a\Rightarrow b)) \wedge (a \wedge ( a \Rightarrow (b\Rightarrow c)))\\
+				&\leq b \wedge (a \wedge ( a \Rightarrow (b\Rightarrow c))) \\
+				&\leq b \wedge (b \Rightarrow c)\\
+				&\leq c
+			\end{align*}
+			where we have used idempotency of $\wedge$ at the start, and then the fact that $\wedge$ is order preserving. Now, by two applications of the definition of $\Rightarrow$ we get
+			\[
+				a\Rightarrow (b\Rightarrow c) \leq (a\Rightarrow b) \Rightarrow (a\Rightarrow c).
+			\]
+			By remembering that $x\wedge \top = \top$ we get that 
+			\[
+				\top \leq (a\Rightarrow (b\Rightarrow c)) \Rightarrow ((a\Rightarrow b) \Rightarrow (a\Rightarrow c)),
+			\]
+			and the reverse inclusion follows since $\top$ is maximal.
+			\item We have that
+			\[
+				(a\Rightarrow \bot) \wedge a  \leq \bot \leq b.
+			\]
+			It follows that $\neg a \leq a\Rightarrow b$. As $- \Rightarrow \bot$ reverses inclusions we get that $\neg(a\Rightarrow b) \leq \neg\neg a$. Also, by absorption law we have that $a\wedge b \leq b$ and hence $b\leq a \Rightarrow b$. Again, by applying the order-reversing negation we get $\neg(a\Rightarrow b) \leq \neg b$. Using universal product property of $\wedge$ we get that 
+			\[
+				\neg(a\Rightarrow b) \leq \neg\neg a \wedge \neg b.
+			\]
+			For the other direction, note that as $a\wedge (a\Rightarrow b) \leq b$ holds, we must have, as $\wedge$ preserves order, that
+			\[
+				a\wedge (a\Rightarrow b) \wedge \neg b \leq b \wedge \neg b \leq \bot.
+			\]
+			Thus, by definition of $\Rightarrow$ we get that 
+			\[
+				(a\Rightarrow b) \wedge \neg b \leq \neg a = \neg\neg a \Rightarrow \bot,
+			\]
+			where we have used triple negation. Hence
+			\[
+				\neg\neg a \wedge (a\Rightarrow b) \wedge \neg b \leq \bot,
+			\]
+			and so 
+			\[
+				\neg\neg a \wedge \neg b \leq \neg (a\Rightarrow b).
+			\]
+			This finishes the proof that $\neg(a\Rightarrow b) = \neg\neg a \wedge \neg b$.
+			
+			\item We use the previous result. Note that
+			\[
+			 \neg\neg(a\Rightarrow b) \wedge (\neg\neg a \wedge \neg b) = \neg\neg(a\Rightarrow b) \wedge \neg(a \Rightarrow b) \leq \bot.
+			\]
+			It follows by two applications of the definition of $\Rightarrow$ that 
+			\[
+				\neg\neg(a\Rightarrow b) \leq \neg\neg a \Rightarrow \neg\neg b.
+			\]
+			For the other direction, it follows since $\wedge$ preserves order, that 
+			\begin{equation*}
+				(\neg\neg a \Rightarrow \neg\neg b) \wedge \neg(a\Rightarrow b)  = (\neg\neg a \Rightarrow \neg\neg b) \wedge (\neg\neg a \wedge \neg b) \leq \neg\neg b \wedge \neg b \leq \bot.
+			\end{equation*}
+			And hence it follows that 
+			\[
+			\neg\neg a \Rightarrow \neg\neg b \leq \neg\neg(a\Rightarrow b),
+			\]
+			proving that $\neg\neg a \Rightarrow \neg\neg b = \neg\neg(a\Rightarrow b)$.
+			
+			For the other identity we first use both De Morgan laws. The second one says that $\neg a \vee \neg b \leq \neg (a \wedge b)$. Applying negation reverses the order and so we get
+			\[
+				\neg\neg(a\wedge b) \leq \neg (\neg a \vee \neg b) = \neg\neg a \wedge \neg\neg b,
+			\]
+			where we used the other De Morgan law. 
+			
+			Now we prove the reverse inequality. Note that $\neg \top \leq \top$ and thus, as $\top$ is maximal and $\wedge$ preserves order, and we have the idempotent law, we have
+			\[
+				\neg \top = \neg \top \wedge \neg \top \leq  \neg \top \wedge \top \leq \bot.
+			\]
+			By addition of superfluous hypothesis we have
+			\[
+				\neg(b \Rightarrow (a \Rightarrow b)) \leq \bot.
+			\]
+			By negation of implications this becomes
+			\[
+				\neg\neg b  \wedge \neg (a \Rightarrow b) \leq \bot,
+			\]
+			and thus
+			\[
+				\neg\neg b \leq \neg\neg (a\Rightarrow b).
+			\]
+			Note that as $\wedge$ is order preserving we have that
+			\[
+				((a \Rightarrow b) \wedge a) \wedge a \leq b \wedge a,
+			\]
+			and so by the idempotent law and definition of $\Rightarrow$
+			\[
+				a\Rightarrow b \leq a \Rightarrow a\wedge b.
+ 			\]
+ 			Note that as $\neg$ is order-reversing it follows that $\neg\neg$ is order-preserving. Hence, going back to what we had,
+ 			\[
+ 				\neg\neg b \leq \neg\neg (a\Rightarrow b) \leq \neg\neg (a \Rightarrow a\wedge b).
+ 			\]
+ 			We already proved that double negation preserves $\Rightarrow$, hence
+ 			\[
+ 				\neg\neg b \leq \neg\neg a \Rightarrow \neg\neg(a\wedge b),
+ 			\]
+ 			which implies that 
+ 			\[
+ 				\neg\neg a \wedge \neg\neg b \leq \neg\neg (a\wedge b),
+ 			\]
+ 			as desired.
+		\end{enumerate}
+		\item Note that the inequality $(a\wedge b)\vee (a\wedge c) \leq a\wedge (b\vee c)$ holds in any lattice. Indeed, by absorption laws we have that $a\wedge b \leq a$ and $a\wedge c \leq a$, and so, by universal property of $\vee$ we have that
+		\[
+			(a\wedge b)\vee (a\wedge c) \leq a.
+		\]
+		Similarly, $a\wedge b \leq b \leq b\vee c$ and $a\wedge c \leq c\leq b\vee c$. Applying universal property of $\vee$ again yields
+		\[
+			(a\wedge b)\vee (a\wedge c) \leq b \vee c.
+		\]
+		We can put these together using the universal property of $\wedge$ to get 
+		\[
+			(a\wedge b)\vee (a\wedge c) \leq a\wedge (b\vee c).
+		\]
+		For the reverse inequality, we observe that, by absorption law:
+		\[
+			a \wedge b \leq (a\wedge b) \vee (a\wedge c).
+		\]
+		It follows that 
+		\[
+			b \leq a \Rightarrow [(a\wedge b) \vee (a\wedge c)].
+		\]
+		By symmetry we get
+		\[
+			c \leq a \Rightarrow [(a\wedge b) \vee (a\wedge c)].
+		\]
+		Applying the universal property of $\vee$ we have that
+		\[
+			b\vee c \leq a \Rightarrow [(a\wedge b) \vee (a\wedge c)],
+		\]
+		and thus we get the reverse inequality
+		\[
+			a\wedge (b\vee c)\leq (a\wedge b) \vee (a\wedge c),
+		\]
+		as desired. It follows that every Heyting algebra is distributive.
+		
+		Now we show that every finite distributive lattice is a Heyting algebra. Firstly we show that the dual of the distributive law can be deduced, without any finiteness assumption. Indeed, using only the absorption laws and the fact that $\wedge$ distributes over $\vee$ we have that
+		\begin{align*}
+			a\vee (b\wedge c) &= (a\vee (a\wedge b)) \vee (b\wedge c)\\
+			&= a \vee ((a\wedge b) \vee (b\wedge c))\\
+			&= a \vee (b \wedge (a \vee c))\\
+			&= (a \wedge (a\vee c)) \vee (b \wedge (a \vee c))\\
+			&= (a\vee b) \wedge (a\vee c),
+		\end{align*}
+		so $\vee$ distributes over $\wedge$ too. We will also be applying the distributive law over finite meets and joins, which can be easily proved to be valid by induction.		
+		
+		Let $L$ be a finite distributive lattice. We first show that $L$ is bounded. Indeed, we can define
+		\[
+			\top \coloneqq \bigvee L,
+		\]
+		as $L$ is finite. Then by the absorption law and the idempotent law for any $a\in L$ we have
+		\[
+			a \leq a \vee \left(\bigvee L\right) = \top.
+		\]
+		Similarly, if we define
+		\[
+			\bot \coloneqq \bigwedge L
+		\]
+		then for any $a\in L$ we get
+		\[
+			a \geq a\wedge \left(\bigwedge L\right) = \bot.
+		\]
+		So $L$ is bounded. 
+		
+		Now for $b,c \in L$ we define
+		\[
+			S(b,c) \coloneqq \{x\in L \colon x\wedge b \leq c\}.
+		\]
+		Note that $c\in S(b,c)$ so $S(b,c)$ is never empty. Set
+		\[
+			b\Rightarrow c \coloneqq \bigvee S(b,c).
+		\]	
+		Now if $a\in L$ is such that $a\wedge b \leq c$ then $a\in S(b,c)$ and thus $a\leq b\Rightarrow c$. Conversely, suppose $a\leq b\Rightarrow c$. Then, as $\wedge$ preserves ordering, and we have a finite distributive law,
+		\begin{align*}
+			a\wedge b &\leq (b\Rightarrow c) \wedge b\\
+			&= b\wedge \left(\bigvee_{x\in S(b,c)} x\right)\\
+			&= \bigvee_{x\in S(b,c)}  (x\wedge b)\\
+			&\leq c,
+		\end{align*}
+		where the last inequality follows from the fact that $x\wedge b \leq c$ for all $x\in S(b,c)$ and the universal property of finite applications of $\vee$. We hence see that $L$ is a Heyting algebra, as desired.
+		
+		\item Recall that for a topological space $X$, the lattice of its open subsets form a Heyting algebra by defining $U \Rightarrow V$ to be $((X\setminus U) \cup V)^\circ$. In particular, $\neg U$ is defined to be $(X\setminus U)^\circ$.
+		\begin{enumerate}
+			\item We work in the Heyting algebra given by the usual topology on $\mathbb{R}^2$. If we set $v(p) = \mathbb{R}^2\setminus \{(0,0)\}$ and $v(q) = \emptyset$ then we get
+			\begin{align*}
+				v(((p\rightarrow q) \rightarrow p) \rightarrow p) & = ((v(p) \Rightarrow v(q))\Rightarrow v(p)) \Rightarrow v(p)\\
+				&= ((\{(0,0)\} \cup \emptyset)^{\circ} \Rightarrow v(p)) \Rightarrow v(p)\\
+				&= (\emptyset \Rightarrow v(p))\Rightarrow v(p)\\
+				&=(\mathbb{R}^2 \cup (\mathbb{R}^2\setminus\{(0,0)\})) \Rightarrow v(p)\\
+				&= \mathbb{R}^2 \Rightarrow v(p)\\
+				&= (\emptyset \cup (\mathbb{R}^2 \setminus \{(0,0)\}))^\circ \\
+				&= \mathbb{R}^2 \setminus\{(0,0)\}\\
+				&\neq \mathbb{R}^2 = \top.				
+			\end{align*}
+			So this law cannot be valid.
+			\item It is enough to show that $\neg(p\wedge q) \rightarrow (\neg p \vee  \neg q)$. We work in the space $\mathbb{R}$ with the usual topology. We let $v(p) = (-\infty, 0)$ and $v(q) = (0,\infty)$. Then,
+			\begin{align*}
+				v(\neg(p\wedge q) \rightarrow (\neg p \vee  \neg q)) &= v(\neg(p\wedge q)) \Rightarrow v(\neg p \vee  \neg q)\\
+				&= (\mathbb{R}\setminus v(p\wedge q))^\circ \Rightarrow [(\mathbb{R}\setminus v(p))^\circ \cup (\mathbb{R}\setminus v(q))^\circ] \\
+				&=(\mathbb{R}\setminus(v(p)\cap v(q)))^\circ \Rightarrow [(0,\infty) \cup (-\infty, 0)]\\
+				&= \mathbb{R} \Rightarrow \mathbb{R}/\{0\}\\
+				&= (\mathbb{R}\setminus\mathbb{R} \cup \mathbb{R}\setminus\{0\})^\circ\\
+				&= \mathbb{R}\setminus\{0\}\\
+				&\neq \mathbb{R} = \top.			
+			\end{align*}
+			Thus the law is not valid.
+			\item Again we work with $\mathbb{R}$ with the usual topology, and let $v(p) = (0,\infty)$ and $v(q) = \mathbb{R}\setminus\{0\}$. Then
+			\begin{align*}
+				v((\neg q \rightarrow \neg p) \rightarrow (p\rightarrow q)) &= v(\neg q \rightarrow \neg p) \Rightarrow 	v(p\rightarrow q)\\
+				&= (v(\neg q) \Rightarrow v(\neg p)) \Rightarrow (v(p) \Rightarrow v(q))\\
+				&= (\emptyset \Rightarrow (-\infty,0)) \Rightarrow ((0,\infty) \Rightarrow \mathbb{R}\setminus \{0\})\\
+				&= \mathbb{R} \Rightarrow \mathbb{R}\setminus \{0\}\\
+				&= \mathbb{R}\setminus \{0\}\\
+				&\neq \mathbb{R} = \top.		
+			\end{align*}
+			\item Again we work with $\mathbb{R}$ with the usual topology. Let $v(p)= \mathbb{R}$ and $v(q) = \mathbb{R}\setminus\{0\}$. Then,
+			\begin{align*}
+				v((\neg\neg p \rightarrow \neg\neg q) \rightarrow (p\rightarrow q)) &= v(\neg\neg p \rightarrow \neg\neg q)\Rightarrow v(p\rightarrow q)\\
+				&= [\neg\neg\mathbb{R} \Rightarrow \neg\neg(\mathbb{R}\setminus\{0\})] \Rightarrow (\mathbb{R} \Rightarrow \mathbb{R}\setminus\{0\})\\
+				&=(\mathbb{R} \Rightarrow \neg\emptyset)\Rightarrow \mathbb{R}\setminus\{0\}\\
+				&= \mathbb{R}\Rightarrow \mathbb{R}\setminus \{0\}\\
+				&= \mathbb{R}\setminus \{0\}\\
+				&\neq \mathbb{R} = \top.
+			\end{align*}
+			\item Again we work with $\mathbb{R}$ with the usual topology. Let $v(p)= \mathbb{R}\setminus \{0\}$ and $v(q) = (0,\infty)$ and $v(r) = (-\infty, 0)$. Then
+			\begin{equation*}
+				v((p\rightarrow(q\vee r) \rightarrow (p\rightarrow q) \vee (p\rightarrow r))) = [v(p)\Rightarrow v(q)\cup v(r)]\Rightarrow [(v(p)\Rightarrow v(q)) \cup (v(p)\Rightarrow v(r))]
+			\end{equation*}
+			which equals
+			\[
+				[\mathbb{R}\setminus\{0\} \Rightarrow \mathbb{R}\setminus\{0\}]\Rightarrow [(\mathbb{R}\setminus\{0\} \Rightarrow (0,\infty)) \cup (\mathbb{R}\setminus\{0\} \Rightarrow (-\infty,0))],
+			\]
+			which is 
+			\[
+				\mathbb{R} \Rightarrow (0,\infty) \cup (-\infty,0) = \mathbb{R} \Rightarrow \mathbb{R}\setminus\{0\},
+			\]
+			which is easily seen to equal $\mathbb{R}\setminus\{0\}$, which is not $\top$.
+		\end{enumerate}
+		\item We prove the contrapositive. Suppose $\nvdash_{IPC}\phi$ and $\nvdash_{IPC} \psi$. Then there must be Kripke models $(S,\leq, \Vdash)$ and $(T,\leq,\Vdash)$ such that there is $s\in S$ and $t\in T$ with $s\nVdash \phi$ and $t\nVdash \psi$. We can assume $S$ and $T$ are disjoint as sets. Now we construct a new Kripke model
+		\[
+			(S\cup T\cup \{u\}, \leq ,\Vdash),
+		\]
+		by specifying that $s\leq u$ and $t\leq u$ and that $u$ forces everything forced by $s$ and everything forced  by $t$. But then $u$ does not force $\psi$ nor $\phi$ and thus certainly not $\phi\vee \psi$. This shows that $\nvdash_{IPC} \phi\vee \psi$.
+		\item \textcolor{red}{TODO}
+		\item
+		\begin{enumerate}
+			\item Say a proposition $\phi$ is \emph{stable} if $\vdash_{IPC} \neg\neg \phi \rightarrow \phi$ (note that $\phi \rightarrow \neg\neg \phi$ is easily provable in intuitionistic logic).
+			\begin{claim}
+				For all quantifier-free sentences $\phi$ we have that $\phi^g$ is stable.
+			\end{claim}
+			\begin{proof}
+				By induction on the structure of $\phi$. We freely use facts derived in Q5.
+				
+				If $\phi$ is atomic then $\phi^g$ is $\neg\neg\phi$. We have to show that
+				\[
+				\neg\neg\neg\neg\phi \rightarrow \neg\neg\phi.
+				\]
+				By the triple negation law, this reduces to $\neg\neg\phi \rightarrow \neg\neg\phi$, which is clearly provable.
+				
+				Suppose $\psi^g$ and $\phi^g$ are stable. As double negation preserves $\wedge$ and $\rightarrow$, it is readily seen that $(\psi\wedge \phi)^g$ and $(\psi\rightarrow \phi)^g$ are stable. The fact that $(\psi \vee \phi)^g$ is stable follows from triple negation.
+			\end{proof}
+			Now we show that if $\phi$ is a classical tautology then $\phi^g$ is an intuitionistic one. We prove the more general statement: if $\Gamma \vdash_{CPC} \phi$ then $\Gamma^g \vdash_{IPC} \phi^g$ where $\Gamma$ is a context and $\Gamma^g \coloneqq \{\psi^g\mid \psi \in \Gamma\}$.
+			
+			Recall that we obtain classical logic by adjoining to intuitionistic logic the law of the excluded middle. Hence we can do induction on the classical derivation of $\phi$.
+			
+			If $\phi = \psi \vee \neg\psi$ and we have the derivation
+			\begin{prooftree}
+				\AxiomC{}
+				\RightLabel{\scriptsize LEM}
+				\UnaryInfC{$\Gamma\vdash \psi \vee \neg\psi$}
+			\end{prooftree}
+			using the law of excluded middle then we need to prove that
+			\begin{align*}
+				\phi^g &= \neg(\neg\psi^g \wedge \neg(\neg \psi)^g)\\
+				&= \neg(\neg\psi^g \wedge\neg\neg \psi^g)
+			\end{align*}
+			can be deduced in intuitionistic logic. But if we assume $\neg\psi^g \wedge\neg\neg \psi^g$ then we are immediately led to contradiction so this is true.
+			
+			The case for $\bot$-elimination is trivial. If $\phi$ was derived by assumption
+			\begin{prooftree}
+				\AxiomC{}
+				\RightLabel{\scriptsize (Ax)}
+				\UnaryInfC{$\Gamma,\phi \vdash \phi$}
+			\end{prooftree}
+			Then clearly
+			\begin{prooftree}
+				\AxiomC{}
+				\RightLabel{\scriptsize (Ax)}
+				\UnaryInfC{$\Gamma^g,\phi^g \vdash \phi^g$}
+			\end{prooftree}
+			 Now suppose $\phi = \psi_1 \rightarrow \psi_2$ was derived using the introduction rule for implication
+			 \begin{prooftree}
+			 	\AxiomC{$\Gamma,\psi_1 \vdash \psi_2$}
+			 	\RightLabel{\scriptsize ($\rightarrow$-I)}
+			 	\UnaryInfC{$\Gamma \vdash \psi_1\rightarrow \psi_2$}
+			 \end{prooftree}
+			 By inductive hypothesis we can assume $\Gamma^g,\psi_1^g \vdash \psi_2^g$. It follows that $\Gamma^g \vdash \psi_1^g\rightarrow \psi_2^g$, and now we are done by definition of $(\psi_1\rightarrow\psi_2)^g$.
+			 
+			 Suppose we used the elimination rule for implication.
+			 \begin{prooftree}
+			 	\AxiomC{$\Gamma \vdash \psi\rightarrow \phi$}
+			 	\AxiomC{$\Gamma \vdash \psi$}
+			 	\RightLabel{\scriptsize ($\rightarrow$-E)}
+			 	\BinaryInfC{$\Gamma \vdash \phi$}
+			 \end{prooftree}
+			 By induction hypothesis we assume that $\Gamma^g\vdash \psi^g$ and $\Gamma^g \vdash (\psi \rightarrow \phi)^g$. By definition we have $\Gamma^g \vdash \psi^g \rightarrow \phi^g$ and thus $\Gamma^g \vdash \phi^g$ as desired.
+			 
+			 Suppose $\phi = \psi_1\wedge \psi_2$ and we used the introduction rule for $\wedge$.
+			 \begin{prooftree}
+			 	\AxiomC{$\Gamma \vdash \psi_1$}
+			 	\AxiomC{$\Gamma \vdash \psi_2$}
+			 	\RightLabel{\scriptsize ($\wedge$-I)}
+			 	\BinaryInfC{$\Gamma \vdash \psi_1\wedge\psi_2$}
+			 \end{prooftree}
+			 Then by induction $\Gamma^g \vdash \psi_1^g$ and $\Gamma^g\vdash \psi_2^g$ and thus $\Gamma^g \vdash \psi_1^g \wedge \psi_2^g$. Now we are done by definition of  $(\psi_1\wedge \psi_2)^g$.
+			 
+			 Suppose we used one of the elimination rules of $\wedge$. Without loss of generality assume
+			 \begin{prooftree}
+			 	\AxiomC{$\Gamma \vdash \psi\wedge \phi$}
+			 	\RightLabel{\scriptsize ($\wedge$-E)}
+			 	\UnaryInfC{$\Gamma \vdash \phi$}
+			 \end{prooftree}
+			 Then $\Gamma^g \vdash \psi^g \wedge \phi^g$ and thus $\Gamma^g \vdash \phi^g$ as desired.
+			 
+			 Now suppose we use one of the introduction rules for $\vee$. Without loss of generality assume $\phi = \psi_1\vee \psi_2$ and
+			 \begin{prooftree}
+			 	\AxiomC{$\Gamma \vdash \psi_1$}
+			 	\RightLabel{\scriptsize ($\vee$-I)}
+			 	\UnaryInfC{$\Gamma \vdash \psi_1\vee\psi_2$}
+			 \end{prooftree}
+			 We assume that $\Gamma^g \vdash \psi_1^g$. We need to show that $\Gamma^g \vdash \neg(\neg\psi_1^g \wedge \neg\psi_2^g)$. This is shown by the following proof tree (here W denotes the weakening rule, which was mentioned in lectures).
+			 \begin{prooftree}
+			 	\AxiomC{}
+			 	\RightLabel{\scriptsize (Ax)}
+			 	\UnaryInfC{$\Gamma^g, \neg\psi_1^g \wedge \neg\psi_2^g \vdash \neg\psi_1^g \wedge \neg\psi_2^g$}
+			 	\RightLabel{\scriptsize ($\wedge$-E)}
+			 	\UnaryInfC{$\Gamma^g, \neg\psi_1^g \wedge \neg\psi_2^g \vdash\neg\psi_1^g$}
+			 	\AxiomC{$\Gamma^g \vdash \psi_1^g$}
+			 	%\RightLabel{\scriptsize (Ax)}
+			 	\RightLabel{\scriptsize (W)}
+			 	\UnaryInfC{$\Gamma^g,\neg\psi_1^g \wedge \neg\psi_2^g \vdash \psi_1^g$}
+			 	\RightLabel{\scriptsize ($\rightarrow$-E)}
+			 	\BinaryInfC{$\Gamma^g,\neg\psi_1^g \wedge \neg\psi_2^g \vdash \bot$}
+			 	\RightLabel{\scriptsize ($\rightarrow$-I)}
+			 	\UnaryInfC{$\Gamma^g \vdash \neg(\neg\psi_1^g \wedge \neg\psi_2^g)$}
+			 \end{prooftree}
+			 So we are done with this case.
+			 
+			 Now suppose that we used the elimination rule for $\vee$ as follows.
+			 \begin{prooftree}
+			 	\AxiomC{$\Gamma, \psi_1 \vdash \phi$}
+			 	\AxiomC{$\Gamma, \psi_2 \vdash \phi$}
+			 	\AxiomC{$\Gamma \vdash \psi_1\vee \psi_2$}
+			 	\RightLabel{\scriptsize ($\vee$-E)}
+			 	\TrinaryInfC{$\Gamma \vdash \phi$}
+			 \end{prooftree}
+			 By induction we can assume that $\Gamma^g, \psi_1^g \vdash \phi^g$, that $\Gamma^g, \psi_2^g \vdash \phi^g$, and $\Gamma^g \vdash \neg (\neg\psi_1^g\wedge \neg\psi_2^g)$. We need to show that $\Gamma^g \vdash \phi^g$. But this is hard to do given the assumptions. Luckily, we proved that $\phi^g$ is stable, so it suffices to show $\Gamma^g \vdash \neg\neg\phi^g$. We show this using the proof tree at the end of this document. This settles all the cases and completes the induction.
+			 
+			 As a corollary we see that if $\vdash_{CPC} \phi$ then $\vdash_{IPC}\phi^g$. The converse is easy to see: if $\vdash_{IPC}\phi^g$ then $\vdash_{CPC}\phi^g$ since intuitionistic proofs work in a classical setting, and a short induction shows that $\phi \leftrightarrow \phi^g$ is provable in classical logic. Hence we have shown that $\vdash_{CPC} \phi$ iff $\vdash_{IPC} \phi^g$. Notice that $\bot^g = \bot$, from which it follows that CPC is inconsistent, iff IPC is.
+			 \item We consider the sentence $\forall x. \varphi(x) \vee \neg\varphi(x)$. We construct a Kripke model as follows. Let $W = \{w_0,w_1,\ldots\}$ and the structures are defined
+			 \[
+			 	M_{w_n} \coloneqq \{1,\ldots, n\}
+			 \]
+			 and we postulate that $M_n$ models $\varphi(1),\ldots,\varphi(n-1)$. Note that for all $n$ we have $w_n \nVdash \varphi(n)$ since $M \nvDash \varphi(n)$. But for $m>n$ we do have $M_m\vDash \varphi(n)$, so $w_n\nVdash \neg\varphi(n)$. It follows that, $w_n \nVdash \varphi(n)\vee \neg\varphi(n)$, and thus $w_n \nVdash \forall x. (\varphi(x)\vee \neg\varphi(x))$ for all $n$.
+			 
+			 For we to have $w_n \Vdash \neg\neg\forall x. (\varphi(x)\vee \neg\varphi(x))$ we must have that for all $m\geq n$ there is some $m'\geq m$ so that $w_{m'} \Vdash \forall x. (\varphi(x)\vee \neg\varphi(x))$, and this is clearly not the case in this model. Thus $\neg\neg\forall x. (\varphi(x)\vee \neg\varphi(x))$ cannot be an intuitionistic theorem.
+		\end{enumerate}
+		\item \textcolor{red}{Don't know how to do the first part...}		
+		If a proposition is intuitionistically valid then it is $H$-valid for any finite Heyting algebra $H$. For the converse, suppose $\phi$ is not intuitionistically valid. It suffices to find a finite Heyting algebra in which $\phi$ is not valid. We know that $\phi$ is not valid in $A$, the Lindebaum-Tarski algebra (for the empty theory).
+		This means that there is some valuation $v\colon P \to A$ such that $v(\phi) \neq \top$.
+		
+		However this Heyting algebra $A$ is, in general, infinite. Nevertheless, as we are only interested in the valuation of $\phi$, we can take $P'\subseteq P$ to be the finite set of primitive propositions appearing in $\phi$, and then consider 
+		\[
+			A' \coloneqq \langle \im v|_{P'} \rangle
+		\] 
+		the distributive sublattice generated by $\im v|_{P'}$ in $A$. As $A'$ is finitely generated we have that it is a finite lattice. Moreover, by Q6, $A'$ is a Heyting algebra. Let $v'\colon P \to A'$ be any valuation extending $v|_{P'}$. As the valuation of $\phi$ only depends on the valuations of $P'$, we see that $v'(\phi) \neq \top$, finishing the proof.
+	\end{enumerate}
+	\newpage
+	\begin{landscape}
+	\begin{prooftree}
+		\AxiomC{$\Gamma^g, \psi_1^g \vdash \phi^g$}
+		\RightLabel{\scriptsize (W)}
+		\UnaryInfC{$\Gamma^g, \neg\phi^g, \psi_1^g \vdash \phi^g$}
+		\AxiomC{}
+		\RightLabel{\scriptsize (Ax)}
+		\UnaryInfC{$\Gamma^g, \neg\phi^g, \psi_1^g \vdash \neg\phi^g$}
+		\RightLabel{\scriptsize($\rightarrow$-E)}
+		\BinaryInfC{$\Gamma^g, \neg\phi^g, \psi_1^g \vdash \bot$}
+		\RightLabel{\scriptsize ($\rightarrow$-I)}
+		\UnaryInfC{$\Gamma^g, \neg\phi^g \vdash \neg\psi_1^g$}
+		\AxiomC{$\Gamma^g, \psi_2^g \vdash \phi^g$}
+		\RightLabel{\scriptsize (W)}
+		\UnaryInfC{$\Gamma^g, \neg\phi^g, \psi_2^g \vdash \phi^g$}
+		\AxiomC{}
+		\RightLabel{\scriptsize (Ax)}
+		\UnaryInfC{$\Gamma^g, \neg\phi^g, \psi_2^g \vdash \neg\phi^g$}
+		\RightLabel{\scriptsize($\rightarrow$-E)}
+		\BinaryInfC{$\Gamma^g, \neg\phi^g, \psi_2^g \vdash \bot$}
+		\RightLabel{\scriptsize ($\rightarrow$-I)}
+		\UnaryInfC{$\Gamma^g, \neg\phi^g \vdash \neg\psi_2^g$}
+		
+		\RightLabel{\scriptsize ($\wedge$-I)}
+		\BinaryInfC{$\Gamma^g,\neg\phi^g\vdash \neg\psi_1^g\wedge \neg\psi_2^g$}
+		
+		\AxiomC{$\Gamma^g \vdash \neg (\neg\psi_1^g\wedge \neg\psi_2^g)$}
+		\RightLabel{\scriptsize ($\rightarrow$-I)}
+		\UnaryInfC{$\Gamma^g, \neg\phi^g \vdash \neg (\neg\psi_1^g\wedge \neg\psi_2^g)$}
+		\RightLabel{\scriptsize ($\rightarrow$-E)}
+		\BinaryInfC{$\Gamma^g,\neg\phi^g\vdash \bot$}
+		\RightLabel{\scriptsize ($\rightarrow$-I)}
+		\UnaryInfC{$\Gamma^g \vdash \neg\neg\phi^g$}
+	\end{prooftree}
+\end{landscape}
+\end{document}
+
